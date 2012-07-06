@@ -1,4 +1,4 @@
-package mypackage;
+package mybeans;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -15,13 +17,15 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import java.lang.System;
 
+@ManagedBean(name="bean")
+@SessionScoped
 public class MyBean {
 
     // Init ---------------------------------------------------------------------------------------
 
     private UploadedFile uploadedFile;
     private String fileName;
-
+    private String directory;
     // Actions ------------------------------------------------------------------------------------
 
     public void submit() {
@@ -54,7 +58,8 @@ public class MyBean {
         	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
             output = new FileOutputStream(file);
             IOUtils.copy(uploadedFile.getInputStream(), output);
-            fileName = "Rubrics/"+file.getName();
+            fileName = file.getName();
+            directory = "Rubrics/"+fileName;
 
             // Show succes message.
             FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
@@ -82,6 +87,10 @@ public class MyBean {
 
     public String getFileName() {
         return fileName;
+    }
+    
+    public String getDirectory(){
+    	return directory;
     }
 
     // Setters ------------------------------------------------------------------------------------
