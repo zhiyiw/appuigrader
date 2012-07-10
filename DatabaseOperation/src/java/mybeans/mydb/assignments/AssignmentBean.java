@@ -78,7 +78,7 @@ public class AssignmentBean {
 	public void addAssignment(String directory, int year ,String term) throws SQLException{
 		List<Assignment> list = getAssignmentList(year,term);
 		
-		int temp = list.size();
+		int temp = list.size()+1;
 		String name;
 		
 		if(temp<10)

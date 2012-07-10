@@ -16,6 +16,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import java.lang.System;
+import java.sql.SQLException;
+
+import mybeans.mydb.assignments.AssignmentBean;
 
 @ManagedBean(name="upload")
 @SessionScoped
@@ -28,7 +31,7 @@ public class Upload {
     private String directory;
     // Actions ------------------------------------------------------------------------------------
 
-    public void submit() {
+    public void submit(int year, String term) {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
@@ -64,6 +67,15 @@ public class Upload {
             // Show succes message.
             FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
                 FacesMessage.SEVERITY_INFO, deploymentDirectoryPath, null));
+            
+            AssignmentBean assbean = new AssignmentBean();
+            try {
+				assbean.addAssignment(directory, year, term);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
         } catch (IOException e) {
             // Cleanup.
             if (file != null) file.delete();
