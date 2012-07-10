@@ -51,7 +51,7 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_name, a_directory, a_uploaded_date from assignments where year=? and term=?"); 
+			   "select a_name, a_directory, a_uploaded_date from assignments where a_year=? and a_term=?"); 
  
 		//get student data from database
 		ps.setInt(1, year);

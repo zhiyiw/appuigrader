@@ -11,14 +11,14 @@
  		<h:dataTable value="#{student.getStudentList()}" var="s">
     		<h:column>
     			<f:facet name="header">
-    				StudentID
+    				<h:outputText value="StudentID"/>
     			</f:facet>
 				<h:outputText value="#{s.studentID}"/>
     		</h:column>
 
     		<h:column>
     			<f:facet name="header">
-    				Last Name
+    				<h:outputText value="Last Name"/>
 				</f:facet>
 				<h:outputText value="#{s.lname}"/>
     		</h:column> 

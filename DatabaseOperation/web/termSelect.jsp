@@ -23,7 +23,7 @@
     	    
     	    <br /><br />
     	    
-    	    <h:commandButton value="Submit" action="students.jsp" />
+    	    <h:commandButton value="Submit" action="assignmentsDisplay.jsp" />
 	        <h:commandButton value="Reset" type="reset" />
     	</h:form>
         </body>
