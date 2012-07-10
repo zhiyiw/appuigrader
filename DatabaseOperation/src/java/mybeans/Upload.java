@@ -17,9 +17,9 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 import java.lang.System;
 
-@ManagedBean(name="bean")
+@ManagedBean(name="upload")
 @SessionScoped
-public class MyBean {
+public class Upload {
 
     // Init ---------------------------------------------------------------------------------------
 

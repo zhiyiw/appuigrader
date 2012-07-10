@@ -20,7 +20,7 @@
                     <h:message for="uploadForm" infoStyle="color: green;" errorStyle="color: red;" />
             </h:panelGrid>
         </h:form>
-		<h:outputText value="#{assignment.addAssignment(bean.getFileName(), bean.getDirectory())}"/>		
+		<h:outputText value="#{assignment.addAssignment(upload.getFileName(), upload.getDirectory())}"/>		
         </body>
     </html>
 </f:view>
