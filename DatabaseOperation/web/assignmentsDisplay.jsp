@@ -47,8 +47,11 @@
                     <h:outputLabel for="file" value="add new assignment" />
                     <t:inputFileUpload id="file" value="#{upload.uploadedFile}" required="true" />
                     <h:message for="file" style="color: red;" />
+                    <h:outputLabel value="Set assignment name" />
+                    <h:inputText value="#{upload.fname}" />
                     <h:panelGroup />
-                    <h:commandButton value="Submit" action="#{upload.submit(menuoption.selectYear,menuoption.selectTerm)}" />
+                    <h:outputLabel value=" " />
+                    <h:commandButton value="Submit" action="#{upload.submit(menuoption.selectYear,menuoption.selectTerm, upload.fname)}" />
                     <h:message for="uploadForm" infoStyle="color: green;" errorStyle="color: red;" />
             </h:panelGrid>
         </h:form>
