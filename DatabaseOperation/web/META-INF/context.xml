@@ -4,6 +4,6 @@
                maxActive="50" maxIdle="30" maxWait="10000"
                username="admin" password="password" 
                driverClassName="com.mysql.jdbc.Driver"
-               url="jdbc:mysql://ix.cs.uoregon.edu:3181/uigrader"/>
+               url="jdbc:mysql://ix.cs.uoregon.edu:3343/uigrader"/>
  
 </Context>
