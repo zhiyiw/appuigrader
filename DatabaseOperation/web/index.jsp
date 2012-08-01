@@ -7,10 +7,10 @@
 <f:view>
     <html lang="en">
         <head>
-            <title>File upload test</title>
+            <title>Navi Rule Case test</title>
         </head>
         <body>
-            <h:form id="uploadForm" enctype="multipart/form-data">
+            <%-- <h:form id="uploadForm" enctype="multipart/form-data">
                 <h:panelGrid columns="3" border="1">
                     <h:outputLabel for="file" value="Select file from" />
                     <t:inputFileUpload id="file" value="#{bean.uploadedFile}" required="true" />
@@ -23,7 +23,10 @@
 
             <h:outputLink value="#{bean.fileName}" rendered="#{bean.fileName != null}">
                 Download back
-            </h:outputLink>
+            </h:outputLink> --%>
+            <h:form>
+            <h:commandButton value="naviTest" action="${navi.respons}" />
+        	</h:form>
         </body>
     </html>
 </f:view>
