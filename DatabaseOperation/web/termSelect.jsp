@@ -23,7 +23,7 @@
     	    
     	    <br /><br />
     	    
-    	    <h:commandButton value="Teacher" action="assignmentsDisplay.jsp" />
+    	    <h:commandButton value="Teacher" action="assignmentsDisplay.xhtml" />
 	        <h:commandButton value="Student" action="students.jsp" />
     	</h:form>
         </body>

@@ -11,10 +11,20 @@
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  <servlet-mapping>
+    <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
+  
+    <filter>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
   <filter>
     <filter-name>Extensions Filter</filter-name>
     <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
@@ -23,8 +33,9 @@
     <filter-name>Extensions Filter</filter-name>
     <servlet-name>Faces Servlet</servlet-name>
   </filter-mapping>
+
   <welcome-file-list>
-    <welcome-file>faces/login.jsp</welcome-file>
+    <welcome-file>faces/termSelect.jsp</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>

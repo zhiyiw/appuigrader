@@ -27,6 +27,16 @@ public class AssignmentBean {
 	
 	private Connection con;
 	
+	private Assignment selectedAssignment;
+	
+	public Assignment getSelectedAssignment() {
+		return selectedAssignment;
+	}
+
+	public void setSelectedAssignment(Assignment selectedAssignment) {
+		this.selectedAssignment = selectedAssignment;
+	}
+
 	//if resource injection is not support, you still can get it manually.
 	public AssignmentBean(){
 		try {
@@ -51,7 +61,7 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_name, a_directory, a_uploaded_date from assignments where a_year=? and a_term=?"); 
+			   "select a_id, a_name, a_directory, a_uploaded_date from assignments where a_year=? and a_term=?"); 
  
 		//get student data from database
 		ps.setInt(1, year);
@@ -64,6 +74,7 @@ public class AssignmentBean {
 		while(result.next()){
 			Assignment assign = new Assignment();
 			
+			assign.setAssignmentID(result.getInt("a_id"));
 			assign.setAssignmentName(result.getString("a_name"));
 			assign.setAssignmentDirectory(result.getString("a_directory"));
 			assign.setUploadedDate(result.getString("a_uploaded_date"));
@@ -71,20 +82,29 @@ public class AssignmentBean {
 			//store all data into a List
 			list.add(assign);
 		}
- 
+		con.close();
 		return list;
 	}
 	
-	public void addAssignment(String directory, String name, int year ,String term) throws SQLException{
+	public void addAssignment(String directory, int year ,String term) throws SQLException{
 		List<Assignment> list = getAssignmentList(year,term);
 		
-//		int temp = list.size()+1;
-//		String name;
-//
-//		if (temp < 10)
-//			name = "Assignment0" + temp;
-//		else
-//			name = "Assignment" + temp;
+		int temp = list.size()+1;
+		String name;
+		
+		if(temp<10)
+			name = "Assignment0"+temp;
+		else
+			name = "Assignment"+temp;
+		
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
 		
 		PreparedStatement ps 
 		= con.prepareStatement(
@@ -107,6 +127,37 @@ public class AssignmentBean {
 		
 		if(updated==0)
 			throw new SQLException("Insert Error!");
+		
+		con.close();
+		
+	}
+
+	public void updateAssignment(String directory, int year, String term,
+			int id) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+ 
+		
+		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE() where a_id=?");
+		
+		ps.setString(1, directory);
+		ps.setInt(2, id);
+		
+		
+		int updated = ps.executeUpdate();
+		
+		if(updated==0)
+			throw new SQLException("Update Error!");
+		
+		con.close();
 		
 	}
 
