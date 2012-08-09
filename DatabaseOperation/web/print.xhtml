@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+
+
+	<h:form id="showTree1">
+		<p:tree value="#{compare.tree1.root}" var="node1" id="tree1"
+			animate="true">
+			<p:treeNode id="treeNode">
+				<h:outputText value="#{node1}" id="lblNode1" />
+			</p:treeNode>
+		</p:tree>
+	</h:form>
+
+	<h:form id="showTree2">
+		<p:tree value="#{compare.tree2.root}" var="node2" id="tree2"
+			animate="true">
+			<p:treeNode id="treeNode">
+				<h:outputText value="#{node2}" id="lblNode2" />
+			</p:treeNode>
+		</p:tree>
+	</h:form>
+
+
+
+	<h:outputText value="Test Result: " />
+	<br />
+	<h:outputText value="#{compare.compareFiles()}" />
+
+
+</h:body>
+
+</html>

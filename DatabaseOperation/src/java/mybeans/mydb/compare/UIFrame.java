@@ -5,65 +5,19 @@
 
 package mybeans.mydb.compare;
 
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeSelectionModel;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.awt.*;
-
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-import mybeans.mydb.assignments.model.Assignment;
-
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.myfaces.custom.fileupload.UploadedFile;
-
 import java.lang.System;
-import java.sql.SQLException;
-
-import mybeans.mydb.assignments.AssignmentBean;
 
 @ManagedBean(name = "compare")
 @SessionScoped
@@ -71,6 +25,25 @@ import mybeans.mydb.assignments.AssignmentBean;
 public class UIFrame {
 	static private final String newline = "\n";
 
+	public TreeBean getTree1() {
+		return tree1;
+	}
+
+	public void setTree1(TreeBean tree1) {
+		this.tree1 = tree1;
+	}
+
+	public TreeBean getTree2() {
+		return tree2;
+	}
+
+	public void setTree2(TreeBean tree2) {
+		this.tree2 = tree2;
+	}
+
+	TreeBean tree1;
+	TreeBean tree2;
+	
 	private File oriFile;
 	private File tarFile;
 
@@ -166,7 +139,7 @@ public class UIFrame {
 //		in.close();
 
 		 oriFile = new File(filePath + "//" +"123.zip");
-		 tarFile = new File(filePath + "//" + "button.zip");
+		 tarFile = new File(filePath + "//" + "123.zip");
 		
 		 ZipFile zf = null;
 		
@@ -179,6 +152,8 @@ public class UIFrame {
 		 }
 		
 		 dataBuild db = new dataBuild(zipFilestream(zf));
+		 
+		 tree1 = new TreeBean("Original File", db.compArr.get( db.compArr.size() - 1));
 		
 		 // ////////////////////////////////
 		
@@ -191,6 +166,7 @@ public class UIFrame {
 		
 		 dataBuild db2 = new dataBuild(zipFilestream(zf));
 		
+		 tree2 = new TreeBean("Target File", db2.compArr.get(db2.compArr.size() - 1));
 		 // if (db == null && db2 == null) {
 		 // compResult = "Pleases add Files !!!\n";
 		 // System.out.println(compResult);
