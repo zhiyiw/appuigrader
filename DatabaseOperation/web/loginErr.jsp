@@ -13,7 +13,7 @@
         <h:form>
 			<h:outputLabel value="Username or Password is NOT correct!! "></h:outputLabel>
 			<br />
-   	        <h:commandButton value="Back to Login" action="login.jsp" />
+   	        <h:commandButton value="Back to Login" action="login.xhtml" />
     	</h:form>
         </body>
     </html>

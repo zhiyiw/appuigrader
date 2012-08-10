@@ -126,52 +126,41 @@
     
     </p:outputPanel>
     
-    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="200" height="250" position="270,200" style="background:trasparent">  
+    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="220" height="50" position="620,325" style="background:trasparent">  
   	<p:outputPanel id="display" style="text-align:center;" layout="block"> 
   	<h:outputText style="font-size:12"  
                             value="#{assignment.selectedAssignment.assignmentID}" />  
     </p:outputPanel>
- 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()">Update</p:commandLink>
+ 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()">
+ 	<h:outputText value="Choose To Compare" styleClass="nodeFolder" />
+ 	</p:commandLink>
   
     </p:dialog>
      
     
 
 	
-	<p:dialog header="#{assignment.selectedAssignment.assignmentName}" resizable="false" widgetVar="updateUI" id="updateDialog" position="50,100" width="500">  
+	<p:dialog header="#{assignment.selectedAssignment.assignmentName}" resizable="false" widgetVar="updateUI" id="updateDialog" position="490,320" width="520">  
 		<p:outputPanel id="dialogPanel">
-		Current Location:
+		Upload your file to compare:
+		
         <h:form enctype="multipart/form-data">
 
-    		<p:fileUpload value="#{controller.uploadedFile}"
+    		<p:fileUpload value="#{upload.uploadedFile}"
             	mode="simple" 
             	update="messages"
             	sizeLimit="100000" 
             	allowTypes="/(\.|\/)(txt|jpe?g|png)$/" />
 
             <p:growl id="messages" showDetail="true"/>
-            <h:commandButton type="submit" value="testUpload" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID)}"></h:commandButton>
+            &#160;
+            <h:commandButton type="submit" value="Start Compare" action="#{upload.submit}"></h:commandButton>
 		</h:form> 
 		</p:outputPanel>
 	</p:dialog>
 	
 	
-	<p:dialog header="Add New Assignment" resizable="false" widgetVar="addnew" position="50,100" width="500">  
-		<p:outputPanel>
-		Current Location:
-        <h:form enctype="multipart/form-data">
 
-    		<p:fileUpload value="#{controller.uploadedFile}"
-            	mode="simple" 
-            	update="messages"
-            	sizeLimit="100000" 
-            	allowTypes="/(\.|\/)(txt|jpe?g|png)$/" />
-
-            <p:growl showDetail="true"/>
-            <h:commandButton type="submit" value="testUpload" action="#{controller.addNew(menuoption.selectYear,menuoption.selectTerm)}"></h:commandButton>
-		</h:form> 
-		</p:outputPanel>
-	</p:dialog>  
   	
 </p:outputPanel>
 

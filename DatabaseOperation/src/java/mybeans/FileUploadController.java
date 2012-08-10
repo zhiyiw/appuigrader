@@ -31,7 +31,7 @@ public class FileUploadController {
     private String directory;
     // Actions ------------------------------------------------------------------------------------
 
-    public void addNew(int year, String term) {
+    public boolean addNew(int year, String term) {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
@@ -76,6 +76,8 @@ public class FileUploadController {
 				e.printStackTrace();
 			}
             
+         return true;
+            
         } catch (IOException e) {
             // Cleanup.
             if (file != null) file.delete();
@@ -89,6 +91,7 @@ public class FileUploadController {
         } finally {
             IOUtils.closeQuietly(output);
         }
+        return true;
     }
     
     public void updateExist(int year, String term, int fileID) {

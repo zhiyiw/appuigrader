@@ -13,12 +13,13 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.primefaces.model.UploadedFile;
 
 import java.lang.System;
 import java.sql.SQLException;
 
 import mybeans.mydb.assignments.AssignmentBean;
+import mybeans.mydb.compare.UploadCompare;
 
 @ManagedBean(name="upload")
 @SessionScoped
@@ -39,16 +40,16 @@ public class Upload {
     private String directory;
     // Actions ------------------------------------------------------------------------------------
 
-    public void submit(int year, String term, String name) {
+    public void submit() {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
-        System.out.println("File name: " + uploadedFile.getName());
+        System.out.println("File name: " + uploadedFile.getFileName());
         System.out.println("File size: " + uploadedFile.getSize() + " bytes");
 
         // Prepare filename prefix and suffix for an unique filename in upload folder.
-        String prefix = FilenameUtils.getBaseName(uploadedFile.getName());
-        String suffix = FilenameUtils.getExtension(uploadedFile.getName());
+        String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
+        String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
         
         // Prepare file and outputstream.
         File file = null;
@@ -61,24 +62,24 @@ public class Upload {
         	
 
         	ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        	String deploymentDirectoryPath = ctx.getRealPath("/")+"Rubrics";
+        	String deploymentDirectoryPath = ctx.getRealPath("/")+"compareFile";
         	File target = new File(deploymentDirectoryPath);
         	if(!target.exists())
         		target.mkdir();
         	//if(directory.exists())
         	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
             output = new FileOutputStream(file);
-            IOUtils.copy(uploadedFile.getInputStream(), output);
+            IOUtils.copy(uploadedFile.getInputstream(), output);
             fileName = file.getName();
-            directory = "Rubrics/"+fileName;
+            directory = "compareFile/"+fileName;
 
             // Show succes message.
             FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
                 FacesMessage.SEVERITY_INFO, deploymentDirectoryPath, null));
-            fname = name;
-            AssignmentBean assbean = new AssignmentBean();
+            //fname = name;
+            UploadCompare compareFile = new UploadCompare();
             try {
-				assbean.addAssignment(directory, fname, year, term);
+            	compareFile.uploadCompare(directory, fileName);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
