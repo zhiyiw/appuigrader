@@ -57,7 +57,7 @@ public class Login {
 	}
 	
 	
-	public boolean loginCheck() throws SQLException {
+	public boolean loginCheck(int year, String term) throws SQLException {
 		boolean isMatched = false;
 		
 		
@@ -67,10 +67,12 @@ public class Login {
 		
 		if(con == null) throw new SQLException("Can't get database connection");
 		
-		PreparedStatement ps = con.prepareStatement("select * from users where username = ? and password = ? ");
+		PreparedStatement ps = con.prepareStatement("select * from users where username = ? and password = ? and year = ? and term = ?");
 		
 		ps.setString(1, username);
 		ps.setString(2, password);
+		ps.setInt(3, year);
+		ps.setString(4, term);
 		
 		ResultSet result = ps.executeQuery();
 		
@@ -86,6 +88,8 @@ public class Login {
 		else {
 			return false;
 		}
+		
+		con.close();
 		
 		return isMatched;
 	}

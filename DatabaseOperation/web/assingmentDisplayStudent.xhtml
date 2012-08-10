@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t ="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+<title>Insert title here</title>
+  <style type="text/css"> 
+  			html{
+  			background-color:#e7efcd;
+  			}
+  			
+  			.mainFrame{
+  			    background-image: url(images/adminbg.png);
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat; 
+                background-color:transparent;	
+                width:1024px;
+                height:768px;
+                margin: 0px auto 0px auto;
+  			
+  			}
+  			
+  			.add{
+  				position:relative;
+  				top:45px;
+  				left:25px;
+  				width:120px;
+  				height:120px;
+  			}  
+  			
+  			.ring{
+  				position:relative;
+  				top:250px;
+  				
+  			}       
+             
+            .ui-ring{
+            	width:650px;
+            	margin: 0px auto 0px auto;
+            }
+            .ui-ring-item {
+            	font-size:12;
+  			    width: 183px;
+                height:143px;              	
+                text-align:center;
+                
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat; 
+                background-color:transparent;
+                
+                border:none;
+  	 
+            }
+            
+            
+            .buttonStyle {
+				border:none;   
+               	width: 20px;
+                height:20px;
+				margin-top:50px; 		
+					
+			}
+			
+			.addNewAssignment{
+				width: 75px;
+                height:75px;
+                margin-top:50px;
+                margin-left:5px;
+			}
+			
+			.findIcon{
+				position:absolute;
+				bottom:0px;
+                right:0px;
+			}
+			
+			.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap, .ui-layout-bd, .ui-layout-hd{
+    		border: none;
+			}
+  </style>
+
+
+	
+</h:head>
+<h:body>
+
+
+	
+	<h1>
+	<h:outputLabel value="#{menuoption.selectYear}">
+	</h:outputLabel>
+	<h:outputLabel value="#{menuoption.selectTerm}">
+	</h:outputLabel>
+	</h1>
+	<p:outputPanel layout="block" styleClass="mainFrame">
+    
+    <p:outputPanel layout="block" styleClass="add">
+    <p:commandLink  onclick="addnew.show()" styleClass="addNewAssignment">
+        <p:graphicImage value="images/add.png"></p:graphicImage>
+    </p:commandLink>
+    </p:outputPanel>
+      
+	<p:outputPanel layout="block" styleClass="ring">
+	<h:form>
+    <p:ring id="basic" value="#{assignment.getAssignmentList(menuoption.selectYear,menuoption.selectTerm)}" var="a">  
+        <p:column>
+        <p:outputPanel style="text-align:center; padding-top:15px" layout="block" styleClass="assignmentBlock">  
+         		<p:outputPanel>#{a.assignmentName}</p:outputPanel>
+         		<p:outputPanel style="text-align:center;" layout="block" styleClass="findIcon" > 
+         		<p:commandLink 
+                            update=":updateDialog, :display"
+                            oncomplete="dlg.show()">
+                <p:graphicImage value="images/find.png" style="height:10px; width:10px"></p:graphicImage>
+         		<f:setPropertyActionListener value="#{a}"  target="#{assignment.selectedAssignment}" />
+                </p:commandLink>
+                </p:outputPanel> 
+   		</p:outputPanel> 
+   		</p:column>
+    </p:ring>  
+    </h:form>
+    
+    </p:outputPanel>
+    
+    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="200" height="250" position="270,200" style="background:trasparent">  
+  	<p:outputPanel id="display" style="text-align:center;" layout="block"> 
+  	<h:outputText style="font-size:12"  
+                            value="#{assignment.selectedAssignment.assignmentID}" />  
+    </p:outputPanel>
+ 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()">Update</p:commandLink>
+  
+    </p:dialog>
+     
+    
+
+	
+	<p:dialog header="#{assignment.selectedAssignment.assignmentName}" resizable="false" widgetVar="updateUI" id="updateDialog" position="50,100" width="500">  
+		<p:outputPanel id="dialogPanel">
+		Current Location:
+        <h:form enctype="multipart/form-data">
+
+    		<p:fileUpload value="#{controller.uploadedFile}"
+            	mode="simple" 
+            	update="messages"
+            	sizeLimit="100000" 
+            	allowTypes="/(\.|\/)(txt|jpe?g|png)$/" />
+
+            <p:growl id="messages" showDetail="true"/>
+            <h:commandButton type="submit" value="testUpload" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID)}"></h:commandButton>
+		</h:form> 
+		</p:outputPanel>
+	</p:dialog>
+	
+	
+	<p:dialog header="Add New Assignment" resizable="false" widgetVar="addnew" position="50,100" width="500">  
+		<p:outputPanel>
+		Current Location:
+        <h:form enctype="multipart/form-data">
+
+    		<p:fileUpload value="#{controller.uploadedFile}"
+            	mode="simple" 
+            	update="messages"
+            	sizeLimit="100000" 
+            	allowTypes="/(\.|\/)(txt|jpe?g|png)$/" />
+
+            <p:growl showDetail="true"/>
+            <h:commandButton type="submit" value="testUpload" action="#{controller.addNew(menuoption.selectYear,menuoption.selectTerm)}"></h:commandButton>
+		</h:form> 
+		</p:outputPanel>
+	</p:dialog>  
+  	
+</p:outputPanel>
+
+</h:body>
+</html>

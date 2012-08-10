@@ -21,7 +21,7 @@
         <from-view-id>/register.jsp</from-view-id>
         <navigation-case>
             <from-outcome>true</from-outcome>
-            <to-view-id>/login.jsp</to-view-id>
+            <to-view-id>/login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
