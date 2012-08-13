@@ -8,7 +8,14 @@ public class Assignment {
 	public String uploadedDate;
 	public String term;
 	public int year;
+	public String description;
 	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getTerm() {
 		return term;
 	}

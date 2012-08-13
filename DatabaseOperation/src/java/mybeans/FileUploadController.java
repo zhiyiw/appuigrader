@@ -29,9 +29,24 @@ public class FileUploadController {
     private UploadedFile uploadedFile;
     private String fileName;
     private String directory;
+    public String des;
     // Actions ------------------------------------------------------------------------------------
 
-    public boolean addNew(int year, String term) {
+
+
+	public String getDes() {
+		return des;
+	}
+
+	public void setDes(String des) {
+		this.des = des;
+	}
+	
+	public void clearDes() {
+		this.des=null;
+	}
+
+	public boolean addNew(int year, String term) {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
@@ -70,13 +85,11 @@ public class FileUploadController {
             
             AssignmentBean assbean = new AssignmentBean();
             try {
-				assbean.addAssignment(directory, year, term);
+				assbean.addAssignment(directory, year, term,des);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            
-         return true;
             
         } catch (IOException e) {
             // Cleanup.
@@ -91,10 +104,12 @@ public class FileUploadController {
         } finally {
             IOUtils.closeQuietly(output);
         }
+        
         return true;
+        
     }
     
-    public void updateExist(int year, String term, int fileID) {
+    public boolean updateExist(int year, String term, int fileID) {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
@@ -133,7 +148,7 @@ public class FileUploadController {
             
             AssignmentBean assbean = new AssignmentBean();
             try {
-				assbean.updateAssignment(directory, year, term, fileID);
+				assbean.updateAssignment(directory, year, term, fileID, des);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -152,6 +167,8 @@ public class FileUploadController {
         } finally {
             IOUtils.closeQuietly(output);
         }
+        
+        return true;
     }
 
     // Getters ------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@
   			
   				
 		.mainFrame{
-  			    background-image: url(images/stu_login.png);
+  			    background-image: url(images/admin_login.png);
                 background-position:center;
                 background-size:cover;
                 background-repeat:no-repeat; 
@@ -50,10 +50,12 @@
 			  				position:relative;
   				top:45px;
   				left:28px;
+  				height:119px;
+  				width:119px;
 
 		}
 		
-		.teacher{
+		.student{
 				position:relative;
   				top:197px;
   				left:29px;
@@ -70,7 +72,6 @@
         <p:outputPanel layout="block" styleClass="mainFrame">
              
        <h:form layout="block" styleClass="sign">
-       <h:commandButton type="submit" onmouseover="this.src ='images/add_r1_c1_s2.png'" onmouseout="this.src='images/add_r1_c1.png'" onmousedown="this.src='images/add_r1_c1_s3.png'" action="register.xhtml" image="/images/add_r1_c1.png" />
        </h:form>
         	
         	<p:outputPanel layout="block" styleClass="loginPanel">
@@ -106,8 +107,8 @@
         </p:outputPanel>
 
                 
-        <h:form layout="block" styleClass="teacher">
-        <h:commandButton value="Teacher Login" action="adminLogin.xhtml" image="/images/change_admin.png" />
+        <h:form layout="block" styleClass="student">
+        <h:commandButton value="Student Login" action="login.xhtml" image="/images/change_stu.png" />
         </h:form>
         
    

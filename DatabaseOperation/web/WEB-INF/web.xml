@@ -35,7 +35,7 @@
   </filter-mapping>
 
   <welcome-file-list>
-    <welcome-file>faces/termSelect.jsp</welcome-file>
+    <welcome-file>faces/login.xhtml</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>

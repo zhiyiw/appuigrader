@@ -64,7 +64,7 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_id, a_name, a_directory, a_uploaded_date from assignments where a_year=? and a_term=?"); 
+			   "select a_id, a_name, a_directory, a_uploaded_date, description from assignments where a_year=? and a_term=?"); 
  
 		//get student data from database
 		ps.setInt(1, year);
@@ -76,7 +76,7 @@ public class AssignmentBean {
 		
 		while(result.next()){
 			Assignment assign = new Assignment();
-			
+			assign.setDescription(result.getString("description"));
 			assign.setAssignmentID(result.getInt("a_id"));
 			assign.setAssignmentName(result.getString("a_name"));
 			assign.setAssignmentDirectory(result.getString("a_directory"));
@@ -89,7 +89,7 @@ public class AssignmentBean {
 		return list;
 	}
 	
-	public void addAssignment(String directory, int year ,String term) throws SQLException{
+	public void addAssignment(String directory, int year ,String term, String des) throws SQLException{
 		List<Assignment> list = getAssignmentList(year,term);
 		
 		int temp = list.size()+1;
@@ -118,13 +118,14 @@ public class AssignmentBean {
 		result.next();
 		int current = result.getInt(1)+1;
 		
-		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE())");
+		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?)");
 		
 		ps.setInt(1, current);
 		ps.setInt(2, year);
 		ps.setString(3, term);
 		ps.setString(4,name);
 		ps.setString(5, directory);
+		ps.setString(6, des);
 		
 		int updated = ps.executeUpdate();
 		
@@ -136,7 +137,7 @@ public class AssignmentBean {
 	}
 
 	public void updateAssignment(String directory, int year, String term,
-			int id) throws SQLException {
+			int id, String des) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		if(ds==null)
@@ -149,10 +150,11 @@ public class AssignmentBean {
 			throw new SQLException("Can't get database connection");
  
 		
-		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE() where a_id=?");
+		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE(), description=? where a_id=?");
 		
 		ps.setString(1, directory);
-		ps.setInt(2, id);
+		ps.setString(2, des);
+		ps.setInt(3, id);
 		
 		
 		int updated = ps.executeUpdate();
