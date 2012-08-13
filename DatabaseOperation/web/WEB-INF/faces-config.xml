@@ -35,10 +35,10 @@
     </navigation-rule>
 
    		<navigation-rule>
-        <from-view-id>/assignmentsDisplay.xhtml</from-view-id>
+        <from-view-id>/assignmentDisplayStudent.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>true</from-outcome>
-            <to-view-id>/termSelect.jsp</to-view-id>
+            <to-view-id>/print.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

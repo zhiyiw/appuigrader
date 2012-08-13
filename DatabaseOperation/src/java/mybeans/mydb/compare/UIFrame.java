@@ -19,7 +19,6 @@ import javax.servlet.ServletContext;
 
 import java.lang.System;
 
-@ManagedBean(name = "compare")
 @SessionScoped
 // @SuppressWarnings("serial")
 public class UIFrame {
@@ -118,12 +117,8 @@ public class UIFrame {
 
 	}
 
-	public String compareFiles() throws IOException {
+	public String compareFiles(String oriFile, String tarFile) throws IOException {
 		compResult = "";
-
-		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
-				.getExternalContext().getContext();
-		String filePath = ctx.getRealPath("/Student/");
 
 		//File fileTest = new File(filePath + "test.txt");
 
@@ -137,9 +132,6 @@ public class UIFrame {
 //		}
 //		
 //		in.close();
-
-		 oriFile = new File(filePath + "//" +"123.zip");
-		 tarFile = new File(filePath + "//" + "123.zip");
 		
 		 ZipFile zf = null;
 		

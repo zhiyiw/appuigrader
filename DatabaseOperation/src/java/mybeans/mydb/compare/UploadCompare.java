@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 
 import mybeans.mydb.assignments.model.Assignment;
 
-@ManagedBean(name="assignment")
 @SessionScoped
 
 
