@@ -26,10 +26,18 @@
                 margin: 0px auto 0px auto;
   			
   			}
+  			
+  			.logout{
+  				position:relative;
+  				top:45px;
+  				left:25px;
+  				width:120px;
+  				height:120px;
+  			} 
 
   			.ring{
   				position:relative;
-  				top:320px;
+  				top:200px;
   				
   			}       
              
@@ -115,16 +123,16 @@ function iconout(){
 	document.iconAdd.src="images/zoomin_s01.png";
 }
 
-function updateover(){
-	document.buttonUpdate.src="images/update_s1.png";
+function compareover(){
+	document.buttonUpdate.src="images/compare_s1.png";
 }
 
-function updateout(){
-	document.buttonUpdate.src="images/update_s0.png";
+function compareout(){
+	document.buttonUpdate.src="images/compare_s0.png";
 }
 
-function updatedown(){
-	document.buttonUpdate.src="images/update_s2.png";
+function comparedown(){
+	document.buttonUpdate.src="images/compare_s2.png";
 }
 
 function cancelover(){
@@ -151,6 +159,13 @@ function canceldown(){
 	</h:outputLabel>
 	</h1> -->
 	<p:outputPanel layout="block" styleClass="mainFrame">
+	
+	
+	<p:outputPanel layout="block" styleClass="logout">
+	
+    <h:commandButton type="button" onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="login.xhtml" image="/images/logout_s0.png" />
+    
+    </p:outputPanel>
       
 	<p:outputPanel layout="block" styleClass="ring">
 	<h:form>
@@ -182,8 +197,8 @@ function canceldown(){
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
     <p:outputPanel layout="block">
- 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="updateover();" onmouseout="updateout();" onmousedown="updatedown();">
- 	<img name="buttonUpdate" src="images/update_s0.png" style="border:none;position:absolute;top:74%;left:12%"/>
+ 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
+ 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:12%"/>
  	</p:commandLink>
  	</p:outputPanel>
  	
@@ -216,7 +231,7 @@ function canceldown(){
 			<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
 			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory)}" image="/images/update_s0.png" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">

@@ -46,7 +46,7 @@ public class StudentTempUpload {
 	public boolean tempUpload(String studentID, String rubricPath) {
 
         // Prepare filename prefix and suffix for an unique filename in upload folder.
-        String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
+        String prefix = "temp0"+studentID+FilenameUtils.getBaseName(uploadedFile.getFileName());
         String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
         
         // Prepare file and outputstream.
@@ -56,7 +56,7 @@ public class StudentTempUpload {
         try {
             // Create file with unique name in upload folder and write to it.
         	ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        	String deploymentDirectoryPath = ctx.getRealPath("/")+"Rubrics";
+        	String deploymentDirectoryPath = ctx.getRealPath("/")+"Temp";
         	File target = new File(deploymentDirectoryPath);
         	if(!target.exists())
         		target.mkdir();
@@ -64,11 +64,11 @@ public class StudentTempUpload {
         	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
             output = new FileOutputStream(file);
             IOUtils.copy(uploadedFile.getInputstream(), output);
-            directory = "temp/temp_"+studentID;
+            directory = "/Temp/"+file.getName();
 
             // Show succes message.
             FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-                FacesMessage.SEVERITY_INFO, deploymentDirectoryPath, null));
+                FacesMessage.SEVERITY_INFO, directory, null));
             
             frame = new UIFrame();
 
