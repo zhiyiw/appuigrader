@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 import org.primefaces.model.UploadedFile;
 
 import java.lang.System;
+import java.util.Date;
 import java.sql.SQLException;
 
 import mybeans.mydb.assignments.AssignmentBean;
@@ -46,7 +47,7 @@ public class FileUploadController {
 		this.des=null;
 	}
 
-	public boolean addNew(int year, String term) {
+	public boolean addNew(int year, String term, Date deadline) {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
@@ -84,8 +85,14 @@ public class FileUploadController {
                 FacesMessage.SEVERITY_INFO, deploymentDirectoryPath, null));
             
             AssignmentBean assbean = new AssignmentBean();
+            
+            java.text.SimpleDateFormat sdf = 
+            	     new java.text.SimpleDateFormat("yyyy-MM-dd");
+
+            String deadlineTime = sdf.format(deadline);
+            
             try {
-				assbean.addAssignment(directory, year, term,des);
+				assbean.addAssignment(directory, year, term,des, deadlineTime);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -124,8 +131,6 @@ public class FileUploadController {
         File file = null;
         OutputStream output = null;
         
-        
-        
         try {
             // Create file with unique name in upload folder and write to it.
         	
@@ -141,14 +146,15 @@ public class FileUploadController {
             IOUtils.copy(uploadedFile.getInputstream(), output);
             fileName = file.getName();
             directory = "Rubrics/"+fileName;
-
-            // Show succes message.
-            FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-                FacesMessage.SEVERITY_INFO, deploymentDirectoryPath, null));
             
             AssignmentBean assbean = new AssignmentBean();
+            
+//            java.text.SimpleDateFormat sdf = 
+//           	     new java.text.SimpleDateFormat("yyyy-MM-dd");
+//
+//           String deadlineTime = sdf.format(deadline);
             try {
-				assbean.updateAssignment(directory, year, term, fileID, des);
+				assbean.updateAssignment(directory,fileID, des);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

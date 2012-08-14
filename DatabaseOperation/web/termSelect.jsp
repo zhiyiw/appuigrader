@@ -24,7 +24,7 @@
     	    <br /><br />
     	    
     	    <h:commandButton value="Teacher" action="assignmentsDisplay.xhtml" />
-	        <h:commandButton value="Student" action="assingmentDisplayStudent.xhtml" />
+	        <h:commandButton value="Student" action="assignmentDisplayStudent.xhtml" />
     	</h:form>
         </body>
     </html>

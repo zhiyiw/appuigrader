@@ -85,6 +85,7 @@ public class StudentTempUpload {
             // Always log stacktraces (with a real logger).
             e.printStackTrace();
         } finally {
+        	file.delete();
             IOUtils.closeQuietly(output);
         }
         

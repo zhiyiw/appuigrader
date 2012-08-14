@@ -9,7 +9,14 @@ public class Assignment {
 	public String term;
 	public int year;
 	public String description;
+	public String deadline;
 	
+	public String getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(String deadline) {
+		this.deadline = deadline;
+	}
 	public String getDescription() {
 		return description;
 	}

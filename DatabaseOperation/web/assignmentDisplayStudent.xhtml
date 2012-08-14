@@ -16,7 +16,7 @@
   			}
   			
   			.mainFrame{
-  			    background-image: url(images/adminbg.png);
+  			    background-image: url(images/stu_view.png);
                 background-position:center;
                 background-size:cover;
                 background-repeat:no-repeat; 
@@ -30,7 +30,7 @@
   			.logout{
   				position:relative;
   				top:45px;
-  				left:25px;
+  				left:30px;
   				width:120px;
   				height:120px;
   			} 
@@ -163,8 +163,8 @@ function canceldown(){
 	
 	<p:outputPanel layout="block" styleClass="logout">
 	
-    <h:commandButton type="button" onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="login.xhtml" image="/images/logout_s0.png" />
     
+    <h:button onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" outcome="login.xhtml" image="images/logout_s0.png" />
     </p:outputPanel>
       
 	<p:outputPanel layout="block" styleClass="ring">
@@ -213,8 +213,8 @@ function canceldown(){
 	
 	
 	
-		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="430" height="420" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:402px;width:412px" layout="block">
+		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="430" height="290" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:282px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
     		<p:fileUpload value="#{compare.uploadedFile}"
@@ -230,11 +230,11 @@ function canceldown(){
 			
 			<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
-			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
+			<p:outputPanel layout="block" style="position:absolute;top:150px;left:75px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">
+			<p:outputPanel layout="block" style="position:absolute;top:150px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" />
 			</p:outputPanel>
 			

@@ -11,8 +11,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -21,7 +19,7 @@ import javax.sql.DataSource;
 import mybeans.mydb.assignments.model.Assignment;
 
 @ManagedBean(name="assignment")
-@SessionScoped
+@RequestScoped
 
 public class AssignmentBean {
 	//resource injection
@@ -64,7 +62,7 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_id, a_name, a_directory, a_uploaded_date, description from assignments where a_year=? and a_term=?"); 
+			   "select a_id, a_name, a_directory, a_uploaded_date, description, deadline from assignments where a_year=? and a_term=?"); 
  
 		//get student data from database
 		ps.setInt(1, year);
@@ -81,6 +79,7 @@ public class AssignmentBean {
 			assign.setAssignmentName(result.getString("a_name"));
 			assign.setAssignmentDirectory(result.getString("a_directory"));
 			assign.setUploadedDate(result.getString("a_uploaded_date"));
+			assign.setDeadline(result.getString("deadline"));
  
 			//store all data into a List
 			list.add(assign);
@@ -89,7 +88,7 @@ public class AssignmentBean {
 		return list;
 	}
 	
-	public void addAssignment(String directory, int year ,String term, String des) throws SQLException{
+	public void addAssignment(String directory, int year ,String term, String des, String deadline) throws SQLException{
 		List<Assignment> list = getAssignmentList(year,term);
 		
 		int temp = list.size()+1;
@@ -118,7 +117,7 @@ public class AssignmentBean {
 		result.next();
 		int current = result.getInt(1)+1;
 		
-		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?,?)");
 		
 		ps.setInt(1, current);
 		ps.setInt(2, year);
@@ -126,6 +125,7 @@ public class AssignmentBean {
 		ps.setString(4,name);
 		ps.setString(5, directory);
 		ps.setString(6, des);
+		ps.setString(7, deadline);
 		
 		int updated = ps.executeUpdate();
 		
@@ -136,7 +136,7 @@ public class AssignmentBean {
 		
 	}
 
-	public void updateAssignment(String directory, int year, String term,
+	public void updateAssignment(String directory,
 			int id, String des) throws SQLException {
 		// TODO Auto-generated method stub
 		
@@ -154,6 +154,7 @@ public class AssignmentBean {
 		
 		ps.setString(1, directory);
 		ps.setString(2, des);
+		//ps.setString(3, "2012-08-22");
 		ps.setInt(3, id);
 		
 		

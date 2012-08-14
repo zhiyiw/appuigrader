@@ -195,6 +195,20 @@ function canceldown(){
   	<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
+    
+   
+  	<p:outputPanel layout="block" style="position:absolute;top:50px;left:38%">
+  	<h:outputText style="font-size:16; font-weight:bold;"  
+                            value="#{assignment.selectedAssignment.deadline}" /> 
+    </p:outputPanel>
+    
+    
+    <p:outputPanel layout="block" style="position:absolute;top:100px;left:38%">
+  	<h:outputText style="font-size:16; font-weight:bold;"  
+                            value="#{assignment.selectedAssignment.description}" /> 
+    </p:outputPanel>
+    
+    
     <p:outputPanel layout="block">
  	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="updateover();" onmouseout="updateout();" onmousedown="updatedown();">
  	<img name="buttonUpdate" src="images/update_s0.png" style="border:none;position:absolute;top:74%;left:12%"/>
@@ -225,7 +239,7 @@ function canceldown(){
             	/>
 
             <p:growl showDetail="true"/>  
-			</p:outputPanel>
+		</p:outputPanel>
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:183px; border-style:none !important">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="count" maxlength="140"       
@@ -235,10 +249,10 @@ function canceldown(){
 				<h:outputText id="count" /> 
 				
 			</p:outputPanel>
-            
+            <h:outputText value="#{assignment.selectedAssignment.assignmentID}"></h:outputText>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID)}" image="/images/update_s0.png" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">
@@ -268,7 +282,10 @@ function canceldown(){
             	/>
 
             <p:growl showDetail="true"/>  
-			</p:outputPanel>
+		</p:outputPanel>
+		
+		<h3>deadline</h3>
+		<p:calendar value="#{calendarBean.date}" id="popupCal" /> 
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:183px; border-style:none !important">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
@@ -281,7 +298,7 @@ function canceldown(){
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.addNew(menuoption.selectYear,menuoption.selectTerm)}" image="/images/upload_s0.png" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.addNew(menuoption.selectYear,menuoption.selectTerm, calendarBean.date)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">
