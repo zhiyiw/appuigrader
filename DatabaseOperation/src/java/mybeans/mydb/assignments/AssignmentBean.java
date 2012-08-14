@@ -118,7 +118,7 @@ public class AssignmentBean {
 		result.next();
 		int current = result.getInt(1)+1;
 		
-		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?, SYSDATE())");
 		
 		ps.setInt(1, current);
 		ps.setInt(2, year);

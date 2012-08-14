@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<style type="text/css">
+
+	html{
+		background-color:#e7efcd;
+  			}
+  			
+  				
+		.mainFrame{
+  			    background-image: url(images/warning.png);
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat; 
+                background-color:transparent;	
+                width:1024px;
+                height:700px;
+                margin: 0px auto 0px auto;	
+		}
+		
+		
+		.back{
+			  				position:relative;
+  				top:45px;
+  				left:28px;
+
+		}
+		
+
+
+		}
+
+</style>
+
+</h:head>
+
+<h:body>
+
+
+<p:outputPanel layout="block" styleClass="mainFrame">
+	<p>Wrong term, year or name</p>
+
+	<p:outputPanel layout="block" styleClass="back">
+		<h:form>
+   	        <h:commandButton value="Back to Login" action="login.xhtml" onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s03.png'" image="/images/return_button_s01.png"/>
+    	</h:form>
+    </p:outputPanel>	
+    	</p:outputPanel>
+
+</h:body>
+
+</html>

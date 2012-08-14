@@ -6,6 +6,7 @@
 package mybeans.mydb.compare;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -17,8 +18,11 @@ import java.io.File;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
+import org.apache.commons.io.FileUtils;
+
 import java.lang.System;
 
+@ManagedBean(name="UI")
 @SessionScoped
 // @SuppressWarnings("serial")
 public class UIFrame {
@@ -46,15 +50,17 @@ public class UIFrame {
 	private File oriFile;
 	private File tarFile;
 
-	private String compResult;
-
-	public String getCompResult() {
+	public ArrayList<String> getCompResult() {
 		return compResult;
 	}
 
-	public void setCompResult(String compResult) {
+	public void setCompResult(ArrayList<String> compResult) {
 		this.compResult = compResult;
 	}
+
+	private ArrayList<String> compResult;
+
+
 
 	public File getOriFile() {
 		return oriFile;
@@ -117,8 +123,8 @@ public class UIFrame {
 
 	}
 
-	public String compareFiles(String oriFile, String tarFile) throws IOException {
-		compResult = "";
+	public ArrayList<String> compareFiles(String oriFile, String tarFile) throws IOException {
+		//compResult = "";
 
 		//File fileTest = new File(filePath + "test.txt");
 
@@ -175,36 +181,48 @@ public class UIFrame {
 		 // compResult = "Pleases add your OWN file !!!\n";
 		 // return compResult;
 		 // }
+		 
+		 
 		
 		 if (db != null && db2 != null) {
 		 compareUI testUI = new compareUI();
-		 if (testUI.compare(db.compArr, db2.compArr).equals(
+		 compResult = new ArrayList<String>();
+		 
+		 String structResult = testUI.compare(db.compArr, db2.compArr);
+		
+
+		 
+		 if (structResult.equals(
 		 "GREAT!! Structure matched!!")) {
 		
-		 compResult = compResult + testUI.compare(db.compArr, db2.compArr) +
-		 "\n";
-		
-		 if (!testUI.compareProperty(db.compArr, db2.compArr).equals(
-		 "Great!! Properties matched!!"))
-		
-		 compResult = compResult + testUI.compareProperty(db.compArr,
-		 db2.compArr);
+		 compResult.add(structResult);
+		 
+		 String propertyResult = testUI.compareProperty(db.compArr, db2.compArr);
+		 compResult.add(propertyResult);
 		
 		 } else {
 		 //compResult="NOFILLLLLLLLLLLE";
-		  compResult = testUI.compare(db.compArr, db2.compArr);
-		  compResult = compResult + "Evaluation Details -->"
-		  + testUI.compareTypeNum(db, db2);
+		  compResult.add(structResult);
+		  compResult.add("Evaluation Details -->");
+		  String typeResult = testUI.compareTypeNum(db, db2);
+		  compResult.add(typeResult);
 		 }
 		
-		 // if (testUI.totalArrangeEqual(db, db2)) {
-		 // compResult = testUI
-		 // .compareArrangement(db.compArr, db2.compArr);
-		 // }
+		  if (testUI.totalArrangeEqual(db, db2)) {
+			  String arrResult = testUI.compareArrangement(db.compArr, db2.compArr);
+		  compResult.add(arrResult);
+		  }
 		
 		 }
 
 		// compResult = "NNNNNNNNNNN";
+		 
+		 FileWriter writer = new FileWriter("output.txt"); 
+		 for(String str: compResult) {
+		   writer.write(str);
+		 }
+		 writer.close();
+		 
 		return compResult;
 	}
 

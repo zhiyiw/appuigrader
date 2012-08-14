@@ -231,7 +231,7 @@ function canceldown(){
 			<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
 			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory)}" image="/images/upload_s0.png" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username, assignment.selectedAssignment.assignmentDirectory, assignment.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">

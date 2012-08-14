@@ -10,9 +10,6 @@ public class compareUI {
 
 	private static ArrayList<HashMap> Maps = new ArrayList<HashMap>();
 
-	// private static ArrayList<String> tarKey = new ArrayList<String>();
-	// private static ArrayList<String> tarValue = new ArrayList<String>();
-	//
 	// constructor
 	public compareUI() {
 
@@ -123,11 +120,7 @@ public class compareUI {
 		return arrErr;
 	}
 
-	// public ArrayList<String> compareEach(ArrayList<HashMap> row) {
-	// ArrayList<String> needCompare = new ArrayList<String>();
-	//
-	// return needCompare;
-	// }
+
 
 	// decompose component and insert to ArrayList
 	public void decompos(Component c) {
@@ -141,20 +134,7 @@ public class compareUI {
 			}
 		}
 
-		//
-		// Iterator iter = c.map.entrySet().iterator();
-		//
-		// while(iter.hasNext()){
-		// Map.Entry<String, String> pair = (Entry<String, String>) iter.next();
-		// Key.add(pair.getKey());
-		// Value.add(pair.getValue());
-		// }
-		//
-		// if(c.list != null) {
-		// for(k=0;k<c.list.size();k++) {
-		// decompos(c.list.get(k));
-		// }
-		// }
+
 	}
 
 	// get properties that need to compare
@@ -281,25 +261,6 @@ public class compareUI {
 
 		}
 
-		// System.out.println("each-result: " + result);
-
-		// for (j = 0; j < needCompare.size(); j++) {
-		//
-		// if (orig.containsKey(needCompare.get(j))) {
-		// if (!orig.get(needCompare.get(j)).equals(
-		// targ.get(needCompare.get(j)))) {
-		// System.out.println("Orig:" + orig.get("$Name") + "   "
-		// + "Height: " + orig.get("Height") + "  Targ: "
-		// + targ.get("$Name") + "   " + "Height: "
-		// + targ.get("Height"));
-		// result = result + "Orig:" + orig.get("$Name") + "   "
-		// + needCompare.get(j) + orig.get("Height")
-		// + "  Targ: " + targ.get("$Name") + "   "
-		// + needCompare.get(j) + targ.get("Height") + "/n";
-		// }
-		// }
-		// }
-
 		return result;
 	}
 
@@ -311,6 +272,7 @@ public class compareUI {
 		String proErr = "";
 		boolean same = true;
 
+		
 		for (i = 0; i < size; i++) {
 			if (!origin.get(i).map.keySet().equals(target.get(i).map.keySet())) {
 				same = false;
@@ -318,7 +280,7 @@ public class compareUI {
 
 		}
 
-		if (same) {
+		if (!same) {
 
 			decompos(origin.get(origin.size() - 1));
 			ArrayList<HashMap> oriMap = new ArrayList<HashMap>();

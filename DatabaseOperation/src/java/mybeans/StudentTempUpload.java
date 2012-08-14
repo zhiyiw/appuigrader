@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +21,7 @@ import org.primefaces.model.UploadedFile;
 
 
 import mybeans.mydb.compare.UIFrame;
+import mybeans.mydb.grades.GradeBean;
 
 @ManagedBean(name="compare")
 @SessionScoped
@@ -27,9 +32,18 @@ public class StudentTempUpload {
     private UploadedFile uploadedFile;
     private String directory;
     private UIFrame frame;
+    private ArrayList<String> compResult;
     
     
     // Actions ------------------------------------------------------------------------------------
+
+	public ArrayList<String> getCompResult() {
+		return compResult;
+	}
+
+	public void setCompResult(ArrayList<String> compResult) {
+		this.compResult = compResult;
+	}
 
 	public UIFrame getFrame() {
 		return frame;
@@ -43,7 +57,7 @@ public class StudentTempUpload {
 		this.directory = directory;
 	}
 
-	public boolean tempUpload(String studentID, String rubricPath) {
+	public boolean tempUpload(String studentID, String rubricPath, int assignmentID) throws SQLException {
 
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = "temp0"+studentID+FilenameUtils.getBaseName(uploadedFile.getFileName());
@@ -71,8 +85,29 @@ public class StudentTempUpload {
                 FacesMessage.SEVERITY_INFO, directory, null));
             
             frame = new UIFrame();
-
-            frame.compareFiles(ctx.getRealPath(rubricPath),ctx.getRealPath(directory));            
+            compResult = new ArrayList<String>();
+            compResult = frame.compareFiles(ctx.getRealPath(rubricPath),ctx.getRealPath(directory)); 
+            StringBuffer sb = new StringBuffer();
+            
+            for(String s:compResult)
+            	sb.append(s);
+                        
+            String split = "\n\n\n***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****\n\n";
+            Date date = new Date();
+            
+            String header = split + date.toString() + "\n\n" + "RESULT RECORD: \n\n";
+            
+            sb.insert(0, header);
+            
+            String sss = sb.toString();
+            GradeBean grade = new GradeBean();
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
+            
+            String currentTime = sdf.format(date);
+            
+            grade.createNewGrade(assignmentID, studentID, sss, currentTime);
             
         } catch (IOException e) {
             // Cleanup.
@@ -85,7 +120,8 @@ public class StudentTempUpload {
             // Always log stacktraces (with a real logger).
             e.printStackTrace();
         } finally {
-            IOUtils.closeQuietly(output);
+            file.delete();
+        	IOUtils.closeQuietly(output);
         }
         
         return true;

@@ -6,14 +6,218 @@
 
 <h:head>
 
+	<style type="text/css">
+
+	html{
+		background-color:#e7efcd;
+  			}
+  			
+  				
+		.mainFrame{
+  			    background-image: url(images/error.png);
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat; 
+                background-color:transparent;	
+                width:1024px;
+                height:700px;
+                margin: 0px auto 0px auto;	
+		}
+		
+		.treePanel{
+			/* width:600px; */
+		}
+		
+		.treeP1{
+			  	vertical-align: top;
+			  	float:left;
+			  	margin-left:100px;
+
+		}
+		
+		.treeP2{
+			  	vertical-align: top;
+				float:right;			
+				margin-right:100px;	
+		}
+		
+		}
+		
+		body {background-color:#e7efcd;}
+
+
+.container {
+  margin:auto;
+  width: 1024px; 
+  background: #ffffff;
+  
+}
+
+.top {
+  background: #DDDDDD;
+  background-image:url(images/top.png);
+  height:45px;
+}
+
+.result_return {
+  float: left; 
+  width: 148px;
+  height: 119px; 
+  background: #EBEBEB; 
+  background-image:url(images/result_return.png)
+}
+
+.status_bar {
+  float:left;
+  width:876px;
+  height:119px;
+ // background-color: #cdcde6;
+}
+
+.result_status_top{
+	 width:876px;
+	 height:32px;
+	 background-image:url(images/result_status_top.png)
+	
+	
+}
+
+
+
+.result_status_left{
+	float:left;
+	 width:176px;
+	 height:87px;
+	 background-image:url(images/result_status_left.png)
+	
+	
+}
+
+.result_status_content{
+		float:left;
+	 width:622px;
+	 height:87px;
+	 overflow:auto;
+	 background-image:url(images/result_status_content.png);
+	  background-repeat:repeat-y;
+	
+	
+}
+
+
+.result_status_content a{
+//	margin-left:20px;
+//	margin-right:20px;
+color:#336699
+}
+
+
+.result_status_right{
+	float:right;
+	 width:78px;
+	 height:87px;
+	 background-image:url(images/result_status_right.png)
+	
+	
+}
+
+
+.result { 
+  clear:both;
+  background:#DDDDDD;
+} 
+
+.result_top{
+	 width:1024px;
+	 height:77px;
+	 background-image:url(images/result_top.png)
+	
+	
+}
+
+.result_left{
+	float:left;
+	 width:85px	;
+	 height:auto;
+	 background-image:url(images/result_r6_c1.png)
+	
+	
+}
+
+.result_content{
+		float:left;
+	 width:1024px;
+	 height:auto;
+	 background-image:url(images/result_r6_c1.png)
+	
+	
+}
+
+
+.result_content p{
+margin-left:100px;
+margin-right:100px;
+color:#3C3;
+}
+
+
+.result_right{
+	float:right;
+	 width:91px;
+	 height:200px:
+	 background-repeat:repeat-y;
+	 background-image:url(images/result_right.png)
+	
+	
+}
+.bottom{
+	 clear:both;
+	 width:1024px;
+	 height:173px;
+	 background-image:url(images/result_bottom.png)
+	
+	
+}
+  
+	
+
+</style>
+
 </h:head>
 
 <h:body>
 
-<h:outputText style="font-size:16; font-weight:bold;"  
-                            value="#{compare.directory}" /> 
-<p:panelGrid columns="2">
+<p:outputPanel layout="block" styleClass="container">
 
+<p:outputPanel layout="block" styleClass="top"></p:outputPanel>
+
+<p:outputPanel layout="block" styleClass="result_return">
+	<h:form layout="block" styleClass="result_return">
+        <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" image="/images/result_return.png" />
+        </h:form>
+</p:outputPanel>
+
+<p:outputPanel layout="block" styleClass="status_bar">
+	<p:outputPanel layout="block" styleClass="result_status_top"></p:outputPanel>
+	<p:outputPanel layout="block" styleClass="result_status_left"></p:outputPanel>
+	
+		<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:dataList value="#{compare.compResult}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+	
+	<p:outputPanel layout="block" styleClass="result_status_right"></p:outputPanel>
+	
+</p:outputPanel>
+
+<p:outputPanel layout="block" styleClass="result">
+	
+	<p:outputPanel layout="block" styleClass="result_top"></p:outputPanel>
+	
+	<p:outputPanel layout="block" styleClass="result_content">
+	
+		<p:outputPanel layout="block" styleClass="treeP1">
 	<h:form id="showTree1">
 		<p:tree value="#{compare.frame.tree1.root}" var="node1" id="tree1"
 			animate="true">
@@ -22,7 +226,10 @@
 			</p:treeNode>
 		</p:tree>
 	</h:form>
+</p:outputPanel>
+	
 
+ <p:outputPanel layout="block" styleClass="treeP2">
 	<h:form id="showTree2">
 		<p:tree value="#{compare.frame.tree2.root}" var="node2" id="tree2"
 			animate="true">
@@ -30,10 +237,18 @@
 				<h:outputText value="#{node2}" id="lblNode2" />
 			</p:treeNode>
 		</p:tree>
+		
 	</h:form>
+</p:outputPanel>
+	
+</p:outputPanel>
 
-</p:panelGrid>
+</p:outputPanel>
 
+<p:outputPanel layout="block" styleClass="bottom"></p:outputPanel>
+
+
+</p:outputPanel>
 
 
 

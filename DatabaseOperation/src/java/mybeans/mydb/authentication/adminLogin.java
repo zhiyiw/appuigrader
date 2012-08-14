@@ -15,10 +15,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-@ManagedBean(name="login")
+@ManagedBean(name="adminlogin")
 @SessionScoped
 
-public class Login {
+public class adminLogin {
 	
 	private DataSource ds;
 	private Connection con;
@@ -47,7 +47,7 @@ public class Login {
 	public String password;
 	
 	
-	public Login() {
+	public adminLogin() {
 		try {
 			Context ctx = new InitialContext();
 			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/projectdb");			
@@ -67,12 +67,10 @@ public class Login {
 		
 		if(con == null) throw new SQLException("Can't get database connection");
 		
-		PreparedStatement ps = con.prepareStatement("select * from users where username = ? and year = ? and term = ?");
+		PreparedStatement ps = con.prepareStatement("select * from admin where adminName = ? and adminPassword = ?");
 		
 		ps.setString(1, username);
-		//ps.setString(2, password);
-		ps.setInt(2, year);
-		ps.setString(3, term);
+		ps.setString(2, password);
 		
 		ResultSet result = ps.executeQuery();
 		
@@ -80,30 +78,14 @@ public class Login {
 		
 		while(result.next()) {
 			count++;
-		}
-		
+		}		
 		if(count == 1) {
-			ps = con.prepareStatement("select * from users where username = ? and password = ? and year = ? and term = ?");
-			ps.setString(1, username);
-			ps.setString(2, password);
-			ps.setInt(3, year);
-			ps.setString(4, term);
-			
-			result = ps.executeQuery();
-			
-			count=0;
-			
-			while(result.next()) {
-				count++;
-			}
-			
-			if(count==1)
+
 				isMatched = 1;
-			else
-				isMatched = 0;
+
 		}
 		else {
-			isMatched = 2;
+			isMatched = 0;
 		}
 		
 		con.close();
