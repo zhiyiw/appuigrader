@@ -116,7 +116,7 @@ public class FileUploadController {
         
     }
     
-    public boolean updateExist(int year, String term, int fileID) {
+    public boolean updateExist(int year, String term, int fileID, Date deadline) {
 
         // Just to demonstrate what information you can get from the uploaded file.
         System.out.println("File type: " + uploadedFile.getContentType());
@@ -149,12 +149,12 @@ public class FileUploadController {
             
             AssignmentBean assbean = new AssignmentBean();
             
-//            java.text.SimpleDateFormat sdf = 
-//           	     new java.text.SimpleDateFormat("yyyy-MM-dd");
-//
-//           String deadlineTime = sdf.format(deadline);
+            java.text.SimpleDateFormat sdf = 
+           	     new java.text.SimpleDateFormat("yyyy-MM-dd");
+
+           String deadlineTime = sdf.format(deadline);
             try {
-				assbean.updateAssignment(directory,fileID, des);
+				assbean.updateAssignment(directory,fileID, des, deadlineTime);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,7 +18,7 @@ import javax.sql.DataSource;
 import mybeans.mydb.assignments.model.Assignment;
 
 @ManagedBean(name="assignment")
-@RequestScoped
+@SessionScoped
 
 public class AssignmentBean {
 	//resource injection
@@ -137,7 +136,7 @@ public class AssignmentBean {
 	}
 
 	public void updateAssignment(String directory,
-			int id, String des) throws SQLException {
+			int id, String des, String deadline) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		if(ds==null)
@@ -150,12 +149,12 @@ public class AssignmentBean {
 			throw new SQLException("Can't get database connection");
  
 		
-		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE(), description=? where a_id=?");
+		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE(), description=?, deadline=? where a_id=?");
 		
 		ps.setString(1, directory);
 		ps.setString(2, des);
-		//ps.setString(3, "2012-08-22");
-		ps.setInt(3, id);
+		ps.setString(3, deadline);
+		ps.setInt(4, id);
 		
 		
 		int updated = ps.executeUpdate();

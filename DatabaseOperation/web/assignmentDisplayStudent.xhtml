@@ -196,9 +196,23 @@ function canceldown(){
   	<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
+    
+   
+  	<p:outputPanel layout="block" style="position:absolute;top:50px;left:38%">
+  	<h:outputText style="font-size:16; font-weight:bold;"  
+                            value="#{assignment.selectedAssignment.deadline}" /> 
+    </p:outputPanel>
+    
+    
+    <p:outputPanel layout="block" style="position:absolute;top:100px;left:38%">
+  	<h:outputText style="font-size:16; font-weight:bold;"  
+                            value="#{assignment.selectedAssignment.description}" /> 
+    </p:outputPanel>
+    
+    
     <p:outputPanel layout="block">
- 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
- 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:12%"/>
+ 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="updateover();" onmouseout="updateout();" onmousedown="updatedown();">
+ 	<img name="buttonUpdate" src="images/update_s0.png" style="border:none;position:absolute;top:74%;left:12%"/>
  	</p:commandLink>
  	</p:outputPanel>
  	
@@ -209,7 +223,6 @@ function canceldown(){
  	</p:outputPanel>
   	</p:outputPanel>
     </p:dialog>
-     
 	
 	
 	

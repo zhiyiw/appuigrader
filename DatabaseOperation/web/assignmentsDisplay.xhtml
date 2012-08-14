@@ -197,8 +197,8 @@ function canceldown(){
     </p:outputPanel> 
     
    
-  	<p:outputPanel layout="block" style="position:absolute;top:50px;left:38%">
-  	<h:outputText style="font-size:16; font-weight:bold;"  
+  	<p:outputPanel layout="block" style="position:absolute;top:95px;left:38%">
+  	<h:outputText style="font-size:14; font-style:italic; font-family:'Myriad Pro'; color:green"  
                             value="#{assignment.selectedAssignment.deadline}" /> 
     </p:outputPanel>
     
@@ -240,6 +240,9 @@ function canceldown(){
 
             <p:growl showDetail="true"/>  
 		</p:outputPanel>
+				<h3>deadline</h3>
+		<p:calendar value="#{calendarBean.date}"/> 
+		
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:183px; border-style:none !important">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="count" maxlength="140"       
@@ -249,10 +252,9 @@ function canceldown(){
 				<h:outputText id="count" /> 
 				
 			</p:outputPanel>
-            <h:outputText value="#{assignment.selectedAssignment.assignmentID}"></h:outputText>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID, calendarBean.date)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">
