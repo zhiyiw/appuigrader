@@ -99,7 +99,7 @@ public class GradeDisplay {
 	    	StringBuffer sb = new StringBuffer();
 	    	String line;
 	    	while((line = br.readLine()) != null) { 
-	    		sb.append(line);
+	    		sb.append(line+"\n");
 	    	}
 	    	
 	    	fr.close(); 

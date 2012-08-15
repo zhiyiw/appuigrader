@@ -97,6 +97,13 @@
      		padding:none;
 			}
 			
+			.ui-dialog-titlebar.ui-widget-header{
+			background: transparent;
+     		box-shadow: none !important;
+     		border:none;
+     		padding:none;
+			}
+			
 			
   </style>
 	
@@ -195,9 +202,10 @@ function canceldown(){
     </p:outputPanel> 
     
     <p:outputPanel layout="block" style="position:absolute;top:65px;right:40px">
-   	<p:commandLink action="#{gradestudentBean.getGradeStudentList(assignment.selectedAssignment.assignmentID)}" update=":dlgLogDisplay, :dlgSingleLogDisplay" oncomplete="dlgLog.show();dlg.hide()">
+   	<p:commandLink id="comHistory" action="#{gradestudentBean.getGradeStudentList(assignment.selectedAssignment.assignmentID)}" update=":dlgLogDisplay, :dlgSingleLogDisplay" oncomplete="dlgLog.show();dlg.hide()">
    	<img src="images/history_button_s0.png" onmouseover="this.src ='images/history_button_s1.png'" onmouseout="this.src='images/history_button_s0.png'" onmousedown="this.src='images/history_button_s2.png'"/>
    	</p:commandLink>
+   	<p:tooltip for="comHistory" showEffect="fade" hideEffect="fade" value="Show Compare History" style="font-size:12px"/> 
    	</p:outputPanel>
    	
   	<p:outputPanel layout="block" style="position:absolute;top:115px;left:38%">
@@ -220,7 +228,7 @@ function canceldown(){
  	
  	<p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
- 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:9%"/>
+ 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:9%" alt="Compare History"/>
  	</p:commandLink>
  	</p:outputPanel>
   	</p:outputPanel>
@@ -228,7 +236,7 @@ function canceldown(){
      
    
    
-		<p:dialog  resizable="false" id="dlgLogDisplay" widgetVar="dlgLog" modal="true" draggable="false" closeOnEscape="true" header="Grades List">  
+		<p:dialog  resizable="false" id="dlgLogDisplay" widgetVar="dlgLog" modal="true" draggable="false" closeOnEscape="true" header="Compare History">  
 
     	<p:dataTable var="grade" value="#{gradestudentBean.list}">  
         <p:column sortBy="#{grade.studentID}">  
@@ -242,9 +250,9 @@ function canceldown(){
             <f:facet name="header">  
                 <h:outputText value="Record" />  
             </f:facet>  
-            <p:commandButton update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()">
+            <p:commandLink update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" value="show history">
             	<f:setPropertyActionListener value="#{grade}"  target="#{gradestudentBean.log}" />
-            </p:commandButton> 
+            </p:commandLink> 
         </p:column>  
 
         <p:column sortBy="#{grade.submitDate}">  
@@ -257,7 +265,7 @@ function canceldown(){
 	</p:dialog>
 	
 	
-			<p:dialog  resizable="false" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false">  
+			<p:dialog  resizable="false" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
 				<h:outputText value="#{gradestudentBean.log.log_directory}"/>
 			</p:dialog>
 	
