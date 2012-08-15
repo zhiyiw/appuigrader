@@ -13,6 +13,7 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.UploadedFile;
 
 import java.lang.System;
@@ -112,6 +113,10 @@ public class FileUploadController {
             IOUtils.closeQuietly(output);
         }
         
+        this.uploadedFile=null;
+        this.des=null;
+        this.fileName=null;
+        this.directory=null;
         return true;
         
     }
@@ -174,6 +179,10 @@ public class FileUploadController {
             IOUtils.closeQuietly(output);
         }
         
+        this.uploadedFile=null;
+        this.des=null;
+        this.fileName=null;
+        this.directory=null;
         return true;
     }
 
