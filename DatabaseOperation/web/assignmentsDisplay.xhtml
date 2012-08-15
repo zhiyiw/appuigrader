@@ -272,6 +272,8 @@ function canceldown(){
             	sizeLimit="100000" 
             	allowTypes="/(\.|\/)(zip)$/" 
             	style="border:none; box-shadow: none !important;"
+            	required="true"
+
             	/>
 
             <p:growl showDetail="true"/>  
@@ -312,9 +314,11 @@ function canceldown(){
             	styleClass="addNewUpload"
             	auto="true"
             	label="open"
+            	required="true"
+            	update="gro"
             	/>
 
-            <p:growl showDetail="true"/>  
+            <p:growl id="gro" showDetail="true"/>  
 		</p:outputPanel>
 		
 		
