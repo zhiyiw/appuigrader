@@ -98,13 +98,23 @@
 			}
 			
 			.ui-dialog-titlebar.ui-widget-header{
-			background: transparent;
+			background-color: #cd34ef;
      		box-shadow: none !important;
      		border:none;
      		padding:none;
 			}
 			
+			.ui-datatable-data{
+			background-color: #cd34ef;
+			}
 			
+			.ui-datatable{
+			background-color: #cd34ef;
+			}
+			
+			.test{
+			background-color: #cd34ef;
+			}
   </style>
 	
 
@@ -208,15 +218,15 @@ function canceldown(){
    	<p:tooltip for="comHistory" showEffect="fade" hideEffect="fade" value="Show Compare History" style="font-size:12px"/> 
    	</p:outputPanel>
    	
-  	<p:outputPanel layout="block" style="position:absolute;top:115px;left:38%">
+  	<p:outputPanel layout="block" style="position:absolute;top:84px;left:38%">
   	<h:outputText style="font-size:14; font-style:italic; font-family:'Myriad Pro'; color:green"  
                             value="#{assignment.selectedAssignment.deadline}" /> 
     </p:outputPanel>
     
     
-    <p:outputPanel layout="block" style="position:absolute;top:150px;left:38%">
-  	<h:outputText style="font-size:16; font-weight:bold;"  
-                            value="#{assignment.selectedAssignment.description}" /> 
+    <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:128px;left:56px; width:230px; height:100px">
+<!--	<p:inputTextarea rows="0" cols="25" value="#{assignment.selectedAssignment.description}" />  -->  
+  	 #{assignment.selectedAssignment.description}
     </p:outputPanel>
     
     
@@ -238,7 +248,7 @@ function canceldown(){
    
 		<p:dialog  resizable="false" id="dlgLogDisplay" widgetVar="dlgLog" modal="true" draggable="false" closeOnEscape="true" header="Compare History">  
 
-    	<p:dataTable var="grade" value="#{gradestudentBean.list}">  
+    	<p:dataTable var="grade" value="#{gradestudentBean.list}" rowStyleClass="test">  
         <p:column sortBy="#{grade.studentID}">  
             <f:facet name="header">  
                 <h:outputText value="StudentID" />  
@@ -270,8 +280,8 @@ function canceldown(){
 			</p:dialog>
 	
 	
-		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="430" height="420" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/update_assignment.png);height:402px;width:412px" layout="block">
+		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/update_assignment.png);height:450px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
     		<p:fileUpload value="#{controller.uploadedFile}"
@@ -282,12 +292,13 @@ function canceldown(){
             	style="border:none; box-shadow: none !important;"
             	/>
 
-            <p:growl showDetail="true"/>  
+            <p:growl showDetail="true"/>
+         </p:outputPanel>     
+		<p:outputPanel layout="block" style="position:absolute;left:155px;top:150px; border-style:none !important">
+		<p:calendar value="#{calendarBean.date}" id="popupCal" maxlength="8" size="4"/> 
 		</p:outputPanel>
-				<h3>deadline</h3>
-		<p:calendar value="#{calendarBean.date}"/> 
 		
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:183px; border-style:none !important">	
+			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="count" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.des}"
@@ -297,11 +308,11 @@ function canceldown(){
 				
 			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;top:355px;left:75px">
+			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID, calendarBean.date)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;top:355px;right:59px">
+			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" />
 			</p:outputPanel>
 			
