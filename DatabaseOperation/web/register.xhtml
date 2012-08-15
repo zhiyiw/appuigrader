@@ -111,16 +111,18 @@
     	    <br /><br />
 		
             <h:outputLabel value="User Name"></h:outputLabel>
-        	<p:inputText id="username" value="#{register.username}" required="true" styleClass="name"/>
+        	<p:inputText id="username" value="#{register.username}" required="true" requiredMessage="Username is required" styleClass="name"/>
         	<h:message for="username" />
         	<br /><br />
         	<h:outputLabel value="Password"></h:outputLabel>
-        	<p:password id="password" value="#{register.password}" required="true" styleClass="pass"/>
+        	<p:password id="password" value="#{register.password}" required="true" requiredMessage="Password is required" styleClass="pass"/>
         	<h:message for="password" />
         	<br /><br />
         	
         	<h:outputLabel value="Re-enter "></h:outputLabel>
-        	<p:password id="repassword" value="#{register.password}" required="true" styleClass="repass"/>
+        	<p:password id="repassword" value="#{register.password}" required="true" requiredMessage="Re-enter password please is required" validatorMessage="The length of password should be at least 6 chars!!" styleClass="repass">
+        	<f:validateLength minimum="6" for="password"></f:validateLength>
+        	</p:password>
         	<h:message for="repassword" />
         	<br /><br />
         	<p:outputPanel layout="block" styleClass="submit">
