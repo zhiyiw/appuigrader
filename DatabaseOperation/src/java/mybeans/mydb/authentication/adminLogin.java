@@ -23,28 +23,31 @@ public class adminLogin {
 	private DataSource ds;
 	private Connection con;
 	
-	public String getUsername() {
-		return username;
+
+
+
+	public String getAdminusername() {
+		return adminusername;
 	}
 
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAdminusername(String adminusername) {
+		this.adminusername = adminusername;
 	}
 
 
-	public String getPassword() {
-		return password;
+	public String getAdminpassword() {
+		return adminpassword;
 	}
 
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAdminpassword(String adminpassword) {
+		this.adminpassword = adminpassword;
 	}
 
 
-	public String username;
-	public String password;
+	public String adminusername;
+	public String adminpassword;
 	
 	
 	public adminLogin() {
@@ -57,7 +60,7 @@ public class adminLogin {
 	}
 	
 	
-	public int loginCheck(int year, String term) throws SQLException {
+	public int loginCheck() throws SQLException {
 		int isMatched = 0;
 		
 		
@@ -69,8 +72,8 @@ public class adminLogin {
 		
 		PreparedStatement ps = con.prepareStatement("select * from admin where adminName = ? and adminPassword = ?");
 		
-		ps.setString(1, username);
-		ps.setString(2, password);
+		ps.setString(1, adminusername);
+		ps.setString(2, adminpassword);
 		
 		ResultSet result = ps.executeQuery();
 		
