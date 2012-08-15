@@ -109,6 +109,7 @@ public class GradeDisplay {
 			l.add(gsm);
 		}
 		
-		setList(l);
+		setList(l);	
+		con.close();
 	}
 }
