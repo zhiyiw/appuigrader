@@ -241,8 +241,6 @@ function canceldown(){
             <p:growl showDetail="true"/>  
 			</p:outputPanel>
 			
-			<h:outputText style="font-size:16; font-weight:bold;"  
-                            value="#{assignment.selectedAssignment.assignmentName}" /> 
 			<p:outputPanel layout="block" style="position:absolute;top:150px;left:75px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/compare_s1.png'" onmouseout="this.src='images/compare_s0.png'" onmousedown="this.src='images/compare_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory, assignment.selectedAssignment.assignmentID)}" image="/images/compare_s0.png" />
 			</p:outputPanel>
