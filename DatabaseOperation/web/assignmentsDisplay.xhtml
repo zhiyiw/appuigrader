@@ -286,15 +286,12 @@ function canceldown(){
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
     		<p:fileUpload value="#{controller.uploadedFile}"
             	mode="simple"
-            	update="messages"
             	sizeLimit="100000" 
             	allowTypes="/(\.|\/)(zip)$/" 
             	style="border:none; box-shadow: none !important;"
             	required="true"
 
             	/>
-
-            <p:growl showDetail="true"/>
          </p:outputPanel>     
 		<p:outputPanel layout="block" style="position:absolute;left:155px;top:150px; border-style:none !important">
 		<p:calendar value="#{calendarBean.date}" id="popupCal" maxlength="8" size="4"/> 
@@ -335,9 +332,7 @@ function canceldown(){
             	label="open"
             	required="true"
             	update="gro"
-            	/>
-
-            <p:growl id="gro" showDetail="true"/>  
+            	/> 
 		</p:outputPanel>
 		
 		
