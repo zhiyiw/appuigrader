@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 import java.lang.System;
@@ -205,5 +206,9 @@ public class FileUploadController {
     public void setUploadedFile(UploadedFile uploadedFile) {
         this.uploadedFile = uploadedFile;
     }
+    
+    public void handleFileUpload(FileUploadEvent event) {  
+    	uploadedFile=event.getFile(); 
+    }  
 
 }
