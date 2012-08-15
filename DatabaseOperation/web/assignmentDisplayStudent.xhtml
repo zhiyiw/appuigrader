@@ -191,7 +191,7 @@ function canceldown(){
     </p:outputPanel>
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  
-  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel.png);height:312px;width:312px" layout="block"> 
+  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
   	<p:outputPanel layout="block" style="position:absolute;top:8%;left:38%">
   	<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
@@ -204,7 +204,7 @@ function canceldown(){
     </p:outputPanel>
     
  
-    <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:128px;left:56px; width:230px; height:300px; overflow:auto;">
+    <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:128px;left:56px; width:230px; height:100px; ">
 <!--	<p:inputTextarea rows="0" cols="25" value="#{assignment.selectedAssignment.description}" />  -->  
   	 #{assignment.selectedAssignment.description}
     </p:outputPanel>
@@ -241,6 +241,8 @@ function canceldown(){
             <p:growl showDetail="true"/>  
 			</p:outputPanel>
 			
+			<h:outputText style="font-size:16; font-weight:bold;"  
+                            value="#{assignment.selectedAssignment.assignmentName}" /> 
 			<p:outputPanel layout="block" style="position:absolute;top:150px;left:75px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/compare_s1.png'" onmouseout="this.src='images/compare_s0.png'" onmousedown="this.src='images/compare_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory, assignment.selectedAssignment.assignmentID)}" image="/images/compare_s0.png" />
 			</p:outputPanel>
