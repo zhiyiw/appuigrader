@@ -1,0 +1,137 @@
+body {background-color:#e7efcd;}
+
+
+#container {
+  margin:auto;
+  width: 1024px; 
+  background: #ffffff;
+  
+}
+
+#top {
+  background: #DDDDDD;
+  background-image:url(images/top.png);
+  height:45px;
+}
+
+#result_return {
+  float: left; 
+  width: 148px;
+  height: 119px; 
+  background: #EBEBEB; 
+  background-image:url(images/result_return.png)
+}
+
+#status_bar {
+  float:left;
+  width:876px;
+  height:119px;
+ // background-color: #cdcde6;
+}
+
+#result_status_top{
+	 width:876px;
+	 height:32px;
+	 background-image:url(images/result_status_top.png)
+	
+	
+}
+
+
+
+#result_status_left{
+	float:left;
+	 width:176px;
+	 height:87px;
+	 background-image:url(images/result_status_left.png)
+	
+	
+}
+
+#result_status_content{
+		float:left;
+	 width:622px;
+	 height:87px;
+	 overflow:auto;
+	 background-image:url(images/result_status_content.png);
+	  background-repeat:repeat-y;
+	
+	
+}
+
+
+#result_status_content a{
+//	margin-left:20px;
+//	margin-right:20px;
+color:#336699
+}
+
+
+#result_status_right{
+	float:right;
+	 width:78px;
+	 height:87px;
+	 background-image:url(images/result_status_right.png)
+	
+	
+}
+
+
+#result { 
+  clear:both;
+  background:#DDDDDD;
+} 
+
+#result_top{
+	 width:1024px;
+	 height:77px;
+	 background-image:url(images/result_top.png)
+	
+	
+}
+
+#result_left{
+	float:left;
+	 width:85px	;
+	 height:auto;
+	 background-image:url(images/result_r6_c1.png)
+	
+	
+}
+
+#result_content{
+		float:left;
+	 width:1024px;
+	 height:auto;
+	 background-image:url(images/result_r6_c1.png)
+	
+	
+}
+
+
+#result_content p{
+margin-left:100px;
+margin-right:100px;
+color:#3C3;
+}
+
+
+#result_right{
+	float:right;
+	 width:91px;
+	 height:200px:
+	 background-repeat:repeat-y;
+	 background-image:url(images/result_right.png)
+	
+	
+}
+#bottom{
+	 clear:both;
+	 width:1024px;
+	 height:173px;
+	 background-image:url(images/result_bottom.png)
+	
+	
+}
+  
+	

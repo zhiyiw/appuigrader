@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t ="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+        <h:head>
+        
+        <style type="text/css">
+
+	html{
+		background-color:#e7efcd;
+  			}
+  			
+  				
+		.mainFrame{
+  			    background-image: url(images/stu_signup.png);
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat; 
+                background-color:transparent;	
+                width:1024px;
+                height:700px;
+                margin: 0px auto 0px auto;	
+		}
+		
+		
+				.signPanel{
+			position:relative;
+			top:135px;
+			left:400px;
+		}
+		
+		.submit{
+		position:relative;
+  				top:0px;
+  				left:-20px;
+
+		}
+		
+		.cancel{
+		
+		position:relative;
+  				top:-50px;
+  				left:120px;
+		
+		}
+		
+		.returnLogin{
+			  				position:relative;
+  				top:45px;
+  				left:25px;
+
+		}
+		
+		.teacher{
+				position:relative;
+  				top:195px;
+  				left:35px;
+
+		}
+
+		.pass {
+			width:130px;
+			height:20px;
+			font-size:14;
+			position:relative;
+			left:16px;
+		}
+		
+		.repass {
+			width:130px;
+			height:20px;
+			font-size:14;
+			position:relative;
+			left:19px;
+		}
+		
+		.name {
+			width:130px;
+			height:20px;
+			font-size:12;
+			position:relative;
+			left:5px;
+			top:0px;
+
+</style>
+        
+        </h:head>
+        
+        <h:body>
+        <p:outputPanel layout="block" styleClass="mainFrame">
+        
+        
+        	<h:form styleClass="returnLogin">
+        		<h:commandButton value="return" action="login.xhtml" image="/images/return_button_s01.png" onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s03.png'"/>
+        	</h:form>
+       
+       <p:outputPanel layout="block" styleClass="signPanel"> 
+		<h:form id="uploadRubric" enctype="multipart/form-data">
+			<h:outputLabel value="Year "></h:outputLabel>
+        	<h:selectOneMenu value="#{menuoption.selectYear}">
+   				<f:selectItems value="#{menuoption.getYearList()}" />
+   			</h:selectOneMenu>
+    	    
+    	   	<h:outputLabel value="Term "></h:outputLabel>
+        	<h:selectOneMenu value="#{menuoption.selectTerm}">
+   				<f:selectItems value="#{menuoption.getTermList()}" />
+   			</h:selectOneMenu>
+    	    
+    	    <br /><br />
+		
+            <h:outputLabel value="User Name"></h:outputLabel>
+        	<p:inputText id="username" value="#{register.username}" required="true" styleClass="name"/>
+        	<h:message for="username" />
+        	<br /><br />
+        	<h:outputLabel value="Password"></h:outputLabel>
+        	<p:password id="password" value="#{register.password}" required="true" styleClass="pass"/>
+        	<h:message for="password" />
+        	<br /><br />
+        	
+        	<h:outputLabel value="Re-enter "></h:outputLabel>
+        	<p:password id="repassword" value="#{register.password}" required="true" styleClass="repass"/>
+        	<h:message for="repassword" />
+        	<br /><br />
+        	<p:outputPanel layout="block" styleClass="submit">
+        	<h:commandButton value="Register" action="#{register.addUser(menuoption.selectYear, menuoption.selectTerm)}" image="/images/register_s0.png" onmouseover="this.src ='images/register_s1.png'" onmouseout="this.src='images/register_s0.png'" onmousedown="this.src='images/register_s2.png'"/>
+        	</p:outputPanel>
+        	<p:outputPanel layout="block" styleClass="cancel">
+        	<h:commandButton value="Cancel" type="reset" image="/images/cancel_s0.png" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"/>
+        	<h:messages globalOnly="true" />
+        	</p:outputPanel>
+
+        </h:form>	
+        </p:outputPanel>
+        
+        </p:outputPanel>
+        </h:body>
+    </html>

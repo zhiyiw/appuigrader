@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t ="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+<style type="text/css">
+
+	html{
+		background-color:#e7efcd;
+  			}
+  			
+  			
+  				
+		.mainFrame{
+  			    background-image: url(images/admin_login.png);
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat; 
+                background-color:transparent;	
+                width:1024px;
+                height:700px;
+                margin: 0px auto 0px auto;	
+		}
+		
+		
+				.loginPanel{
+			position:relative;
+			top:210px;
+			left:400px;
+		}
+		
+		.submit{
+		position:relative;
+  				top:0px;
+  				left:-20px;
+
+		}
+		
+		.cancel{
+		
+		position:relative;
+  				top:-50px;
+  				left:120px;
+		
+		}
+		
+		.sign{
+			  				position:relative;
+  				top:45px;
+  				left:28px;
+  				height:119px;
+  				width:119px;
+
+		}
+		
+		.student{
+				position:relative;
+  				top:197px;
+  				left:29px;
+  				
+  		
+
+		}
+		
+		.pass {
+			width:130px;
+			height:20px;
+			font-size:14;
+			position:relative;
+			left:10px;
+		}
+		
+		.name {
+			width:130px;
+			height:20px;
+			font-size:12;
+			position:relative;
+			left:34px;
+			top:-5px;
+
+</style>
+
+
+
+</h:head>
+
+   <h:body>
+        <p:outputPanel layout="block" styleClass="mainFrame">
+             
+       <h:form layout="block" styleClass="sign">
+       </h:form>
+        	
+        	<p:outputPanel layout="block" styleClass="loginPanel">
+        	<h:form id="loginPage" enctype="multipart/form-data">
+				
+			<h:outputLabel value="Year "></h:outputLabel>
+        	<h:selectOneMenu value="#{menuoption.selectYear}">
+   				<f:selectItems value="#{menuoption.getYearList()}" />
+   			</h:selectOneMenu>
+    	    
+    	   	<h:outputLabel value="Term "></h:outputLabel>
+        	<h:selectOneMenu value="#{menuoption.selectTerm}">
+   				<f:selectItems value="#{menuoption.getTermList()}" />
+   			</h:selectOneMenu>
+    	    
+    	    <br /><br />
+			
+            <h:outputLabel value="UO ID"></h:outputLabel>
+        	<p:inputText id="username" value="#{adminlogin.username}" required="true" styleClass="name"/>
+        	<h:message for="username" />
+        	<br />
+        	<h:outputLabel value="Last Name"></h:outputLabel>
+        	<p:password id="password" value="#{adminlogin.password}" required="true" styleClass="pass"/>
+        	<h:message for="password" />
+        	<br /><br />
+        	<p:outputPanel layout="block" styleClass="submit">
+        	<h:commandButton value="Login" type="submit" action="#{login.loginCheck(menuoption.selectYear,menuoption.selectTerm)}" image="/images/login_s0.png" onmouseover="this.src ='images/login_s1.png'" onmouseout="this.src='images/login_s0.png'" onmousedown="this.src='images/login_s2.png'"/>
+        	</p:outputPanel>
+        	<p:outputPanel layout="block" styleClass="cancel">
+        	<h:commandButton value="Cancel" type="reset" image="/images/cancel_s0.png" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"/>
+        	<h:messages globalOnly="true" />
+        	</p:outputPanel>
+        </h:form>	
+        </p:outputPanel>
+
+
+                
+        <h:form layout="block" styleClass="student">
+        <h:commandButton value="Student Login" action="login.xhtml" image="/images/change_stu.png" />
+        </h:form>
+        
+   
+        
+        </p:outputPanel>
+        </h:body>
+        
+</html>
