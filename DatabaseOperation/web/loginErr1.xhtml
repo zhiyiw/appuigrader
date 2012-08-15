@@ -32,6 +32,14 @@
 
 		}
 		
+		.status_bar{
+		
+		position:relative;
+		top:48px;
+  				left:680px;
+		
+		}
+		
 
 
 		}
@@ -42,10 +50,7 @@
 
 <h:body>
 
-
 <p:outputPanel layout="block" styleClass="mainFrame">
-
-		<p>Wrong password</p>
 	
 
 	<p:outputPanel layout="block" styleClass="back">
@@ -53,6 +58,12 @@
    	        <h:commandButton value="Back to Login" action="login.xhtml" onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s03.png'" image="/images/return_button_s01.png"/>
     	</h:form>
     </p:outputPanel>	
+    
+
+<p:outputPanel layout="block" styleClass="status_bar">
+<h1>Wrong password.</h1>
+  </p:outputPanel>	
+		
     	</p:outputPanel>
 
 </h:body>

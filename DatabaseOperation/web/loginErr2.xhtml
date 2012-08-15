@@ -31,7 +31,19 @@
   				left:28px;
 
 		}
+			.status_bar{
 		
+		position:relative;
+		top:48px;
+  				left:680px;
+		
+		}
+		
+		.status_bar h3{
+		
+		font
+		
+		}
 
 
 		}
@@ -44,13 +56,18 @@
 
 
 <p:outputPanel layout="block" styleClass="mainFrame">
-	<p>Wrong term, year or name</p>
+
 
 	<p:outputPanel layout="block" styleClass="back">
 		<h:form>
    	        <h:commandButton value="Back to Login" action="login.xhtml" onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s03.png'" image="/images/return_button_s01.png"/>
     	</h:form>
     </p:outputPanel>	
+    
+    
+    <p:outputPanel layout="block" styleClass="status_bar">
+<h3>Wrong term, year or name</h3>
+  </p:outputPanel>	
     	</p:outputPanel>
 
 </h:body>
