@@ -109,17 +109,17 @@
     	    <br /><br />
 			
             <h:outputLabel value="UO ID"></h:outputLabel>
-        	<p:inputText id="username" value="#{adminlogin.username}" title="Enter Your Username" required="true" requiredMessage="Username is required" styleClass="name"/>
+        	<p:inputText id="username" value="#{adminlogin.adminusername}" title="Enter Your Username" required="true" requiredMessage="Username is required" styleClass="name"/>
         	<p:tooltip for="username" showEvent="focus" hideEvent="blur" />
         	<h:message for="username" />
         	<br />
         	<h:outputLabel value="Last Name"></h:outputLabel>
-        	<p:password id="password" value="#{adminlogin.password}" title="Enter Your Password" required="true" requiredMessage="Password is required" styleClass="pass"/>
+        	<p:password id="password" value="#{adminlogin.adminpassword}" title="Enter Your Password" required="true" requiredMessage="Password is required" styleClass="pass"/>
         	<p:tooltip for="password" showEvent="focus" hideEvent="blur" />
         	<h:message for="password" />
         	<br /><br />
         	<p:outputPanel layout="block" styleClass="submit">
-        	<h:commandButton value="Login" type="submit" action="#{login.loginCheck(menuoption.selectYear,menuoption.selectTerm)}" image="/images/login_s0.png" onmouseover="this.src ='images/login_s1.png'" onmouseout="this.src='images/login_s0.png'" onmousedown="this.src='images/login_s2.png'"/>
+        	<h:commandButton value="Login" type="submit" action="#{adminlogin.loginCheck}" image="/images/login_s0.png" onmouseover="this.src ='images/login_s1.png'" onmouseout="this.src='images/login_s0.png'" onmousedown="this.src='images/login_s2.png'"/>
         	</p:outputPanel>
         	<p:outputPanel layout="block" styleClass="cancel">
         	<h:commandButton value="Cancel" type="reset" image="/images/cancel_s0.png" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"/>
