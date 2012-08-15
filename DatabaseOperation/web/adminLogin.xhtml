@@ -109,11 +109,13 @@
     	    <br /><br />
 			
             <h:outputLabel value="UO ID"></h:outputLabel>
-        	<p:inputText id="username" value="#{adminlogin.username}" required="true" requiredMessage="Username is required" styleClass="name"/>
+        	<p:inputText id="username" value="#{adminlogin.username}" title="Enter Your Username" required="true" requiredMessage="Username is required" styleClass="name"/>
+        	<p:tooltip for="username" showEvent="focus" hideEvent="blur" />
         	<h:message for="username" />
         	<br />
         	<h:outputLabel value="Last Name"></h:outputLabel>
-        	<p:password id="password" value="#{adminlogin.password}" required="true" requiredMessage="Password is required" styleClass="pass"/>
+        	<p:password id="password" value="#{adminlogin.password}" title="Enter Your Password" required="true" requiredMessage="Password is required" styleClass="pass"/>
+        	<p:tooltip for="password" showEvent="focus" hideEvent="blur" />
         	<h:message for="password" />
         	<br /><br />
         	<p:outputPanel layout="block" styleClass="submit">
