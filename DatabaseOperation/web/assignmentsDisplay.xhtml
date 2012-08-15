@@ -98,23 +98,30 @@
 			}
 			
 			.ui-dialog-titlebar.ui-widget-header{
-			background-color: #cd34ef;
+			background-color: #A5C734;
      		box-shadow: none !important;
      		border:none;
      		padding:none;
 			}
 			
 			.ui-datatable-data{
-			background-color: #cd34ef;
+			background-color: #FFFFFF;
 			}
 			
-			.ui-datatable{
-			background-color: #cd34ef;
+			.table_dialog .ui-widget-content{
+			background-color: #FFFFFF;
 			}
 			
-			.test{
-			background-color: #cd34ef;
+				.table_showhistory .ui-widget-content{
+			background-color: #FFFFFF;
 			}
+			
+			.table_column{
+			background-color: #FFFFFF;
+			}
+			
+			
+			
   </style>
 	
 
@@ -246,9 +253,9 @@ function canceldown(){
      
    
    
-		<p:dialog  resizable="false" id="dlgLogDisplay" widgetVar="dlgLog" modal="true" draggable="false" closeOnEscape="true" header="Compare History">  
+		<p:dialog  resizable="false" id="dlgLogDisplay" widgetVar="dlgLog" modal="true" draggable="false" closeOnEscape="true" header="Compare History" styleClass="table_dialog">  
 
-    	<p:dataTable var="grade" value="#{gradestudentBean.list}" rowStyleClass="test">  
+    	<p:dataTable var="grade" value="#{gradestudentBean.list}" rowStyleClass="table_column">  
         <p:column sortBy="#{grade.studentID}">  
             <f:facet name="header">  
                 <h:outputText value="StudentID" />  
@@ -260,7 +267,7 @@ function canceldown(){
             <f:facet name="header">  
                 <h:outputText value="Record" />  
             </f:facet>  
-            <p:commandLink update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" value="show history">
+            <p:commandLink update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" value="Show history">
             	<f:setPropertyActionListener value="#{grade}"  target="#{gradestudentBean.log}" />
             </p:commandLink> 
         </p:column>  
@@ -275,7 +282,7 @@ function canceldown(){
 	</p:dialog>
 	
 	
-			<p:dialog  resizable="false" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
+			<p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
 				<h:outputText value="#{gradestudentBean.log.log_directory}"/>
 			</p:dialog>
 	
