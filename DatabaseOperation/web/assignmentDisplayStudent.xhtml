@@ -226,20 +226,18 @@ function canceldown(){
 	
 	
 	
-		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="430" height="290" modal="true" showHeader="false" draggable="false">  
+		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="440" height="300" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:282px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
     		<p:fileUpload value="#{compare.uploadedFile}"
             	mode="simple"
-            	update="messages"
             	sizeLimit="100000" 
             	allowTypes="/(\.|\/)(zip)$/" 
             	style="border:none"
             	required="true"
             	/>
-
-            <p:growl showDetail="true"/>  
+ 
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:180px;left:75px">
