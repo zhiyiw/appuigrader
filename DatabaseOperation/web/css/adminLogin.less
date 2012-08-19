@@ -1,0 +1,76 @@
+.at2x(@path, @w: auto, @h: auto) {
+  background-image: url(@path);
+  @at2x_path: ~`"@{path}".split('.').slice(0, "@{path}".split('.').length - 1).join(".") + "@2x" + "." + "@{path}".split('.')["@{path}".split('.').length - 1]`;
+
+  @media all and (-webkit-min-device-pixel-ratio : 1.5) {
+    background-image: url(@at2x_path);
+    background-size: @w @h;
+  }  
+}
+
+
+html {
+	//background-color: #e7efcd;
+	background-color: #ffffff;
+}
+
+.mainFrame {
+
+	.at2x('../images/admin_login.png');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 1024px;
+	height: 720px;
+	margin: 0px auto 0px auto;
+}
+
+.loginPanel {
+	position: relative;
+	top: 210px;
+	left: 400px;
+}
+
+.submit {
+	position: relative;
+	top: 0px;
+	left: -20px;
+}
+
+.cancel {
+	position: relative;
+	top: -50px;
+	left: 120px;
+}
+
+.sign {
+	position: relative;
+	top: 45px;
+	left: 28px;
+	height: 119px;
+	width: 119px;
+}
+
+.student {
+	position: relative;
+	top: 204px;
+	left: 28px;
+}
+
+.pass {
+	width: 130px;
+	height: 20px;
+	font-size: 14;
+	position: relative;
+	left: 10px;
+}
+
+.name {
+	width: 130px;
+	height: 20px;
+	font-size: 12;
+	position: relative;
+	left: 34px;
+	top: -5px;
+}

@@ -1,0 +1,32 @@
+.at2x(@path, @w: auto, @h: auto) {
+
+  background-image: url("@{path}");
+	
+}
+
+@color: #4D926F;
+@color2: #aaaaaa;
+@myImgPathVariable: ~'../images/admin_login.png';
+
+.ada{
+  color: #4D926F;
+  font:50px;
+
+}
+
+
+#header {
+  color: @color;
+}
+h2 {
+  color: @color;
+}
+
+#bonus{
+weight:1000px;
+height:700px;
+color: @color2;
+background-image: url('../images/admin_login.png');
+.at2x("../images/admin_login.png");
+	
+}
