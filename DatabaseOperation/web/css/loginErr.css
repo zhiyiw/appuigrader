@@ -1,0 +1,26 @@
+html {
+	background-color: #e7efcd;
+}
+
+.mainFrame {
+	background-image: url(../images/warning.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 1024px;
+	height: 700px;
+	margin: 0px auto 0px auto;
+}
+
+.back {
+	position: relative;
+	top: 45px;
+	left: 28px;
+}
+
+.status_bar {
+	position: relative;
+	top: 48px;
+	left: 680px;
+}
