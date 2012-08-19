@@ -10,13 +10,7 @@
     <body>
  <f:view>
     	<h1>JSF 2.0 + JDBC Example</h1>
- 		<h:dataTable value="#{student.getStudentList()}" var="s">
-    		<h:column>
-    			<f:facet name="header">
-    				<h:outputText value="StudentID"/>
-    			</f:facet>
-				<h:outputText value="#{s.studentID}"/>
-    		</h:column>
+ 		<h:dataTable value="#{s12345.getStudentList()}" var="s">
 
     		<h:column>
     			<f:facet name="header">
@@ -25,10 +19,6 @@
 				<h:outputText value="#{s.lname}"/>
     		</h:column> 
     	</h:dataTable>
-    	
-    	<h:form>
-            <h:commandButton value="Compare" action="print.jsp" />      
-    </h:form>
     
  </f:view>
     </body>

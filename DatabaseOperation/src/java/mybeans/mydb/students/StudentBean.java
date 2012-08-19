@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  
 import mybeans.mydb.students.model.Student;
 
-@ManagedBean(name="student")
+@ManagedBean(name="s12345")
 @SessionScoped
 
 public class StudentBean implements Serializable{
@@ -50,7 +50,7 @@ public class StudentBean implements Serializable{
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select s_id, s_lname from students"); 
+			   "select username from users"); 
  
 		//get student data from database
 		ResultSet result =  ps.executeQuery();
@@ -60,8 +60,7 @@ public class StudentBean implements Serializable{
 		while(result.next()){
 			Student stud = new Student();
  
-			stud.setStudentID(result.getInt("s_id"));
-			stud.setLname(result.getString("s_lname"));
+			stud.setLname(result.getString("username"));
  
 			//store all data into a List
 			list.add(stud);
