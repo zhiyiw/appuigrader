@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+<style type="text/css">
+
+</style>
+
+</h:head>
+
+<h:body>
+		<h3>Original Blocks List</h3>
+		<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:dataList value="#{compare.origMapList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+		
+		<h3>Target Blocks List</h3>
+		<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:dataList value="#{compare.targMapList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+		
+		<h3>Original Only List</h3>
+		<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:dataList value="#{compare.origOnlyList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+		
+		<h3>Target Only List</h3>
+		<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:dataList value="#{compare.targOnlyList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+		
+		<h3>Blocks Same in Both</h3>
+		<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:dataList value="#{compare.bothHaveList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+	
+			<h3>Blocks Differences in Both</h3>
+		<p:outputPanel layout="block" styleClass="result_status_content">
+		
+		<table>
+			<tr>
+				<td><p:dataList value="#{compare.differIntOrigList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  </td>
+				<td><p:dataList value="#{compare.differStringList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList></td>
+				<td><p:dataList value="#{compare.differIntTargList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  </td>
+			</tr>
+		</table>
+			  
+			
+			
+			
+			
+		</p:outputPanel>
+
+</h:body>
+
+</html>

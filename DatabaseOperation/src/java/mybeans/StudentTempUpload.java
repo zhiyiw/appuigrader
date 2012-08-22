@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map.Entry;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -33,6 +34,91 @@ public class StudentTempUpload {
     private String directory;
     private UIFrame frame;
     private ArrayList<String> compResult;
+    public ArrayList<String> getBothHaveList() {
+		return bothHaveList;
+	}
+
+	public void setBothHaveList(ArrayList<String> bothHaveList) {
+		this.bothHaveList = bothHaveList;
+	}
+
+	private ArrayList<String> origOnlyList;
+	public ArrayList<String> getOrigOnlyList() {
+		return origOnlyList;
+	}
+
+	public void setOrigOnlyList(ArrayList<String> origOnlyList) {
+		this.origOnlyList = origOnlyList;
+	}
+
+	public ArrayList<String> getTargOnlyList() {
+		return targOnlyList;
+	}
+
+	public void setTargOnlyList(ArrayList<String> targOnlyList) {
+		this.targOnlyList = targOnlyList;
+	}
+
+	private ArrayList<String> targOnlyList;
+	private ArrayList<String> bothHaveList;
+	
+	
+	public ArrayList<Entry<String, Integer>> getOrigMapList() {
+		return origMapList;
+	}
+
+	public void setOrigMapList(ArrayList<Entry<String, Integer>> origMapList) {
+		this.origMapList = origMapList;
+	}
+
+	private ArrayList<Entry<String, Integer>> origMapList;
+	
+	public ArrayList<Entry<String, Integer>> getTargMapList() {
+		return targMapList;
+	}
+
+	public void setTargMapList(ArrayList<Entry<String, Integer>> targMapList) {
+		this.targMapList = targMapList;
+	}
+
+	private ArrayList<Entry<String, Integer>> targMapList;
+	
+	public ArrayList<Entry<String, Integer[]>> getDifferList() {
+		return differList;
+	}
+
+	public void setDifferList(ArrayList<Entry<String, Integer[]>> differList) {
+		this.differList = differList;
+	}
+
+	private ArrayList<Entry<String, Integer[]>> differList;
+	public ArrayList<String> getDifferStringList() {
+		return differStringList;
+	}
+
+	public void setDifferStringList(ArrayList<String> differStringList) {
+		this.differStringList = differStringList;
+	}
+
+	public ArrayList<Integer> getDifferIntOrigList() {
+		return differIntOrigList;
+	}
+
+	public void setDifferIntOrigList(ArrayList<Integer> differIntOrigList) {
+		this.differIntOrigList = differIntOrigList;
+	}
+
+	public ArrayList<Integer> getDifferIntTargList() {
+		return differIntTargList;
+	}
+
+	public void setDifferIntTargList(ArrayList<Integer> differIntTargList) {
+		this.differIntTargList = differIntTargList;
+	}
+
+	private ArrayList<String> differStringList;
+	private ArrayList<Integer> differIntOrigList;
+	private ArrayList<Integer> differIntTargList;
     
     
     // Actions ------------------------------------------------------------------------------------
@@ -87,6 +173,19 @@ public class StudentTempUpload {
             frame = new UIFrame();
             compResult = new ArrayList<String>();
             compResult = frame.compareFiles(ctx.getRealPath(rubricPath),ctx.getRealPath(directory)); 
+            
+            bothHaveList = frame.getBothHaveList();
+            origMapList = frame.getOrigMapList();
+            targMapList = frame.getTargMapList();
+            origOnlyList = frame.getOrigOnlyList();
+            targOnlyList = frame.getTargOnlyList();
+            differList = frame.getDifferList();
+
+	        differStringList = frame.getDifferStringList();
+        	differIntOrigList = frame.getDifferIntOrigList();
+	        differIntTargList = frame.getDifferIntTargList();
+
+            
             StringBuffer sb = new StringBuffer();
             
             for(String s:compResult)

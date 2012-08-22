@@ -8,6 +8,7 @@ package mybeans.mydb.compare;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -47,6 +48,13 @@ public class UIFrame {
 	TreeBean tree1;
 	TreeBean tree2;
 	
+	TreeBean origMap;
+	TreeBean targMap;
+	TreeBean diffMap;
+	TreeBean bothHaveTree;
+	TreeBean origOnlyTree;
+	TreeBean targOnlyTree;
+	
 	private File oriFile;
 	private File tarFile;
 
@@ -59,8 +67,90 @@ public class UIFrame {
 	}
 
 	private ArrayList<String> compResult;
+	
+	public ArrayList<Entry<String, Integer>> getOrigMapList() {
+		return origMapList;
+	}
 
+	public void setOrigMapList(ArrayList<Entry<String, Integer>> origMapList) {
+		this.origMapList = origMapList;
+	}
 
+	private ArrayList<Entry<String, Integer>> origMapList;
+	private ArrayList<Entry<String, Integer>> targMapList;
+	
+	private ArrayList<Entry<String, Integer[]>> differList;
+	private ArrayList<String> differStringList;
+	public ArrayList<String> getDifferStringList() {
+		return differStringList;
+	}
+
+	public void setDifferStringList(ArrayList<String> differStringList) {
+		this.differStringList = differStringList;
+	}
+
+	public ArrayList<Integer> getDifferIntOrigList() {
+		return differIntOrigList;
+	}
+
+	public void setDifferIntOrigList(ArrayList<Integer> differIntOrigList) {
+		this.differIntOrigList = differIntOrigList;
+	}
+
+	public ArrayList<Integer> getDifferIntTargList() {
+		return differIntTargList;
+	}
+
+	public void setDifferIntTargList(ArrayList<Integer> differIntTargList) {
+		this.differIntTargList = differIntTargList;
+	}
+
+	private ArrayList<Integer> differIntOrigList;
+	private ArrayList<Integer> differIntTargList;
+	
+	public ArrayList<Entry<String, Integer[]>> getDifferList() {
+		return differList;
+	}
+
+	public void setDifferList(ArrayList<Entry<String, Integer[]>> differList) {
+		this.differList = differList;
+	}
+
+	public ArrayList<Entry<String, Integer>> getTargMapList() {
+		return targMapList;
+	}
+
+	public void setTargMapList(ArrayList<Entry<String, Integer>> targMapList) {
+		this.targMapList = targMapList;
+	}
+
+	public ArrayList<String> getBothHaveList() {
+		return bothHaveList;
+	}
+
+	public void setBothHaveList(ArrayList<String> bothHaveList) {
+		this.bothHaveList = bothHaveList;
+	}
+
+	public ArrayList<String> getOrigOnlyList() {
+		return origOnlyList;
+	}
+
+	public void setOrigOnlyList(ArrayList<String> origOnlyList) {
+		this.origOnlyList = origOnlyList;
+	}
+
+	public ArrayList<String> getTargOnlyList() {
+		return targOnlyList;
+	}
+
+	public void setTargOnlyList(ArrayList<String> targOnlyList) {
+		this.targOnlyList = targOnlyList;
+	}
+
+	private ArrayList<String> origOnlyList;
+	private ArrayList<String> targOnlyList;
+	private ArrayList<String> bothHaveList;
 
 	public File getOriFile() {
 		return oriFile;
@@ -122,6 +212,50 @@ public class UIFrame {
 		return str;
 
 	}
+	
+	
+	public String blockFilestream(ZipFile zf) {
+		ZipEntry entry;
+		Enumeration<? extends ZipEntry> enu = zf.entries();
+		InputStream is = null;
+		String str = null;
+		while (enu.hasMoreElements()) {
+			entry = (ZipEntry) enu.nextElement();
+
+			if (entry.isDirectory())
+				continue;
+
+			System.out.println(entry.getName());
+			String filename = entry.getName();
+			String last3char = filename.substring(filename.length() - 12,
+					filename.length());
+			System.out.println(last3char);
+
+			if (last3char.equals("/Screen1.blk")) {
+				// isValidFile = true;
+				try {
+					is = zf.getInputStream(entry);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			int len = 0;
+			byte[] b = new byte[20480];
+			try {
+				while ((len = is.read(b)) != -1) {
+					str = new String(b, 0, len, "gb2312");
+				}
+
+			} catch (Exception e) {
+				System.out.println("byte read Error");
+			}
+
+		}
+		return str;
+
+	}
 
 	public ArrayList<String> compareFiles(String oriFile, String tarFile) throws IOException {
 		//compResult = "";
@@ -138,7 +272,7 @@ public class UIFrame {
 //		}
 //		
 //		in.close();
-		
+		 splitList sl = new splitList();
 		
 		 ZipFile zf = null;
 		
@@ -151,9 +285,10 @@ public class UIFrame {
 		 }
 		
 		 dataBuild db = new dataBuild(zipFilestream(zf));
+		 blockBuild bb = new blockBuild(blockFilestream(zf));
 		 
 		 tree1 = new TreeBean("Original File", db.compArr.get( db.compArr.size() - 1));
-		
+		 
 		 // ////////////////////////////////
 		
 		 try {
@@ -164,8 +299,22 @@ public class UIFrame {
 		 }
 		
 		 dataBuild db2 = new dataBuild(zipFilestream(zf));
+		 blockBuild bb2 = new blockBuild(blockFilestream(zf));
 		
 		 tree2 = new TreeBean("Target File", db2.compArr.get(db2.compArr.size() - 1));
+		 
+		 sl.split(bb.compArr, bb2.compArr);
+		 
+		 bothHaveList = sl.bothHave;
+		 origMapList = sl.origMap;
+		 targMapList = sl.targMap;
+		 origOnlyList = sl.origOnly;
+		 targOnlyList = sl.targOnly;
+		 differList = sl.differList;
+		 
+		 differStringList = sl.differStringList;
+		 differIntOrigList = sl.differIntOrigList;
+		 differIntTargList = sl.differIntTargList;
 		 // if (db == null && db2 == null) {
 		 // compResult = "Pleases add Files !!!\n";
 		 // System.out.println(compResult);
