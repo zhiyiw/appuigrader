@@ -6,7 +6,21 @@ public class Grade {
 	public int assignmentID;
 	public String logDirectory;
 	public String latestUploadDate;
+	public int tryCount;
+	public String currentStatus;
 	
+	public int getTryCount() {
+		return tryCount;
+	}
+	public void setTryCount(int tryCount) {
+		this.tryCount = tryCount;
+	}
+	public String getCurrentStatus() {
+		return currentStatus;
+	}
+	public void setCurrentStatus(String currentStatus) {
+		this.currentStatus = currentStatus;
+	}
 	public int getLogID() {
 		return logID;
 	}
