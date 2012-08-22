@@ -104,6 +104,7 @@
        <h:commandButton type="submit" onmouseover="this.src ='images/add_r1_c1_s2.png'" onmouseout="this.src='images/add_r1_c1.png'" onmousedown="this.src='images/add_r1_c1_s3.png'" action="register.xhtml" image="/images/add_r1_c1.png" />
        </h:form>
         	
+        	
         	<p:outputPanel layout="block" styleClass="loginPanel">
         	<h:form id="loginPage" enctype="multipart/form-data">
 				
@@ -139,7 +140,8 @@
         	</p:outputPanel>
         	
         	<p:outputPanel layout="block" styleClass="submit">
-        	<h:commandButton value="Login" type="submit" action="#{login.loginCheck(menuoption.selectYear,menuoption.selectTerm)}" image="/images/login_s0.png" onmouseover="this.src ='images/login_s1.png'" onmouseout="this.src='images/login_s0.png'" onmousedown="this.src='images/login_s2.png'"/>
+        	<h:commandButton value="Login" type="submit" action="#{login.loginCheck(menuoption.selectYear,menuoption.selectTerm)}" image="/images/login_s0.png"  onmouseover="this.src ='images/login_s1.png'" onmouseout="this.src='images/login_s0.png'" onmousedown="this.src='images/login_s2.png'">
+        	</h:commandButton>
         	</p:outputPanel>
         	<p:outputPanel layout="block" styleClass="cancel">
         	<h:commandButton value="Cancel" type="reset" image="/images/cancel_s0.png" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"/>

@@ -59,6 +59,8 @@ public class GradeDisplay {
 	
 	public List<GradeStudentModel> list; 
 	
+	public GradeStudentModel currentSelect;
+	
 	public List<GradeStudentModel> getList() {
 		return list;
 	}
@@ -111,5 +113,61 @@ public class GradeDisplay {
 		
 		setList(l);	
 		con.close();
+	}
+	
+	public void getGradeStudentSingleEntry(int a_id, String username) throws SQLException, IOException{
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+ 
+		PreparedStatement ps 
+			= con.prepareStatement(
+			   "select u.username, r.log_directory from (select * from grades g left join assignments a using(a_id) where a_id=? and g.s_id=?) r, users u where u.username=r.s_id");
+		
+		ps.setInt(1, a_id);
+		ps.setString(2, username);
+		ResultSet result =  ps.executeQuery();
+		
+		List<GradeStudentModel> l=new ArrayList<GradeStudentModel>();
+		
+		while(result.next()){
+			GradeStudentModel gsm = new GradeStudentModel();
+			gsm.setStudentID(result.getString("username"));
+			
+			
+	    	ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+	    	String deploymentDirectoryPath = ctx.getRealPath(result.getString("log_directory"));
+	    	FileReader fr = new FileReader(deploymentDirectoryPath); 
+	    	BufferedReader br = new BufferedReader(fr); 
+	    	StringBuffer sb = new StringBuffer();
+	    	String line;
+	    	while((line = br.readLine()) != null) { 
+	    		sb.append(line+"\n");
+	    	}
+	    	
+	    	fr.close(); 
+			
+			gsm.setLog_directory(sb.toString());
+			l.add(gsm);
+		}
+		
+		if(l.isEmpty())
+			setCurrentSelect(null);
+		else
+			setCurrentSelect(l.get(0));	
+		con.close();
+	}
+
+	public GradeStudentModel getCurrentSelect() {
+		return currentSelect;
+	}
+
+	public void setCurrentSelect(GradeStudentModel currentSelect) {
+		this.currentSelect = currentSelect;
 	}
 }

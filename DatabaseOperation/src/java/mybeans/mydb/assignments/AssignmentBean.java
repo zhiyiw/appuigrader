@@ -29,6 +29,8 @@ public class AssignmentBean {
 	
 	private Assignment selectedAssignment;
 	
+	public List<Assignment> list;
+	
 	public Assignment getSelectedAssignment() {
 		return selectedAssignment;
 	}
@@ -61,7 +63,7 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_id, a_name, a_directory, a_uploaded_date, description, deadline from assignments where a_year=? and a_term=?"); 
+			   "select a_id, a_name, a_directory, a_uploaded_date, description, deadline from assignments where a_year=? and a_term=? order by a_id ASC"); 
  
 		//get student data from database
 		ps.setInt(1, year);
@@ -69,7 +71,7 @@ public class AssignmentBean {
 		
 		ResultSet result =  ps.executeQuery();
 		
-		List<Assignment> list = new ArrayList<Assignment>();
+		list = new ArrayList<Assignment>();
 		
 		while(result.next()){
 			Assignment assign = new Assignment();
@@ -88,9 +90,9 @@ public class AssignmentBean {
 	}
 	
 	public void addAssignment(String directory, int year ,String term, String des, String deadline) throws SQLException{
-		List<Assignment> list = getAssignmentList(year,term);
+		List<Assignment> listTemp = getAssignmentList(year,term);
 		
-		int temp = list.size()+1;
+		int temp = listTemp.size()+1;
 		String name;
 		
 		if(temp<10)
@@ -165,6 +167,14 @@ public class AssignmentBean {
 		
 		con.close();
 		
+	}
+
+	public List<Assignment> getList() {
+		return list;
+	}
+
+	public void setList(List<Assignment> list) {
+		this.list = list;
 	}
 
 }
