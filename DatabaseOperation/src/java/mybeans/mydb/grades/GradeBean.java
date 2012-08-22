@@ -156,7 +156,7 @@ public class GradeBean {
 		
 	}
 	
-	public void createNewGrade(int a_id, String s_id, String content, String currentTime) throws SQLException, IOException{
+	public void createNewGrade(int a_id, String s_id, String content, String currentTime, String matchResult) throws SQLException, IOException{
 		Grade g = getStudentAssignment(a_id, s_id);
 		
 		if(ds==null)
@@ -207,13 +207,14 @@ public class GradeBean {
 			String directory="/Records/"+file.getName();
 			
 			ps = con.prepareStatement(
-					   "insert into grades values (?,?,?,?,?)");
+					   "insert into grades values (?,?,?,?,?,1,?)");
 			
 			ps.setInt(1, current);
 			ps.setInt(2, a_id);
 			ps.setString(3, s_id);
 			ps.setString(4,directory);
 			ps.setString(5, currentTime);
+			ps.setString(6, matchResult);
 			
 			int updated = ps.executeUpdate();
 			
@@ -236,10 +237,11 @@ public class GradeBean {
 			output.close();
 			
 			ps=con.prepareStatement(
-					"update grades set log_upload_date=? where log_id=?");
+					"update grades set try_count=try_count+1, log_upload_date=?, current_status=? where log_id=?");
 			
 			ps.setString(1,currentTime);
-			ps.setInt(2, g.logID);
+			ps.setString(2, matchResult);
+			ps.setInt(3, g.logID);
 			
 			int updated = ps.executeUpdate();
 			
