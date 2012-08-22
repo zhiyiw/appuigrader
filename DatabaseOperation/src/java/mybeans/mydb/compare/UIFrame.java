@@ -67,6 +67,15 @@ public class UIFrame {
 	}
 
 	private ArrayList<String> compResult;
+	public boolean isEverCorrect() {
+		return isEverCorrect;
+	}
+
+	public void setEverCorrect(boolean isEverCorrect) {
+		this.isEverCorrect = isEverCorrect;
+	}
+
+	private boolean isEverCorrect;
 	
 	public ArrayList<Entry<String, Integer>> getOrigMapList() {
 		return origMapList;
@@ -371,6 +380,10 @@ public class UIFrame {
 		   writer.write(str);
 		 }
 		 writer.close();
+		 
+		 if(compResult.get(1).equals("Great!! Properties matched!!")){
+			 isEverCorrect = true;
+		 }
 		 
 		return compResult;
 	}

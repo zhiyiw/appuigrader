@@ -62,7 +62,16 @@ public class StudentTempUpload {
 	private ArrayList<String> targOnlyList;
 	private ArrayList<String> bothHaveList;
 	
+	private boolean everMatched;
 	
+	public boolean isEverMatched() {
+		return everMatched;
+	}
+
+	public void setEverMatched(boolean everMatched) {
+		this.everMatched = everMatched;
+	}
+
 	public ArrayList<Entry<String, Integer>> getOrigMapList() {
 		return origMapList;
 	}
@@ -184,6 +193,16 @@ public class StudentTempUpload {
 	        differStringList = frame.getDifferStringList();
         	differIntOrigList = frame.getDifferIntOrigList();
 	        differIntTargList = frame.getDifferIntTargList();
+	        
+	        everMatched = frame.isEverCorrect();
+	        
+	        String match;
+	        if(everMatched){
+	        	match = "Successfully Matched!!";
+	        }
+	        else{
+	        	match = "Not Completely Matched";
+	        }
 
             
             StringBuffer sb = new StringBuffer();
@@ -206,7 +225,7 @@ public class StudentTempUpload {
             
             String currentTime = sdf.format(date);
             
-            grade.createNewGrade(assignmentID, studentID, sss, currentTime);
+            grade.createNewGrade(assignmentID, studentID, sss, currentTime, match);
             
         } catch (IOException e) {
             // Cleanup.

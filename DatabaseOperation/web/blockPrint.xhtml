@@ -65,8 +65,13 @@
 			</tr>
 		</table>
 			  
-			
-			
+		<h3>Ever Matched</h3>
+			<p:outputPanel layout="block" styleClass="result_status_content">
+				<p:dataList value="#{compare.everMatched}" var="car" itemlayout="disc">  
+  					<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>	
+		
 			
 			
 		</p:outputPanel>
