@@ -191,7 +191,10 @@ function canceldown(){
     </p:outputPanel>
       
 	<p:outputPanel layout="block" styleClass="ring">
+	
 	<h:form>
+	
+	<p:panel widgetVar="ringControl" visible="false" closable="true" closeSpeed="0">
     <p:ring id="basic" value="#{assignment.getAssignmentList(menuoption.selectYear,menuoption.selectTerm)}" var="a">  
         <p:column>
         <p:outputPanel style="text-align:center; padding-top:15px;" layout="block" styleClass="assignmentBlock">  
@@ -206,7 +209,32 @@ function canceldown(){
                 </p:outputPanel> 
    		</p:outputPanel> 
    		</p:column>
-    </p:ring>  
+    </p:ring>
+    <p:commandButton value="Switch" icon="ui-icon-search" oncomplete="ringControl.close();tableControl.show()"/>
+    </p:panel>
+    
+    <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
+	<p:dataTable id="table" var="a" value="#{assignment.list}" paginator="true" rows="6"  
+                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}">  
+     	<f:facet name="header">  
+            Assignment List  
+        </f:facet>  
+  
+        <p:column selectionMode="single" style="width:18px" />  
+        
+        <p:column headerText="Last Name">  
+            #{a.assignmentName}  
+        </p:column>
+        
+        <f:facet name="footer">  
+            <p:commandButton id="viewCommand" value="Switch to Ring" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
+             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
+             <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
+             <p:commandButton id="v2" value="Update" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
+        </f:facet>
+    </p:dataTable>   
+    </p:panel>
+     
     </h:form>
     
     </p:outputPanel>
@@ -245,7 +273,7 @@ function canceldown(){
  	
  	<p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
- 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:9%" alt="Compare History"/>
+ 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:9%"/>
  	</p:commandLink>
  	</p:outputPanel>
   	</p:outputPanel>

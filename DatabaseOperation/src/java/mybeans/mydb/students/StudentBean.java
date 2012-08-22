@@ -17,13 +17,17 @@ import javax.sql.DataSource;
  
 import mybeans.mydb.students.model.Student;
 
-@ManagedBean(name="student")
+@ManagedBean(name="s12345")
 @SessionScoped
 
 public class StudentBean implements Serializable{
 	//resource injection
 	//@Resource(name="jdbc/projectdb")
+	
+	public Student selectStudent;
 	private DataSource ds;
+	
+	List<Student> list;
  
 	//if resource injection is not support, you still can get it manually.
 	public StudentBean(){
@@ -37,7 +41,7 @@ public class StudentBean implements Serializable{
 	}
  
 	//connect to DB and get customer list
-	public List<Student> getStudentList() throws SQLException{
+	public void getStudentList() throws SQLException{
  
 		if(ds==null)
 			throw new SQLException("Can't get data source");
@@ -50,24 +54,37 @@ public class StudentBean implements Serializable{
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select s_id, s_lname from students"); 
+			   "select username from users"); 
  
 		//get student data from database
 		ResultSet result =  ps.executeQuery();
  
-		List<Student> list = new ArrayList<Student>();
+		list = new ArrayList<Student>();
  
 		while(result.next()){
 			Student stud = new Student();
  
-			stud.setStudentID(result.getInt("s_id"));
-			stud.setLname(result.getString("s_lname"));
+			stud.setLname(result.getString("username"));
  
 			//store all data into a List
 			list.add(stud);
 		}
- 
+	}
+
+	public Student getSelectStudent() {
+		return selectStudent;
+	}
+
+	public void setSelectStudent(Student selectStudent) {
+		this.selectStudent = selectStudent;
+	}
+
+	public List<Student> getList() {
 		return list;
+	}
+
+	public void setList(List<Student> list) {
+		this.list = list;
 	}
 	
 }

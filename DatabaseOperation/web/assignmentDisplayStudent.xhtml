@@ -166,9 +166,12 @@ function canceldown(){
     
     <h:button onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" outcome="login.xhtml" image="images/logout_s0.png" />
     </p:outputPanel>
+    
+    
       
 	<p:outputPanel layout="block" styleClass="ring">
 	<h:form>
+	<p:panel widgetVar="ringControl" visible="false" closable="true" closeSpeed="0">
     <p:ring id="basic" value="#{assignment.getAssignmentList(menuoption.selectYear,menuoption.selectTerm)}" var="a">  
         <p:column>
         <p:outputPanel style="text-align:center; padding-top:15px;" layout="block" styleClass="assignmentBlock">  
@@ -176,19 +179,48 @@ function canceldown(){
          		<p:outputPanel style="text-align:center;" layout="block" styleClass="zoomIcon" > 
          		<p:commandLink 
                             update=":updateDialog, :display"
-                            onmouseover="iconover();"
-                            onmouseout="iconout();"
                             oncomplete="dlg.show()">
-                <img name="iconAdd" src="images/zoomin_s01.png" />
+                <img name="iconAdd" src="images/zoomin_s01.png" onmouseover="this.src ='images/zoomin_s02.png'" onmouseout="this.src='images/zoomin_s01.png'"/>
          		<f:setPropertyActionListener value="#{a}"  target="#{assignment.selectedAssignment}" />
                 </p:commandLink>
                 </p:outputPanel> 
    		</p:outputPanel> 
    		</p:column>
-    </p:ring>  
+    </p:ring>
+    <p:commandButton value="Switch" icon="ui-icon-search" oncomplete="ringControl.close();tableControl.show()"/>
+    </p:panel>
+    
+    <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
+	<p:dataTable id="table" var="a" value="#{assignment.list}" paginator="true" rows="10"  
+                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentID}">  
+     	<f:facet name="header">  
+            Assignment List  
+        </f:facet>  
+  
+        <p:column selectionMode="single" style="width:18px">
+        </p:column>
+        
+        <p:column headerText="Last Name">  
+            #{a.assignmentName}  
+        </p:column>
+        
+        <f:facet name="footer">  
+            <p:commandButton id="viewCommand" value="Switch to Ring" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
+             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+             <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
+             <p:commandLink id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" action="#{gradestudentBean.getGradeStudentSingleEntry(assignment.selectedAssignment.assignmentID,login.username)}"/>
+             <p:commandButton id="v3" value="Compare" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
+        </f:facet>
+    </p:dataTable>   
+    </p:panel> 
     </h:form>
     
     </p:outputPanel>
+    
+    
+    <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
+	<h:outputText value="#{gradestudentBean.currentSelect.log_directory}"/>
+	</p:dialog>
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
