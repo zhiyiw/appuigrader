@@ -171,24 +171,6 @@ function canceldown(){
       
 	<p:outputPanel layout="block" styleClass="ring">
 	<h:form>
-	<p:panel widgetVar="ringControl" visible="false" closable="true" closeSpeed="0">
-    <p:ring id="basic" value="#{gradestudentBean.getStudentAssignmentList(login.username,menuoption.selectYear,menuoption.selectTerm)}" var="a">  
-        <p:column>
-        <p:outputPanel style="text-align:center; padding-top:15px;" layout="block" styleClass="assignmentBlock">  
-         		<p:outputPanel>#{a.assignmentName}</p:outputPanel>
-         		<p:outputPanel style="text-align:center;" layout="block" styleClass="zoomIcon" > 
-         		<p:commandLink 
-                            update=":updateDialog, :display"
-                            oncomplete="dlg.show()">
-                <img name="iconAdd" src="images/zoomin_s01.png" onmouseover="this.src ='images/zoomin_s02.png'" onmouseout="this.src='images/zoomin_s01.png'"/>
-         		<f:setPropertyActionListener value="#{a}"  target="#{gradestudentBean.selectedAssignment}" />
-                </p:commandLink>
-                </p:outputPanel> 
-   		</p:outputPanel> 
-   		</p:column>
-    </p:ring>
-    <p:commandButton value="Switch" icon="ui-icon-search" oncomplete="ringControl.close();tableControl.show()"/>
-    </p:panel>
     
     <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
 	<p:dataTable id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="10"  
