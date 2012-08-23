@@ -5,13 +5,13 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<meta http-equiv="refresh" content="0.1; URL=assignmentDisplayStudent.xhtml" />
+<meta http-equiv="refresh" content="0.1; URL=assignmentsDisplay.xhtml" />
 </h:head>
 <h:body>
 
 <h:form>
 
-<p:remoteCommand name="lazyload" action="#{gradestudentBean.getStudentAssignmentList(login.username,menuoption.selectYear,menuoption.selectTerm)}" />
+<p:remoteCommand name="lazyload" action="#{assignment.getAssignmentList(menuoption.selectYear,menuoption.selectTerm)}" />
 </h:form>
 
 

@@ -193,26 +193,6 @@ function canceldown(){
 	<p:outputPanel layout="block" styleClass="ring">
 	
 	<h:form>
-	
-	<p:panel widgetVar="ringControl" visible="false" closable="true" closeSpeed="0">
-    <p:ring id="basic" value="#{assignment.getAssignmentList(menuoption.selectYear,menuoption.selectTerm)}" var="a">  
-        <p:column>
-        <p:outputPanel style="text-align:center; padding-top:15px;" layout="block" styleClass="assignmentBlock">  
-         		<p:outputPanel>#{a.assignmentName}</p:outputPanel>
-         		<p:outputPanel style="text-align:center;" layout="block" styleClass="zoomIcon" > 
-         		<p:commandLink 
-                            update=":updateDialog, :display"
-                            oncomplete="dlg.show()">
-                <img name="iconAdd" src="images/zoomin_s01.png" onmouseover="this.src ='images/zoomin_s02.png'" onmouseout="this.src='images/zoomin_s01.png'"/>
-         		<f:setPropertyActionListener value="#{a}"  target="#{assignment.selectedAssignment}" />
-                </p:commandLink>
-                </p:outputPanel> 
-   		</p:outputPanel> 
-   		</p:column>
-    </p:ring>
-    <p:commandButton value="Switch" icon="ui-icon-search" oncomplete="ringControl.close();tableControl.show()"/>
-    </p:panel>
-    
     <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
 	<p:dataTable id="table" var="a" value="#{assignment.list}" paginator="true" rows="6"  
                  selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}">  
@@ -227,7 +207,6 @@ function canceldown(){
         </p:column>
         
         <f:facet name="footer">  
-            <p:commandButton id="viewCommand" value="Switch to Ring" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
              <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
              <p:commandButton id="v2" value="Update" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
