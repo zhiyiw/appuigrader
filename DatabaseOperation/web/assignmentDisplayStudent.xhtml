@@ -172,7 +172,7 @@ function canceldown(){
 	<p:outputPanel layout="block" styleClass="ring">
 	<h:form>
 	<p:panel widgetVar="ringControl" visible="false" closable="true" closeSpeed="0">
-    <p:ring id="basic" value="#{assignment.getAssignmentList(menuoption.selectYear,menuoption.selectTerm)}" var="a">  
+    <p:ring id="basic" value="#{gradestudentBean.getStudentAssignmentList(login.username,menuoption.selectYear,menuoption.selectTerm)}" var="a">  
         <p:column>
         <p:outputPanel style="text-align:center; padding-top:15px;" layout="block" styleClass="assignmentBlock">  
          		<p:outputPanel>#{a.assignmentName}</p:outputPanel>
@@ -181,7 +181,7 @@ function canceldown(){
                             update=":updateDialog, :display"
                             oncomplete="dlg.show()">
                 <img name="iconAdd" src="images/zoomin_s01.png" onmouseover="this.src ='images/zoomin_s02.png'" onmouseout="this.src='images/zoomin_s01.png'"/>
-         		<f:setPropertyActionListener value="#{a}"  target="#{assignment.selectedAssignment}" />
+         		<f:setPropertyActionListener value="#{a}"  target="#{gradestudentBean.selectedAssignment}" />
                 </p:commandLink>
                 </p:outputPanel> 
    		</p:outputPanel> 
@@ -191,8 +191,8 @@ function canceldown(){
     </p:panel>
     
     <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
-	<p:dataTable id="table" var="a" value="#{assignment.list}" paginator="true" rows="10"  
-                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentID}">  
+	<p:dataTable id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="10"  
+                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentID}">  
      	<f:facet name="header">  
             Assignment List  
         </f:facet>  
@@ -205,18 +205,18 @@ function canceldown(){
         </p:column>
         
        	<p:column headerText="Tried Times">  
-            #{a.assignmentName}  
+            #{a.assignmentTries}  
         </p:column>
         
         <p:column headerText="Current Status">  
-            #{a.assignmentName}  
+            #{a.assignmentStatus}  
         </p:column>
         
         <f:facet name="footer">  
             <p:commandButton id="viewCommand" value="Switch to Ring" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
              <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
-             <p:commandLink id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" action="#{gradestudentBean.getGradeStudentSingleEntry(assignment.selectedAssignment.assignmentID,login.username)}"/>
+             <p:commandLink id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" action="#{gradestudentBean.getGradeStudentSingleEntry(gradestudentBean.selectedAssignment.assignmentID,login.username)}"/>
              <p:commandButton id="v3" value="Compare" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
@@ -234,21 +234,13 @@ function canceldown(){
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
   	<p:outputPanel layout="block" style="position:absolute;top:8%;left:38%">
   	<h:outputText style="font-size:16; font-weight:bold;"  
-                            value="#{assignment.selectedAssignment.assignmentName}" /> 
+                            value="#{gradestudentBean.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
     
-   
-  	<p:outputPanel layout="block" style="position:absolute;top:84px;left:38%">
-  	<h:outputText style="font-size:16; font-weight:bold;"  
-                            value="#{assignment.selectedAssignment.deadline}" /> 
-    </p:outputPanel>
-    
- 
     <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:128px;left:56px; width:230px; height:100px; ">
 <!--	<p:inputTextarea rows="0" cols="25" value="#{assignment.selectedAssignment.description}" />  -->  
-  	 #{assignment.selectedAssignment.description}
+  	 #{gradestudentBean.selectedAssignment.assignmentDes}
     </p:outputPanel>
-    
     
     <p:outputPanel layout="block">
  	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
@@ -281,7 +273,7 @@ function canceldown(){
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:180px;left:75px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,assignment.selectedAssignment.assignmentDirectory, assignment.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:180px;right:59px">

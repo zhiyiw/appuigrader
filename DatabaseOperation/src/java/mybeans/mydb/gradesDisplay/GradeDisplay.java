@@ -26,7 +26,7 @@ import org.primefaces.event.ToggleEvent;
 import mybeans.mydb.grades.GradeBean;
 import mybeans.mydb.grades.model.Grade;
 import mybeans.mydb.gradesDisplay.model.GradeStudentModel;
-
+import mybeans.mydb.gradesDisplay.model.StudentAssignmentModel;
 
 @ManagedBean(name="gradestudentBean")
 @SessionScoped
@@ -57,8 +57,18 @@ public class GradeDisplay {
  
 	}
 	
-	public List<GradeStudentModel> list; 
+	public List<GradeStudentModel> list;
+	public List<StudentAssignmentModel> assignmentList;
 	
+	public StudentAssignmentModel selectedAssignment;
+	public StudentAssignmentModel getSelectedAssignment() {
+		return selectedAssignment;
+	}
+
+	public void setSelectedAssignment(StudentAssignmentModel selectedAssignment) {
+		this.selectedAssignment = selectedAssignment;
+	}
+
 	public GradeStudentModel currentSelect;
 	
 	public List<GradeStudentModel> getList() {
@@ -161,6 +171,56 @@ public class GradeDisplay {
 		else
 			setCurrentSelect(l.get(0));	
 		con.close();
+	}
+	
+	
+	public void getStudentAssignmentList(String username, int year, String term) throws SQLException, IOException{
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+ 
+		PreparedStatement ps 
+			= con.prepareStatement(
+			   "select r.a_id, r.a_name, r.description, r.a_directory, g.try_count, g.current_status from (select * from  assignments a cross join users u) r left join grades g using (a_id) where r.username=? and r.a_year=? and r.a_term=?");
+		
+		ps.setString(1, username);
+		ps.setInt(2, year);
+		ps.setString(3, term);
+		
+		ResultSet result =  ps.executeQuery();
+		
+		List<StudentAssignmentModel> l=new ArrayList<StudentAssignmentModel>();
+		
+		while(result.next()){
+			StudentAssignmentModel sam = new StudentAssignmentModel();
+			sam.setAssignmentID(result.getInt("a_id"));
+			sam.setAssignmentName(result.getString("a_name"));
+			sam.setAssignmentDes(result.getString("description"));
+			sam.setAssignmentTries(result.getInt("try_count"));
+			sam.setAssignmentDirectory(result.getString("a_directory"));
+			String tempStatus = result.getString("current_status");
+			if(tempStatus=="")
+				sam.setAssignmentStatus("Not Yet Compared");
+			else
+				sam.setAssignmentStatus(tempStatus);
+			l.add(sam);
+		}
+		
+		setAssignmentList(l);	
+		con.close();
+	}
+
+	public List<StudentAssignmentModel> getAssignmentList() {
+		return assignmentList;
+	}
+
+	public void setAssignmentList(List<StudentAssignmentModel> assignmentList) {
+		this.assignmentList = assignmentList;
 	}
 
 	public GradeStudentModel getCurrentSelect() {
