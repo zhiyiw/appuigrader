@@ -174,7 +174,7 @@ function canceldown(){
     
     <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
 	<p:dataTable id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="10"  
-                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentID}">  
+                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentName}">  
      	<f:facet name="header">  
             Assignment List  
         </f:facet>  
