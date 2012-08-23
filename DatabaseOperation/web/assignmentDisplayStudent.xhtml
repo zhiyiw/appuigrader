@@ -173,7 +173,7 @@ function canceldown(){
 	<h:form>
     
     <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0">
-	<p:dataTable id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="10"  
+	<p:dataTable id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="5"  
                  selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentName}">  
      	<f:facet name="header">  
             Assignment List  
@@ -195,7 +195,6 @@ function canceldown(){
         </p:column>
         
         <f:facet name="footer">  
-            <p:commandButton id="viewCommand" value="Switch to Ring" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
              <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
              <p:commandLink id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" action="#{gradestudentBean.getGradeStudentSingleEntry(gradestudentBean.selectedAssignment.assignmentID,login.username)}"/>
