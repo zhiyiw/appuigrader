@@ -1,28 +1,20 @@
-.at2x(@path, @w: auto, @h: auto) {
-  background-image: url(@path);
-  @at2x_path: ~`"@{path}".split('.').slice(0, "@{path}".split('.').length - 1).join(".") + "@2x" + "." + "@{path}".split('.')["@{path}".split('.').length - 1]`;
-
-  @media all and (-webkit-min-device-pixel-ratio : 1.5) {
-    background-image: url(@at2x_path);
-    background-size: @w @h;
-  }  
-}
+@import "retina.less";
 
 
 html {
-	//background-color: #e7efcd;
-	background-color: #ffffff;
+	background-color: #e7efcd;
+
 }
 
 .mainFrame {
 
-	.at2x('../images/admin_login.png');
+	.at2x('admin_login.png',1024,700);
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-color: transparent;
-	width: 1024px;
-	height: 720px;
+	height:700px;
+	width:1024px;
 	margin: 0px auto 0px auto;
 }
 
