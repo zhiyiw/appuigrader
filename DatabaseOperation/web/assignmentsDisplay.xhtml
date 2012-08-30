@@ -207,9 +207,9 @@ function canceldown(){
         </p:column>
         
         <f:facet name="footer">  
-             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/> 
-             <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
-             <p:commandButton id="v2" value="Update" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
+             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+             <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" update=":screenshot" oncomplete="screenshotDlg.show()"/>
+             <p:commandButton id="v2" value="Update" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
     </p:panel>
@@ -217,6 +217,10 @@ function canceldown(){
     </h:form>
     
     </p:outputPanel>
+    
+    <p:dialog id="screenshot" widgetVar="screenshotDlg">
+    	<h:graphicImage value="#{assignment.selectedAssignment.ssd}"></h:graphicImage>
+    </p:dialog>
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel.png);height:312px;width:312px" layout="block"> 
@@ -306,7 +310,19 @@ function canceldown(){
             	required="true"
 
             	/>
-         </p:outputPanel>     
+         </p:outputPanel> 
+         
+         		<p:outputPanel layout="block" style="position:absolute;top:80px;left:45px">
+    		<p:fileUpload value="#{controller.screenshot}"
+            	mode="simple"
+            	sizeLimit="100000" 
+            	allowTypes="/(\.|\/)(png|gif|bmp|jpg)$/" 
+            	styleClass="addNewUpload"
+            	auto="true"
+            	label="open"
+            	required="true"
+            	/> 
+		</p:outputPanel>    
 		<p:outputPanel layout="block" style="position:absolute;left:155px;top:150px; border-style:none !important">
 		<p:calendar value="#{calendarBean.date}" id="popupCal" maxlength="8" size="4"/> 
 		</p:outputPanel>
@@ -346,6 +362,18 @@ function canceldown(){
             	label="open"
             	required="true"
             	update="gro"
+            	/> 
+		</p:outputPanel>
+		
+		<p:outputPanel layout="block" style="position:absolute;top:80px;left:45px">
+    		<p:fileUpload value="#{controller.screenshot}"
+            	mode="simple"
+            	sizeLimit="100000" 
+            	allowTypes="/(\.|\/)(png|gif|bmp|jpg)$/" 
+            	styleClass="addNewUpload"
+            	auto="true"
+            	label="open"
+            	required="true"
             	/> 
 		</p:outputPanel>
 		

@@ -186,7 +186,7 @@ public class GradeDisplay {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select r.a_id, r.a_name, r.description, r.a_directory, g.try_count, g.current_status from (select * from  assignments a cross join users u) r left join grades g using (a_id) where r.username=? and r.a_year=? and r.a_term=?");
+			   "select r.a_id, r.a_name, r.description, r.a_directory,r.screenshot_dict, g.try_count, g.current_status from (select * from  assignments a cross join users u) r left join grades g on r.a_id=g.a_id and r.username=g.s_id where r.username=? and r.a_year=? and r.a_term=?");
 		
 		ps.setString(1, username);
 		ps.setInt(2, year);
@@ -203,6 +203,7 @@ public class GradeDisplay {
 			sam.setAssignmentDes(result.getString("description"));
 			sam.setAssignmentTries(result.getInt("try_count"));
 			sam.setAssignmentDirectory(result.getString("a_directory"));
+			
 			String tempStatus = result.getString("current_status");
 			
 			if(tempStatus==null)
@@ -211,6 +212,15 @@ public class GradeDisplay {
 				sam.setAssignmentStatus("Not Yet Compared");
 			else
 				sam.setAssignmentStatus(tempStatus);
+			
+			String tempScreenshot=result.getString("screenshot_dict");
+			if(tempScreenshot==null)
+				sam.setScreenshotDirectory("noScreenshot");
+			else if("".equals(tempScreenshot))
+				sam.setScreenshotDirectory("noScreenshot");
+			else
+		    	sam.setScreenshotDirectory("/"+tempScreenshot);
+			
 			l.add(sam);
 		}
 		

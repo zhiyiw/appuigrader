@@ -30,8 +30,19 @@ public class FileUploadController {
     // Init ---------------------------------------------------------------------------------------
 
     private UploadedFile uploadedFile;
+    private UploadedFile screenshot;
     private String fileName;
-    private String directory;
+    
+    
+    public UploadedFile getScreenshot() {
+		return screenshot;
+	}
+
+	public void setScreenshot(UploadedFile screenshot) {
+		this.screenshot = screenshot;
+	}
+
+	private String directory;
     public String des;
     // Actions ------------------------------------------------------------------------------------
 
@@ -50,12 +61,7 @@ public class FileUploadController {
 	}
 
 	public boolean addNew(int year, String term, Date deadline) {
-
-        // Just to demonstrate what information you can get from the uploaded file.
-        System.out.println("File type: " + uploadedFile.getContentType());
-        System.out.println("File name: " + uploadedFile.getFileName());
-        System.out.println("File size: " + uploadedFile.getSize() + " bytes");
-
+		if(uploadedFile!=null){
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
         String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
@@ -64,12 +70,8 @@ public class FileUploadController {
         File file = null;
         OutputStream output = null;
         
-        
-        
         try {
             // Create file with unique name in upload folder and write to it.
-        	
-
         	ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         	String deploymentDirectoryPath = ctx.getRealPath("/")+"Rubrics";
         	File target = new File(deploymentDirectoryPath);
@@ -88,13 +90,30 @@ public class FileUploadController {
             
             AssignmentBean assbean = new AssignmentBean();
             
+            
             java.text.SimpleDateFormat sdf = 
             	     new java.text.SimpleDateFormat("yyyy-MM-dd");
 
             String deadlineTime = sdf.format(deadline);
             
             try {
-				assbean.addAssignment(directory, year, term,des, deadlineTime);
+            	if(screenshot!=null){
+            		deploymentDirectoryPath=ctx.getRealPath("/")+"Screenshot";
+            		target = new File(deploymentDirectoryPath);
+                	if(!target.exists())
+                		target.mkdir();
+                	
+                    prefix = FilenameUtils.getBaseName(screenshot.getFileName());
+                    suffix = FilenameUtils.getExtension(screenshot.getFileName());
+                	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
+                    output = new FileOutputStream(file);
+                    IOUtils.copy(screenshot.getInputstream(), output);
+                    fileName = file.getName();
+                    String ssDirectory = "Screenshot/"+fileName;
+            		assbean.addAssignment(directory, year, term,des, deadlineTime, ssDirectory);
+            	}
+            	else
+            		assbean.addAssignment(directory, year, term,des, deadlineTime, null);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -119,16 +138,13 @@ public class FileUploadController {
         this.fileName=null;
         this.directory=null;
         return true;
+		}else return false;
         
     }
     
     public boolean updateExist(int year, String term, int fileID, Date deadline) {
-
-        // Just to demonstrate what information you can get from the uploaded file.
-        System.out.println("File type: " + uploadedFile.getContentType());
-        System.out.println("File name: " + uploadedFile.getFileName());
-        System.out.println("File size: " + uploadedFile.getSize() + " bytes");
-
+    	
+    	if(uploadedFile!=null){
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
         String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
@@ -160,7 +176,23 @@ public class FileUploadController {
 
            String deadlineTime = sdf.format(deadline);
             try {
-				assbean.updateAssignment(directory,fileID, des, deadlineTime);
+               	if(screenshot!=null){
+            		deploymentDirectoryPath=ctx.getRealPath("/")+"Screenshot";
+            		target = new File(deploymentDirectoryPath);
+                	if(!target.exists())
+                		target.mkdir();
+                	
+                    prefix = FilenameUtils.getBaseName(screenshot.getFileName());
+                    suffix = FilenameUtils.getExtension(screenshot.getFileName());
+                	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
+                    output = new FileOutputStream(file);
+                    IOUtils.copy(screenshot.getInputstream(), output);
+                    fileName = file.getName();
+                    String ssDirectory = "Screenshot/"+fileName;
+                    assbean.updateAssignment(directory,fileID, des, deadlineTime, ssDirectory);
+               	}
+               	else
+               		assbean.updateAssignment(directory,fileID, des, deadlineTime, null);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -185,6 +217,7 @@ public class FileUploadController {
         this.fileName=null;
         this.directory=null;
         return true;
+    	}else return false;
     }
 
     // Getters ------------------------------------------------------------------------------------

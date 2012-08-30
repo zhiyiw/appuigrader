@@ -10,7 +10,14 @@ public class Assignment {
 	public int year;
 	public String description;
 	public String deadline;
+	public String ssd;//screenshot directory
 	
+	public String getSsd() {
+		return ssd;
+	}
+	public void setSsd(String ssd) {
+		this.ssd = ssd;
+	}
 	public String getDeadline() {
 		return deadline;
 	}

@@ -196,7 +196,7 @@ function canceldown(){
         
         <f:facet name="footer">  
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-             <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" oncomplete="tableControl.close();ringControl.show()"/>
+			 <p:commandButton id="v1" value="Show Screenshot" update=":screenshot" oncomplete="lightbox.show()"/>
              <p:commandLink id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" action="#{gradestudentBean.getGradeStudentSingleEntry(gradestudentBean.selectedAssignment.assignmentID,login.username)}"/>
              <p:commandButton id="v3" value="Compare" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
@@ -209,6 +209,10 @@ function canceldown(){
     
     <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
 	<h:outputText value="#{gradestudentBean.currentSelect.log_directory}"/>
+	</p:dialog>
+	
+	<p:dialog id="screenshot" widgetVar="lightbox">
+	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
 	</p:dialog>
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  

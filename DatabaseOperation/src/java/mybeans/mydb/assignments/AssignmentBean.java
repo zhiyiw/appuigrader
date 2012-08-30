@@ -63,7 +63,7 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_id, a_name, a_directory, a_uploaded_date, description, deadline from assignments where a_year=? and a_term=? order by a_id ASC"); 
+			   "select a_id, a_name, a_directory, a_uploaded_date, description, deadline, screenshot_dict from assignments where a_year=? and a_term=? order by a_id ASC"); 
  
 		//get student data from database
 		ps.setInt(1, year);
@@ -81,7 +81,15 @@ public class AssignmentBean {
 			assign.setAssignmentDirectory(result.getString("a_directory"));
 			assign.setUploadedDate(result.getString("a_uploaded_date"));
 			assign.setDeadline(result.getString("deadline"));
- 
+			
+			String tempSSD=result.getString("screenshot_dict");
+			if(tempSSD==null)
+				assign.setSsd("noScreenshot");
+			else if("".equals(tempSSD))
+				assign.setSsd("noScreenshot");
+			else
+				tempSSD="/"+tempSSD;
+			assign.setSsd(tempSSD);
 			//store all data into a List
 			list.add(assign);
 		}
@@ -89,7 +97,7 @@ public class AssignmentBean {
 		return list;
 	}
 	
-	public void addAssignment(String directory, int year ,String term, String des, String deadline) throws SQLException{
+	public void addAssignment(String directory, int year ,String term, String des, String deadline, String ssDirectory) throws SQLException{
 		List<Assignment> listTemp = getAssignmentList(year,term);
 		
 		int temp = listTemp.size()+1;
@@ -119,7 +127,7 @@ public class AssignmentBean {
 		int current = result.getInt(1)+1;
 		
 
-		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?,?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?,?,?)");
 		
 		ps.setInt(1, current);
 		ps.setInt(2, year);
@@ -128,6 +136,7 @@ public class AssignmentBean {
 		ps.setString(5, directory);
 		ps.setString(6, des);
 		ps.setString(7, deadline);
+		ps.setString(8, ssDirectory);
 		
 		int updated = ps.executeUpdate();
 		
@@ -139,7 +148,7 @@ public class AssignmentBean {
 	}
 
 	public void updateAssignment(String directory,
-			int id, String des, String deadline) throws SQLException {
+			int id, String des, String deadline, String ssDirectory) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		if(ds==null)
@@ -152,12 +161,13 @@ public class AssignmentBean {
 			throw new SQLException("Can't get database connection");
  
 		
-		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE(), description=?, deadline=? where a_id=?");
+		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE(), description=?, deadline=?, screenshot_dict=? where a_id=?");
 		
 		ps.setString(1, directory);
 		ps.setString(2, des);
 		ps.setString(3, deadline);
-		ps.setInt(4, id);
+		ps.setString(4, ssDirectory);
+		ps.setInt(5, id);
 		
 		
 		int updated = ps.executeUpdate();

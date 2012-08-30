@@ -43,4 +43,12 @@ public class StudentAssignmentModel {
 	public String assignmentStatus;
 	public int assignmentTries;
 	public String assignmentDirectory;
+	public String screenshotDirectory;
+	
+	public String getScreenshotDirectory() {
+		return screenshotDirectory;
+	}
+	public void setScreenshotDirectory(String screenshotDirectory) {
+		this.screenshotDirectory = screenshotDirectory;
+	}
 }
