@@ -13,6 +13,11 @@
 </h:head>
 
 <h:body>
+
+		<h:form>
+		<h:commandLink value="Back to Tree View" action="print.xhtml"></h:commandLink>
+		</h:form>
+		
 		<h3>Original Blocks List</h3>
 		<p:outputPanel layout="block" styleClass="result_status_content">
 			<p:dataList value="#{compare.origMapList}" var="car" itemlayout="disc">  

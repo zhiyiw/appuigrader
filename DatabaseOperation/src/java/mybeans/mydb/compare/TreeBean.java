@@ -21,7 +21,7 @@ public class TreeBean {
 		
 		root = new DefaultTreeNode("Root", null);  
 		TreeNode level = new DefaultTreeNode(name, root);
-		level.setExpanded(true);
+		level.setExpanded(false);
 		generateTreeNode((DefaultTreeNode) level, treeData);
 	}
 	
@@ -34,7 +34,7 @@ public class TreeBean {
 		if(treeData.list.size() > 0) {
 			for(i = 0; i < treeData.list.size(); i++) {
 				TreeNode temp = new DefaultTreeNode(treeData.list.get(i).getType(), top);
-				temp.setExpanded(true);
+				temp.setExpanded(false);
 				node.add((DefaultTreeNode) temp);
 				generateTreeNode(node.get(i), treeData.list.get(i));
 			}
