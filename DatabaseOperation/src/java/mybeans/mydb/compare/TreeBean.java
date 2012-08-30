@@ -30,11 +30,13 @@ public class TreeBean {
 		ArrayList<DefaultTreeNode> node = new ArrayList<DefaultTreeNode>();
 		
 		int i;
-		
+		String str="";
 		if(treeData.list.size() > 0) {
 			for(i = 0; i < treeData.list.size(); i++) {
-				TreeNode temp = new DefaultTreeNode(treeData.list.get(i).getType(), top);
-				temp.setExpanded(false);
+				str = treeData.list.get(i).getType();
+				DefaultTreeNode temp = new DefaultTreeNode(treeData.list.get(i).getType(), top);
+				temp.setType(str);
+				temp.setExpanded(true);
 				node.add((DefaultTreeNode) temp);
 				generateTreeNode(node.get(i), treeData.list.get(i));
 			}
