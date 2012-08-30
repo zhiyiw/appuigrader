@@ -369,7 +369,7 @@ function canceldown(){
     		<p:fileUpload value="#{controller.screenshot}"
             	mode="simple"
             	sizeLimit="100000" 
-            	allowTypes="/(\.|\/)(png|gif|bmp|jpg)$/" 
+            	allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
             	styleClass="addNewUpload"
             	auto="true"
             	label="open"
@@ -398,7 +398,7 @@ function canceldown(){
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew.hide()" />
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
 		</h:form>

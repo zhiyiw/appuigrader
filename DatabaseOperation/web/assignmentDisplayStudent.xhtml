@@ -96,6 +96,14 @@
      		border:none
 			}
 			
+			.ui-state-error{
+				display:none !important
+			}
+			
+			.fileupload-content{
+				display:none !important;
+			}
+			
 			
 			
   </style>
@@ -146,11 +154,18 @@ function cancelout(){
 function canceldown(){
 	document.buttonCancel.src="images/cancel_s2.png";
 }
+
 </script>
 
 	
 </h:head>
 <h:body>
+
+<script>
+	function clearInvalidFileMsg(){
+	    fileuplaod_wgt.uploadContent.find("tr.ui-state-error").remove();
+	}
+</script>
 
 <!-- 	<h1>
 	<h:outputLabel value="#{menuoption.selectYear}">
@@ -247,22 +262,26 @@ function canceldown(){
 		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:282px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
-    		<p:fileUpload value="#{compare.uploadedFile}"
-            	mode="simple"
-            	sizeLimit="100000" 
+    		<p:fileUpload fileUploadListener="#{compare.handleZipUpload}"
+            	mode="advanced"
+            	sizeLimit="10000000" 
             	allowTypes="/(\.|\/)(zip)$/" 
             	style="border:none"
             	required="true"
+            	showButtons="false"
+            	auto="true"
+            	update="out1"
+            	widgetVar="fileuplaod_wgt"
             	/>
- 
+ 			
 			</p:outputPanel>
-			
+			<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
 			<p:outputPanel layout="block" style="position:absolute;top:180px;left:75px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(login.username,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:180px;right:59px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" />
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" action="#{compare.reset()}"/>
 			</p:outputPanel>
 			
 		</h:form>
