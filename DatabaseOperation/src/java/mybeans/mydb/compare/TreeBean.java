@@ -36,7 +36,7 @@ public class TreeBean {
 				str = treeData.list.get(i).getType();
 				DefaultTreeNode temp = new DefaultTreeNode(treeData.list.get(i).getType(), top);
 				temp.setType(str);
-				temp.setExpanded(true);
+				temp.setExpanded(false);
 				node.add((DefaultTreeNode) temp);
 				generateTreeNode(node.get(i), treeData.list.get(i));
 			}
