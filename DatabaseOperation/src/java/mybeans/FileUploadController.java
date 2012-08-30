@@ -32,9 +32,10 @@ public class FileUploadController {
     private UploadedFile uploadedFile;
     private UploadedFile screenshot;
     private String fileName;
+    public String selectedZipFilename = "Choose a file...";
+    public String selectedImageFilename = "Choose a file...";
     
-    
-    public UploadedFile getScreenshot() {
+	public UploadedFile getScreenshot() {
 		return screenshot;
 	}
 
@@ -210,12 +211,17 @@ public class FileUploadController {
             e.printStackTrace();
         } finally {
             IOUtils.closeQuietly(output);
+            
+            this.uploadedFile=null;
+            this.des=null;
+            this.fileName=null;
+            this.directory=null;
+            
+            this.screenshot=null;
+            this.selectedImageFilename="Choose a file...";
+            this.selectedZipFilename="Choose a file...";
         }
-        
-        this.uploadedFile=null;
-        this.des=null;
-        this.fileName=null;
-        this.directory=null;
+
         return true;
     	}else return false;
     }
@@ -240,8 +246,37 @@ public class FileUploadController {
         this.uploadedFile = uploadedFile;
     }
     
-    public void handleFileUpload(FileUploadEvent event) {  
-    	uploadedFile=event.getFile(); 
-    }  
+    public void handleZipUpload(FileUploadEvent event) {  
+    	uploadedFile=event.getFile();
+    	selectedZipFilename=event.getFile().getFileName();
+    }
+
+    public void handleImageUpload(FileUploadEvent event) {  
+    	screenshot=event.getFile();
+    	selectedImageFilename=event.getFile().getFileName();
+    }
+    
+    public String getSelectedZipFilename() {
+		return selectedZipFilename;
+	}
+
+	public void setSelectedZipFilename(String selectedZipFilename) {
+		this.selectedZipFilename = selectedZipFilename;
+	}
+
+	public String getSelectedImageFilename() {
+		return selectedImageFilename;
+	}
+
+	public void setSelectedImageFilename(String selectedImageFilename) {
+		this.selectedImageFilename = selectedImageFilename;
+	}
+
+	public void reset(){
+    	uploadedFile=null;
+    	screenshot=null;
+    	selectedZipFilename="Choose a file...";
+    	selectedImageFilename="Choose a file...";
+    }
 
 }

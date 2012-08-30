@@ -18,7 +18,9 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import org.primefaces.context.RequestContext;
 
 
 import mybeans.mydb.compare.UIFrame;
@@ -34,7 +36,16 @@ public class StudentTempUpload {
     private String directory;
     private UIFrame frame;
     private ArrayList<String> compResult;
-    public ArrayList<String> getBothHaveList() {
+    public String selectedFilename = "Choose a file...";
+    public String getSelectedFilename() {
+		return selectedFilename;
+	}
+
+	public void setSelectedFilename(String selectedFilename) {
+		this.selectedFilename = selectedFilename;
+	}
+
+	public ArrayList<String> getBothHaveList() {
 		return bothHaveList;
 	}
 
@@ -241,6 +252,7 @@ public class StudentTempUpload {
 
         	file.delete();
             IOUtils.closeQuietly(output);
+            uploadedFile=null;
         }
         
         return true;
@@ -262,5 +274,14 @@ public class StudentTempUpload {
     public void setUploadedFile(UploadedFile uploadedFile) {
         this.uploadedFile = uploadedFile;
     }
-
+    
+    public void handleZipUpload(FileUploadEvent event) {
+    	uploadedFile=event.getFile();
+    	selectedFilename=event.getFile().getFileName();
+    }
+    
+    public void reset(){
+    	uploadedFile=null;
+    	selectedFilename="Choose a file...";
+    }
 }
