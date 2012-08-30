@@ -204,7 +204,10 @@ public class GradeDisplay {
 			sam.setAssignmentTries(result.getInt("try_count"));
 			sam.setAssignmentDirectory(result.getString("a_directory"));
 			String tempStatus = result.getString("current_status");
-			if(tempStatus=="")
+			
+			if(tempStatus==null)
+				sam.setAssignmentStatus("Not Yet Compared");	
+			else if("".equals(tempStatus))
 				sam.setAssignmentStatus("Not Yet Compared");
 			else
 				sam.setAssignmentStatus(tempStatus);

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13448391558640" configfile="/DatabaseOperation/web/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="946" id="pf13448392083901" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13448392083902 pf13448392083903" inlinks="pf13448392083904" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="assignmentDisplayStudent.xhtml" x="554" y="754" id="pf13448392083905" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf134484049263714" inlinks="pf13448392083902" path="/assignmentDisplayStudent.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="loginErr" x="554" y="1138" id="pf13448392083906" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13448392083903" path="/loginErr.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="assignmentsDisplay.xhtml" x="122" y="370" id="pf13448392083917" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13448392083918" path="/assignmentsDisplay.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="termJump.html" x="338" y="178" id="pf13448392083919" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13448392083918" path="/termJump.html"/>
-  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="946" id="pf134483920839110" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13448392083904" path="/register.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="print.xhtml" id="pf134484049264015" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf134484049263714" path="/print.xhtml"/>
-  <links id="pf13448392083902" target="pf13448392083905" source="pf13448392083901" outcome="true"/>
-  <links id="pf13448392083903" target="pf13448392083906" source="pf13448392083901" outcome="false"/>
-  <links id="pf13448392083918" target="pf13448392083919" source="pf13448392083917" outcome="true"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13448391558640" configfile="/123/web/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="562" id="pf13448392083901" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf13456848431330 pf13456848431331 pf13456848431332" inlinks="pf13448392083904" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="assignmentDisplayStudent.xhtml" x="554" y="178" id="pf13448392083905" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf13456848431333" path="/assignmentDisplayStudent.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginErr" x="122" y="178" id="pf13448392083906" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="/loginErr.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="562" id="pf134483920839110" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13448392083904" path="/register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="print.xhtml" x="122" y="1138" id="pf134484049264015" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" path="/print.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginErr1.xhtml" x="554" y="562" id="pf13456848431335" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13456848431330" path="/loginErr1.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginErr2.xhtml" x="554" y="946" id="pf13456848431346" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf13456848431331 pf13456848431347" path="/loginErr2.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminLogin.xhtml" x="338" y="1138" id="pf13456848431348" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13456848431347 pf13456952792040" path="/adminLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="blockPrint.xhtml" x="770" y="178" id="pf13456848431349" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf13456848431333" path="/blockPrint.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginLoading.xhtml" id="pf134568484313410" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13456848431332" path="/loginLoading.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminLoginLoading.xhtml" id="pf13456952792041" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13456952792040 pf13456955551062" path="/adminLoginLoading.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="assignmentsDisplay.xhtml" id="pf13456955551063" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13456955551062" path="/assignmentsDisplay.xhtml"/>
   <links id="pf13448392083904" target="pf13448392083901" source="pf134483920839110" outcome="true"/>
-  <links id="pf134484049263714" target="pf134484049264015" source="pf13448392083905" outcome="true"/>
+  <links id="pf13456848431330" target="pf13456848431335" source="pf13448392083901" outcome="0"/>
+  <links id="pf13456848431331" target="pf13456848431346" source="pf13448392083901" outcome="2"/>
+  <links id="pf13456848431347" target="pf13456848431346" source="pf13456848431348" outcome="0"/>
+  <links id="pf13456848431333" target="pf13456848431349" source="pf13448392083905" outcome="true"/>
+  <links id="pf13456848431332" target="pf134568484313410" source="pf13448392083901" outcome="1"/>
+  <links id="pf13456952792040" target="pf13456952792041" source="pf13456848431348" outcome="1"/>
+  <links id="pf13456955551062" target="pf13456952792041" source="pf13456955551063" outcome="true"/>
 </pageflow:Pageflow>

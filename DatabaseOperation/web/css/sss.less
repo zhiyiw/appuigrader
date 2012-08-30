@@ -1,0 +1,41 @@
+
+
+@color: #4D926F;
+@color2: #aaaaaa;
+@pathto: ~"../images/";
+
+.ada{
+  color: #4D926F;
+  font:50px;
+
+}
+
+
+#header {
+  color: @color;
+}
+h2 {
+  color: @color;
+}
+
+#bonus{
+weight:1000px;
+height:700px;
+color: @color2;
+//background-image: url('../images/admin_login.png');
+.at2x('admin_login.png',1024,700);
+	
+}
+
+.at2x(@path, @w: auto, @h: auto) {
+
+  background-image: url("../images/@{path}");
+
+   @at2x_path: ~`@{path}.split(".").slice(0,1)+"@2x." +@{path}.split(".").slice(1,2)`;
+
+  @media all and (-webkit-min-device-pixel-ratio : 1.5) {
+  background-image: url("../images/@{at2x_path}");
+   background-size: @w @h;
+   }
+
+}
