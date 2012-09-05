@@ -65,12 +65,6 @@ function canceldown(){
 </h:head>
 <h:body>
 
-<!-- 	<h1>
-	<h:outputLabel value="#{menuoption.selectYear}">
-	</h:outputLabel>
-	<h:outputLabel value="#{menuoption.selectTerm}">
-	</h:outputLabel>
-	</h1> -->
 	<p:outputPanel layout="block" styleClass="mainFrame">
     
     <p:outputPanel layout="block" styleClass="add">
@@ -162,12 +156,15 @@ function canceldown(){
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
-    			style="background:transparent; border-style:none !important; box-shadow: none !important;"/>
+    			style="background:transparent; border-style:none !important; box-shadow: none !important;">
     			<br/>   
+    			<p:ajax event="blur" update=":dialog_02" process="@this"/>
+    			</p:inputTextarea>
 				<h:outputText id="counter" /> 
 				
 			</p:outputPanel>
-            
+			
+
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
 			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page01.hide(); addnew_page02.show();"/>
@@ -181,7 +178,7 @@ function canceldown(){
 		</p:outputPanel>
 	</p:dialog>
 	
-	<p:dialog  resizable="false" widgetVar="addnew_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+	<p:dialog  resizable="false" id="dialog_02" widgetVar="addnew_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
@@ -197,15 +194,21 @@ function canceldown(){
             	widgetVar="fileuplaod_wgt"
             	/>
 		</p:outputPanel>
-		<h:outputText id="out2" value="#{controller.selectedZipFilename}" /> 
+		<h:outputText id="out2" value="#{controller.selectedImageFilename}" /> 
 			
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
+			<h:outputText value="Difficulty:" />  
+        	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
+        	
+  						<p:inputText id="point" value="#{controller.point}" />  
+        	<p:slider for="point"/>
+            
 				
 			</p:outputPanel>
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page02.hide();" action="#{controller.addNew()}"/>
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page02.hide();" action="#{controller.addNew()}" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">

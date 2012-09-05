@@ -68,7 +68,7 @@ public class GradeBean {
 		
 		while(result.next()){
 			Grade grade = new Grade();
-			grade.setLatestUploadDate(result.getString("log_upload_date"));
+			grade.setLatestUploadDate(result.getString("grade_upload_date"));
 			grade.setAssignmentID(result.getInt("a_id"));
 			grade.setGradeID(result.getInt("g_id"));
 			grade.setStudentName(result.getString("username"));
@@ -168,7 +168,7 @@ public class GradeBean {
 			output.close();
 			
 			ps=con.prepareStatement(
-					"update grades set try_count=try_count+1, log_upload_date=?, current_status=? where g_id=?");
+					"update grades set try_count=try_count+1, grade_upload_date=?, current_status=? where g_id=?");
 			
 			ps.setString(1,currentTime);
 			ps.setInt(2, matchResult);

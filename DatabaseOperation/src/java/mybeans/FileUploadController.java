@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FilenameUtils;
@@ -37,13 +38,21 @@ public class FileUploadController {
     public String selectedZipFilename = "Choose a file...";
     public String selectedImageFilename = "Choose a file...";
     public int point = 0;
-    public int rating = 1;
-    public String description;
+    public Integer rating = 1;
+    public String description = "init";
     private String document_dict;
     private String ss_dict;
     
 
 
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
 
 	public UploadedFile getZipFile() {
 		return zipFile;
@@ -101,13 +110,6 @@ public class FileUploadController {
 		this.point = point;
 	}
 
-	public int getRating() {
-		return rating;
-	}
-
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
 
 	public String getDescription() {
 		return description;
@@ -176,11 +178,11 @@ public class FileUploadController {
                     output = new FileOutputStream(file);
                     IOUtils.copy(imageFile.getInputstream(), output);
                     imageFilename = file.getName();
-                    String ssDirectory = "Screenshot/"+imageFilename;
-            		assbean.addAssignment(document_dict,description,ss_dict, point, rating);
+                    String ss_dict = "Screenshot/"+imageFilename;
+            		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating);
             	}
             	else
-            		assbean.addAssignment(document_dict,description,null, point, 1);
+            		assbean.addAssignment(document_dict,this.description,null, point, rating);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -289,13 +291,15 @@ public class FileUploadController {
     	selectedImageFilename=event.getFile().getFileName();
     }
     
-
+    public void descriptionHandler(ValueChangeEvent event){
+    }
+    
 	public void reset(){
     	zipFile=null;
     	imageFile=null;
     	point=0;
     	rating=1;
-    	description = "please add description here...";
+    	description = "testReset";
     	
     	selectedZipFilename="Choose a file...";
     	selectedImageFilename="Choose a file...";
