@@ -20,7 +20,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-import org.primefaces.context.RequestContext;
 
 
 import mybeans.mydb.compare.UIFrame;
@@ -207,12 +206,12 @@ public class StudentTempUpload {
 	        
 	        everMatched = frame.isEverCorrect();
 	        
-	        String match;
+	        int match;
 	        if(everMatched){
-	        	match = "Successfully Matched!!";
+	        	match = 2;
 	        }
 	        else{
-	        	match = "Not Completely Matched";
+	        	match = 1;
 	        }
 
             

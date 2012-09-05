@@ -50,7 +50,7 @@ public class AssignmentBean {
  
 	}
 	
-	public List<Assignment> getAssignmentList(int year, String term) throws SQLException{
+	public List<Assignment> getAssignmentList()throws SQLException{
 		 
 		if(ds==null)
 			throw new SQLException("Can't get data source");
@@ -63,33 +63,38 @@ public class AssignmentBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select a_id, a_name, a_directory, a_uploaded_date, description, deadline, screenshot_dict from assignments where a_year=? and a_term=? order by a_id ASC"); 
+			   "select * from assignments order by a_id ASC"); 
  
 		//get student data from database
-		ps.setInt(1, year);
-		ps.setString(2, term);
-		
 		ResultSet result =  ps.executeQuery();
 		
 		list = new ArrayList<Assignment>();
-		
+		int count=1;
 		while(result.next()){
 			Assignment assign = new Assignment();
 			assign.setDescription(result.getString("description"));
 			assign.setAssignmentID(result.getInt("a_id"));
-			assign.setAssignmentName(result.getString("a_name"));
-			assign.setAssignmentDirectory(result.getString("a_directory"));
-			assign.setUploadedDate(result.getString("a_uploaded_date"));
-			assign.setDeadline(result.getString("deadline"));
-			
+			assign.setAssignmentDirectory(result.getString("document_dict"));			
+		    //get screenshot directory
 			String tempSSD=result.getString("screenshot_dict");
 			if(tempSSD==null)
-				assign.setSsd("noScreenshot");
+				assign.setScreenDirectory("noScreenshot");
 			else if("".equals(tempSSD))
-				assign.setSsd("noScreenshot");
+				assign.setScreenDirectory("noScreenshot");
 			else
 				tempSSD="/"+tempSSD;
-			assign.setSsd(tempSSD);
+			assign.setScreenDirectory(tempSSD);
+		
+			assign.setPoint(result.getInt("point"));
+			assign.setRating(result.getInt("rating"));
+			//get assignment name
+			String name;	
+			if(count<10)
+				name = "Assignment0"+count;
+			else
+				name = "Assignment"+count;
+			assign.setAssignmentName(name);
+			count++;
 			//store all data into a List
 			list.add(assign);
 		}
@@ -97,17 +102,8 @@ public class AssignmentBean {
 		return list;
 	}
 	
-	public void addAssignment(String directory, int year ,String term, String des, String deadline, String ssDirectory) throws SQLException{
-		List<Assignment> listTemp = getAssignmentList(year,term);
-		
-		int temp = listTemp.size()+1;
-		String name;
-		
-		if(temp<10)
-			name = "Assignment0"+temp;
-		else
-			name = "Assignment"+temp;
-		
+	public Assignment getAssignmentByID(int a_id) throws SQLException{
+		Assignment assign = new Assignment();
 		if(ds==null)
 			throw new SQLException("Can't get data source");
  
@@ -119,7 +115,35 @@ public class AssignmentBean {
 		
 		PreparedStatement ps 
 		= con.prepareStatement(
-		   "select count(a_id) from assignments");
+		   "select * from assignments where a_id=?;");
+		
+		ps.setInt(1, a_id);
+		ResultSet result =  ps.executeQuery();
+		
+		result.next();
+		assign.setAssignmentDirectory(result.getString("document_dict"));
+		assign.setDescription(result.getString("description"));
+		assign.setScreenDirectory(result.getString("screenshot_dict"));
+		assign.setPoint(result.getInt("point"));
+		assign.setRating(result.getInt("rating"));
+		
+		con.close();
+		return assign;
+	}
+	
+	public void addAssignment(String docu_dict, String description, String ss_dict, int point, int rating) throws SQLException{
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+		
+		PreparedStatement ps 
+		= con.prepareStatement(
+		   "select max(a_id) from assignments;");
 		
 		ResultSet result =  ps.executeQuery();
 		
@@ -127,16 +151,14 @@ public class AssignmentBean {
 		int current = result.getInt(1)+1;
 		
 
-		ps = con.prepareStatement("insert into assignments values (?,?,?,?,?,SYSDATE(),?,?,?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?)");
 		
 		ps.setInt(1, current);
-		ps.setInt(2, year);
-		ps.setString(3, term);
-		ps.setString(4,name);
-		ps.setString(5, directory);
-		ps.setString(6, des);
-		ps.setString(7, deadline);
-		ps.setString(8, ssDirectory);
+		ps.setString(2, docu_dict);
+		ps.setString(3,description);
+		ps.setString(4, ss_dict);
+		ps.setInt(5, point);
+		ps.setInt(6,rating);
 		
 		int updated = ps.executeUpdate();
 		
@@ -147,8 +169,8 @@ public class AssignmentBean {
 		
 	}
 
-	public void updateAssignment(String directory,
-			int id, String des, String deadline, String ssDirectory) throws SQLException {
+	public void updateAssignment(String docu_dict,
+			int a_id, String description, String ss_dict, int point, int rating) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		if(ds==null)
@@ -161,15 +183,39 @@ public class AssignmentBean {
 			throw new SQLException("Can't get database connection");
  
 		
-		PreparedStatement ps = con.prepareStatement("update assignments set a_directory=?, a_uploaded_date=SYSDATE(), description=?, deadline=?, screenshot_dict=? where a_id=?");
+		PreparedStatement ps = con.prepareStatement("update assignments set document_dict=?, uploaded_date=SYSDATE(), description=?, screenshot_dict=?, point=?, rating=? where a_id=?");
 		
-		ps.setString(1, directory);
-		ps.setString(2, des);
-		ps.setString(3, deadline);
-		ps.setString(4, ssDirectory);
-		ps.setInt(5, id);
+		ps.setString(1, docu_dict);
+		ps.setString(2, description);
+		ps.setString(3, ss_dict);
+		ps.setInt(4,point);
+		ps.setInt(5, rating);
+		ps.setInt(6, a_id);
 		
 		
+		int updated = ps.executeUpdate();
+		
+		if(updated==0)
+			throw new SQLException("Update Error!");
+		
+		con.close();
+		
+	}
+	
+	public void deleteAssignment(int a_id) throws SQLException{
+		
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+ 
+		
+		PreparedStatement ps = con.prepareStatement("delete from assignments where a_id=?");
+		ps.setInt(1, a_id);	
 		int updated = ps.executeUpdate();
 		
 		if(updated==0)

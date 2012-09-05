@@ -1,50 +1,52 @@
 package mybeans.mydb.grades.model;
 
 public class Grade {
-	public int logID;
-	public String studentID;
+	public int gradeID;
+	public String studentName;
 	public int assignmentID;
-	public String logDirectory;
+	public String gradeDirectory;
 	public String latestUploadDate;
 	public int tryCount;
-	public String currentStatus;
+	public int currentStatus;
 	
+	public int getGradeID() {
+		return gradeID;
+	}
+	public void setGradeID(int gradeID) {
+		this.gradeID = gradeID;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getGradeDirectory() {
+		return gradeDirectory;
+	}
+	public void setGradeDirectory(String gradeDirectory) {
+		this.gradeDirectory = gradeDirectory;
+	}
 	public int getTryCount() {
 		return tryCount;
 	}
 	public void setTryCount(int tryCount) {
 		this.tryCount = tryCount;
 	}
-	public String getCurrentStatus() {
+	public int getCurrentStatus() {
 		return currentStatus;
 	}
-	public void setCurrentStatus(String currentStatus) {
+	public void setCurrentStatus(int currentStatus) {
 		this.currentStatus = currentStatus;
 	}
-	public int getLogID() {
-		return logID;
-	}
-	public void setLogID(int logID) {
-		this.logID = logID;
-	}
-	public String getStudentID() {
-		return studentID;
-	}
-	public void setStudentID(String studentID) {
-		this.studentID = studentID;
-	}
+
 	public int getAssignmentID() {
 		return assignmentID;
 	}
 	public void setAssignmentID(int assignmentID) {
 		this.assignmentID = assignmentID;
 	}
-	public String getLogDirectory() {
-		return logDirectory;
-	}
-	public void setLogDirectory(String logDirectory) {
-		this.logDirectory = logDirectory;
-	}
+	
 	public String getLatestUploadDate() {
 		return latestUploadDate;
 	}

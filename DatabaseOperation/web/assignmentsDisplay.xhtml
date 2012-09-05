@@ -1,7 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:t ="http://myfaces.apache.org/tomahawk"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -75,7 +74,7 @@ function canceldown(){
 	<p:outputPanel layout="block" styleClass="mainFrame">
     
     <p:outputPanel layout="block" styleClass="add">
-    <p:commandLink onmouseover="buttonover();" onmouseout="buttonout();" onmousedown="buttondown();" onclick="addnew.show()" styleClass="addNewAssignment" >
+    <p:commandLink onmouseover="buttonover();" onmouseout="buttonout();" onmousedown="buttondown();" onclick="addnew_page01.show()" styleClass="addNewAssignment" >
         <img name="buttonAdd" src="images/add_r1_c1.png" style="border:none"/>
     </p:commandLink>
     </p:outputPanel>
@@ -99,7 +98,7 @@ function canceldown(){
         <f:facet name="footer">  
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
              <p:commandButton id="v1" value="Show Snapshot" icon="ui-icon-search" update=":screenshot" oncomplete="screenshotDlg.show()"/>
-             <p:commandButton id="v2" value="Update" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
+             <p:commandButton id="v2" value="Update" icon="ui-icon-search"/>
         </f:facet>
     </p:dataTable>   
 <!--     </p:panel> -->
@@ -109,7 +108,7 @@ function canceldown(){
     </p:outputPanel>
     
     <p:dialog id="screenshot" widgetVar="screenshotDlg">
-    	<h:graphicImage value="#{assignment.selectedAssignment.ssd}"></h:graphicImage>
+    	<h:graphicImage value="#{assignment.selectedAssignment.screenDirectory}"></h:graphicImage>
     </p:dialog>
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  
@@ -118,18 +117,6 @@ function canceldown(){
   	<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
-    
-    <p:outputPanel layout="block" style="position:absolute;top:65px;right:40px">
-   	<p:commandLink id="comHistory" action="#{gradestudentBean.getGradeStudentList(assignment.selectedAssignment.assignmentID)}" update=":dlgLogDisplay, :dlgSingleLogDisplay" oncomplete="dlgLog.show();dlg.hide()">
-   	<img src="images/history_button_s0.png" onmouseover="this.src ='images/history_button_s1.png'" onmouseout="this.src='images/history_button_s0.png'" onmousedown="this.src='images/history_button_s2.png'"/>
-   	</p:commandLink>
-   	<p:tooltip for="comHistory" showEffect="fade" hideEffect="fade" value="Show Compare History" style="font-size:12px"/> 
-   	</p:outputPanel>
-   	
-  	<p:outputPanel layout="block" style="position:absolute;top:84px;left:38%">
-  	<h:outputText style="font-size:14; font-style:italic; font-family:'Myriad Pro'; color:green"  
-                            value="#{assignment.selectedAssignment.deadline}" /> 
-    </p:outputPanel>
     
     
     <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:128px;left:56px; width:230px; height:100px">
@@ -151,131 +138,30 @@ function canceldown(){
  	</p:outputPanel>
   	</p:outputPanel>
     </p:dialog>
-     
-   
-   
-		<p:dialog  resizable="false" id="dlgLogDisplay" widgetVar="dlgLog" modal="true" draggable="false" closeOnEscape="true" header="Compare History" styleClass="table_dialog">  
-
-    	<p:dataTable var="grade" value="#{gradestudentBean.list}" rowStyleClass="table_column">  
-        <p:column sortBy="#{grade.studentID}">  
-            <f:facet name="header">  
-                <h:outputText value="StudentID" />  
-            </f:facet>  
-            <h:outputText value="#{grade.studentID}" />  
-        </p:column>  
-        
-        <p:column>  
-            <f:facet name="header">  
-                <h:outputText value="Record" />  
-            </f:facet>  
-            <p:commandLink update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" value="Show history">
-            	<f:setPropertyActionListener value="#{grade}"  target="#{gradestudentBean.log}" />
-            </p:commandLink> 
-        </p:column>  
-
-        <p:column sortBy="#{grade.submitDate}">  
-            <f:facet name="header">  
-                <h:outputText value="SubmitDate" />
-            </f:facet>  
-            <h:outputText value="#{grade.submitDate}" />  
-        </p:column>  
-     </p:dataTable> 
-	</p:dialog>
 	
 	
-			<p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
-				<h:outputText value="#{gradestudentBean.log.log_directory}"/>
-			</p:dialog>
 	
-	
-		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="450" height="470" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/update_assignment.png);height:450px;width:412px" layout="block">
-        <h:form enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
-    		<p:fileUpload value="#{controller.uploadedFile}"
-            	mode="simple"
-            	sizeLimit="100000" 
-            	allowTypes="/(\.|\/)(zip)$/" 
-            	style="border:none; box-shadow: none !important;"
-            	required="true"
-
-            	/>
-         </p:outputPanel> 
-         
-         		<p:outputPanel layout="block" style="position:absolute;top:80px;left:45px">
-    		<p:fileUpload value="#{controller.screenshot}"
-            	mode="simple"
-            	sizeLimit="100000" 
-            	allowTypes="/(\.|\/)(png|gif|bmp|jpg)$/" 
-            	styleClass="addNewUpload"
-            	auto="true"
-            	label="open"
-            	required="true"
-            	/> 
-		</p:outputPanel>    
-		<p:outputPanel layout="block" style="position:absolute;left:155px;top:150px; border-style:none !important">
-		<p:calendar value="#{calendarBean.date}" id="popupCal" maxlength="8" size="4"/> 
-		</p:outputPanel>
-		
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important">	
-				
-				<p:inputTextarea rows="6" cols="41" counter="count" maxlength="140"       
-    			counterTemplate="{0} characters remaining." value="#{controller.des}"
-    			style="background:transparent; border-style:none !important"/>
-    			<br/>   
-				<h:outputText id="count" /> 
-				
-			</p:outputPanel>
-			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.updateExist(menuoption.selectYear,menuoption.selectTerm,assignment.selectedAssignment.assignmentID, calendarBean.date)}" image="/images/upload_s0.png" />
-			</p:outputPanel>
-			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" />
-			</p:outputPanel>
-			
-		</h:form>
-		</p:outputPanel>
-	</p:dialog>
-	
-	<p:dialog  resizable="false" widgetVar="addnew" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+	<p:dialog  resizable="false" widgetVar="addnew_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
         <h:form id="formAdd" enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
-    		<p:fileUpload value="#{controller.uploadedFile}"
-            	mode="simple"
-            	sizeLimit="100000" 
+    		<p:fileUpload fileUploadListener="#{controller.handleZipUpload}"
+            	mode="advanced"
+            	sizeLimit="10000000" 
             	allowTypes="/(\.|\/)(zip)$/" 
-            	styleClass="addNewUpload"
-            	auto="true"
-            	label="open"
+            	style="border:none"
             	required="true"
-            	update="gro"
-            	/> 
-		</p:outputPanel>
-		
-		<p:outputPanel layout="block" style="position:absolute;top:80px;left:45px">
-    		<p:fileUpload value="#{controller.screenshot}"
-            	mode="simple"
-            	sizeLimit="100000" 
-            	allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-            	styleClass="addNewUpload"
+            	showButtons="false"
             	auto="true"
-            	label="open"
-            	required="true"
-            	/> 
+            	update="out1"
+            	/>
 		</p:outputPanel>
-		
-		
-		<p:outputPanel layout="block" style="position:absolute;left:155px;top:150px; border-style:none !important">
-		<p:calendar value="#{calendarBean.date}" id="popupCal" maxlength="8" size="4"/> 
-		</p:outputPanel>
+		<h:outputText id="out1" value="#{controller.selectedZipFilename}" /> 
 			
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
-    			counterTemplate="{0} characters remaining." value="#{controller.des}"
+    			counterTemplate="{0} characters remaining." value="#{controller.description}"
     			style="background:transparent; border-style:none !important; box-shadow: none !important;"/>
     			<br/>   
 				<h:outputText id="counter" /> 
@@ -284,11 +170,46 @@ function canceldown(){
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{controller.addNew(menuoption.selectYear,menuoption.selectTerm, calendarBean.date)}" image="/images/upload_s0.png" />
+			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page01.hide(); addnew_page02.show();"/>
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew.hide()" action="#{controller.reset()}"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
+			</p:outputPanel>
+			
+		</h:form>
+		</p:outputPanel>
+	</p:dialog>
+	
+	<p:dialog  resizable="false" widgetVar="addnew_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
+        <h:form enctype="multipart/form-data">
+        <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
+    		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
+            	mode="advanced"
+            	sizeLimit="10000000" 
+            	allowTypes="/(\.|\/)(png)$/" 
+            	style="border:none"
+            	required="true"
+            	showButtons="false"
+            	auto="true"
+            	update="out2"
+            	widgetVar="fileuplaod_wgt"
+            	/>
+		</p:outputPanel>
+		<h:outputText id="out2" value="#{controller.selectedZipFilename}" /> 
+			
+			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
+				
+			</p:outputPanel>
+            
+			
+			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page02.hide();" action="#{controller.addNew()}"/>
+			</p:outputPanel>
+			
+			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
 		</h:form>

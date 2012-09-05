@@ -44,44 +44,7 @@ public class GradeBean {
  
 	}
 	
-	public List<Grade> getAssignmentGradeList(int a_id) throws SQLException{
-	
-		if(ds==null)
-			throw new SQLException("Can't get data source");
- 
-		//get database connection
-		con = ds.getConnection();
- 
-		if(con==null)
-			throw new SQLException("Can't get database connection");
- 
-		PreparedStatement ps 
-			= con.prepareStatement(
-			   "select log_id, s_id, log_directory, log_upload_date from grades where a_id=?");
-		
-		ps.setInt(1, a_id);
-		
-		ResultSet result =  ps.executeQuery();
-		
-		List<Grade> list = new ArrayList<Grade>();
-		
-		while(result.next()){
-			Grade grade = new Grade();
-			grade.setLogID(result.getInt("log_id"));
-			grade.setStudentID(result.getString("s_id"));
-			grade.setLogDirectory(result.getString("log_directory"));
-			grade.setLatestUploadDate(result.getString("log_upload_date"));
-			
-			list.add(grade);
-		}
-		
-		con.close();
-		return list;
-		
-	}
-	
-	
-	public List<Grade> getStudentGradeList(String s_id) throws SQLException{
+	public Grade getStudentAssignment(int a_id, String username) throws SQLException{
 		
 		if(ds==null)
 			throw new SQLException("Can't get data source");
@@ -94,45 +57,9 @@ public class GradeBean {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select log_id, a_id, log_directory, log_upload_date from grades where s_id=?");
+			   "select * from grades where username=? and a_id=?");
 		
-		ps.setString(1, s_id);
-		
-		ResultSet result =  ps.executeQuery();
-		
-		List<Grade> list = new ArrayList<Grade>();
-		
-		while(result.next()){
-			Grade grade = new Grade();
-			grade.setLogID(result.getInt("log_id"));
-			grade.setAssignmentID(result.getInt("a_id"));
-			grade.setLogDirectory(result.getString("log_directory"));
-			grade.setLatestUploadDate(result.getString("log_upload_date"));
-			
-			list.add(grade);
-		}
-		
-		con.close();
-		return list;
-		
-	}
-	
-	public Grade getStudentAssignment(int a_id, String s_id) throws SQLException{
-		
-		if(ds==null)
-			throw new SQLException("Can't get data source");
- 
-		//get database connection
-		con = ds.getConnection();
- 
-		if(con==null)
-			throw new SQLException("Can't get database connection");
- 
-		PreparedStatement ps 
-			= con.prepareStatement(
-			   "select log_id, log_directory, log_upload_date from grades where s_id=? and a_id=?");
-		
-		ps.setString(1, s_id);
+		ps.setString(1, username);
 		ps.setInt(2, a_id);
 		
 		ResultSet result =  ps.executeQuery();
@@ -141,9 +68,13 @@ public class GradeBean {
 		
 		while(result.next()){
 			Grade grade = new Grade();
-			grade.setLogID(result.getInt("log_id"));
-			grade.setLogDirectory(result.getString("log_directory"));
 			grade.setLatestUploadDate(result.getString("log_upload_date"));
+			grade.setAssignmentID(result.getInt("a_id"));
+			grade.setGradeID(result.getInt("g_id"));
+			grade.setStudentName(result.getString("username"));
+			grade.setGradeDirectory(result.getString("grade_dict"));
+			grade.setTryCount(result.getInt("try_count"));
+			grade.setCurrentStatus(result.getInt("current_status"));
 			
 			list.add(grade);
 		}
@@ -156,8 +87,8 @@ public class GradeBean {
 		
 	}
 	
-	public void createNewGrade(int a_id, String s_id, String content, String currentTime, String matchResult) throws SQLException, IOException{
-		Grade g = getStudentAssignment(a_id, s_id);
+	public void createNewGrade(int a_id, String username, String content, String currentTime, int matchResult) throws SQLException, IOException{
+		Grade g = getStudentAssignment(a_id, username);
 		
 		if(ds==null)
 			throw new SQLException("Can't get data source");
@@ -171,7 +102,7 @@ public class GradeBean {
 		
 		PreparedStatement ps 
 		= con.prepareStatement(
-		   "select count(log_id) from grades");
+		   "select max(g_id) from grades");
 		
 		ResultSet result =  ps.executeQuery();
 		
@@ -195,7 +126,7 @@ public class GradeBean {
         	if(!target.exists())
         		target.mkdir();
         	//if(directory.exists())
-        	file = File.createTempFile("s_id_"+s_id+ "_a_id_"+a_id, "." + "gr",new File(deploymentDirectoryPath));
+        	file = File.createTempFile("username_"+username+ "_a_id_"+a_id, "." + "gr",new File(deploymentDirectoryPath));
         	output = new FileOutputStream(file);
         	
     		byte[] contentInBytes = content.getBytes();
@@ -211,10 +142,10 @@ public class GradeBean {
 			
 			ps.setInt(1, current);
 			ps.setInt(2, a_id);
-			ps.setString(3, s_id);
-			ps.setString(4,directory);
+			ps.setString(3, username);
+			ps.setString(4, directory);
 			ps.setString(5, currentTime);
-			ps.setString(6, matchResult);
+			ps.setInt(6, matchResult);
 			
 			int updated = ps.executeUpdate();
 			
@@ -227,7 +158,7 @@ public class GradeBean {
 		else
 		{
 			ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-			String deploymentDirectoryPath = ctx.getRealPath(g.logDirectory);
+			String deploymentDirectoryPath = ctx.getRealPath(g.gradeDirectory);
 			output = new FileOutputStream(deploymentDirectoryPath,true);
 			
     		byte[] contentInBytes = content.getBytes();
@@ -237,11 +168,11 @@ public class GradeBean {
 			output.close();
 			
 			ps=con.prepareStatement(
-					"update grades set try_count=try_count+1, log_upload_date=?, current_status=? where log_id=?");
+					"update grades set try_count=try_count+1, log_upload_date=?, current_status=? where g_id=?");
 			
 			ps.setString(1,currentTime);
-			ps.setString(2, matchResult);
-			ps.setInt(3, g.logID);
+			ps.setInt(2, matchResult);
+			ps.setInt(3, g.gradeID);
 			
 			int updated = ps.executeUpdate();
 			

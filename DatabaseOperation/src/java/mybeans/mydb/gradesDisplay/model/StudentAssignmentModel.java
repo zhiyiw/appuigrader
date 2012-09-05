@@ -44,7 +44,14 @@ public class StudentAssignmentModel {
 	public int assignmentTries;
 	public String assignmentDirectory;
 	public String screenshotDirectory;
+	public int assignmentRating;
 	
+	public int getAssignmentRating() {
+		return assignmentRating;
+	}
+	public void setAssignmentRating(int assignmentRating) {
+		this.assignmentRating = assignmentRating;
+	}
 	public String getScreenshotDirectory() {
 		return screenshotDirectory;
 	}

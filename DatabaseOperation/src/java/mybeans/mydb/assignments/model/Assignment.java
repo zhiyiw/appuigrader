@@ -3,45 +3,13 @@ package mybeans.mydb.assignments.model;
 public class Assignment {
 	
 	public int assignmentID;
-	public String assignmentName;
+	public String assignmentName; //add on after query
 	public String assignmentDirectory;
 	public String uploadedDate;
-	public String term;
-	public int year;
 	public String description;
-	public String deadline;
-	public String ssd;//screenshot directory
-	
-	public String getSsd() {
-		return ssd;
-	}
-	public void setSsd(String ssd) {
-		this.ssd = ssd;
-	}
-	public String getDeadline() {
-		return deadline;
-	}
-	public void setDeadline(String deadline) {
-		this.deadline = deadline;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getTerm() {
-		return term;
-	}
-	public void setTerm(String term) {
-		this.term = term;
-	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
+	public String screenDirectory;//screenshot directory
+	public int point;
+	public int rating;
 	public int getAssignmentID() {
 		return assignmentID;
 	}
@@ -66,5 +34,31 @@ public class Assignment {
 	public void setUploadedDate(String uploadedDate) {
 		this.uploadedDate = uploadedDate;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getScreenDirectory() {
+		return screenDirectory;
+	}
+	public void setScreenDirectory(String screenDirectory) {
+		this.screenDirectory = screenDirectory;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
+	
 	
 }
