@@ -67,7 +67,7 @@ public class GradeDisplay {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select r.a_id, r.description, r.document_dict,r.screenshot_dict,r.rating, g.try_count, g.current_status from (select * from  assignments a cross join users u) r left join grades g on r.a_id=g.a_id and r.username=g.s_id where r.username=? order by r.a_id ASC");
+			   "select r.a_id, r.description, r.document_dict,r.screenshot_dict,r.rating, g.try_count, g.current_status from (select * from  assignments a cross join users u) r left join grades g on r.a_id=g.a_id and r.username=g.username where r.username=? order by r.a_id ASC");
 		
 		ps.setString(1, username);
 
@@ -76,6 +76,7 @@ public class GradeDisplay {
 		
 		List<StudentAssignmentModel> l=new ArrayList<StudentAssignmentModel>();
 		
+		int count=1;
 		while(result.next()){
 			StudentAssignmentModel sam = new StudentAssignmentModel();
 			sam.setAssignmentID(result.getInt("a_id"));
@@ -100,6 +101,15 @@ public class GradeDisplay {
 				sam.setScreenshotDirectory("noScreenshot");
 			else
 		    	sam.setScreenshotDirectory("/"+tempScreenshot);
+			
+			String name;	
+			if(count<10)
+				name = "Assignment0"+count;
+			else
+				name = "Assignment"+count;
+			
+			count++;
+			sam.setAssignmentName(name);
 			
 			l.add(sam);
 		}
