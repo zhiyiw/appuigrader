@@ -24,11 +24,52 @@ public class compareUI {
 		int tV = target.totalVertical();
 		int oH = origin.totalHorizontal();
 		int tH = target.totalHorizontal();
+		
+		int oT = origin.totalTableArr();
+		int tT = target.totalTableArr();
+		int oCB = origin.totalcheckbox();
+		int tCB = target.totalcheckbox();
+		int oTB = origin.totaltextbox();
+		int tTB = target.totaltextbox();
+		int oPTT = origin.totalpasstextbox();
+		int tPTT = target.totalpasstextbox();
+		int oLP = origin.totallistpicker();
+		int tLP = target.totallistpicker();
+		int oI =  origin.totalimage();
+		int tI = target.totalimage();
+		int oIP = origin.totalimagepicker();
+		int tIP = target.totalimagepicker();
+		int oC = origin.totalcanvas();
+		int tC = target.totalcanvas();
+		int oEP = origin.totalemailpicker();
+		int tEP = target.totalemailpicker();
+		int oPNP = origin.totalphonenumberpicker();
+		int tPNP = target.totalphonenumberpicker();
+		int oCP = origin.totalcontactpicker();
+		int tCP = target.totalcontactpicker();
+		int oVP = origin.totalvideoplayer();
+		int tVP = target.totalvideoplayer();
+		int oWV = origin.totalwebviewer();
+		int tWV = target.totalwebviewer();		
 
 		String buttonComp = "";
 		String labelComp = "";
 		String vertComp = "";
 		String horiComp = "";
+		
+		String tabComp = "";
+		String checkboxComp = "";
+		String textboxComp = "";
+		String passtextboxComp = "";
+		String listpickerComp = "";
+		String imageComp = "";
+		String imagepickerComp = "";
+		String canvasComp = "";
+		String emailpickerComp = "";
+		String phonenumberpickerComp = "";
+		String contactpickerComp = "";
+		String videoplayerComp = "";
+		String webviewerComp = "";
 
 		if (oB != tB) {
 			buttonComp = "\nThe total number of BUTTON is NOT correct!!!"
@@ -50,7 +91,75 @@ public class compareUI {
 					+ "(original: " + oH + ", target: " + tH + ")\n";
 		}
 
-		return buttonComp + labelComp + vertComp + horiComp;
+		if (oT != tT) {
+			tabComp = "\nThe total number of TABLE Arrangement is NOT correct!!!"
+					+ "(original: " + oT + ", target: " + tT + ")\n";
+		}
+		
+		if (oCB != tCB) {
+			checkboxComp = "\nThe total number of CheckBox is NOT correct!!!"
+					+ "(original: " + oCB + ", target: " + tCB + ")\n";
+		}
+		
+		if (oTB != tTB) {
+			textboxComp = "\nThe total number of TextBox is NOT correct!!!"
+					+ "(original: " + oTB + ", target: " + tTB + ")\n";
+		}
+		
+		if (oPTT != tPTT) {
+			passtextboxComp = "\nThe total number of PasswordTextBox is NOT correct!!!"
+					+ "(original: " + oPTT + ", target: " + tPTT + ")\n";
+		}
+		
+		if (oLP != tLP) {
+			listpickerComp = "\nThe total number of ListPicker is NOT correct!!!"
+					+ "(original: " + oLP + ", target: " + tLP + ")\n";
+		}
+		
+		if (oI != tI) {
+			imageComp = "\nThe total number of Image is NOT correct!!!"
+					+ "(original: " + oI + ", target: " + tI + ")\n";
+		}
+		
+		if (oIP != tIP) {
+			imagepickerComp = "\nThe total number of ImagePicker is NOT correct!!!"
+					+ "(original: " + oIP + ", target: " + tIP + ")\n";
+		}
+		
+		if (oC != tC) {
+			canvasComp = "\nThe total number of Canvas is NOT correct!!!"
+					+ "(original: " + oC + ", target: " + tC + ")\n";
+		}
+		
+		if (oEP != tEP) {
+			emailpickerComp = "\nThe total number of EmailPicker is NOT correct!!!"
+					+ "(original: " + oEP + ", target: " + tEP + ")\n";
+		}
+		
+		if (oPNP != tPNP) {
+			phonenumberpickerComp = "\nThe total number of PhoneNumberPicker is NOT correct!!!"
+					+ "(original: " + oPNP + ", target: " + tPNP + ")\n";
+		}
+		
+		if (oCP != tCP) {
+			contactpickerComp = "\nThe total number of ContactPicker is NOT correct!!!"
+					+ "(original: " + oCP + ", target: " + tCP + ")\n";
+		}
+		
+		if (oVP != tVP) {
+			videoplayerComp = "\nThe total number of VideoPlayer is NOT correct!!!"
+					+ "(original: " + oVP + ", target: " + tVP + ")\n";
+		}
+		
+		if (oWV != tWV) {
+			webviewerComp = "\nThe total number of WebViewer is NOT correct!!!"
+					+ "(original: " + oWV + ", target: " + tWV + ")\n";
+		}
+		
+		return buttonComp + labelComp + vertComp + horiComp + tabComp + checkboxComp + 
+				textboxComp + passtextboxComp + listpickerComp + imageComp + 
+				imagepickerComp + canvasComp + emailpickerComp + phonenumberpickerComp + 
+				contactpickerComp + videoplayerComp + webviewerComp;
 
 	}
 
@@ -60,8 +169,10 @@ public class compareUI {
 		int tV = target.totalVertical();
 		int oH = origin.totalHorizontal();
 		int tH = target.totalHorizontal();
+		int oT = origin.totalTableArr();
+		int tT = target.totalTableArr();
 
-		if (oV == tV && oH == tH) {
+		if (oV == tV && oH == tH && oT == tT) {
 			return true;
 		}
 		return false;
@@ -83,7 +194,8 @@ public class compareUI {
 		// put origin arrangements into hashmap
 		for (i = 0; i < origin.size(); i++) {
 			if (origin.get(i).getType().equals("VerticalArrangement")
-					|| origin.get(i).getType().equals("HorizontalArrangement")) {
+					|| origin.get(i).getType().equals("HorizontalArrangement") 
+					|| origin.get(i).getType().equals("TableArrangment")) {
 				m++;
 
 				aaa = origin.get(i).getType();
@@ -97,7 +209,8 @@ public class compareUI {
 		for (i = 0; i < target.size(); i++) {
 
 			if (target.get(i).getType().equals("VerticalArrangement")
-					|| target.get(i).getType().equals("HorizontalArrangement")) {
+					|| target.get(i).getType().equals("HorizontalArrangement")
+					|| target.get(i).getType().equals("TableArrangment")) {
 				n++;
 
 				bbb = target.get(i).getType();

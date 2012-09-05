@@ -57,7 +57,7 @@ public class Login {
 	}
 	
 	
-	public int loginCheck(int year, String term) throws SQLException {
+	public int loginCheck() throws SQLException {
 		int isMatched = 0;
 		
 		
@@ -67,12 +67,10 @@ public class Login {
 		
 		if(con == null) throw new SQLException("Can't get database connection");
 		
-		PreparedStatement ps = con.prepareStatement("select * from users where username = ? and year = ? and term = ?");
+		PreparedStatement ps = con.prepareStatement("select * from users where username = ?");
 		
 		ps.setString(1, username);
 		//ps.setString(2, password);
-		ps.setInt(2, year);
-		ps.setString(3, term);
 		
 		ResultSet result = ps.executeQuery();
 		
@@ -83,11 +81,10 @@ public class Login {
 		}
 		
 		if(count == 1) {
-			ps = con.prepareStatement("select * from users where username = ? and password = AES_ENCRYPT(?, 'AndroidAppUIGrader') and year = ? and term = ?");
+			ps = con.prepareStatement("select * from users where username = ? and password = AES_ENCRYPT(?, 'AndroidAppUIGrader')");
 			ps.setString(1, username);
 			ps.setString(2, password);
-			ps.setInt(3, year);
-			ps.setString(4, term);
+
 			
 			result = ps.executeQuery();
 			

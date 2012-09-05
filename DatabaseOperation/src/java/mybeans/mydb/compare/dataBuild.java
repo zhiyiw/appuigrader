@@ -10,6 +10,20 @@ public class dataBuild {
 	int label;
 	int vertArrange;
 	int horiArrange;
+	
+	int tabArrange;
+	int checkbox;
+	int textbox;
+	int passtextbox;
+	int listpicker;
+	int image;
+	int imagepicker;
+	int canvas;
+	int emailpicker;
+	int phonenumberpicker;
+	int contactpicker;
+	int videoplayer;
+	int webviewer;
 
 	public dataBuild(String s) {
 
@@ -17,6 +31,21 @@ public class dataBuild {
 		label = 0;
 		vertArrange = 0;
 		horiArrange = 0;
+		
+		tabArrange = 0;
+		checkbox = 0;
+		textbox = 0;
+		passtextbox = 0;
+		listpicker = 0;
+		image = 0;
+		imagepicker = 0;
+		canvas = 0;
+		emailpicker = 0;
+		phonenumberpicker = 0;
+		contactpicker = 0;
+		videoplayer = 0;
+		webviewer = 0;
+		
 
 		int pos = 1;
 		int k_head = 0;
@@ -208,7 +237,59 @@ public class dataBuild {
 	public int totalHorizontal() {
 		return horiArrange;
 	}
+	
+	public int totalTableArr() {
+		return tabArrange;
+	}
+	
+	public int totalcheckbox() {
+		return checkbox;
+	}
+	
+	public int totaltextbox() {
+		return textbox;
+	}
+	
+	public int totalpasstextbox() {
+		return passtextbox;
+	}
+	
+	public int totallistpicker() {
+		return listpicker;
+	}
+	
+	public int totalimage() {
+		return image;
+	}
+	
+	public int totalimagepicker() {
+		return imagepicker;
+	}
+	
+	public int totalcanvas() {
+		return canvas;
+	}
 
+	public int totalemailpicker() {
+		return emailpicker;
+	}
+	
+	public int totalphonenumberpicker() {
+		return phonenumberpicker;
+	}
+	
+	public int totalcontactpicker() {
+		return contactpicker;
+	}
+	
+	public int totalvideoplayer() {
+		return videoplayer;
+	}
+	
+	public int totalwebviewer() {
+		return webviewer;
+	}
+	
 	public void countTypeNum(String comp) {
 
 		if (comp.equals("Button")) {
@@ -230,7 +311,59 @@ public class dataBuild {
 			horiArrange++;
 			System.out.println("Total HorizontalArrangement = " + horiArrange);
 		}
+		
+		if (comp.equals("TableArrangement")) {
+			tabArrange++;
+		}
 
+		if (comp.equals("CheckBox")) {
+			checkbox++;
+		}
+		
+		if (comp.equals("TextBox")) {
+			textbox++;
+		}
+		
+		if (comp.equals("PasswordTextBox")) {
+			passtextbox++;
+		}
+		
+		if (comp.equals("ListPicker")) {
+			listpicker++;
+		}
+		
+		if (comp.equals("Image")) {
+			image++;
+		}
+		
+		if (comp.equals("ImagePicker")) {
+			imagepicker++;
+		}
+		
+		if (comp.equals("Canvas")) {
+			canvas++;
+		}
+		
+		if (comp.equals("EmailPicker")) {
+			emailpicker++;
+		}
+		
+		if (comp.equals("PhoneNumberPicker")) {
+			phonenumberpicker++;
+		}
+		
+		if (comp.equals("ContactPicker")) {
+			contactpicker++;
+		}
+		
+		if (comp.equals("VideoPlayer")) {
+			videoplayer++;
+		}
+		
+		if (comp.equals("WebViewer")) {
+			webviewer++;
+		}
+		
 	}
 
 }

@@ -51,7 +51,7 @@ public class Register {
 		}
 	}
 
-	public boolean addUser(int year, String term) throws SQLException {
+	public boolean addUser() throws SQLException {
 		if (ds == null)
 			throw new SQLException("Can't get data source");
 
@@ -75,12 +75,11 @@ public class Register {
 
 		if (count == 0) {
 
-			ps = con.prepareStatement("insert into users values (?, AES_ENCRYPT(?, 'AndroidAppUIGrader'), ?, ?)");
+			ps = con.prepareStatement("insert into users values (?, AES_ENCRYPT(?, 'AndroidAppUIGrader'))");
 
 			ps.setString(1, username);
 			ps.setString(2, password);
-			ps.setInt(3, year);
-			ps.setString(4, term);
+
 
 			int updated = ps.executeUpdate();
 		
