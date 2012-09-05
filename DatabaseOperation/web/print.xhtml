@@ -41,6 +41,12 @@
 				margin-right:100px;	
 		}
 		
+		.ui-tree{
+			width:380px;
+		}
+		
+		#showTree2{
+			width:380px;
 		}
 		
 		body {background-color:#e7efcd;}
@@ -176,10 +182,43 @@ color:#3C3;
 	 height:173px;
 	 background-image:url(images/result_bottom.png)
 	
-	
 }
   
-	
+	.button {
+	background:url(images/Button.png)!important;
+	background-repeat:no-repeat;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}	
+
+.label {
+	background:url(images/Label.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}	
+
+.hori {
+	background:url(images/HorizontalArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}	
+
+.vert {
+	background:url(images/VerticalArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}	
+
+.table {
+	background:url(images/TableArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}
 
 </style>
 
@@ -224,9 +263,35 @@ color:#3C3;
 	<h:form id="showTree1">
 		<p:tree value="#{compare.frame.tree1.root}" var="node1" id="tree1"
 			animate="true">
-			<p:treeNode id="treeNode">
-				<h:outputText value="#{node1}" id="lblNode1" />
+			
+			<p:treeNode type="Label" icon="label">
+				<h:outputText value="#{node1}"/>
 			</p:treeNode>
+			
+			<p:treeNode type="Form" icon="label">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+
+			<p:treeNode type="Button" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="VerticalArrangement" icon="vert">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="HorizontalArrangement" icon="hori">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+
+			<p:treeNode type="TableArrangement" icon="table">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
 		</p:tree>
 	</h:form>
 </p:outputPanel>
@@ -236,9 +301,35 @@ color:#3C3;
 	<h:form id="showTree2">
 		<p:tree value="#{compare.frame.tree2.root}" var="node2" id="tree2"
 			animate="true">
-			<p:treeNode id="treeNode">
-				<h:outputText value="#{node2}" id="lblNode2" />
+			
+			<p:treeNode type="Label" icon="label">
+				<h:outputText value="#{node2}"/>
 			</p:treeNode>
+			
+			<p:treeNode type="Form" icon="label">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+
+			<p:treeNode type="Button" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="VerticalArrangement" icon="vert">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="HorizontalArrangement" icon="hori">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+
+			<p:treeNode type="TableArrangement" icon="table">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
 		</p:tree>
 		
 	</h:form>
