@@ -75,14 +75,12 @@ function canceldown(){
       
 	<p:outputPanel layout="block" styleClass="ring">
 	
-	<h:form>
+	<h:form id="form">
+	
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="9"  
-                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}">  
-     	<f:facet name="header">  
-            .
-        </f:facet>  
-  
-        <p:column selectionMode="single" style="width:18px" />  
+                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}"> 
+  		
+        <p:column selectionMode="single" style="width:18px" id="selectionDot"/>  
         
         <p:column headerText="Assignments">  
             #{a.assignmentName}  
@@ -92,19 +90,31 @@ function canceldown(){
             #{a.description}
         </p:column>
         
-        <p:column headerText="Rating">
+        <p:column headerText="Rating" sortBy="#{a.rating}">
         	<p:rating value="#{a.rating}" stars="5" cancel="false" disabled="true"/> 
         </p:column>
         
         <f:facet name="footer">  
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-             <p:commandButton id="v1" value="Update" icon="ui-icon-search"/>
-             <p:commandButton id="v2" value="Delete"/>
+             <p:commandButton id="v1" value="Update" icon="ui-icon-search" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
+             <p:commandButton id="v2" value="Delete" update=":confirm" oncomplete="confirmDlg.show()"/>
         </f:facet>
+        
+        
+        
     </p:dataTable>   
     </h:form>
     </p:outputPanel>
+	
+	<p:dialog id="confirm" widgetVar="confirmDlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" draggable="false" resizable="false" styleClass="test">  
+		<h:form>
+		<h:outputText value="you sure you want to delete #{assignment.selectedAssignment.assignmentID} ?"></h:outputText>
+			<h:commandButton type="submit" value="yes" onclick="confirmDlg.hide();" action="#{controller.delete(assignment.selectedAssignment.assignmentID)}"/>
 
+			<h:commandButton type="button" value="no" onclick="confirmDlg.hide();"/>
+    </h:form>
+    </p:dialog>
+	
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" draggable="false" resizable="false" styleClass="test">  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel.png);height:312px;width:312px" layout="block"> 
@@ -210,7 +220,7 @@ function canceldown(){
 
 
 <!-- update dialog -->
-<p:dialog  resizable="false" widgetVar="update_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+<p:dialog  id="updateDlg_01" resizable="false" widgetVar="update_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
         <h:form id="formUpdate" enctype="multipart/form-data">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
@@ -240,7 +250,7 @@ function canceldown(){
 			</p:outputPanel>
 		
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page01.hide(); addnew_page02.show();"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="update_page01.hide(); update_page02.show();"/>
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
@@ -281,11 +291,11 @@ function canceldown(){
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page02.hide();" action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
+			<h:commandButton type="submit" onclick="update_page02.hide();" action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page02.hide()" action="#{controller.reset()}"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
 		</h:form>

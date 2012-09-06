@@ -16,6 +16,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.data.PageEvent;
 import org.primefaces.model.UploadedFile;
 
 import java.lang.System;
@@ -208,14 +209,8 @@ public class FileUploadController {
     }
     
     public boolean updateExist(int fileID) throws SQLException {
-    	AssignmentBean assbean = new AssignmentBean();
-    	Assignment targetAss = assbean.getAssignmentByID(fileID);
-    	document_dict = targetAss.assignmentDirectory;
-    	ss_dict = targetAss.screenDirectory;
-    	description = targetAss.description;
-    	point = targetAss.point;
-    	rating = targetAss.rating;
-    	
+       	AssignmentBean assbean = new AssignmentBean();
+       	
     	if(zipFile!=null){
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = FilenameUtils.getBaseName(zipFile.getFileName());
@@ -264,9 +259,9 @@ public class FileUploadController {
 
             // Always log stacktraces (with a real logger).
             e.printStackTrace();
-        } finally {
-        	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
+        } finally {      	
         	IOUtils.closeQuietly(output);
+        	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
         	reset();
         }
         	return true;
@@ -276,7 +271,12 @@ public class FileUploadController {
     		return false;
     	}
     }
-
+    
+    public boolean delete(int fileID) throws SQLException{
+    	AssignmentBean assb = new AssignmentBean();
+    	assb.deleteAssignment(fileID);
+    	return true;
+    }
 
     // actionListener handle ------------------------------------------------------------------------------------
 
@@ -294,6 +294,17 @@ public class FileUploadController {
     public void descriptionHandler(ValueChangeEvent event){
     }
     
+    public void loadTarget(int a_id) throws SQLException{
+       	AssignmentBean assbean = new AssignmentBean();
+    	Assignment targetAss = assbean.getAssignmentByID(a_id);
+    	document_dict = targetAss.assignmentDirectory;
+    	ss_dict = targetAss.screenDirectory;
+    	description = targetAss.description;
+    	point = targetAss.point;
+    	rating = targetAss.rating;
+    }
+    
+
 	public void reset(){
     	zipFile=null;
     	imageFile=null;
