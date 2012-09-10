@@ -58,7 +58,15 @@ public class splitList {
 	ArrayList<String> targOnly;
 	ArrayList<String> bothHave;
 	
-	
+	public String getInvisible() {
+		return Invisible;
+	}
+
+	public void setInvisible(String invisible) {
+		Invisible = invisible;
+	}
+
+	String Invisible;
 
 	public ArrayList<Entry<String, Integer>> getOrigMap() {
 		return origMap;
@@ -121,6 +129,16 @@ public class splitList {
 
 	HashMap<String, Integer[]> differ;
 	
+	public HashMap<String, String> getInviList() {
+		return InviList;
+	}
+
+	public void setInviList(HashMap<String, String> InviList) {
+		this.InviList = InviList;
+	}
+
+	HashMap<String, String> InviList;
+	
 	public splitList(){
 		
 		origOnly = new ArrayList<String>();
@@ -140,6 +158,39 @@ public class splitList {
 		differStringList = new ArrayList<String>();
 		differIntOrigList = new ArrayList<Integer>();
 		differIntTargList = new ArrayList<Integer>();
+		
+		InviList =  new HashMap<String, String>();
+		
+		InviList.put("Notifier", "Notifier");
+		InviList.put("TinyDB", "TinyDB");
+		InviList.put("Clock", "Clock");
+		InviList.put("AccelerometerSensor", "AccelerometerSensor");
+		InviList.put("LocationSensor", "LocationSensor");
+		InviList.put("OrientationSensor", "OrientationSensor");
+		InviList.put("Camcorder", "Camcorder");
+		InviList.put("Camera", "Camera");
+		InviList.put("Player", "Player");
+		InviList.put("Sound", "Sound");
+		InviList.put("PhoneCall", "PhoneCall");
+		InviList.put("Texting", "Texting");
+		InviList.put("Twitter", "Twitter");
+		InviList.put("NxtColorSensor", "NxtColorSensor");
+		InviList.put("NxtDirectCommands", "NxtDirectCommands");
+		InviList.put("NxtSoundSensor", "NxtSoundSensor");
+		InviList.put("ActivityStarter", "ActivityStarter");
+		InviList.put("BarcodeScanner", "BarcodeScanner");
+		InviList.put("BluetoothClient", "BluetoothClient");
+		InviList.put("SpeechRecognizer", "SpeechRecognizer");
+		InviList.put("TextToSpeech", "TextToSpeech");
+		InviList.put("TinyWebDB", "TyniWebDB");
+		InviList.put("Web", "Web");
+		InviList.put("FusiontablesControl", "FusiontablesControl");
+		InviList.put("GameClient", "GameClient");
+		InviList.put("SoundRecorder", "SoundRecorder");
+		InviList.put("Voting", "Voting");
+		
+		Invisible = "";
+				
 	}
 	
 	public void split(ArrayList<String> origin, ArrayList<String> target){
@@ -186,6 +237,16 @@ public class splitList {
 			}
 			else{
 				origOnly.add(entr.getKey());
+			}
+		}
+		
+		if(!origOnly.isEmpty()) {
+			Invisible = "However, you didn't put these non-visible components in your file: \n";
+			
+			for(String str : origOnly) {
+				if(InviList.containsKey(str)) {
+					Invisible = Invisible + "    " + str + "\n";
+				}
 			}
 		}
 //		

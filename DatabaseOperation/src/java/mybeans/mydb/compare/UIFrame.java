@@ -385,6 +385,10 @@ public class UIFrame {
 			 isEverCorrect = true;
 		 }
 		 
+		 if(!origOnlyList.isEmpty()){
+			 compResult.add(sl.Invisible);
+		 }
+		 
 		return compResult;
 	}
 
