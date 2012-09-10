@@ -78,11 +78,9 @@ function canceldown(){
 	<h:form id="form">
 	
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="9"  
-                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}"> 
-  		
-        <p:column selectionMode="single" style="width:18px" id="selectionDot"/>  
+                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single"> 
         
-        <p:column headerText="Assignments">  
+        <p:column headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
         

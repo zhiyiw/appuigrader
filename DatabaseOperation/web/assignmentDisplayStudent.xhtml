@@ -96,18 +96,24 @@ function canceldown(){
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="9"  
-                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentName}">  
+                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single">  
      	<f:facet name="header">  
             Assignment List  
         </f:facet>  
-  
-        <p:column selectionMode="single" style="width:18px">
-        </p:column>
+		
         
-        <p:column headerText="Assignments">  
+        <p:column headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
+
+        <p:column headerText="Description">  
+            #{a.assignmentDes}  
+        </p:column>
         
+        <p:column headerText="Rating" sortBy="#{a.assignmentRating}">
+        	<p:rating value="#{a.assignmentRating}" stars="5" cancel="false" disabled="true"/> 
+        </p:column>
+                
        	<p:column headerText="Tried Times">  
             #{a.assignmentTries}  
         </p:column>
