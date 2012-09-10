@@ -15,6 +15,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.primefaces.event.data.PageEvent;
+
 import mybeans.mydb.assignments.model.Assignment;
 
 @ManagedBean(name="assignment")
@@ -99,6 +101,7 @@ public class AssignmentBean {
 			list.add(assign);
 		}
 		con.close();
+		selectedAssignment = list.get(0);
 		return list;
 	}
 	
@@ -232,5 +235,11 @@ public class AssignmentBean {
 	public void setList(List<Assignment> list) {
 		this.list = list;
 	}
+	
+    public void pageClick(PageEvent event){
+    	int current = event.getPage();
+    	this.selectedAssignment = list.get(current*9);
+    }
+    
 
 }

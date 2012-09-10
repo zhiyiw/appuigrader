@@ -24,14 +24,14 @@
     <filter-name>PrimeFaces FileUpload Filter</filter-name>
     <servlet-name>Faces Servlet</servlet-name>
   </filter-mapping>
-  <filter>
+<!--   <filter>
     <filter-name>Extensions Filter</filter-name>
     <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>Extensions Filter</filter-name>
     <servlet-name>Faces Servlet</servlet-name>
-  </filter-mapping>
+  </filter-mapping> -->
   <welcome-file-list>
     <welcome-file>faces/adminLogin.xhtml</welcome-file>
   </welcome-file-list>
