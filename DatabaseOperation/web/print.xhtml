@@ -65,12 +65,28 @@
   height:45px;
 }
 
+	.result_return_panel {
+  float: left; 
+  width: 148px;
+  height: 189px; 
+  background: #EBEBEB; 
+  
+}
+
 .result_return {
   float: left; 
   width: 148px;
   height: 119px; 
   background: #EBEBEB; 
   background-image:url(images/result_return.png)
+}
+
+.result_head {
+  float: left; 
+  width: 148px;
+  height: 70px; 
+  background: #EBEBEB; 
+  background-image:url(images/result_head.png)
 }
 
 .status_bar {
@@ -92,8 +108,8 @@
 
 .result_status_left{
 	float:left;
-	 width:176px;
-	 height:87px;
+	 width:58px;
+	 height:157px;
 	 background-image:url(images/result_status_left.png)
 	
 	
@@ -101,8 +117,8 @@
 
 .result_status_content{
 		float:left;
-	 width:622px;
-	 height:187px
+	 width:709px;
+	 height:157px
 	 overflow:auto;
 	 background-image:url(images/result_status_content.png);
 	  background-repeat:repeat-y;
@@ -118,14 +134,45 @@ color:#336699
 }
 
 
-.result_status_right{
+.result_status_right_panel{
 	float:right;
-	 width:78px;
-	 height:87px;
-	 background-image:url(images/result_status_right.png)
+	 width:109px;
+	 height:157px;
+	
 	
 	
 }
+
+
+.result_status_right{
+	float:left;
+	 width:18px;
+	 height:157px;
+	 background-image:url(images/result_status_right.png);
+	
+	
+}
+
+.result_block{
+	float:left;
+	 width:55px;
+	 height:157px;
+	 background-image:url(images/result_block.png);
+	
+	
+}
+
+.result_status_right2{
+	float:right;
+	 width:36px;
+	 height:157px;
+	 background-image:url(images/result_status_right2.png);
+	
+	
+}
+
+
+
 
 
 .result { 
@@ -145,7 +192,7 @@ color:#336699
 	float:left;
 	 width:85px	;
 	 height:auto;
-	 background-image:url(images/result_r6_c1.png)
+	 background-image:url(images/result_left.png)
 	
 	
 }
@@ -176,6 +223,9 @@ color:#3C3;
 	
 	
 }
+
+
+
 .bottom{
 	 clear:both;
 	 width:1024px;
@@ -226,19 +276,21 @@ color:#3C3;
 
 <h:body>
 
-<h:form>
-<h:commandButton value="Back to Block View" action="blockPrint.xhtml"></h:commandButton>
-</h:form>
+
 <p:outputPanel layout="block" styleClass="container">
 
 <p:outputPanel layout="block" styleClass="top"></p:outputPanel>
 
+<p:outputPanel layout="block" styleClass="result_return_panel">
 <p:outputPanel layout="block" styleClass="result_return">
 	<h:form layout="block" styleClass="result_return">
         <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" image="/images/result_return.png" />
         </h:form>
 </p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_head">
 
+</p:outputPanel>
+</p:outputPanel>
 <p:outputPanel layout="block" styleClass="status_bar">
 	<p:outputPanel layout="block" styleClass="result_status_top"></p:outputPanel>
 	<p:outputPanel layout="block" styleClass="result_status_left"></p:outputPanel>
@@ -248,9 +300,19 @@ color:#3C3;
   				<h:outputText value="#{car}"></h:outputText>
 			</p:dataList>  
 		</p:outputPanel>
+	<p:outputPanel layout="block" styleClass="result_status_panel">
 	
 	<p:outputPanel layout="block" styleClass="result_status_right"></p:outputPanel>
+	<p:outputPanel layout="block" styleClass="result_block">
+	<h:form>
+<h:commandButton image="/images/result_block.png"  action="blockPrint.xhtml"></h:commandButton>
+</h:form>
 	
+	</p:outputPanel>
+	
+	<p:outputPanel layout="block" styleClass="result_status_right2"></p:outputPanel>
+	
+	</p:outputPanel>
 </p:outputPanel>
 
 <p:outputPanel layout="block" styleClass="result">
