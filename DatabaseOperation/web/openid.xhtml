@@ -12,10 +12,26 @@
             <h:outputLabel for="userSuppliedId" value="User Supplied Id: "/>
             <h:outputText id="userSuppliedId" value="#{openid.userSuppliedId}"/>
             <br/>
-            <h:outputLabel for="fullname" value="Fullname: "/>
-            <h:outputText id="fullname" value="#{openid.openIdEmail}"/>
+            <h:outputLabel for="email" value="Email: "/>
+            <h:outputText id="email" value="#{openid.openIdEmail}"/>
+            <br/>	
+            
+            <h:outputLabel for="firstname" value="Firstname: "/>
+            <h:outputText id="firstname" value="#{openid.openIdFirstName}"/>
             <br/>
-
+            
+            <h:outputLabel for="lastname" value="Lastname: "/>
+            <h:outputText id="lastname" value="#{openid.openIdLastName}"/>
+            <br/>
+            
+            <h:outputLabel for="country" value="Country: "/>
+            <h:outputText id="country" value="#{openid.openIdCountry}"/>
+            <br/>
+            
+            <h:outputLabel for="language" value="Language: "/>
+            <h:outputText id="language" value="#{openid.openIdLanguage}"/>
+            <br/>
+		
            
         </h:form>
     </h:body>

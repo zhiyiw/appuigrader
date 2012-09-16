@@ -42,7 +42,44 @@ public class OpenId implements java.io.Serializable {
     private String userSuppliedId; //Users OpenID URL
     private String validatedId;
     private String openIdEmail;
-    /* ... */
+    private String openIdFirstName;
+    private String openIdLastName;
+    private String openIdCountry;
+    private String openIdLanguage;
+
+	public String getOpenIdLastName() {
+		return openIdLastName;
+	}
+
+	public void setOpenIdLastName(String openIdLastName) {
+		this.openIdLastName = openIdLastName;
+	}
+
+	public String getOpenIdCountry() {
+		return openIdCountry;
+	}
+
+	public void setOpenIdCountry(String openIdCountry) {
+		this.openIdCountry = openIdCountry;
+	}
+
+	public String getOpenIdLanguage() {
+		return openIdLanguage;
+	}
+
+	public void setOpenIdLanguage(String openIdLanguage) {
+		this.openIdLanguage = openIdLanguage;
+	}
+
+	public String getOpenIdFirstName() {
+		return openIdFirstName;
+	}
+
+	public void setOpenIdFirstName(String openIdFirstName) {
+		this.openIdFirstName = openIdFirstName;
+	}
+
+	/* ... */
     private String onLoad;
     private ConsumerManager manager;
     private DiscoveryInformation discovered;
@@ -96,11 +133,15 @@ public class OpenId implements java.io.Serializable {
             
             if (userSuppliedId.contains("myopenid")){
             	  fetch.addAttribute("email", "http://schema.openid.net/contact/email", true);
-            	  fetch.addAttribute("fullname", "http://schema.openid.net/namePerson", true);
+            	  fetch.addAttribute("firstname", "http://schema.openid.net/firstname", true);
             	/* ... */
             	} else {
             	  fetch.addAttribute("email", "http://axschema.org/contact/email", true);
-            	  fetch.addAttribute("fullname", "http://axschema.org/namePerson", true);
+            	  fetch.addAttribute("firstname", "http://axschema.org/namePerson/first", true);
+            	  fetch.addAttribute("lastname", "http://axschema.org/namePerson/last", true);
+            	  fetch.addAttribute("country", "http://axschema.org/contact/country/home", true);
+            	  fetch.addAttribute("language", "http://axschema.org/pref/language", true);
+            	  
             	/* ... */
             	}
  
@@ -152,6 +193,18 @@ public class OpenId implements java.io.Serializable {
  
                     List emails = fetchResp.getAttributeValues("email");
                     openIdEmail = (String) emails.get(0);
+                    
+                    List firstname = fetchResp.getAttributeValues("firstname");
+                    openIdFirstName = (String) firstname.get(0);
+                    
+                    List lastname = fetchResp.getAttributeValues("lastname");
+                    openIdLastName = (String) lastname.get(0);
+                    
+                    List country = fetchResp.getAttributeValues("country");
+                    openIdCountry = (String) country.get(0);
+                    
+                    List language = fetchResp.getAttributeValues("language");
+                    openIdLanguage = (String) language.get(0);
                      /* Some other attributes ... */
                 }
                 return verified.getIdentifier();
@@ -186,5 +239,7 @@ public class OpenId implements java.io.Serializable {
     public String getOpenIdEmail() {
         return openIdEmail;
     }
+
+
 /* Other getters ... */
 }
