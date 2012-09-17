@@ -1,17 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+    
+    <h:form>
+	<p:remoteCommand name="gmail" action="#{openid.setGmail()}" />
+	</h:form>
+	
+	<h:form>
+	<p:remoteCommand name="yahoo" action="#{openid.setYahoo()}" />
+	</h:form>
+	
+	<h:form>
+	<p:remoteCommand name="AOL" action="#{openid.setAOL()}" />
+	</h:form>
+	
+	<h:form>
+	<p:remoteCommand name="facebok" action="#{openid.setFacebook()}" />
+	</h:form>
+    
         <h:form>
            <!--  <h:outputLabel for="openid">Open ID</h:outputLabel>
             <h:inputText id="openid_identifier" value="#{openid.userSuppliedId}"
                       style="background: url(http://openid.net/login-bg.gif) no-repeat; padding-left: 18px; background-position: 0 50%;" />
+                  
             -->
-            <h:commandButton action="#{openid.login}" value="Login via GMail" id="openid"/>
+            <h:commandButton action="#{openid.login}" onmousedown="gmail()" value="Login via GMail" id="openidGmail"/>
+            <h:commandButton action="#{openid.login}" onmousedown="yahoo()" value="Login via Yahoo!" id="openidYahoo"/>
+            <h:commandButton action="#{openid.login}" onmousedown="AOL()" value="Login via AOL" id="openid"/>
+            
             
             <h:commandButton action="#{openid.guestLogin()}" value="Login as Guest" />
         </h:form>

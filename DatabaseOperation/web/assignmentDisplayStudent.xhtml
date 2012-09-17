@@ -1,7 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:t ="http://myfaces.apache.org/tomahawk"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -84,9 +83,9 @@ function canceldown(){
 	
 	
 	<p:outputPanel layout="block" styleClass="logout">
-	
-    
-    <h:button onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" outcome="login.xhtml" image="images/logout_s0.png" />
+	<h:form> 
+    <h:commandButton onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />
+    </h:form>  
     </p:outputPanel>
     
     

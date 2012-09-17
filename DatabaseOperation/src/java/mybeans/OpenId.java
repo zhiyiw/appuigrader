@@ -37,7 +37,7 @@ public class OpenId implements java.io.Serializable {
  
     /** Creates a new instance of OpenId */
     public OpenId() {
-    	userSuppliedId = "https://www.google.com/accounts/o8/id";
+    	//userSuppliedId = "https://www.google.com/accounts/o8/id";
     }
  
     private String userSuppliedId; //Users OpenID URL
@@ -79,6 +79,22 @@ public class OpenId implements java.io.Serializable {
 	public void setOpenIdFirstName(String openIdFirstName) {
 		this.openIdFirstName = openIdFirstName;
 	}
+	
+	public void setGmail(){
+		userSuppliedId = "https://www.google.com/accounts/o8/id";
+	}
+	
+	public void setAOL(){
+		userSuppliedId = "http://openid.aol.com/";
+	}
+	
+	public void setYahoo(){
+		userSuppliedId = "https://me.yahoo.com";
+	}
+	
+//	public void setFacebook(){
+//		userSuppliedId = "http://facebook-openid.appspot.com/";
+//	}
 
 	/* ... */
     private String onLoad;
