@@ -163,6 +163,7 @@ public class StudentTempUpload {
 	}
 
 	public boolean tempUpload(String studentID, String rubricPath, int assignmentID) throws SQLException {
+		if(uploadedFile!=null){
 
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = "temp0"+studentID+FilenameUtils.getBaseName(uploadedFile.getFileName());
@@ -247,13 +248,13 @@ public class StudentTempUpload {
             // Always log stacktraces (with a real logger).
             e.printStackTrace();
         } finally {
-
         	file.delete();
             IOUtils.closeQuietly(output);
-            uploadedFile=null;
+            reset();
         }
         
         return true;
+		}else return false;
         
     }
 
