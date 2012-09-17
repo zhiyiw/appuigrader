@@ -234,8 +234,8 @@ public class StudentTempUpload {
             
             
             String currentTime = sdf.format(date);
-            
-            grade.createNewGrade(assignmentID, studentID, sss, currentTime, match);
+            if(!"Guest".equals(studentID))
+            	grade.createNewGrade(assignmentID, studentID, sss, currentTime, match);
             
         } catch (IOException e) {
             // Cleanup.
