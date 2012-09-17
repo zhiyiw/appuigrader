@@ -37,6 +37,7 @@ public class OpenId implements java.io.Serializable {
  
     /** Creates a new instance of OpenId */
     public OpenId() {
+    	userSuppliedId = "https://www.google.com/accounts/o8/id";
     }
  
     private String userSuppliedId; //Users OpenID URL
@@ -215,6 +216,12 @@ public class OpenId implements java.io.Serializable {
         return null;
     }
  
+    public String guestLogin(){
+    	openIdEmail = "Guest";
+    	
+    	return "guest";
+    }
+    
     /**
      * hidden member for onLoad/Init event. 
      *@return always return the string pageLoaded

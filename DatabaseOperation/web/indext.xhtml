@@ -7,10 +7,13 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:outputLabel for="openid">Open ID</h:outputLabel>
+           <!--  <h:outputLabel for="openid">Open ID</h:outputLabel>
             <h:inputText id="openid_identifier" value="#{openid.userSuppliedId}"
                       style="background: url(http://openid.net/login-bg.gif) no-repeat; padding-left: 18px; background-position: 0 50%;" />
-            <h:commandButton action="#{openid.login}" value="Login" id="openid"/>
+            -->
+            <h:commandButton action="#{openid.login}" value="Login via GMail" id="openid"/>
+            
+            <h:commandButton action="#{openid.guestLogin()}" value="Login as Guest" />
         </h:form>
     </h:body>
 </html>

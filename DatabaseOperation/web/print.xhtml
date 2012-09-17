@@ -276,6 +276,10 @@ color:#3C3;
 
 <h:body>
 
+<h:form>
+<p:remoteCommand name="lazyload" action="#{gradestudentBean.getStudentAssignmentList(openid.openIdEmail)}" />
+</h:form>
+
 
 <p:outputPanel layout="block" styleClass="container">
 
@@ -284,7 +288,7 @@ color:#3C3;
 <p:outputPanel layout="block" styleClass="result_return_panel">
 <p:outputPanel layout="block" styleClass="result_return">
 	<h:form layout="block" styleClass="result_return">
-        <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" image="/images/result_return.png" />
+        <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" onmousedown="lazyload()" image="/images/result_return.png" />
         </h:form>
 </p:outputPanel>
 <p:outputPanel layout="block" styleClass="result_head">
