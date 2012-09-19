@@ -361,7 +361,7 @@ public class UIFrame {
 		 } else {
 		 //compResult="NOFILLLLLLLLLLLE";
 		  compResult.add(structResult);
-		  compResult.add("Evaluation Details -->");
+		  compResult.add("Evaluation Details:");
 		  String typeResult = testUI.compareTypeNum(db, db2);
 		  compResult.add(typeResult);
 		 }

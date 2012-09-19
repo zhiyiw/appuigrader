@@ -72,88 +72,88 @@ public class compareUI {
 		String webviewerComp = "";
 
 		if (oB != tB) {
-			buttonComp = "\nThe total number of BUTTON is NOT correct!!!"
-					+ "(original: " + oB + ", target: " + tB + ")\n";
+			buttonComp = "\nTotal number of BUTTON is mismatched!!!"
+					+ "(Sample: " + oB + ", Yours: " + tB + ")\n";
 		}
 
 		if (oL != tL) {
-			labelComp = "\nThe total number of LABEL is NOT correct!!!"
-					+ "(original: " + oL + ", target: " + tL + ")\n";
+			labelComp = "\nTotal number of LABEL is mismatched!!!"
+					+ "(Sample: " + oL + ", Yours: " + tL + ")\n";
 		}
 
 		if (oV != tV) {
-			vertComp = "\nThe total number of VERTICAL Arrangement is NOT correct!!!"
-					+ "(original: " + oV + ", target: " + tV + ")\n";
+			vertComp = "\nTotal number of VERTICAL Arrangement is mismatched!!!"
+					+ "(Sample: " + oV + ", Yours: " + tV + ")\n";
 		}
 
 		if (oH != tH) {
-			horiComp = "\nThe total number of HORIZONTAL Arrangement is NOT correct!!!"
-					+ "(original: " + oH + ", target: " + tH + ")\n";
+			horiComp = "\nTotal number of HORIZONTAL Arrangement is mismatched!!!"
+					+ "(Sample: " + oH + ", Yours: " + tH + ")\n";
 		}
 
 		if (oT != tT) {
-			tabComp = "\nThe total number of TABLE Arrangement is NOT correct!!!"
-					+ "(original: " + oT + ", target: " + tT + ")\n";
+			tabComp = "\nTotal number of TABLE Arrangement is mismatched!!!"
+					+ "(Sample: " + oT + ", Yours: " + tT + ")\n";
 		}
 		
 		if (oCB != tCB) {
-			checkboxComp = "\nThe total number of CheckBox is NOT correct!!!"
-					+ "(original: " + oCB + ", target: " + tCB + ")\n";
+			checkboxComp = "\nTotal number of CheckBox is mismatched!!!"
+					+ "(Sample: " + oCB + ", Yours: " + tCB + ")\n";
 		}
 		
 		if (oTB != tTB) {
-			textboxComp = "\nThe total number of TextBox is NOT correct!!!"
-					+ "(original: " + oTB + ", target: " + tTB + ")\n";
+			textboxComp = "\nTotal number of TextBox is mismatched!!!"
+					+ "(Sample: " + oTB + ", Yours: " + tTB + ")\n";
 		}
 		
 		if (oPTT != tPTT) {
-			passtextboxComp = "\nThe total number of PasswordTextBox is NOT correct!!!"
-					+ "(original: " + oPTT + ", target: " + tPTT + ")\n";
+			passtextboxComp = "\nTotal number of PasswordTextBox is mismatched!!!"
+					+ "(Sample: " + oPTT + ", Yours: " + tPTT + ")\n";
 		}
 		
 		if (oLP != tLP) {
-			listpickerComp = "\nThe total number of ListPicker is NOT correct!!!"
-					+ "(original: " + oLP + ", target: " + tLP + ")\n";
+			listpickerComp = "\nTotal number of ListPicker is mismatched!!!"
+					+ "(Sample: " + oLP + ", Yours: " + tLP + ")\n";
 		}
 		
 		if (oI != tI) {
-			imageComp = "\nThe total number of Image is NOT correct!!!"
-					+ "(original: " + oI + ", target: " + tI + ")\n";
+			imageComp = "\nTotal number of Image is mismatched!!!"
+					+ "(Sample: " + oI + ", Yours: " + tI + ")\n";
 		}
 		
 		if (oIP != tIP) {
-			imagepickerComp = "\nThe total number of ImagePicker is NOT correct!!!"
-					+ "(original: " + oIP + ", target: " + tIP + ")\n";
+			imagepickerComp = "\nTotal number of ImagePicker is mismatched!!!"
+					+ "(Sample: " + oIP + ", Yours: " + tIP + ")\n";
 		}
 		
 		if (oC != tC) {
-			canvasComp = "\nThe total number of Canvas is NOT correct!!!"
-					+ "(original: " + oC + ", target: " + tC + ")\n";
+			canvasComp = "\nTotal number of Canvas is mismatched!!!"
+					+ "(Sample: " + oC + ", Yours: " + tC + ")\n";
 		}
 		
 		if (oEP != tEP) {
-			emailpickerComp = "\nThe total number of EmailPicker is NOT correct!!!"
-					+ "(original: " + oEP + ", target: " + tEP + ")\n";
+			emailpickerComp = "\nTotal number of EmailPicker is mismatched!!!"
+					+ "(Sample: " + oEP + ", Yours: " + tEP + ")\n";
 		}
 		
 		if (oPNP != tPNP) {
-			phonenumberpickerComp = "\nThe total number of PhoneNumberPicker is NOT correct!!!"
-					+ "(original: " + oPNP + ", target: " + tPNP + ")\n";
+			phonenumberpickerComp = "\nTotal number of PhoneNumberPicker is mismatched!!!"
+					+ "(Sample: " + oPNP + ", Yours: " + tPNP + ")\n";
 		}
 		
 		if (oCP != tCP) {
-			contactpickerComp = "\nThe total number of ContactPicker is NOT correct!!!"
-					+ "(original: " + oCP + ", target: " + tCP + ")\n";
+			contactpickerComp = "\nTotal number of ContactPicker is mismatched!!!"
+					+ "(Sample: " + oCP + ", Yours: " + tCP + ")\n";
 		}
 		
 		if (oVP != tVP) {
-			videoplayerComp = "\nThe total number of VideoPlayer is NOT correct!!!"
-					+ "(original: " + oVP + ", target: " + tVP + ")\n";
+			videoplayerComp = "\nTotal number of VideoPlayer is mismatched!!!"
+					+ "(Sample: " + oVP + ", Yours: " + tVP + ")\n";
 		}
 		
 		if (oWV != tWV) {
-			webviewerComp = "\nThe total number of WebViewer is NOT correct!!!"
-					+ "(original: " + oWV + ", target: " + tWV + ")\n";
+			webviewerComp = "\nTotal number of WebViewer is mismatched!!!"
+					+ "(Sample: " + oWV + ", Yours: " + tWV + ")\n";
 		}
 		
 		return buttonComp + labelComp + vertComp + horiComp + tabComp + checkboxComp + 
@@ -216,7 +216,7 @@ public class compareUI {
 				bbb = target.get(i).getType();
 				targetArrange.put(n, bbb);
 
-				System.out.println("target = " + bbb);
+				System.out.println("Yours = " + bbb);
 
 			}
 		}
@@ -224,8 +224,8 @@ public class compareUI {
 		for (i = 1; i < originArrange.size() + 1; i++) {
 			if (!originArrange.get(i).equals(targetArrange.get(i))) {
 				arrangeErr.append("\nNo. " + i
-						+ " arrangement is different: Original is '"
-						+ originArrange.get(i) + "', Target is '"
+						+ " arrangement is different: Sample is '"
+						+ originArrange.get(i) + "', Yours is '"
 						+ targetArrange.get(i) + "'\n");
 			}
 		}
@@ -362,7 +362,7 @@ public class compareUI {
 			if (orig.containsKey(needCompare.get(j))) {
 				if (!orig.get(needCompare.get(j)).equals(
 						targ.get(needCompare.get(j)))) {
-					result = result + "Original Type: " + orig.get("$Type") + "'s "
+					result = result + "Sample Type: " + orig.get("$Type") + "'s "
 							+ needCompare.get(j) + " is "
 							+ orig.get(needCompare.get(j)) + "      Yours: "
 							+ targ.get("$Name") + "'s " + needCompare.get(j)
@@ -456,9 +456,9 @@ public class compareUI {
 		// compare number of components
 		if (origin.size() != target.size()) {
 
-			System.out.println("Total number of components NOT match");
+			System.out.println("Total number of components mismatched");
 
-			return "Total number of components does NOT match !!!\n";
+			return "Total number of components does mismatched !!!\n";
 			// return false;
 		}
 
@@ -466,15 +466,15 @@ public class compareUI {
 		for (i = 0; i < origin.size(); i++) {
 			if (origin.get(i).list.size() != target.get(i).list.size()) {
 				System.out
-						.println("Each component's next-level number NOT match");
-				return "Component's next-level number NOT match\n";
+						.println("Each component's next-level number mismatched");
+				return "Component's next-level number mismatched\n";
 				// return false;
 			}
 		}
 
 		// compare if each component is with same type
 		for (i = 0; i < origin.size(); i++) {
-			System.out.println("Origin type " + i + "-> "
+			System.out.println("Sample type " + i + "-> "
 					+ origin.get(i).getType() + "\nTarget type " + i + "-> "
 					+ target.get(i).getType());
 			if (!origin.get(i).getType().equals(target.get(i).getType())) {

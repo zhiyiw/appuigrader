@@ -272,9 +272,28 @@ color:#3C3;
 
 </style>
 
+
 </h:head>
 
 <h:body>
+
+<!-- Trying to disable refresh function  -->
+<script>
+document.onkeydown = function() {    
+    switch (event.keyCode) { 
+        case 116 : //F5 button
+            event.returnValue = false;
+            event.keyCode = 0;
+            return false; 
+        case 82 : //R button
+            if (event.ctrlKey || event.keyCode == 91 || event.keyCode == 93) { 
+                event.returnValue = false; 
+                event.keyCode = 0;  
+                return false; 
+            } 
+    }
+}
+</script>
 
 <h:form>
 <p:remoteCommand name="lazyload" action="#{gradestudentBean.getStudentAssignmentList(openid.openIdEmail)}" />
@@ -355,6 +374,154 @@ color:#3C3;
 			</p:treeNode>
 			
 			<p:treeNode icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="CheckBox" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TextBox" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="PasswordTextBox" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ListPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Image" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ImagePicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Canvas" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="EmailPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="PhoneNumberPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ContactPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="VideoPlayer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="WebViewer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Notifier" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyDB" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Clock" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="AccelerometerSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="LocationSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Camcorder" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Player" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Sound" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Texting" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Twitter" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtColorSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtDirectCommands" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtSoundSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ActivityStarter" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BarcodeScanner" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothClient" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothServer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SpeechRecognizer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TextToSpeech" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyWebDB" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Web" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="FusiontablesControl" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="GameClient" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SoundRecorder" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Voting" icon="button">
 				<h:outputText value="#{node1}"/>
 			</p:treeNode>
 			
@@ -441,6 +608,106 @@ color:#3C3;
 			</p:treeNode>
 			
 			<p:treeNode type="WebViewer" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Notifier" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyDB" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Clock" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="AccelerometerSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="LocationSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Camcorder" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Player" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Sound" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Texting" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Twitter" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtColorSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtDirectCommands" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtSoundSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ActivityStarter" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BarcodeScanner" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothClient" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothServer" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SpeechRecognizer" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TextToSpeech" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyWebDB" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Web" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="FusiontablesControl" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="GameClient" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SoundRecorder" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Voting" icon="button">
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
