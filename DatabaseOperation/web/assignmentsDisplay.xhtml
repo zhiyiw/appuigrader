@@ -89,7 +89,7 @@ function canceldown(){
         </p:column>
         
         <p:column headerText="Rating" sortBy="#{a.rating}">
-        	<p:rating value="#{a.rating}" stars="5" cancel="false" disabled="true"/> 
+        	<p:rating value="#{a.rating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
         
         <f:facet name="footer">  
@@ -196,7 +196,7 @@ function canceldown(){
 			<h:outputText value="Difficulty:" />  
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
         	
-  						<p:inputText id="point" value="#{controller.point}" />  
+  			<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
             
 				

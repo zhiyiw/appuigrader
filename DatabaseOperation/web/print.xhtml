@@ -319,10 +319,14 @@ document.onkeydown = function() {
 	<p:outputPanel layout="block" styleClass="result_status_left"></p:outputPanel>
 	
 		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.compResult}" var="car" itemlayout="disc">  
+			<!--  <p:dataList value="#{compare.compResult}" var="car" itemlayout="disc">  
   				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
+			</p:dataList> -->
+			<h:outputText value="#{compare.compResult}" escape="false"/>
+			
 		</p:outputPanel>
+		
+		
 	<p:outputPanel layout="block" styleClass="result_status_panel">
 	
 	<p:outputPanel layout="block" styleClass="result_status_right"></p:outputPanel>
