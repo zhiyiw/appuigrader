@@ -5,6 +5,34 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
+        
+        <style type="text/css">
+        	.gmail {
+        		height:140px;
+        		width:140px;
+        	}
+        	
+        	.yahoo {
+        		height:128px;
+        		width:128px;
+        	}
+        	
+        	.AOL {
+        		height:110px;
+        		width:110px;
+        	}
+        	
+        	.guest {
+        		height:110px;
+        		width:110px;
+        	}
+        	
+        	.mainFrame {
+        		width: 60%;
+    			margin: 0px auto;
+        	}
+        	
+        </style>
     </h:head>
     <h:body>
     
@@ -24,18 +52,25 @@
 	<p:remoteCommand name="facebok" action="#{openid.setFacebook()}" />
 	</h:form>
     
+    	<p:outputPanel layout="block" styleClass="mainFrame">
+    
         <h:form>
            <!--  <h:outputLabel for="openid">Open ID</h:outputLabel>
             <h:inputText id="openid_identifier" value="#{openid.userSuppliedId}"
                       style="background: url(http://openid.net/login-bg.gif) no-repeat; padding-left: 18px; background-position: 0 50%;" />
                   
             -->
-            <h:commandButton action="#{openid.login}" onmousedown="gmail()" value="Login via GMail" id="openidGmail"/>
-            <h:commandButton action="#{openid.login}" onmousedown="yahoo()" value="Login via Yahoo!" id="openidYahoo"/>
-            <h:commandButton action="#{openid.login}" onmousedown="AOL()" value="Login via AOL" id="openid"/>
+            <h:commandButton action="#{openid.login}" onmousedown="gmail()" value="Login via GMail" id="openidGmail" styleClass="gmail" image="/images/gmail.png"/>
+            <h:outputText value="Login via Gmail" />
+            <h:commandButton action="#{openid.login}" onmousedown="yahoo()" value="Login via Yahoo!" id="openidYahoo" styleClass="yahoo" image="/images/yahoo.png"/>
+            <h:outputText value="Login via Yahoo!" />
+            <h:commandButton action="#{openid.login}" onmousedown="AOL()" value="Login via AOL" id="openid" styleClass="AOL" image="/images/AOL.png"/>
+            <h:outputText value="Login via AOL" />
+            <h:commandButton action="#{openid.guestLogin()}" value="Login as Guest" id="openidGuest" styleClass="guest" image="/images/guest.jpg"/>
+            <h:outputText value="Login as Guest" />
             
-            
-            <h:commandButton action="#{openid.guestLogin()}" value="Login as Guest" />
         </h:form>
+        </p:outputPanel>
+        
     </h:body>
 </html>
