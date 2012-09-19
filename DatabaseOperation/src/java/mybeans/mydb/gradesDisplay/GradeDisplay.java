@@ -67,7 +67,7 @@ public class GradeDisplay {
  
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select r.a_id, r.description, r.document_dict,r.screenshot_dict,r.rating, g.try_count, g.current_status from (select * from  assignments a cross join users u) r left join grades g on r.a_id=g.a_id and r.username=g.username where r.username=? order by r.a_id ASC");
+			   "select * from assignments left join (select * from grades where username=?) r using(a_id) order by r.a_id ASC");
 		
 		ps.setString(1, username);
 
