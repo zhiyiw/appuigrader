@@ -6,55 +6,35 @@
 
 <h:head>
 
-<style type="text/css">
+<title>Comparison Block View</title>
 
-</style>
+<link rel="stylesheet/less" type="text/css" href="css/blockPrint.less" ></link>
+    
+<script src="js/less.js" type="text/javascript"></script>
 
 </h:head>
 
 <h:body>
+<p:outputPanel layout="block" styleClass="container">
+<p:outputPanel layout="block" styleClass="top_panel">
+<p:outputPanel layout="block" styleClass="top"></p:outputPanel>
 
-		<h:form>
-		<h:commandLink value="Back to Tree View" action="print.xhtml"></h:commandLink>
+<p:outputPanel layout="block" styleClass="left_part">
+<p:outputPanel layout="block" styleClass="return_button">
+	<h:form >
+		<h:commandButton value="Back to Tree View" action="print.xhtml" image="/images/result_return.png"></h:commandButton>
 		</h:form>
 		
-		<h3>Original Blocks List</h3>
-		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.origMapList}" var="car" itemlayout="disc">  
-  				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
-		</p:outputPanel>
+</p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_head"></p:outputPanel>
+</p:outputPanel>
+<p:outputPanel layout="block" styleClass="right_part">
+<p:outputPanel layout="block" styleClass="result_status_top"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_status_bottom">
+<p:outputPanel layout="block" styleClass="result_status_left"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_status_content">
+<h3>Blocks Differences in Both</h3>
 		
-		<h3>Target Blocks List</h3>
-		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.targMapList}" var="car" itemlayout="disc">  
-  				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
-		</p:outputPanel>
-		
-		<h3>Original Only List</h3>
-		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.origOnlyList}" var="car" itemlayout="disc">  
-  				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
-		</p:outputPanel>
-		
-		<h3>Target Only List</h3>
-		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.targOnlyList}" var="car" itemlayout="disc">  
-  				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
-		</p:outputPanel>
-		
-		<h3>Blocks Same in Both</h3>
-		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.bothHaveList}" var="car" itemlayout="disc">  
-  				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
-		</p:outputPanel>
-	
-			<h3>Blocks Differences in Both</h3>
-		<p:outputPanel layout="block" styleClass="result_status_content">
 		
 		<table>
 			<tr>
@@ -69,9 +49,86 @@
 			</p:dataList>  </td>
 			</tr>
 		</table>
+
+
+</p:outputPanel>
+
+<p:outputPanel layout="block" styleClass="result_status_right_panel">
+<p:outputPanel layout="block" styleClass="result_status_right"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_block"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_status_right2"></p:outputPanel>
+
+</p:outputPanel>
+</p:outputPanel>
+</p:outputPanel>
+
+
+
+<p:outputPanel layout="block" styleClass="comapre_panel">
+
+<p:outputPanel layout="block" styleClass="result_top"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_content_panel">
+<p:outputPanel layout="block" styleClass="result_left"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_content1">
+
+			<p:dataList value="#{compare.origMapList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		
+
+</p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_middle"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result_content2">
+
+			<p:dataList value="#{compare.targMapList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+
+
+<p:outputPanel layout="block" styleClass="result_right"></p:outputPanel>
+
+</p:outputPanel>
+
+
+
+
+
+<p:outputPanel layout="block" styleClass="result_bottom"></p:outputPanel>
+
+
+</p:outputPanel>
+
+
+
+<p:outputPanel layout="block" styleClass="comapre_panel2">
+<p:outputPanel layout="block" styleClass="result2_top"></p:outputPanel>
+<p:outputPanel layout="block" styleClass="result2_content">
+<p:outputPanel layout="block" styleClass="result2">
+		<p:outputPanel layout="block" >
+			<p:dataList value="#{compare.origOnlyList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+		
+			<h3>Target Only List</h3>
+		<p:outputPanel layout="block" >
+			<p:dataList value="#{compare.targOnlyList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+		
+		<h3>Blocks Same in Both</h3>
+		<p:outputPanel layout="block" >
+			<p:dataList value="#{compare.bothHaveList}" var="car" itemlayout="disc">  
+  				<h:outputText value="#{car}"></h:outputText>
+			</p:dataList>  
+		</p:outputPanel>
+	
+			
 			  
 		<h3>Ever Matched</h3>
-			<p:outputPanel layout="block" styleClass="result_status_content">
+			<p:outputPanel layout="block" >
 				<p:dataList value="#{compare.everMatched}" var="car" itemlayout="disc">  
   					<h:outputText value="#{car}"></h:outputText>
 			</p:dataList>  
@@ -80,7 +137,23 @@
 			
 			
 		</p:outputPanel>
+		
+</p:outputPanel>
+</p:outputPanel>
+<p:outputPanel layout="block" styleClass="result2_bottom"></p:outputPanel>
+</p:outputPanel>
 
+
+<p:outputPanel layout="block" styleClass="result_page_bottom"></p:outputPanel>
+</p:outputPanel>
+
+
+
+<p:outputPanel layout="block" styleClass="datalist_panel"></p:outputPanel>
+
+		
+		
+	
 </h:body>
 
 </html>
