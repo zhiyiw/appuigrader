@@ -58,15 +58,16 @@ public class UIFrame {
 	private File oriFile;
 	private File tarFile;
 
-	public ArrayList<String> getCompResult() {
+	public String getCompResult() {
 		return compResult;
 	}
 
-	public void setCompResult(ArrayList<String> compResult) {
+	public void setCompResult(String compResult) {
 		this.compResult = compResult;
 	}
 
-	private ArrayList<String> compResult;
+	private String compResult;
+	
 	public boolean isEverCorrect() {
 		return isEverCorrect;
 	}
@@ -266,7 +267,7 @@ public class UIFrame {
 
 	}
 
-	public ArrayList<String> compareFiles(String oriFile, String tarFile) throws IOException {
+	public String compareFiles(String oriFile, String tarFile) throws IOException {
 		//compResult = "";
 
 		//File fileTest = new File(filePath + "test.txt");
@@ -296,7 +297,7 @@ public class UIFrame {
 		 dataBuild db = new dataBuild(zipFilestream(zf));
 		 blockBuild bb = new blockBuild(blockFilestream(zf));
 		 
-		 tree1 = new TreeBean("Original File", db.compArr.get( db.compArr.size() - 1));
+		 tree1 = new TreeBean("Sample File", db.compArr.get( db.compArr.size() - 1));
 		 
 		 // ////////////////////////////////
 		
@@ -310,7 +311,7 @@ public class UIFrame {
 		 dataBuild db2 = new dataBuild(zipFilestream(zf));
 		 blockBuild bb2 = new blockBuild(blockFilestream(zf));
 		
-		 tree2 = new TreeBean("Target File", db2.compArr.get(db2.compArr.size() - 1));
+		 tree2 = new TreeBean("Your File", db2.compArr.get(db2.compArr.size() - 1));
 		 
 		 sl.split(bb.compArr, bb2.compArr);
 		 
@@ -341,34 +342,37 @@ public class UIFrame {
 		 // }
 		 
 		 
-		
+		 StringBuffer sb = new StringBuffer();
+		 
+		 
 		 if (db != null && db2 != null) {
 		 compareUI testUI = new compareUI();
-		 compResult = new ArrayList<String>();
+		 compResult = "";
+		 
 		 
 		 String structResult = testUI.compare(db.compArr, db2.compArr);
 		
 
 		 
 		 if (structResult.equals(
-		 "GREAT!! Structure matched!!")) {
+		 "GREAT!! Structure matched!!\n")) {
 		
-		 compResult.add(structResult);
+		 sb.append(structResult);
 		 
 		 String propertyResult = testUI.compareProperty(db.compArr, db2.compArr);
-		 compResult.add(propertyResult);
+		 sb.append(propertyResult);
 		
 		 } else {
 		 //compResult="NOFILLLLLLLLLLLE";
-		  compResult.add(structResult);
-		  compResult.add("Evaluation Details -->");
+		  sb.append(structResult);
+		  sb.append("Evaluation Details:\n");
 		  String typeResult = testUI.compareTypeNum(db, db2);
-		  compResult.add(typeResult);
+		  sb.append(typeResult);
 		 }
 		
 		  if (testUI.totalArrangeEqual(db, db2)) {
 			  String arrResult = testUI.compareArrangement(db.compArr, db2.compArr);
-		  compResult.add(arrResult);
+		  sb.append(arrResult);
 		  }
 		
 		 }
@@ -376,18 +380,20 @@ public class UIFrame {
 		// compResult = "NNNNNNNNNNN";
 		 
 		 FileWriter writer = new FileWriter("output.txt"); 
-		 for(String str: compResult) {
-		   writer.write(str);
-		 }
+		// for(String str: compResult) {
+		   writer.write(compResult);
+		 //}
 		 writer.close();
 		 
-		 if(compResult.get(1).equals("Great!! Properties matched!!")){
-			 isEverCorrect = true;
-		 }
+//		 if(compResult.get(1).equals("Great!! Properties matched!!")){
+//			 isEverCorrect = true;
+//		 }
 		 
 		 if(!origOnlyList.isEmpty()){
-			 compResult.add(sl.Invisible);
+			 sb.append(sl.Invisible);
 		 }
+		
+		 compResult = sb.toString();
 		 
 		return compResult;
 	}

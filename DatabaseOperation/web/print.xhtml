@@ -6,275 +6,38 @@
 
 <h:head>
 
-	<style type="text/css">
+<title>Comparison Results</title>
 
-	html{
-		background-color:#e7efcd;
-  			}
-  			
-  				
-		.mainFrame{
-  			    background-image: url(images/error.png);
-                background-position:center;
-                background-size:cover;
-                background-repeat:no-repeat; 
-                background-color:transparent;	
-                width:1024px;
-                height:700px;
-                margin: 0px auto 0px auto;	
-		}
-		
-		.treePanel{
-			/* width:600px; */
-		}
-		
-		.treeP1{
-			  	vertical-align: top;
-			  	float:left;
-			  	margin-left:100px;
+<link rel="stylesheet/less" type="text/css" href="css/print.less" ></link>
+    
+<script src="js/less.js" type="text/javascript"></script>
 
-		}
-		
-		.treeP2{
-			  	vertical-align: top;
-				float:right;			
-				margin-right:100px;	
-		}
-		
-		.ui-tree{
-			width:380px;
-		}
-		
-		#showTree2{
-			width:380px;
-		}
-		
-		body {background-color:#e7efcd;}
-
-
-.container {
-  margin:auto;
-  width: 1024px; 
-  background: #ffffff;
-  
-}
-
-.top {
-  background: #DDDDDD;
-  background-image:url(images/top.png);
-  height:45px;
-}
-
-	.result_return_panel {
-  float: left; 
-  width: 148px;
-  height: 189px; 
-  background: #EBEBEB; 
-  
-}
-
-.result_return {
-  float: left; 
-  width: 148px;
-  height: 119px; 
-  background: #EBEBEB; 
-  background-image:url(images/result_return.png)
-}
-
-.result_head {
-  float: left; 
-  width: 148px;
-  height: 70px; 
-  background: #EBEBEB; 
-  background-image:url(images/result_head.png)
-}
-
-.status_bar {
-  float:left;
-  width:876px;
-  height:119px;
- // background-color: #cdcde6;
-}
-
-.result_status_top{
-	 width:876px;
-	 height:32px;
-	 background-image:url(images/result_status_top.png)
-	
-	
-}
-
-
-
-.result_status_left{
-	float:left;
-	 width:58px;
-	 height:157px;
-	 background-image:url(images/result_status_left.png)
-	
-	
-}
-
-.result_status_content{
-		float:left;
-	 width:709px;
-	 height:157px
-	 overflow:auto;
-	 background-image:url(images/result_status_content.png);
-	  background-repeat:repeat-y;
-	
-	
-}
-
-
-.result_status_content a{
-//	margin-left:20px;
-//	margin-right:20px;
-color:#336699
-}
-
-
-.result_status_right_panel{
-	float:right;
-	 width:109px;
-	 height:157px;
-	
-	
-	
-}
-
-
-.result_status_right{
-	float:left;
-	 width:18px;
-	 height:157px;
-	 background-image:url(images/result_status_right.png);
-	
-	
-}
-
-.result_block{
-	float:left;
-	 width:55px;
-	 height:157px;
-	 background-image:url(images/result_block.png);
-	
-	
-}
-
-.result_status_right2{
-	float:right;
-	 width:36px;
-	 height:157px;
-	 background-image:url(images/result_status_right2.png);
-	
-	
-}
-
-
-
-
-
-.result { 
-  clear:both;
-  background:#DDDDDD;
-} 
-
-.result_top{
-	 width:1024px;
-	 height:77px;
-	 background-image:url(images/result_top.png)
-	
-	
-}
-
-.result_left{
-	float:left;
-	 width:85px	;
-	 height:auto;
-	 background-image:url(images/result_left.png)
-	
-	
-}
-
-.result_content{
-		float:left;
-	 width:1024px;
-	 height:auto;
-	 background-image:url(images/result_r6_c1.png)
-	
-	
-}
-
-
-.result_content p{
-margin-left:100px;
-margin-right:100px;
-color:#3C3;
-}
-
-
-.result_right{
-	float:right;
-	 width:91px;
-	 height:200px:
-	 background-repeat:repeat-y;
-	 background-image:url(images/result_right.png)
-	
-	
-}
-
-
-
-.bottom{
-	 clear:both;
-	 width:1024px;
-	 height:173px;
-	 background-image:url(images/result_bottom.png)
-	
-}
-  
-	.button {
-	background:url(images/Button.png)!important;
-	background-repeat:no-repeat;
-	border-radius:0;
-	height:16px;
-	width:16px;
-}	
-
-.label {
-	background:url(images/Label.png)!important;
-	border-radius:0;
-	height:16px;
-	width:16px;
-}	
-
-.hori {
-	background:url(images/HorizontalArrangement.png)!important;
-	border-radius:0;
-	height:16px;
-	width:16px;
-}	
-
-.vert {
-	background:url(images/VerticalArrangement.png)!important;
-	border-radius:0;
-	height:16px;
-	width:16px;
-}	
-
-.table {
-	background:url(images/TableArrangement.png)!important;
-	border-radius:0;
-	height:16px;
-	width:16px;
-}
-
-</style>
 
 </h:head>
 
 <h:body>
+
+<!-- Trying to disable refresh function  -->
+<script>
+document.onkeydown = function() {    
+    switch (event.keyCode) { 
+        case 116 : //F5 button
+            event.returnValue = false;
+            event.keyCode = 0;
+            return false; 
+        case 82 : //R button
+            if (event.ctrlKey || event.keyCode == 91 || event.keyCode == 93) { 
+                event.returnValue = false; 
+                event.keyCode = 0;  
+                return false; 
+            } 
+    }
+}
+</script>
+
+<h:form>
+<p:remoteCommand name="lazyload" action="#{gradestudentBean.getStudentAssignmentList(openid.openIdEmail)}" />
+</h:form>
 
 
 <p:outputPanel layout="block" styleClass="container">
@@ -283,8 +46,11 @@ color:#3C3;
 
 <p:outputPanel layout="block" styleClass="result_return_panel">
 <p:outputPanel layout="block" styleClass="result_return">
+
+
 	<h:form layout="block" styleClass="result_return">
-        <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" image="/images/result_return.png" />
+        <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" onmousedown="lazyload()" image="/images/result_return.png" />
+
         </h:form>
 </p:outputPanel>
 <p:outputPanel layout="block" styleClass="result_head">
@@ -296,10 +62,14 @@ color:#3C3;
 	<p:outputPanel layout="block" styleClass="result_status_left"></p:outputPanel>
 	
 		<p:outputPanel layout="block" styleClass="result_status_content">
-			<p:dataList value="#{compare.compResult}" var="car" itemlayout="disc">  
+			<!--  <p:dataList value="#{compare.compResult}" var="car" itemlayout="disc">  
   				<h:outputText value="#{car}"></h:outputText>
-			</p:dataList>  
+			</p:dataList> -->
+			<h:outputText value="#{compare.compResult}" escape="false"/>
+			
 		</p:outputPanel>
+		
+		
 	<p:outputPanel layout="block" styleClass="result_status_panel">
 	
 	<p:outputPanel layout="block" styleClass="result_status_right"></p:outputPanel>
@@ -351,6 +121,154 @@ color:#3C3;
 			</p:treeNode>
 			
 			<p:treeNode icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="CheckBox" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TextBox" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="PasswordTextBox" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ListPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Image" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ImagePicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Canvas" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="EmailPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="PhoneNumberPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ContactPicker" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="VideoPlayer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="WebViewer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Notifier" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyDB" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Clock" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="AccelerometerSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="LocationSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Camcorder" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Player" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Sound" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Texting" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Twitter" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtColorSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtDirectCommands" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtSoundSensor" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ActivityStarter" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BarcodeScanner" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothClient" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothServer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SpeechRecognizer" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TextToSpeech" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyWebDB" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Web" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="FusiontablesControl" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="GameClient" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SoundRecorder" icon="button">
+				<h:outputText value="#{node1}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Voting" icon="button">
 				<h:outputText value="#{node1}"/>
 			</p:treeNode>
 			
@@ -437,6 +355,106 @@ color:#3C3;
 			</p:treeNode>
 			
 			<p:treeNode type="WebViewer" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Notifier" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyDB" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Clock" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="AccelerometerSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="LocationSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Camcorder" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Player" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Sound" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Texting" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Twitter" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtColorSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtDirectCommands" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="NxtSoundSensor" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="ActivityStarter" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BarcodeScanner" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothClient" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="BluetoothServer" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SpeechRecognizer" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TextToSpeech" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="TinyWebDB" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Web" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="FusiontablesControl" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="GameClient" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="SoundRecorder" icon="button">
+				<h:outputText value="#{node2}"/>
+			</p:treeNode>
+			
+			<p:treeNode type="Voting" icon="button">
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			

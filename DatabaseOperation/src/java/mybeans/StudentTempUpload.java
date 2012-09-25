@@ -34,7 +34,7 @@ public class StudentTempUpload {
     private UploadedFile uploadedFile;
     private String directory;
     private UIFrame frame;
-    private ArrayList<String> compResult;
+    private String compResult;
     public String selectedFilename = "Choose a file...";
     public String getSelectedFilename() {
 		return selectedFilename;
@@ -142,11 +142,11 @@ public class StudentTempUpload {
     
     // Actions ------------------------------------------------------------------------------------
 
-	public ArrayList<String> getCompResult() {
+	public String getCompResult() {
 		return compResult;
 	}
 
-	public void setCompResult(ArrayList<String> compResult) {
+	public void setCompResult(String compResult) {
 		this.compResult = compResult;
 	}
 
@@ -191,8 +191,9 @@ public class StudentTempUpload {
                 FacesMessage.SEVERITY_INFO, directory, null));
             
             frame = new UIFrame();
-            compResult = new ArrayList<String>();
+            compResult = "";
             compResult = frame.compareFiles(ctx.getRealPath(rubricPath),ctx.getRealPath(directory)); 
+            compResult = compResult.replace("\n", "<br />");
             
             bothHaveList = frame.getBothHaveList();
             origMapList = frame.getOrigMapList();
@@ -218,8 +219,8 @@ public class StudentTempUpload {
             
             StringBuffer sb = new StringBuffer();
             
-            for(String s:compResult)
-            	sb.append(s);
+           // for(String s:compResult)
+            	sb.append(compResult);
                         
             String split = "\n\n\n***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****\n\n";
             Date date = new Date();

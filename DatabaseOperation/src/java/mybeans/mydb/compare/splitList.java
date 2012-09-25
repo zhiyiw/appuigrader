@@ -196,7 +196,7 @@ public class splitList {
 	public void split(ArrayList<String> origin, ArrayList<String> target){
 		String temp = "";
 		int i;
-		
+		boolean isInvi = false;
 		
 		//build map for original file
 		for(i=0;i<origin.size();i++) {
@@ -237,12 +237,14 @@ public class splitList {
 			}
 			else{
 				origOnly.add(entr.getKey());
+				if(InviList.containsKey(entr) && isInvi==false) isInvi = true; 
 			}
 		}
 		
 		if(!origOnly.isEmpty()) {
-			Invisible = "However, you didn't put these non-visible components in your file: \n";
-			
+			if(isInvi == true) {
+				Invisible = "However, you didn't put these non-visible components in your file: \n";
+			}
 			for(String str : origOnly) {
 				if(InviList.containsKey(str)) {
 					Invisible = Invisible + "    " + str + "\n";
