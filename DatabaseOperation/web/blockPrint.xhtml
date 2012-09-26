@@ -36,9 +36,9 @@
 <h3>Blocks Differences in Both</h3>
 		
 		
-		<table>
+		<table >
 			<tr>
-				<td><p:dataList value="#{compare.differIntOrigList}" var="car" itemlayout="disc">  
+				<td><p:dataList styleClass="difftable" value="#{compare.differIntOrigList}" var="car" itemlayout="disc">  
   				<h:outputText value="#{car}"></h:outputText>
 			</p:dataList>  </td>
 				<td><p:dataList value="#{compare.differStringList}" var="car" itemlayout="disc">  
@@ -105,13 +105,14 @@
 <p:outputPanel layout="block" styleClass="result2_top"></p:outputPanel>
 <p:outputPanel layout="block" styleClass="result2_content">
 <p:outputPanel layout="block" styleClass="result2">
+	<h3>Your File Only block List</h3>
 		<p:outputPanel layout="block" >
 			<p:dataList value="#{compare.origOnlyList}" var="car" itemlayout="disc">  
   				<h:outputText value="#{car}"></h:outputText>
 			</p:dataList>  
 		</p:outputPanel>
 		
-			<h3>Target Only List</h3>
+			<h3>Target file Only block List</h3>
 		<p:outputPanel layout="block" >
 			<p:dataList value="#{compare.targOnlyList}" var="car" itemlayout="disc">  
   				<h:outputText value="#{car}"></h:outputText>
