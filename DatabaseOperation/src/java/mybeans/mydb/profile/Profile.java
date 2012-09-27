@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -45,33 +43,38 @@ public class Profile {
 		
 		PreparedStatement ps 
 			= con.prepareStatement(
-			   "select sum(try_count) from assignments left join (select * from grades where username='123') r using(a_id) order by a_id ASC");
-		
+			   "select sum(try_count) from assignments left join (select * from grades where username=?) r using(a_id) order by a_id ASC");
+		ps.setString(1, username);
 		ResultSet result =  ps.executeQuery();
 		result.next();
 		model.setTotalAttempts(result.getInt(1));
 		
-		ps = con.prepareStatement("select count(a_id) from assignments left join (select * from grades where username='123') r using(a_id) where g_id>0");
+		ps = con.prepareStatement("select count(a_id) from assignments left join (select * from grades where username=?) r using(a_id) where g_id>0");
+		ps.setString(1, username);
 		result = ps.executeQuery();
 		result.next();
 		int tempCurrent = result.getInt(1);
-		ps = con.prepareStatement("select count(a_id) from assignments left join (select * from grades where username='123') r using(a_id)");
+		ps = con.prepareStatement("select count(a_id) from assignments left join (select * from grades where username=?) r using(a_id)");
+		ps.setString(1, username);
 		result = ps.executeQuery();
 		result.next();
 		int tempTotal = result.getInt(1);
 		model.setCompletenessPercent(100*(tempCurrent/tempTotal)/100.0);
 		
-		ps = con.prepareStatement("select max(rating) from assignments left join (select * from grades where username='123') r using(a_id) where g_id>0");
+		ps = con.prepareStatement("select max(rating) from assignments left join (select * from grades where username=?) r using(a_id) where g_id>0");
+		ps.setString(1, username);
 		result = ps.executeQuery();
 		result.next();
 		model.setHighestRating(result.getInt(1));
 		
-		ps = con.prepareStatement("select count(g_id) from assignments left join (select * from grades where username='123') r using(a_id) where current_status=1");
+		ps = con.prepareStatement("select count(g_id) from assignments left join (select * from grades where username=?) r using(a_id) where current_status=1");
+		ps.setString(1, username);
 		result = ps.executeQuery();
 		result.next();
 		model.setSuccessRate(100*(result.getInt(1)/model.getTotalAttempts())/100.0);
 		
-		ps = con.prepareStatement("select sum(point) from assignments left join (select * from grades where username='123') r using(a_id) where current_status=1");
+		ps = con.prepareStatement("select sum(point) from assignments left join (select * from grades where username=?) r using(a_id) where current_status=1");
+		ps.setString(1, username);
 		result = ps.executeQuery();
 		result.next();
 		model.setTotalScore(result.getInt(1));
