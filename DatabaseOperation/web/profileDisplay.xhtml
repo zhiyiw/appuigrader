@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
 <title>App UI Grader:Profile</title>
@@ -10,6 +11,7 @@
 </h:head>
 <h:body>
 
+
 <h:outputText value="User ID:" />#{profileBean.pm.userID}<br />
 <h:outputText value="Total Attemps:" />#{profileBean.pm.totalAttempts}<br />
 <h:outputText value="Completeness Percentage:" />#{profileBean.pm.completenessPercent} %<br />
@@ -17,5 +19,6 @@
 <h:outputText value="Success Rate:" />#{profileBean.pm.successRate} %<br />
 <h:outputText value="Total Score:" />#{profileBean.pm.totalScore}<br />
 
+<ui:include src="/toolBar.xhtml" />
 </h:body>
 </html>
