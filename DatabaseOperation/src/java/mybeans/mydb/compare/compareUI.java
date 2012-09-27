@@ -3,6 +3,8 @@ package mybeans.mydb.compare;
 import java.util.*;
 import java.util.Map.Entry;
 
+import mybeans.mydb.compare.Component;
+
 public class compareUI {
 
 	private static ArrayList<String> Key = new ArrayList<String>();
@@ -10,12 +12,21 @@ public class compareUI {
 
 	private static ArrayList<HashMap> Maps = new ArrayList<HashMap>();
 
+	ArrayList<Component> list1;
+	ArrayList<Component> list2;
+
 	// constructor
 	public compareUI() {
-
+		list1 = new ArrayList<Component>();
+		list2 = new ArrayList<Component>();
 	}
 
 	public String compareTypeNum(dataBuild origin, dataBuild target) {
+		int oF = origin.totalForm();
+		int tF = target.totalForm();
+		int oE = origin.totalEmpty();
+		int tE = target.totalEmpty();
+		
 		int oB = origin.totalButton();
 		int tB = target.totalButton();
 		int oL = origin.totalLabel();
@@ -24,7 +35,7 @@ public class compareUI {
 		int tV = target.totalVertical();
 		int oH = origin.totalHorizontal();
 		int tH = target.totalHorizontal();
-		
+
 		int oT = origin.totalTableArr();
 		int tT = target.totalTableArr();
 		int oCB = origin.totalcheckbox();
@@ -35,7 +46,7 @@ public class compareUI {
 		int tPTT = target.totalpasstextbox();
 		int oLP = origin.totallistpicker();
 		int tLP = target.totallistpicker();
-		int oI =  origin.totalimage();
+		int oI = origin.totalimage();
 		int tI = target.totalimage();
 		int oIP = origin.totalimagepicker();
 		int tIP = target.totalimagepicker();
@@ -50,13 +61,13 @@ public class compareUI {
 		int oVP = origin.totalvideoplayer();
 		int tVP = target.totalvideoplayer();
 		int oWV = origin.totalwebviewer();
-		int tWV = target.totalwebviewer();		
+		int tWV = target.totalwebviewer();
 
 		String buttonComp = "";
 		String labelComp = "";
 		String vertComp = "";
 		String horiComp = "";
-		
+
 		String tabComp = "";
 		String checkboxComp = "";
 		String textboxComp = "";
@@ -70,6 +81,16 @@ public class compareUI {
 		String contactpickerComp = "";
 		String videoplayerComp = "";
 		String webviewerComp = "";
+		
+		if (oF != tF) {
+			buttonComp = "\nTotal number of FORM is mismatched!!!"
+					+ "(Sample: " + oF + ", Yours: " + tF + ")\n";
+		}
+		
+		if (oE != tE) {
+			buttonComp = "\nTotal number of EMPTY is mismatched!!!"
+					+ "(Sample: " + oE + ", Yours: " + tE + ")\n";
+		}
 
 		if (oB != tB) {
 			buttonComp = "\nTotal number of BUTTON is mismatched!!!"
@@ -95,71 +116,72 @@ public class compareUI {
 			tabComp = "\nTotal number of TABLE Arrangement is mismatched!!!"
 					+ "(Sample: " + oT + ", Yours: " + tT + ")\n";
 		}
-		
+
 		if (oCB != tCB) {
 			checkboxComp = "\nTotal number of CheckBox is mismatched!!!"
 					+ "(Sample: " + oCB + ", Yours: " + tCB + ")\n";
 		}
-		
+
 		if (oTB != tTB) {
 			textboxComp = "\nTotal number of TextBox is mismatched!!!"
 					+ "(Sample: " + oTB + ", Yours: " + tTB + ")\n";
 		}
-		
+
 		if (oPTT != tPTT) {
 			passtextboxComp = "\nTotal number of PasswordTextBox is mismatched!!!"
 					+ "(Sample: " + oPTT + ", Yours: " + tPTT + ")\n";
 		}
-		
+
 		if (oLP != tLP) {
 			listpickerComp = "\nTotal number of ListPicker is mismatched!!!"
 					+ "(Sample: " + oLP + ", Yours: " + tLP + ")\n";
 		}
-		
+
 		if (oI != tI) {
 			imageComp = "\nTotal number of Image is mismatched!!!"
 					+ "(Sample: " + oI + ", Yours: " + tI + ")\n";
 		}
-		
+
 		if (oIP != tIP) {
 			imagepickerComp = "\nTotal number of ImagePicker is mismatched!!!"
 					+ "(Sample: " + oIP + ", Yours: " + tIP + ")\n";
 		}
-		
+
 		if (oC != tC) {
 			canvasComp = "\nTotal number of Canvas is mismatched!!!"
 					+ "(Sample: " + oC + ", Yours: " + tC + ")\n";
 		}
-		
+
 		if (oEP != tEP) {
 			emailpickerComp = "\nTotal number of EmailPicker is mismatched!!!"
 					+ "(Sample: " + oEP + ", Yours: " + tEP + ")\n";
 		}
-		
+
 		if (oPNP != tPNP) {
 			phonenumberpickerComp = "\nTotal number of PhoneNumberPicker is mismatched!!!"
 					+ "(Sample: " + oPNP + ", Yours: " + tPNP + ")\n";
 		}
-		
+
 		if (oCP != tCP) {
 			contactpickerComp = "\nTotal number of ContactPicker is mismatched!!!"
 					+ "(Sample: " + oCP + ", Yours: " + tCP + ")\n";
 		}
-		
+
 		if (oVP != tVP) {
 			videoplayerComp = "\nTotal number of VideoPlayer is mismatched!!!"
 					+ "(Sample: " + oVP + ", Yours: " + tVP + ")\n";
 		}
-		
+
 		if (oWV != tWV) {
 			webviewerComp = "\nTotal number of WebViewer is mismatched!!!"
 					+ "(Sample: " + oWV + ", Yours: " + tWV + ")\n";
 		}
-		
-		return buttonComp + labelComp + vertComp + horiComp + tabComp + checkboxComp + 
-				textboxComp + passtextboxComp + listpickerComp + imageComp + 
-				imagepickerComp + canvasComp + emailpickerComp + phonenumberpickerComp + 
-				contactpickerComp + videoplayerComp + webviewerComp;
+
+		return buttonComp + labelComp + vertComp + horiComp + tabComp
+				+ checkboxComp + textboxComp + passtextboxComp + listpickerComp
+				+ imageComp + imagepickerComp + canvasComp + emailpickerComp
+				+ phonenumberpickerComp + contactpickerComp + videoplayerComp
+				+ webviewerComp;
 
 	}
 
@@ -194,7 +216,7 @@ public class compareUI {
 		// put origin arrangements into hashmap
 		for (i = 0; i < origin.size(); i++) {
 			if (origin.get(i).getType().equals("VerticalArrangement")
-					|| origin.get(i).getType().equals("HorizontalArrangement") 
+					|| origin.get(i).getType().equals("HorizontalArrangement")
 					|| origin.get(i).getType().equals("TableArrangment")) {
 				m++;
 
@@ -233,8 +255,6 @@ public class compareUI {
 		return arrErr;
 	}
 
-
-
 	// decompose component and insert to ArrayList
 	public void decompos(Component c) {
 		int k;
@@ -246,7 +266,6 @@ public class compareUI {
 				decompos(c.list.get(k));
 			}
 		}
-
 
 	}
 
@@ -362,8 +381,8 @@ public class compareUI {
 			if (orig.containsKey(needCompare.get(j))) {
 				if (!orig.get(needCompare.get(j)).equals(
 						targ.get(needCompare.get(j)))) {
-					result = result + "Sample Type: " + orig.get("$Type") + "'s "
-							+ needCompare.get(j) + " is "
+					result = result + "Sample Type: " + orig.get("$Type")
+							+ "'s " + needCompare.get(j) + " is "
 							+ orig.get(needCompare.get(j)) + "      Yours: "
 							+ targ.get("$Name") + "'s " + needCompare.get(j)
 							+ " is " + targ.get(needCompare.get(j)) + "\n";
@@ -385,7 +404,6 @@ public class compareUI {
 		String proErr = "";
 		boolean same = true;
 
-		
 		for (i = 0; i < size; i++) {
 			if (!origin.get(i).map.keySet().equals(target.get(i).map.keySet())) {
 				same = false;
@@ -448,6 +466,84 @@ public class compareUI {
 		return "Great!! Properties matched!!";
 	}
 
+	public ArrayList<Component> addComp(Component comp,
+			ArrayList<Component> list) {
+		// ArrayList<Component> temp = new ArrayList<Component>();
+
+		int i;
+
+		if (comp.list.size() > 0) {
+
+			for (i = 0; i < comp.list.size(); i++) {
+				list.add(comp.list.get(i));
+				addComp(comp.list.get(i), list);
+			}
+
+		}
+
+		return list;
+	}
+
+	public String comparePosition(ArrayList<Component> origin,
+			ArrayList<Component> target) {
+		String result = "";
+		StringBuffer temp = new StringBuffer();
+		ArrayList<Component> l1 = new ArrayList<Component>();
+		ArrayList<Component> l2 = new ArrayList<Component>();
+		int i;
+		int size = origin.size();
+
+		System.out.println(size);
+		for (i = 0; i < size; i++) {
+			System.out.println(origin.get(i).getType());
+			System.out.println(origin.get(i).list.size());
+
+		}
+
+		Component c1 = new Component();
+		Component c2 = new Component();
+
+		l1 = addComp(origin.get(size - 1), list1);
+		l2 = addComp(target.get(size - 1), list2);
+
+		// for(i=0;i<size;i++){
+		//
+		// System.out.println("COMP: " + l1.get(i).getType());
+		// }
+
+		// for (i = size-1; i > -1; i--) {
+		// l1.add(origin.get(i));
+		// l2.add(target.get(i));
+		// System.out.println("COMP: " + origin.get(i).getType());
+		// }
+
+		for (i = 0; i < size - 1; i++) {
+
+			c1 = l1.get(i);
+			c2 = l2.get(i);
+			System.out.println("AAAA: " + c1.getType() + " " + c1.getPosition()
+					+ " BBB: " + c2.getType() + " " + c2.getPosition());
+			if (!c1.getType().equals(c2.getType())) {
+				temp.append("\nThe No." + c1.getPosition()
+						+ " component is mismatched! \n" + "Target's: "
+						+ c1.getType() + ", Yours: " + c2.getType() + "\n");
+			} else if (c1.getDepth() != c2.getDepth()) {
+				temp.append("\nThe No." + c1.getPosition()
+						+ " component is mismatched! \n" + "Your "
+						+ c2.getType() + "'s level is DIFFEREN from Target's");
+			}
+		}
+		System.out.println("LENGTH" + temp.length());
+		if (temp.length() != 0) {
+			result = temp.toString();
+			System.out.println(result);
+
+			return result;
+		}
+
+		return "Good! All components are in the right position!";
+	}
+
 	// compare files and return the answer
 	public String compare(ArrayList<Component> origin,
 			ArrayList<Component> target) {
@@ -473,18 +569,18 @@ public class compareUI {
 		}
 
 		// compare if each component is with same type
-		for (i = 0; i < origin.size(); i++) {
-			System.out.println("Sample type " + i + "-> "
-					+ origin.get(i).getType() + "\nTarget type " + i + "-> "
-					+ target.get(i).getType());
-			if (!origin.get(i).getType().equals(target.get(i).getType())) {
-
-				System.out.println("Type NOT match");
-				return "Type NOT match\n";
-				// return false;
-			}
-		}
-		return "GREAT!! Structure matched!!";
+//		for (i = 0; i < origin.size(); i++) {
+//			System.out.println("Sample type " + i + "-> "
+//					+ origin.get(i).getType() + "\nTarget type " + i + "-> "
+//					+ target.get(i).getType());
+//			if (!origin.get(i).getType().equals(target.get(i).getType())) {
+//
+//				System.out.println("Type NOT match");
+//				return "Type NOT match\n";
+//				// return false;
+//			}
+//		}
+		return "GREAT!! The number and type of the components are matched!!";
 
 	}
 

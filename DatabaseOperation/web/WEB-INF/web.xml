@@ -33,7 +33,7 @@
     <servlet-name>Faces Servlet</servlet-name>
   </filter-mapping> -->
   <welcome-file-list>
-    <welcome-file>faces/adminLogin.xhtml</welcome-file>
+    <welcome-file>faces/indext.xhtml</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
