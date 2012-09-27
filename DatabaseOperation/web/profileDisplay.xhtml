@@ -6,11 +6,11 @@
 <h:head>
 </h:head>
 <h:body>
-<h:outputText value="User ID:" >#{profileBean.userID}</h:outputText><br>
-<h:outputText value="Total Attemps:" >#{profileBean.totalAttemps}</h:outputText><br>
-<h:outputText value="Completeness Percentage:" >#{profileBean.completenessPercent}+"%"</h:outputText><br>
-<h:outputText value="Highest Rating:" >#{profileBean.highestRating}</h:outputText><br>
-<h:outputText value="Success Rate:" >#{profileBean.successRate}+"%"</h:outputText><br>
-<h:outputText value="Total Score:" >#{profileBean.totalScore}</h:outputText><br>
+<h:outputText value="User ID:" />#{profileBean.pm.userID}<br />
+<h:outputText value="Total Attemps:" />#{profileBean.pm.totalAttempts}<br />
+<h:outputText value="Completeness Percentage:" />#{profileBean.pm.completenessPercent}<br />
+<h:outputText value="Highest Rating:" />#{profileBean.pm.highestRating}<br />
+<h:outputText value="Success Rate:" />#{profileBean.pm.successRate}<br />
+<h:outputText value="Total Score:" />#{profileBean.pm.totalScore}<br />
 </h:body>
 </html>

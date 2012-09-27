@@ -21,6 +21,6 @@ public class ProfileBean {
 	}
 	public void readProfile(String username) throws SQLException{
 		Profile profile = new Profile();
-		pm = profile.getProfile(username);
+		setPm(profile.getProfile(username));
 	}
 }
