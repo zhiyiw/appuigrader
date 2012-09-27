@@ -31,23 +31,52 @@
     
     	<p:outputPanel layout="block" styleClass="mainFrame">
     
+    <p:outputPanel layout="block" styleClass="Panel">
+    
         <h:form>
            <!--  <h:outputLabel for="openid">Open ID</h:outputLabel>
             <h:inputText id="openid_identifier" value="#{openid.userSuppliedId}"
                       style="background: url(http://openid.net/login-bg.gif) no-repeat; padding-left: 18px; background-position: 0 50%;" />
                   
             -->
-            <h:commandButton action="#{openid.login}" onmousedown="gmail()" value="Login via GMail" id="openidGmail" styleClass="gmail" image="/images/indext_gmail.png"/>
-            <h:outputText value="Login via Gmail" />
-            <h:commandButton action="#{openid.login}" onmousedown="yahoo()" value="Login via Yahoo!" id="openidYahoo" styleClass="yahoo" image="/images/indext_yahoo.png"/>
-            <h:outputText value="Login via Yahoo!" />
-            <h:commandButton action="#{openid.login}" onmousedown="AOL()" value="Login via AOL" id="openid" styleClass="AOL" image="/images/indext_aol.png"/>
-            <h:outputText value="Login via AOL" />
-            <h:commandButton action="#{openid.guestLogin()}" value="Login as Guest" id="openidGuest" styleClass="guest" image="/images/indext_guest.png"/>
-            <h:outputText value="Login as Guest" />
+            
+          
+             <p:outputPanel layout="block" styleClass="gmail" >
+            <h:commandButton action="#{openid.login}" onmousedown="gmail()" id="openidGmail" image="/images/indext_gmail.png"/>
+            
+                </p:outputPanel>
+          
+             <p:outputPanel layout="block" styleClass="AOL">
+            <h:commandButton action="#{openid.login}" onmousedown="AOL()"  id="openid"  image="/images/indext_aol.png"/>
+           
+            
+                </p:outputPanel>
+             <p:outputPanel layout="block" styleClass="yahoo">
+            <h:commandButton action="#{openid.login}" onmousedown="yahoo()"  id="openidYahoo"  image="/images/indext_yahoo.png"/>
+           
+            
+                </p:outputPanel>
+             <p:outputPanel layout="block" styleClass="guest">
+            <h:commandButton action="#{openid.guestLogin()}"  id="openidGuest"  image="/images/indext_guest.png"/>
+           
+                </p:outputPanel>
+                
+              <p:outputPanel layout="block" styleClass="signup" >
+      
+        <h:commandButton value="student Login" action="login.xhtml" image="/images/indext_signup.png" />
+   
+           </p:outputPanel>
+            
+            
             
         </h:form>
         </p:outputPanel>
+          <p:outputPanel layout="block" styleClass="teacher" >
+        <h:form layout="block" >
+        <h:commandButton value="Teacher Login" action="adminLogin.xhtml" image="/images/change_admin.png" />
+        </h:form>
+           </p:outputPanel>
         
+           </p:outputPanel>
     </h:body>
 </html>
