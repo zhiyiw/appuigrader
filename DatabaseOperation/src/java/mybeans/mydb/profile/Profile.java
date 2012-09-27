@@ -1,5 +1,6 @@
 package mybeans.mydb.profile;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,13 @@ public class Profile {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static double round(double unrounded, int precision, int roundingMode)
+	{
+	    BigDecimal bd = new BigDecimal(unrounded);
+	    BigDecimal rounded = bd.setScale(precision, roundingMode);
+	    return rounded.doubleValue();
 	}
 	
 	public ProfileModel getProfile(String username) throws SQLException{
@@ -59,7 +67,7 @@ public class Profile {
 		result = ps.executeQuery();
 		result.next();
 		int tempTotal = result.getInt(1);
-		model.setCompletenessPercent(100*(tempCurrent/tempTotal)/100.0);
+		model.setCompletenessPercent(round(100.0*(double)tempCurrent/(double)tempTotal, 2, BigDecimal.ROUND_HALF_UP));
 		
 		ps = con.prepareStatement("select max(rating) from assignments left join (select * from grades where username=?) r using(a_id) where g_id>0");
 		ps.setString(1, username);
@@ -71,7 +79,7 @@ public class Profile {
 		ps.setString(1, username);
 		result = ps.executeQuery();
 		result.next();
-		model.setSuccessRate(100*(result.getInt(1)/model.getTotalAttempts())/100.0);
+		model.setSuccessRate(round(100.0*(double)result.getInt(1)/(double)model.getTotalAttempts(), 2, BigDecimal.ROUND_HALF_UP));
 		
 		ps = con.prepareStatement("select sum(point) from assignments left join (select * from grades where username=?) r using(a_id) where current_status=1");
 		ps.setString(1, username);
