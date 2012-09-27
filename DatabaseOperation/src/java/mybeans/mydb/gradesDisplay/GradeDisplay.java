@@ -45,7 +45,6 @@ public class GradeDisplay {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
- 
 	}
 	
 	public List<StudentAssignmentModel> assignmentList;
