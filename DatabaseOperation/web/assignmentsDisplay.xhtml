@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+         xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
 <title>App UI Grader assignment management</title>
@@ -301,6 +302,13 @@ function canceldown(){
 		</h:form>
 		</p:outputPanel>
 	</p:dialog>
+	
+	<div class="toolbar">
+
+
+<ui:include src="/toolBar.xhtml" /> 
+</div>
+	
   	
 </p:outputPanel>
 
