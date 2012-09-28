@@ -234,7 +234,7 @@ public class OpenId implements java.io.Serializable {
  
     public String guestLogin(){
     	openIdEmail = "Guest";
-    	
+    	openIdFirstName = "Guest";
     	return "guest";
     }
     
