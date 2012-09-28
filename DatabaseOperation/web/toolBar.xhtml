@@ -2,18 +2,29 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui">
 
-    
-    <h:form>
-    <h:commandLink action="#{logout.logout()}" value="#{openid.openIdFirstName}, logout" />
-	</h:form>
 
-    <h:form>
-    <h:commandLink action="profileLoading.xhtml" value="Profile" />
-	</h:form>
+  
+    	<div style="float:left; position:relative; ">
+    	  <h:form>
+    <h:commandLink action="#{logout.logout()}" value="#{openid.openIdFirstName}, logout" style="color:#ffffff; font-size:16;text-decoration:none;" />
+		</h:form>
+		</div>
+
 	
-	<h:form>
-	<h:commandLink value="Help" />
-    </h:form>
+
+
+    	<div style="float:right;position:relative;margin-right:10px;">
+    	    <h:form>
+    	<h:commandLink action="profileLoading.xhtml" value="Profile  " style="color:#212121; font-size:16;text-decoration:none;" />
+    		
+	<p:spacer width="20" height="10" /> 
+    
+
+	<h:commandLink value="Help"  style="color:#212121; font-size:16;text-decoration:none;"/>
+	 </h:form>
+	</div>
+   
 </ui:composition>

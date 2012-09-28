@@ -75,7 +75,10 @@ function checkValue(){
 	
 </h:head>
 <h:body>
-<ui:include src="/toolBar.xhtml" />
+
+
+
+    
 
 <script>
 	function clearInvalidFileMsg(){
@@ -90,6 +93,7 @@ function checkValue(){
 	</h:outputLabel>
 	</h1> -->
 	<p:outputPanel layout="block" styleClass="mainFrame">
+
 	
 	
 	<p:outputPanel layout="block" styleClass="logout">
@@ -214,6 +218,13 @@ function checkValue(){
 		</h:form>
 		</p:outputPanel>
 	</p:dialog>
+<div class="toolbar">
+
+
+<ui:include src="/toolBar.xhtml" /> 
+</div>
+
+
 
 </p:outputPanel>
 
