@@ -3,10 +3,16 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h2>Tool Bar</h2>
+
+    
+    <h:form>
+    <h:commandLink action="#{logout.logout()}" value="#{openid.openIdFirstName}, logout" />
+	</h:form>
+
     <h:form>
     <h:commandLink action="profileLoading.xhtml" value="Profile" />
 	</h:form>
+	
 	<h:form>
 	<h:commandLink value="Help" />
     </h:form>
