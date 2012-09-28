@@ -70,6 +70,47 @@ public class GradeDisplay {
  
 		if(con==null)
 			throw new SQLException("Can't get database connection");
+		
+		List<StudentAssignmentModel> l=new ArrayList<StudentAssignmentModel>();
+		
+		if("Guest".equals(username)){
+			PreparedStatement ps 
+			= con.prepareStatement(
+			   "select * from assignments order by a_id ASC");
+			
+			ResultSet result =  ps.executeQuery();
+			
+			int count=1;
+			while(result.next()){
+				StudentAssignmentModel sam = new StudentAssignmentModel();
+				sam.setAssignmentID(result.getInt("a_id"));
+				sam.setAssignmentDes(result.getString("description"));
+				sam.setAssignmentTries(0);
+				sam.setAssignmentDirectory(result.getString("document_dict"));
+				sam.setAssignmentHistory("No compare history!");
+				sam.setAssignmentRating(result.getInt("rating"));
+				sam.setAssignmentStatus("Not Yet Compared");
+				
+				String tempScreenshot=result.getString("screenshot_dict");
+				if(tempScreenshot==null)
+					sam.setScreenshotDirectory("noScreenshot");
+				else if("".equals(tempScreenshot))
+					sam.setScreenshotDirectory("noScreenshot");
+				else
+			    	sam.setScreenshotDirectory("/"+tempScreenshot);
+				
+				String name;	
+				if(count<10)
+					name = "Assignment0"+count;
+				else
+					name = "Assignment"+count;
+				
+				count++;
+				sam.setAssignmentName(name);
+				l.add(sam);
+			}
+			
+		}else{
  
 		PreparedStatement ps 
 			= con.prepareStatement(
@@ -80,7 +121,6 @@ public class GradeDisplay {
 		
 		ResultSet result =  ps.executeQuery();
 		
-		List<StudentAssignmentModel> l=new ArrayList<StudentAssignmentModel>();
 		
 		int count=1;
 		while(result.next()){
@@ -144,6 +184,7 @@ public class GradeDisplay {
 			sam.setAssignmentName(name);
 			
 			l.add(sam);
+		}
 		}
 		
 		setAssignmentList(l);	
