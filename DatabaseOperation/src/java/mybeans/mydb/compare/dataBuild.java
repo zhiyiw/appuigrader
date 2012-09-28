@@ -6,6 +6,9 @@ public class dataBuild {
 
 	ArrayList<Component> compArr;
 
+	int form;
+	int empt;
+	
 	int button;
 	int label;
 	int vertArrange;
@@ -27,6 +30,9 @@ public class dataBuild {
 
 	public dataBuild(String s) {
 
+		form = 0;
+		empt = 0;
+		
 		button = 0;
 		label = 0;
 		vertArrange = 0;
@@ -53,6 +59,7 @@ public class dataBuild {
 		int v_head = 0;
 		int v_tail = 0;
 		int depth = 0;
+		int position = 0;
 		int countComponent[] = new int[20];
 		int countTypeForm = 0;
 
@@ -71,10 +78,11 @@ public class dataBuild {
 			// when the char is '{'
 			if (s.charAt(i) == '{') {
 
-				c = new Component(depth); // assign the depth to the Component
+				c = new Component(depth, position); // assign the depth to the Component
 
 				depth++;
-
+				position++;
+					
 				stack.push(c);
 			}
 
@@ -89,6 +97,14 @@ public class dataBuild {
 				if (c.map.get("$Name") != null
 						&& c.map.get("$Name").equals("OPT") == true)
 					continue;
+				
+
+				if (c.map.get("$Type") == null) {
+					c.changeType("empty");
+				} else {
+					c.changeType(c.map.get("$Type"));
+				}
+				
 
 				// count total number of each type of component
 				if (c.map.get("$Type") != null) {
@@ -96,12 +112,6 @@ public class dataBuild {
 				}
 				
 				c.changeName(c.map.get("$Name"));
-
-				if (c.map.get("$Type") == null) {
-					c.changeType("empty");
-				} else {
-					c.changeType(c.map.get("$Type"));
-				}
 
 				System.out.println("The name of this component is: "
 						+ c.getName());
@@ -221,6 +231,14 @@ public class dataBuild {
 		}
 
 	}
+	
+	public int totalForm(){
+		return form;
+	}
+	
+	public int totalEmpty(){
+		return empt;
+	}
 
 	public int totalButton() {
 		return button;
@@ -292,6 +310,16 @@ public class dataBuild {
 	
 	public void countTypeNum(String comp) {
 
+		if (comp.equals("Form")) {
+			form++;
+			System.out.println("Total Form = " + form);
+		}
+		
+		if (comp.equals("empty")) {
+			empt++;
+			System.out.println("Total Empty = " + empt);
+		}
+		
 		if (comp.equals("Button")) {
 			button++;
 			System.out.println("Total Button = " + button);

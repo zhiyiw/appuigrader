@@ -8,6 +8,7 @@ class Component {
 	public ArrayList<Component> list;
 
 	int depth;
+	int position;
 	private String name;
 	private String type;
 	
@@ -15,14 +16,26 @@ class Component {
 	private String height;
 	private String weight;
 	
-	int component;
+	public int getPosition() {
+		return position;
+	}
 
-	public Component(int depthcount) {
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	int component;
+	public Component(){
+		
+	}
+
+	public Component(int depthcount, int position) {
 
 		map = new HashMap<String, String>();
 		list = new ArrayList<Component>();
 		depth = depthcount;
 		component = 0;
+		this.position = position;
 
 	}
 

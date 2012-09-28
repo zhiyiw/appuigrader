@@ -45,7 +45,14 @@ public class StudentAssignmentModel {
 	public String assignmentDirectory;
 	public String screenshotDirectory;
 	public int assignmentRating;
+	public String assignmentHistory;
 	
+	public String getAssignmentHistory() {
+		return assignmentHistory;
+	}
+	public void setAssignmentHistory(String assignmentHistory) {
+		this.assignmentHistory = assignmentHistory;
+	}
 	public int getAssignmentRating() {
 		return assignmentRating;
 	}

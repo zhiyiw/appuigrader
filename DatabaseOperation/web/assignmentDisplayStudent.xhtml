@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
 
@@ -74,6 +75,7 @@ function checkValue(){
 	
 </h:head>
 <h:body>
+<ui:include src="/toolBar.xhtml" />
 
 <script>
 	function clearInvalidFileMsg(){
@@ -97,9 +99,6 @@ function checkValue(){
     </p:outputPanel>
     
     
-    <h:form>
-    	<h:commandButton action="profileLoading.xhtml" value="Profile" />
-	</h:form>
 	 
 	<p:outputPanel layout="block" styleClass="ring">
 	<h:form>
@@ -146,7 +145,7 @@ function checkValue(){
     
     
     <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
-	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentDirectory}"/>
+	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}"/>
 	</p:dialog>
 	
 	<p:dialog id="screenshot" widgetVar="lightbox">

@@ -1,7 +1,12 @@
 package mybeans.mydb.gradesDisplay;
 
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +17,13 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 
@@ -38,7 +45,6 @@ public class GradeDisplay {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
- 
 	}
 	
 	public List<StudentAssignmentModel> assignmentList;
@@ -83,6 +89,32 @@ public class GradeDisplay {
 			sam.setAssignmentDes(result.getString("description"));
 			sam.setAssignmentTries(result.getInt("try_count"));
 			sam.setAssignmentDirectory(result.getString("document_dict"));
+			
+			String filePath = result.getString("grade_dict");
+			ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+			
+			if(filePath!=null && filePath!=""){
+				String realPath = ctx.getRealPath(filePath);
+				FileInputStream fstream = new FileInputStream(realPath);
+				  // Get the object of DataInputStream
+				DataInputStream in = new DataInputStream(fstream);
+				BufferedReader br = new BufferedReader(new InputStreamReader(in));
+				String str;
+				StringBuffer sb = new StringBuffer();
+				//Read File Line By Line
+				while ((str = br.readLine()) != null)   {
+				// Print the content on the console
+					sb.append(str);
+					sb.append("\n");
+				}
+				  //Close the input stream
+				  in.close();
+				
+				sam.setAssignmentHistory(sb.toString());
+			}else{
+				sam.setAssignmentHistory("No compare history yet!");
+			}
+        	
 			sam.setAssignmentRating(result.getInt("rating"));
 			
 			int tempStatus = result.getInt("current_status");
