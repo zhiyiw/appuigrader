@@ -35,6 +35,15 @@ public class StudentTempUpload {
     private String directory;
     private UIFrame frame;
     private String compResult;
+    public String getCompResultPrint() {
+		return compResultPrint;
+	}
+
+	public void setCompResultPrint(String compResultPrint) {
+		this.compResultPrint = compResultPrint;
+	}
+
+	private String compResultPrint;
     public String selectedFilename = "Choose a file...";
     public String getSelectedFilename() {
 		return selectedFilename;

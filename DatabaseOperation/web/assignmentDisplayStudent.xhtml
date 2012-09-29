@@ -152,7 +152,7 @@ function checkValue(){
     
     
     <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
-	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}"/>
+	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
 	<p:dialog id="screenshot" widgetVar="lightbox">
