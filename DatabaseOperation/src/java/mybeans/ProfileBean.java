@@ -20,7 +20,17 @@ public class ProfileBean {
 		this.pm = pm;
 	}
 	public void readProfile(String username) throws SQLException{
-		Profile profile = new Profile();
-		setPm(profile.getProfile(username));
+		if("Guest".equals(username)){
+			pm = new ProfileModel();
+			pm.setUserID("Guest");
+			pm.setCompletenessPercent(0.00);
+			pm.setHighestRating(0);
+			pm.setSuccessRate(0.00);
+			pm.setTotalAttempts(0);
+			pm.setTotalScore(0);
+		}else{
+			Profile profile = new Profile();
+			setPm(profile.getProfile(username));
+		}
 	}
 }
