@@ -104,7 +104,7 @@ public class OpenId implements java.io.Serializable {
     public void login() throws IOException {
         manager = new ConsumerManager();
         validatedId = null;
-        String returnToUrl = returnToUrl("/loginLoading.xhtml");
+        String returnToUrl = returnToUrl("/openid.xhtml");
         String url = authRequest(returnToUrl);
  
         if (url != null) {
