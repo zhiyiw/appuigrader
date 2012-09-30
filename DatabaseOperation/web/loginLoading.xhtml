@@ -1,3 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -12,7 +15,6 @@
 <h:body>
 
 <h:form>
-
 <p:remoteCommand name="lazyload" action="#{gradestudentBean.getStudentAssignmentList(openid.openIdEmail)}" />
 </h:form>
 
@@ -21,6 +23,7 @@
 <img src="images/loading.gif" border="0" onLoad="lazyload()"/></div>
 
         <h:form>
+
          <!--   <h:inputHidden value="#{openid.onLoad}"/> -->
  
             <h:outputLabel for="userSuppliedId" value=""/>
@@ -29,6 +32,7 @@
             <h:outputLabel for="email" value=""/>
             <h:outputText style="visibility:hidden;" id="email" value="#{openid.openIdEmail}"/>
          
+
         </h:form>
 
 </h:body>
