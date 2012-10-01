@@ -155,7 +155,7 @@ function checkValue(){
 	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
-	<p:dialog id="screenshot" widgetVar="lightbox">
+	<p:dialog id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
 	</p:dialog>
     
