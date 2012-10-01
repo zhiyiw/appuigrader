@@ -64,6 +64,15 @@
         </navigation-case>
     </navigation-rule>
     
+  <navigation-rule>
+        <from-view-id>/assignmentsDisplay.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Logout</from-outcome>
+            <to-view-id>/indext.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
    			<navigation-rule>
         <from-view-id>/indext.xhtml</from-view-id>
         <navigation-case>
