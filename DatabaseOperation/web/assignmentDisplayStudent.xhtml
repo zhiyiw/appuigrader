@@ -118,7 +118,7 @@ function checkValue(){
         </f:facet>  
 		
         
-        <p:column headerText="Assignments" sortBy="#{a.assignmentName}">  
+        <p:column style="text-align: center;" headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
 
@@ -130,11 +130,11 @@ function checkValue(){
         	<p:rating value="#{a.assignmentRating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
                 
-       	<p:column headerText="Attempts">  
+       	<p:column style="text-align: center;" headerText="Attempts">  
             #{a.assignmentTries}  
         </p:column>
         
-        <p:column headerText="Current Status">  
+        <p:column style="text-align: center;" headerText="Current Status">  
             #{a.assignmentStatus}  
         </p:column>
         
