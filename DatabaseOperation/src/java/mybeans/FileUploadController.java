@@ -39,8 +39,8 @@ public class FileUploadController {
     public String selectedZipFilename = "Choose a file...";
     public String selectedImageFilename = "Choose a file...";
     public int point = 0;
-    public Integer rating = 1;
-    public String description = "init";
+    public Integer rating = 0;
+    public String description = "";
     private String document_dict;
     private String ss_dict;
     
@@ -309,8 +309,8 @@ public class FileUploadController {
     	zipFile=null;
     	imageFile=null;
     	point=0;
-    	rating=1;
-    	description = "testReset";
+    	rating=0;
+    	description = "";
     	
     	selectedZipFilename="Choose a file...";
     	selectedImageFilename="Choose a file...";
