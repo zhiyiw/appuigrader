@@ -85,7 +85,7 @@ function canceldown(){
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="9"  
                  selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single"> 
         
-        <p:column headerText="Assignments" sortBy="#{a.assignmentName}">  
+        <p:column style="text-align: center;" headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
         
