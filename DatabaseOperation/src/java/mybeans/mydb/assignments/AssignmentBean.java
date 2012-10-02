@@ -75,6 +75,14 @@ public class AssignmentBean {
 		while(result.next()){
 			Assignment assign = new Assignment();
 			assign.setDescription(result.getString("description"));
+			String temp = assign.getDescription();
+			
+			if(temp.length()>50){
+				assign.setShortDescription(temp.substring(0, 49)+" ...");
+			}else
+				assign.setShortDescription(temp);
+			
+			
 			assign.setAssignmentID(result.getInt("a_id"));
 			assign.setAssignmentDirectory(result.getString("document_dict"));			
 		    //get screenshot directory
