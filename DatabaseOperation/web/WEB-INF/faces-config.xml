@@ -72,5 +72,22 @@
         </navigation-case>
     </navigation-rule>
     
+    	<navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Logout</from-outcome>
+            <to-view-id>/indext.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    	<navigation-rule>
+        <from-view-id>/adminLogin.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Logout</from-outcome>
+            <to-view-id>/indext.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
 </faces-config>
 
