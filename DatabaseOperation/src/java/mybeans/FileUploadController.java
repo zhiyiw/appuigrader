@@ -249,7 +249,7 @@ public class FileUploadController {
 			    ss_dict = "Screenshot/"+imageFilename;
 			}
             
-        } catch (IOException e) {
+        	} catch (IOException e) {
             // Cleanup.
             if (file != null) file.delete();
 
@@ -259,17 +259,17 @@ public class FileUploadController {
 
             // Always log stacktraces (with a real logger).
             e.printStackTrace();
-        } finally {      	
-        	IOUtils.closeQuietly(output);
-        	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
-        	reset();
-        }
-        	return true;
-    	}else{
-    		assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
-    		reset();
-    		return false;
-    	}
+        	} finally {      	
+        		IOUtils.closeQuietly(output);
+        		assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
+        		reset();
+        	}
+        		return true;
+    		}else{
+    			assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
+    			reset();
+    			return true;
+    		}
     }
     
     public boolean delete(int fileID) throws SQLException{
