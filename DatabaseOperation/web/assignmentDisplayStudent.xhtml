@@ -156,7 +156,7 @@ function zipFileIfEmpty(){
              <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
 			 <p:commandButton id="v1" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
              <p:commandButton id="v2" value="Comaprison History" icon="ui-icon-bookmark" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
-             <p:commandButton id="v3" value="New Comaprison" icon="ui-icon-extlink" update=":updateDialog" oncomplete="updateUI.show()"/>
+             <p:commandButton id="v3" value="New Comparison" icon="ui-icon-extlink" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
    <!--  </p:panel>  -->
@@ -169,9 +169,12 @@ function zipFileIfEmpty(){
 	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
+
 	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="400" height="500">
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
+
 	</p:dialog>
+
     
     <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" >  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
