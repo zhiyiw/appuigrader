@@ -183,7 +183,7 @@ public class FileUploadController {
             		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating);
             	}
             	else
-            		assbean.addAssignment(document_dict,this.description,null, point, rating);
+            		assbean.addAssignment(document_dict,this.description,"/images/noimage.png", point, rating);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

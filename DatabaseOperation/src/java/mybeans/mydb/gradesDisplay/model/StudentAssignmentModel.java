@@ -46,7 +46,14 @@ public class StudentAssignmentModel {
 	public String screenshotDirectory;
 	public int assignmentRating;
 	public String assignmentHistory;
+	public int assignmentPoint;
 	
+	public int getAssignmentPoint() {
+		return assignmentPoint;
+	}
+	public void setAssignmentPoint(int assignmentPoint) {
+		this.assignmentPoint = assignmentPoint;
+	}
 	public String getAssignmentHistory() {
 		return assignmentHistory;
 	}
