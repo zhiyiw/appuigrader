@@ -121,7 +121,7 @@ function zipFileIfEmpty(){
 	<h:form>
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
-	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="11"  
+	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="9"  
                  selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single">  
      	<f:facet name="header">  
             Assignment List  
@@ -168,11 +168,11 @@ function zipFileIfEmpty(){
     <p:dialog  resizable="false" header="Comparison History" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
 	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
-		<p:outputPanel styleClass="preview">
-	<p:dialog  header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' position="400,150">
+	
+	<p:dialog  header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' >
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
 	</p:dialog>
-    </p:outputPanel>
+
     
     <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" >  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
