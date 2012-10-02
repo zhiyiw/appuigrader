@@ -169,8 +169,8 @@ function zipFileIfEmpty(){
 	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
-	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
-	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="400" height="500">
+	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
 	</p:dialog>
     
     <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" >  

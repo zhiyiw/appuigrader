@@ -211,35 +211,43 @@ public class FileUploadController {
     public boolean updateExist(int fileID) throws SQLException {
        	AssignmentBean assbean = new AssignmentBean();
        	
-    	if(zipFile!=null){
+    	
         // Prepare filename prefix and suffix for an unique filename in upload folder.
-        String prefix = FilenameUtils.getBaseName(zipFile.getFileName());
-        String suffix = FilenameUtils.getExtension(zipFile.getFileName());
-        
+        String prefix;
+        String suffix;
+        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         // Prepare file and outputstream.
         File file = null;
         OutputStream output = null;
-        
-        try {
-            // Create file with unique name in upload folder and write to it.
-        	ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        	String deploymentDirectoryPath = ctx.getRealPath("/")+"Rubrics";
-        	File target = new File(deploymentDirectoryPath);
-        	if(!target.exists())
-        		target.mkdir();
-        	//if(directory.exists())
-        	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
-            output = new FileOutputStream(file);
-            IOUtils.copy(zipFile.getInputstream(), output);
-            zipFilename = file.getName();
-            document_dict = "Rubrics/"+zipFilename;
+        if(zipFile!=null){
+        	try {
+        		// Create file with unique name in upload folder and write to it.
+        		
+        		String deploymentDirectoryPath = ctx.getRealPath("/")+"Rubrics";
+        		File target = new File(deploymentDirectoryPath);
+            	if(!target.exists())
+            		target.mkdir();
+                prefix = FilenameUtils.getBaseName(zipFile.getFileName());
+                suffix = FilenameUtils.getExtension(zipFile.getFileName());
+        		file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
+        		output = new FileOutputStream(file);
+        		IOUtils.copy(zipFile.getInputstream(), output);
+        		zipFilename = file.getName();
+        		document_dict = "Rubrics/"+zipFilename;
+        	}   catch (IOException e) {
+                // Cleanup.
+                if (file != null) file.delete();
+        	}finally{
+        		IOUtils.closeQuietly(output);
+        	}
+        	}
 
-            if(imageFile!=null){
-				deploymentDirectoryPath=ctx.getRealPath("/")+"Screenshot";
-				target = new File(deploymentDirectoryPath);
-				if(!target.exists())
-					target.mkdir();
-				
+          if(imageFile!=null){
+        	  try {
+				String deploymentDirectoryPath=ctx.getRealPath("/")+"Screenshot";
+				File target = new File(deploymentDirectoryPath);
+            	if(!target.exists())
+            		target.mkdir();
 			    prefix = FilenameUtils.getBaseName(imageFile.getFileName());
 			    suffix = FilenameUtils.getExtension(imageFile.getFileName());
 				file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
@@ -247,29 +255,17 @@ public class FileUploadController {
 			    IOUtils.copy(imageFile.getInputstream(), output);
 			    imageFilename = file.getName();
 			    ss_dict = "Screenshot/"+imageFilename;
+        	  }catch (IOException e) {
+                  // Cleanup.
+                  if (file != null) file.delete();
+          		}finally{
+          			IOUtils.closeQuietly(output);
+          		}
 			}
-            
-        	} catch (IOException e) {
-            // Cleanup.
-            if (file != null) file.delete();
-
-            // Show error message.
-            FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-                FacesMessage.SEVERITY_ERROR, "File upload failed with I/O error.", null));
-
-            // Always log stacktraces (with a real logger).
-            e.printStackTrace();
-        	} finally {      	
-        		IOUtils.closeQuietly(output);
-        		assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
-        		reset();
-        	}
-        		return true;
-    		}else{
-    			assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
-    			reset();
-    			return true;
-    		}
+          	
+          	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
+          	reset();
+          	return true;
     }
     
     public boolean delete(int fileID) throws SQLException{
