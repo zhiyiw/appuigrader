@@ -6,7 +6,7 @@
 
 
 <h:head>
-<title>App UI Grader: Assignment management</title>
+<title>App UI Grader: Assignment Management</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"></meta>
@@ -208,7 +208,7 @@ function zipFileIfEmpty(){
     		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
-            	allowTypes="/(\.|\/)(png)$/" 
+            	allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
             	style="border:none"
             	required="true"
             	showButtons="false"
@@ -299,7 +299,7 @@ function zipFileIfEmpty(){
     		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
-            	allowTypes="/(\.|\/)(png)$/" 
+            	allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
             	style="border:none"
             	required="true"
             	showButtons="false"
