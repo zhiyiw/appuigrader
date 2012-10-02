@@ -78,14 +78,30 @@
             
         </h:form>
         </p:outputPanel>
-          <p:outputPanel layout="block" styleClass="teacher" >
+  <p:outputPanel layout="block" styleClass="teacher" >
         <h:form layout="block" >
         <h:commandButton id="adminLogin" title="Login as Admin" value="Teacher Login" action="adminLogin.xhtml" image="/images/change_admin.png" />
                 <p:tooltip for="adminLogin" showEffect="fade" hideEffect="fade" />
         
         </h:form>
+           </p:outputPanel> 
+           
+          
+           
+           
+        <p:outputPanel layout="block" style="float:left;position:relative;top:230px;left:904px;">
+	    	    <h:form>
+    		<h:commandLink value="Help"  style="color:#0CBC17; font-family:Tahoma; font-size:14px;text-decoration:none;"/>
+	 <p:spacer width="24" height="10" /> 
+    	
+    	<h:commandLink action="about.xhtml" value="About" style="color:#0CBC17; font-size:14px;font-family:Tahoma;text-decoration:none;" />
+    
+    
+    </h:form>
+	 </p:outputPanel> 
            </p:outputPanel>
+         
         
-           </p:outputPanel>
+           
     </h:body>
 </html>

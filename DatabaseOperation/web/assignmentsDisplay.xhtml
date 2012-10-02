@@ -6,7 +6,7 @@
 
 
 <h:head>
-<title>App UI Grader assignment management</title>
+<title>App UI Grader: Assignment Management</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"></meta>
@@ -63,8 +63,17 @@ function cancelout(){
 function canceldown(){
 	document.buttonCancel.src="images/cancel_s2.png";
 }
-</script>
 
+function zipFileIfEmpty(){
+	var value = $('[id="formAdd:out1"]').html();
+	if(value=="Choose a file..."){
+		alert(value);
+		console.log("need");
+	}else{
+		$('[id="formAdd:next"]').trigger('click');
+	}
+}
+</script>
 	
 </h:head>
 <h:body>
@@ -144,9 +153,10 @@ function canceldown(){
 	
 	
 	<p:dialog  resizable="false" widgetVar="addnew_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+		
 		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
         <h:form id="formAdd" enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px">
     		<p:fileUpload fileUploadListener="#{controller.handleZipUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -158,9 +168,13 @@ function canceldown(){
             	update="out1"
             	/>
 		</p:outputPanel>
+		
+		<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out1" value="#{controller.selectedZipFilename}" /> 
+			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
+			
+			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
@@ -171,12 +185,13 @@ function canceldown(){
 				<h:outputText id="counter" /> 
 				
 			</p:outputPanel>
-			
 
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page01.hide(); addnew_page02.show();"/>
+			<h:commandButton id="next" type="button" onclick="addnew_page01.hide(); addnew_page02.show();"/>
 			</p:outputPanel>
+			
+			<h:commandButton style="position:absolute;top:400px;left:55px;z-index:99" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
@@ -187,13 +202,13 @@ function canceldown(){
 	</p:dialog>
 	
 	<p:dialog  resizable="false" id="dialog_02" widgetVar="addnew_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
+		<p:outputPanel style="background-image:url(images/add_assignment2.png);height:450px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px">
     		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
-            	allowTypes="/(\.|\/)(png)$/" 
+            	allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
             	style="border:none"
             	required="true"
             	showButtons="false"
@@ -202,25 +217,29 @@ function canceldown(){
             	widgetVar="fileuplaod_wgt"
             	/>
 		</p:outputPanel>
+			<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out2" value="#{controller.selectedImageFilename}" /> 
-			
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
-			<h:outputText value="Difficulty:" />  
-        	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
-        	
-  			<p:inputText id="point" value="#{controller.point}" />  
-        	<p:slider for="point"/>
-            
+				</p:outputPanel>
 				
-			</p:outputPanel>
+			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
+			
+        	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
+        	</p:outputPanel>
+        	
+        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
+  						<p:inputText id="point" value="#{controller.point}" />  
+        	<p:slider for="point"/>
+            	</p:outputPanel>
+				
+			
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page02.hide();" action="#{controller.addNew()}" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="update_page02.hide()"  action="#{controller.addNew()}" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page02.hide()" action="#{controller.reset()}"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
 		</h:form>
@@ -233,7 +252,7 @@ function canceldown(){
 <p:dialog  id="updateDlg_01" resizable="false" widgetVar="update_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
         <h:form id="formUpdate" enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px;">
     		<p:fileUpload fileUploadListener="#{controller.handleZipUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -245,9 +264,11 @@ function canceldown(){
             	update="out3"
             	/>
 		</p:outputPanel>
+		
+		<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out3" value="#{controller.selectedZipFilename}" /> 
-			
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
+			</p:outputPanel>
+			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
@@ -260,7 +281,7 @@ function canceldown(){
 			</p:outputPanel>
 		
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="update_page01.hide(); update_page02.show();"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png" onclick="update_page01.hide(); update_page02.show();"/>
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
@@ -272,13 +293,13 @@ function canceldown(){
 	</p:dialog>
 	
 	<p:dialog  resizable="false" id="updateDlg_02" widgetVar="update_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
+		<p:outputPanel style="background-image:url(images/add_assignment2.png);height:450px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px">
     		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
-            	allowTypes="/(\.|\/)(png)$/" 
+            	allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
             	style="border:none"
             	required="true"
             	showButtons="false"
@@ -287,21 +308,25 @@ function canceldown(){
             	widgetVar="fileuplaod_wgt"
             	/>
 		</p:outputPanel>
+		<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out4" value="#{controller.selectedImageFilename}" /> 
+			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:230px; border-style:none !important; box-shadow: none !important;">	
-			<h:outputText value="Difficulty:" />  
+			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
+			
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
+        	</p:outputPanel>
         	
+        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
-            
+            	</p:outputPanel>
 				
-			</p:outputPanel>
+			
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onclick="update_page02.hide();" action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="update_page02.hide()"  action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
