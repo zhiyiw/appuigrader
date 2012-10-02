@@ -70,7 +70,17 @@ function zipFileIfEmpty(){
 		alert(value);
 		console.log("need");
 	}else{
-		$('[id="formAdd:next"]').trigger('click');
+		console.log('triggered');
+		var i=0;
+		if(i==0){
+//			$('[id="formAdd:next"]').trigger('click');
+   	 		addnew_page01.hide();
+			addnew_page02.show();
+			i=1;
+			return false;
+		}
+//		addnew_page01.hide(); 
+//		addnew_page02.show();
 	}
 }
 </script>
@@ -152,7 +162,7 @@ function zipFileIfEmpty(){
 	
 	
 	
-	<p:dialog  resizable="false" widgetVar="addnew_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
+	<p:dialog  resizable="false" widgetVar="addnew_page01" width="450" height="470" modal="true" showHeader="false" draggable="false" >  
 		
 		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
         <h:form id="formAdd" enctype="multipart/form-data">
@@ -187,11 +197,11 @@ function zipFileIfEmpty(){
 			</p:outputPanel>
 
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton style="visibility:hidden" id="next" type="button" onclick="addnew_page01.hide(); addnew_page02.show();"/>
-			</p:outputPanel>
+<!-- 	<h:commandButton  id="next" onclick="addnew_page01.hide(); addnew_page02.show();"/> -->
 			
-			<h:commandButton style="position:absolute;top:400px;left:55px;z-index:99;width:128px;height:44p;" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
+			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
+			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
@@ -229,7 +239,7 @@ function zipFileIfEmpty(){
         	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
-            	</p:outputPanel>
+            </p:outputPanel>
 				
 			
             
