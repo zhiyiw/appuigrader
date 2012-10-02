@@ -114,9 +114,9 @@ function zipFileIfEmpty(){
         </p:column>
         
         <f:facet name="footer">  
-             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-             <p:commandButton id="v1" value="Update" icon="ui-icon-search" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
-             <p:commandButton id="v2" value="Delete" update=":confirm" oncomplete="confirmDlg.show()"/>
+             <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+             <p:commandButton id="v1" value="Update Assignment" icon="ui-icon-refresh" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
+             <p:commandButton id="v2" value="Delete Assignment" icon="ui-icon-closethick" update=":confirm" oncomplete="confirmDlg.show()"/>
         </f:facet>
         
         

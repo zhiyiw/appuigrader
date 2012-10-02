@@ -153,10 +153,10 @@ function zipFileIfEmpty(){
         </p:column>
         
         <f:facet name="footer">  
-             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-			 <p:commandButton id="v1" value="Show Screenshot" update=":screenshot" oncomplete="lightbox.show()"/>
-             <p:commandButton id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
-             <p:commandButton id="v3" value="Compare" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
+             <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+			 <p:commandButton id="v1" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
+             <p:commandButton id="v2" value="Comaprison History" icon="ui-icon-bookmark" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
+             <p:commandButton id="v3" value="New Comaprison" icon="ui-icon-extlink" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
    <!--  </p:panel>  -->
@@ -165,15 +165,15 @@ function zipFileIfEmpty(){
     </p:outputPanel>
     
     
-    <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
+    <p:dialog  resizable="false" header="Comparison History" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
 	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
-	<p:dialog id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
 	</p:dialog>
     
-    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  
+    <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" >  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
   	<p:outputPanel layout="block" style="position:absolute;top:25px;left:110px">
   	<h:outputText style="font-size:16; font-weight:bold;"  
