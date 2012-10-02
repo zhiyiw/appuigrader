@@ -191,7 +191,7 @@ function zipFileIfEmpty(){
 			<h:commandButton style="visibility:hidden" id="next" type="button" onclick="addnew_page01.hide(); addnew_page02.show();"/>
 			</p:outputPanel>
 			
-			<h:commandButton style="position:absolute;top:400px;left:55px;z-index:99;width:128px;height:44p;" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
+			<h:commandButton style="position:absolute;top:400px;left:55px;z-index:99;width:128px;height:44px;" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
