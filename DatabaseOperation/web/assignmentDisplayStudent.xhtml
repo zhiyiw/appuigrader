@@ -153,10 +153,10 @@ function zipFileIfEmpty(){
         </p:column>
         
         <f:facet name="footer">  
-             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-			 <p:commandButton id="v1" value="Show Screenshot" update=":screenshot" oncomplete="lightbox.show()"/>
-             <p:commandButton id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
-             <p:commandButton id="v3" value="Compare" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
+             <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+			 <p:commandButton id="v1" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
+             <p:commandButton id="v2" value="Comaprison History" icon="ui-icon-bookmark" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
+             <p:commandButton id="v3" value="New Comaprison" icon="ui-icon-extlink" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
    <!--  </p:panel>  -->
@@ -165,38 +165,40 @@ function zipFileIfEmpty(){
     </p:outputPanel>
     
     
-    <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
+    <p:dialog  resizable="false" header="Comparison History" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
 	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
-	<p:dialog id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
 	</p:dialog>
     
-    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="test">  
+    <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" >  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
-  	<p:outputPanel layout="block" style="position:absolute;top:8%;left:38%">
+  	<p:outputPanel layout="block" style="position:absolute;top:25px;left:110px">
   	<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{gradestudentBean.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
     
-    <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:128px;left:56px; width:230px; height:100px; ">
+    <p:outputPanel layout="block" style="text-align:left;font-size:14px;word-wrap:break-word; word-break:break-all; position:absolute;top:100px;left:50px; width:230px; height:120px; ">
 <!--	<p:inputTextarea rows="0" cols="25" value="#{assignment.selectedAssignment.description}" />  -->  
   	 #{gradestudentBean.selectedAssignment.assignmentDes}
     </p:outputPanel>
     
     <p:outputPanel layout="block">
  	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
- 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:12%"/>
+ 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:11%"/>
  	</p:commandLink>
  	</p:outputPanel>
  	
  	<p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
- 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:9%"/>
+ 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:10%"/>
  	</p:commandLink>
  	</p:outputPanel>
   	</p:outputPanel>
+  	
+  	
     </p:dialog>
 	
 	
@@ -241,6 +243,6 @@ function zipFileIfEmpty(){
 
 
 </p:outputPanel>
-
+<script type="text/javascript" src="/js/retina.js"></script>
 </h:body>
 </html>

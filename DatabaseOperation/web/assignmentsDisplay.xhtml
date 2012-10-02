@@ -124,9 +124,9 @@ function zipFileIfEmpty(){
         </p:column>
         
         <f:facet name="footer">  
-             <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-             <p:commandButton id="v1" value="Update" icon="ui-icon-search" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
-             <p:commandButton id="v2" value="Delete" update=":confirm" oncomplete="confirmDlg.show()"/>
+             <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+             <p:commandButton id="v1" value="Update Assignment" icon="ui-icon-refresh" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
+             <p:commandButton id="v2" value="Delete Assignment" icon="ui-icon-closethick" update=":confirm" oncomplete="confirmDlg.show()"/>
         </f:facet>
         
         
@@ -199,9 +199,11 @@ function zipFileIfEmpty(){
 			
 <!-- 	<h:commandButton  id="next" onclick="addnew_page01.hide(); addnew_page02.show();"/> -->
 			
+
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
 			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			</p:outputPanel>
+
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
@@ -336,7 +338,7 @@ function zipFileIfEmpty(){
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="update_page02.hide()"  action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/update_s1.png'" onmouseout="this.src='images/update_s0.png'" onmousedown="this.src='images/update_s2.png'"  image="/images/update_s0.png"  onclick="update_page02.hide()"  action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
