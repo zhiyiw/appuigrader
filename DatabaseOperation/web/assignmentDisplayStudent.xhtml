@@ -129,6 +129,10 @@ function checkValue(){
         <p:column headerText="Rating" sortBy="#{a.assignmentRating}">
         	<p:rating value="#{a.assignmentRating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
+        
+        <p:column headerText="Point" sortBy="#{a.assignmentPoint}">
+        	#{a.assignmentPoint} px
+        </p:column>
                 
        	<p:column style="text-align: center;" headerText="Attempts">  
             #{a.assignmentTries}  

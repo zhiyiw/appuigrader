@@ -97,6 +97,10 @@ function canceldown(){
         	<p:rating value="#{a.rating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
         
+        <p:column headerText="Point" sortBy="#{a.point}">
+        	#{a.point} px
+        </p:column>
+        
         <f:facet name="footer">  
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
              <p:commandButton id="v1" value="Update" icon="ui-icon-search" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
