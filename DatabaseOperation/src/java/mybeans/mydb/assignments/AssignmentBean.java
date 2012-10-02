@@ -92,9 +92,9 @@ public class AssignmentBean {
 			//get assignment name
 			String name;	
 			if(count<10)
-				name = "Assignment0"+count;
+				name = "Assignment 0"+count;
 			else
-				name = "Assignment"+count;
+				name = "Assignment "+count;
 			assign.setAssignmentName(name);
 			count++;
 			//store all data into a List

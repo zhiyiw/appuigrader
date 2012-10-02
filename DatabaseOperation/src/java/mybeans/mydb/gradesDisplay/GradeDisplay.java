@@ -102,9 +102,9 @@ public class GradeDisplay {
 				
 				String name;	
 				if(count<10)
-					name = "Assignment0"+count;
+					name = "Assignment 0"+count;
 				else
-					name = "Assignment"+count;
+					name = "Assignment "+count;
 				
 				count++;
 				sam.setAssignmentName(name);
@@ -178,9 +178,9 @@ public class GradeDisplay {
 			
 			String name;	
 			if(count<10)
-				name = "Assignment0"+count;
+				name = "Assignment 0"+count;
 			else
-				name = "Assignment"+count;
+				name = "Assignment "+count;
 			
 			count++;
 			sam.setAssignmentName(name);
