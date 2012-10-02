@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>App UI Grader loading</title>
+
+
+<meta http-equiv="refresh" content="1; URL=assignmentDisplayStudent.xhtml" />
+</h:head>
+<h:body>
+
+<h:form>
+<p:remoteCommand name="lazyload" action="#{gradestudentBean.getStudentAssignmentList(login.username)}" />
+</h:form>
+
+
+<div id="loading" style="position:absolute; width:100%; text-align:center;">
+<img src="images/loading.gif" border="0" onLoad="lazyload()"/></div>
+
+
+</h:body>
+</html>

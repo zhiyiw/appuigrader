@@ -60,9 +60,12 @@
 
 
                 
-        <h:form layout="block" styleClass="student">
-        <h:commandButton value="Student Login" action="login.xhtml" image="/images/change_stu.png" />
-        </h:form>
+        <h:form layout="block" styleClass="back">
+      
+    <h:commandButton onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />
+    
+       
+       </h:form>
         
    
         

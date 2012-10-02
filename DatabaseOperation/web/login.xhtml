@@ -18,8 +18,11 @@
    <h:body>
         <p:outputPanel layout="block" styleClass="mainFrame">
              
-       <h:form layout="block" styleClass="sign">
-       <h:commandButton type="submit" onmouseover="this.src ='images/add_r1_c1_s2.png'" onmouseout="this.src='images/add_r1_c1.png'" onmousedown="this.src='images/add_r1_c1_s3.png'" action="register.xhtml" image="/images/add_r1_c1.png" />
+       <h:form layout="block" styleClass="back">
+      
+    <h:commandButton onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />
+    
+       
        </h:form>
         	
         	
@@ -69,8 +72,9 @@
         </p:outputPanel>
 
                 
-        <h:form layout="block" styleClass="teacher">
-        <h:commandButton value="Teacher Login" action="adminLogin.xhtml" image="/images/change_admin.png" />
+        <h:form layout="block" styleClass="sign">
+           <h:commandButton type="submit" onmouseover="this.src ='images/add_r1_c1_s2.png'" onmouseout="this.src='images/add_r1_c1.png'" onmousedown="this.src='images/add_r1_c1_s3.png'" action="register.xhtml" image="/images/add_r1_c1.png" />
+     
         </h:form>
         
    
