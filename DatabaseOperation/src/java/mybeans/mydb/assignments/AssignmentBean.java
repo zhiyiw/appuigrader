@@ -101,7 +101,8 @@ public class AssignmentBean {
 			list.add(assign);
 		}
 		con.close();
-		selectedAssignment = list.get(0);
+		if(!list.isEmpty())
+			selectedAssignment = list.get(0);
 		return list;
 	}
 	
