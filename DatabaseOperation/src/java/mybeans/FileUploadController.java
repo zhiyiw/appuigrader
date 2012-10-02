@@ -39,8 +39,8 @@ public class FileUploadController {
     public String selectedZipFilename = "Choose a file...";
     public String selectedImageFilename = "Choose a file...";
     public int point = 0;
-    public Integer rating = 1;
-    public String description = "init";
+    public Integer rating = 0;
+    public String description = "";
     private String document_dict;
     private String ss_dict;
     
@@ -183,7 +183,7 @@ public class FileUploadController {
             		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating);
             	}
             	else
-            		assbean.addAssignment(document_dict,this.description,null, point, rating);
+            		assbean.addAssignment(document_dict,this.description,"/images/noimage.png", point, rating);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -309,8 +309,8 @@ public class FileUploadController {
     	zipFile=null;
     	imageFile=null;
     	point=0;
-    	rating=1;
-    	description = "testReset";
+    	rating=0;
+    	description = "";
     	
     	selectedZipFilename="Choose a file...";
     	selectedImageFilename="Choose a file...";

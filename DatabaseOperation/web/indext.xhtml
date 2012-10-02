@@ -46,29 +46,32 @@
             
           
              <p:outputPanel layout="block" styleClass="gmail" >
-            <h:commandButton action="#{openid.login}" onmousedown="gmail()" id="openidGmail" image="/images/indext_gmail.png"/>
+            <h:commandButton title="Login via Gmail" action="#{openid.login}" onmousedown="gmail()" id="openidGmail" image="/images/indext_gmail.png"/>
+            <p:tooltip for="openidGmail" showEffect="fade" hideEffect="fade" />
             
                 </p:outputPanel>
           
              <p:outputPanel layout="block" styleClass="AOL">
-            <h:commandButton action="#{openid.login}" onmousedown="AOL()"  id="openid"  image="/images/indext_aol.png"/>
+            <h:commandButton title="Login via AOL" action="#{openid.login}" onmousedown="AOL()"  id="openid"  image="/images/indext_aol.png"/>
+            <p:tooltip for="openid" showEffect="fade" hideEffect="fade" />
            
             
                 </p:outputPanel>
              <p:outputPanel layout="block" styleClass="yahoo">
-            <h:commandButton action="#{openid.login}" onmousedown="yahoo()"  id="openidYahoo"  image="/images/indext_yahoo.png"/>
-           
+            <h:commandButton title="Login via Yahoo!" action="#{openid.login}" onmousedown="yahoo()"  id="openidYahoo"  image="/images/indext_yahoo.png"/>
+           	<p:tooltip for="openidYahoo" showEffect="fade" hideEffect="fade" />
+           	
             
                 </p:outputPanel>
              <p:outputPanel layout="block" styleClass="guest">
-            <h:commandButton action="#{openid.guestLogin()}"  id="openidGuest"  image="/images/indext_guest.png"/>
-           
+            <h:commandButton title="Login as a Guest (No compare result will be recorded)" action="#{openid.guestLogin()}"  id="openidGuest"  image="/images/indext_guest.png"/>
+            <p:tooltip for="openidGuest" showEffect="fade" hideEffect="fade" />
                 </p:outputPanel>
                 
               <p:outputPanel layout="block" styleClass="signup" >
       
-        <h:commandButton value="student Login" action="login.xhtml" image="/images/indext_signup.png" />
-   
+        <h:commandButton id="studentLogin" title="Login With Your UI Grader Account" value="student Login" action="login.xhtml" image="/images/indext_signup.png" />
+   		<p:tooltip for="studentLogin" showEffect="fade" hideEffect="fade" /> 
            </p:outputPanel>
             
             
@@ -77,7 +80,9 @@
         </p:outputPanel>
           <p:outputPanel layout="block" styleClass="teacher" >
         <h:form layout="block" >
-        <h:commandButton value="Teacher Login" action="adminLogin.xhtml" image="/images/change_admin.png" />
+        <h:commandButton id="adminLogin" title="Login as Admin" value="Teacher Login" action="adminLogin.xhtml" image="/images/change_admin.png" />
+                <p:tooltip for="adminLogin" showEffect="fade" hideEffect="fade" />
+        
         </h:form>
            </p:outputPanel>
         

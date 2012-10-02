@@ -84,8 +84,11 @@ function canceldown(){
 	
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="9"  
                  selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single"> 
+        <f:facet name="header">  
+            Assignment List  
+        </f:facet> 
         
-        <p:column headerText="Assignments" sortBy="#{a.assignmentName}">  
+        <p:column style="text-align: center;" headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
         
@@ -93,8 +96,12 @@ function canceldown(){
             #{a.description}
         </p:column>
         
-        <p:column headerText="Rating" sortBy="#{a.rating}">
+        <p:column style="width:250px !important;" headerText="Rating" sortBy="#{a.rating}">
         	<p:rating value="#{a.rating}" stars="5" cancel="false" readonly="true"/> 
+        </p:column>
+        
+        <p:column style="text-align: right; width:85px;" headerText="Point" sortBy="#{a.point}">
+        	#{a.point} px
         </p:column>
         
         <f:facet name="footer">  

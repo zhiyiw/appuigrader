@@ -118,7 +118,7 @@ function checkValue(){
         </f:facet>  
 		
         
-        <p:column headerText="Assignments" sortBy="#{a.assignmentName}">  
+        <p:column style="text-align: center;" headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
 
@@ -129,19 +129,23 @@ function checkValue(){
         <p:column headerText="Rating" sortBy="#{a.assignmentRating}">
         	<p:rating value="#{a.assignmentRating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
+        
+        <p:column style="text-align: right;" headerText="Point" sortBy="#{a.assignmentPoint}">
+        	#{a.assignmentPoint} px
+        </p:column>
                 
-       	<p:column headerText="Attempts">  
+       	<p:column style="text-align: center;" headerText="Attempts">  
             #{a.assignmentTries}  
         </p:column>
         
-        <p:column headerText="Current Status">  
+        <p:column style="text-align: center;" headerText="Current Status">  
             #{a.assignmentStatus}  
         </p:column>
         
         <f:facet name="footer">  
              <p:commandButton id="v" value="Show Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
 			 <p:commandButton id="v1" value="Show Screenshot" update=":screenshot" oncomplete="lightbox.show()"/>
-             <p:commandLink id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
+             <p:commandButton id="v2" value="Show History" icon="ui-icon-search" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
              <p:commandButton id="v3" value="Compare" icon="ui-icon-search" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
@@ -152,10 +156,10 @@ function checkValue(){
     
     
     <p:dialog  resizable="false" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
-	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}"/>
+	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
 	</p:dialog>
 	
-	<p:dialog id="screenshot" widgetVar="lightbox">
+	<p:dialog id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true'>
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}"></h:graphicImage>
 	</p:dialog>
     
