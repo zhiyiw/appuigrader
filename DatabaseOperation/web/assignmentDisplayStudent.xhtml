@@ -225,7 +225,7 @@ function zipFileIfEmpty(){
 			<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />
 			</p:outputPanel>
 			
-			<h:commandButton type="button" style="position:absolute;top:180px;left:75px;z-index:99;width:128px;height:44p;" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
+			<h:commandButton type="button" style="position:absolute;top:180px;left:75px;z-index:99;width:128px;height:44px;" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:180px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" action="#{compare.reset()}"/>
