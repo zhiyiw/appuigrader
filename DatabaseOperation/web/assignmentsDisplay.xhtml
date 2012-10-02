@@ -63,8 +63,17 @@ function cancelout(){
 function canceldown(){
 	document.buttonCancel.src="images/cancel_s2.png";
 }
-</script>
 
+function zipFileIfEmpty(){
+	var value = $('[id="formAdd:out1"]').html();
+	if(value=="Choose a file..."){
+		alert(value);
+		console.log("need");
+	}else{
+		$('[id="formAdd:next"]').trigger('click');
+	}
+}
+</script>
 	
 </h:head>
 <h:body>
@@ -172,8 +181,10 @@ function canceldown(){
 
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="addnew_page01.hide(); addnew_page02.show();"/>
+			<h:commandButton id="next" type="button" onclick="addnew_page01.hide(); addnew_page02.show();"/>
 			</p:outputPanel>
+			
+			<h:commandButton style="position:absolute;top:400px;left:55px;z-index:99" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>

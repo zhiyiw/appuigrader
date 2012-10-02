@@ -70,6 +70,16 @@ function checkValue(){
 		alert('you need to upload your *.zip file!');
 }
 
+function zipFileIfEmpty(){
+	var value = $('[id="formCompare:out1"]').html();
+	if(value=="Choose a file..."){
+		alert(value);
+		console.log("need");
+	}else{
+		$('[id="formCompare:next"]').trigger('click');
+	}
+}
+
 </script>
 
 	
@@ -193,7 +203,7 @@ function checkValue(){
 	
 		<p:dialog  resizable="false" widgetVar="updateUI" id="updateDialog" width="440" height="300" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:282px;width:412px" layout="block">
-        <h:form enctype="multipart/form-data">
+        <h:form enctype="multipart/form-data" id="formCompare">
         <p:outputPanel layout="block" style="position:absolute;top:110px;left:45px">
     		<p:fileUpload fileUploadListener="#{compare.handleZipUpload}"
             	mode="advanced"
@@ -210,10 +220,10 @@ function checkValue(){
 			</p:outputPanel>
 			<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
 			<p:outputPanel layout="block" style="position:absolute;top:180px;left:75px">
-
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" image="/images/upload_s0.png" />
-
+			<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />
 			</p:outputPanel>
+			
+			<h:commandButton style="position:absolute;top:180px;left:75px;z-index:99" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:180px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" action="#{compare.reset()}"/>
