@@ -85,6 +85,14 @@ public class GradeDisplay {
 				StudentAssignmentModel sam = new StudentAssignmentModel();
 				sam.setAssignmentID(result.getInt("a_id"));
 				sam.setAssignmentDes(result.getString("description"));
+				String temp = sam.getAssignmentDes();
+				
+				if(temp.length()>30){
+					sam.setAssignmentShortDes(temp.substring(0, 29)+" ...");
+				}else
+					sam.setAssignmentShortDes(temp);
+				
+				
 				sam.setAssignmentTries(0);
 				sam.setAssignmentDirectory(result.getString("document_dict"));
 				sam.setAssignmentHistory("No compare history!");
@@ -102,9 +110,9 @@ public class GradeDisplay {
 				
 				String name;	
 				if(count<10)
-					name = "Assignment0"+count;
+					name = "Assignment 0"+count;
 				else
-					name = "Assignment"+count;
+					name = "Assignment "+count;
 				
 				count++;
 				sam.setAssignmentName(name);
@@ -128,6 +136,13 @@ public class GradeDisplay {
 			StudentAssignmentModel sam = new StudentAssignmentModel();
 			sam.setAssignmentID(result.getInt("a_id"));
 			sam.setAssignmentDes(result.getString("description"));
+			String temp = sam.getAssignmentDes();
+			
+			if(temp.length()>30){
+				sam.setAssignmentShortDes(temp.substring(0, 29)+" ...");
+			}else
+				sam.setAssignmentShortDes(temp);
+			
 			sam.setAssignmentTries(result.getInt("try_count"));
 			sam.setAssignmentDirectory(result.getString("document_dict"));
 			sam.setAssignmentPoint(result.getInt("point"));
@@ -178,9 +193,9 @@ public class GradeDisplay {
 			
 			String name;	
 			if(count<10)
-				name = "Assignment0"+count;
+				name = "Assignment 0"+count;
 			else
-				name = "Assignment"+count;
+				name = "Assignment "+count;
 			
 			count++;
 			sam.setAssignmentName(name);

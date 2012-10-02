@@ -47,7 +47,14 @@ public class StudentAssignmentModel {
 	public int assignmentRating;
 	public String assignmentHistory;
 	public int assignmentPoint;
+	public String assignmentShortDes;
 	
+	public String getAssignmentShortDes() {
+		return assignmentShortDes;
+	}
+	public void setAssignmentShortDes(String assignmentShortDes) {
+		this.assignmentShortDes = assignmentShortDes;
+	}
 	public int getAssignmentPoint() {
 		return assignmentPoint;
 	}

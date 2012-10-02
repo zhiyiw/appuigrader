@@ -112,7 +112,7 @@ function zipFileIfEmpty(){
         </p:column>
         
         <p:column headerText="Description">
-            #{a.description}
+            #{a.shortDescription}
         </p:column>
         
         <p:column style="width:250px !important;" headerText="Rating" sortBy="#{a.rating}">
@@ -120,7 +120,7 @@ function zipFileIfEmpty(){
         </p:column>
         
         <p:column style="text-align: right; width:85px;" headerText="Point" sortBy="#{a.point}">
-        	#{a.point} px
+        	#{a.point} pts
         </p:column>
         
         <f:facet name="footer">  
@@ -354,8 +354,7 @@ function zipFileIfEmpty(){
 
 	<ui:include src="/toolBarAdmin.xhtml" />
 </div>
-	
-  	
+
 </p:outputPanel>
 
 

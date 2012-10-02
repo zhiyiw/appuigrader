@@ -10,6 +10,14 @@ public class Assignment {
 	public String screenDirectory;//screenshot directory
 	public int point;
 	public int rating;
+	public String shortDescription;
+	
+	public String getShortDescription() {
+		return shortDescription;
+	}
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
 	public int getAssignmentID() {
 		return assignmentID;
 	}

@@ -75,6 +75,14 @@ public class AssignmentBean {
 		while(result.next()){
 			Assignment assign = new Assignment();
 			assign.setDescription(result.getString("description"));
+			String temp = assign.getDescription();
+			
+			if(temp.length()>50){
+				assign.setShortDescription(temp.substring(0, 49)+" ...");
+			}else
+				assign.setShortDescription(temp);
+			
+			
 			assign.setAssignmentID(result.getInt("a_id"));
 			assign.setAssignmentDirectory(result.getString("document_dict"));			
 		    //get screenshot directory
@@ -92,9 +100,9 @@ public class AssignmentBean {
 			//get assignment name
 			String name;	
 			if(count<10)
-				name = "Assignment0"+count;
+				name = "Assignment 0"+count;
 			else
-				name = "Assignment"+count;
+				name = "Assignment "+count;
 			assign.setAssignmentName(name);
 			count++;
 			//store all data into a List
