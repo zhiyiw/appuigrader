@@ -68,7 +68,7 @@ function zipFileIfEmpty(){
 	var value = $('[id="formAdd:out1"]').html();
 	var v = $('[id="formAdd:description"]').val();
 	if(value=="Choose a file..."){
-		alert(value);
+		alert("please upload a zip file");
 	}else if(v==""){
 		alert("please add description");
 	}else{
@@ -80,10 +80,9 @@ function zipFileIfEmpty(){
 			addnew_page02.show();
 			i=1;
 		}
-//		addnew_page01.hide(); 
-//		addnew_page02.show();
 	}
 }
+
 </script>
 	
 </h:head>
