@@ -6,19 +6,40 @@
 
 <h:head>
 <title>App UI Grader: Profile</title>
-
+<link rel="stylesheet/less" type="text/css" href="css/profileDisplay.less" ></link>
+    
+<script src="js/less.js" type="text/javascript"></script>
 
 </h:head>
 <h:body>
+  <p:outputPanel layout="block" styleClass="mainFrame">
+   
+  <p:outputPanel layout="block" styleClass="Panel">
+<h:outputText value="User ID: " />#{profileBean.pm.userID}<br />
+<h:outputText value="Total Attemps: " />#{profileBean.pm.totalAttempts}<br />
+<h:outputText value="Completeness Percentage: " />#{profileBean.pm.completenessPercent} %<br />
+<h:outputText value="Highest Rating: " />#{profileBean.pm.highestRating}<br />
+<h:outputText value="Success Rate: " />#{profileBean.pm.successRate} %<br />
+<div style="font-size:35px;color:#ffffff;float:left; height:70px;width:300px;margin-top:10px; margin-left:-50px;" >
+<h:outputText value="Total Score: " />#{profileBean.pm.totalScore}<br />
+
+</div>
+
+</p:outputPanel>
 
 
-<h:outputText value="User ID:" />#{profileBean.pm.userID}<br />
-<h:outputText value="Total Attemps:" />#{profileBean.pm.totalAttempts}<br />
-<h:outputText value="Completeness Percentage:" />#{profileBean.pm.completenessPercent} %<br />
-<h:outputText value="Highest Rating:" />#{profileBean.pm.highestRating}<br />
-<h:outputText value="Success Rate:" />#{profileBean.pm.successRate} %<br />
-<h:outputText value="Total Score:" />#{profileBean.pm.totalScore}<br />
 
-<ui:include src="/toolBar.xhtml" />
+  <h:form layout="block" styleClass="back">
+      
+    <h:commandButton onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s02.png'" action="assignmentDisplayStudent.xhtml" image="images/return_button_s01.png" />
+  </h:form>
+
+
+ <p:outputPanel layout="block" styleClass="Firstname">
+  <h:outputText value="Welcome,  " />#{openid.openIdFirstName}<br />
+  </p:outputPanel>
+
+</p:outputPanel>
+
 </h:body>
 </html>
