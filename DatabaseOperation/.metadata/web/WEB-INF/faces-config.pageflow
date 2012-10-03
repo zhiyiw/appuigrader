@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13448391558640" configfile="/123/web/WEB-INF/faces-config.xml">
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13448391558640" configfile="/appuigrader/web/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="946" id="pf13448392083901" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf13456848431330 pf13456848431331 pf13456848431332 pf13491403838500" inlinks="pf13448392083904" path="/login.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="assignmentDisplayStudent.xhtml" x="122" y="178" id="pf13448392083905" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf13491403838501 pf13491403838502" path="/assignmentDisplayStudent.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="loginErr" x="122" y="562" id="pf13448392083906" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="/loginErr.jsp"/>
@@ -13,16 +13,16 @@
   <nodes xsi:type="pageflow:PFPage" name="adminLoginLoading.xhtml" x="554" y="1714" id="pf13456952792041" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13456952792040 pf13456955551062" path="/adminLoginLoading.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="assignmentsDisplay.xhtml" x="338" y="1714" id="pf13456955551063" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13456955551062" path="/assignmentsDisplay.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="indext.xhtml" x="338" y="562" id="pf13491403838514" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf13491403838513" inlinks="pf13491403838502 pf13491403838500 pf13491410937997" path="/indext.xhtml"/>
-  <links id="pf13448392083904" target="pf13448392083901" source="pf134483920839110" outcome="true"/>
-  <links id="pf13456848431330" target="pf13456848431335" source="pf13448392083901" outcome="0"/>
-  <links id="pf13456848431331" target="pf13456848431346" source="pf13448392083901" outcome="2"/>
-  <links id="pf13456848431347" target="pf13456848431346" source="pf13456848431348" outcome="0"/>
-  <links id="pf13456848431332" target="pf134568484313410" source="pf13448392083901" outcome="1"/>
-  <links id="pf13456952792040" target="pf13456952792041" source="pf13456848431348" outcome="1"/>
-  <links id="pf13456955551062" target="pf13456952792041" source="pf13456955551063" outcome="true"/>
-  <links id="pf13491403838501" target="pf134484049264015" source="pf13448392083905" outcome="true"/>
-  <links id="pf13491403838502" target="pf13491403838514" source="pf13448392083905" outcome="Logout" redirect="true"/>
-  <links id="pf13491403838513" target="pf134568484313410" source="pf13491403838514" outcome="guest"/>
-  <links id="pf13491403838500" target="pf13491403838514" source="pf13448392083901" outcome="Logout"/>
-  <links id="pf13491410937997" target="pf13491403838514" source="pf13456848431348" outcome="Logout"/>
+  <links id="pf13448392083904" target="pf13448392083901" source="pf134483920839110"/>
+  <links id="pf13456848431330" target="pf13456848431335" source="pf13448392083901"/>
+  <links id="pf13456848431331" target="pf13456848431346" source="pf13448392083901"/>
+  <links id="pf13456848431347" target="pf13456848431346" source="pf13456848431348"/>
+  <links id="pf13456848431332" target="pf134568484313410" source="pf13448392083901"/>
+  <links id="pf13456952792040" target="pf13456952792041" source="pf13456848431348"/>
+  <links id="pf13456955551062" target="pf13456952792041" source="pf13456955551063"/>
+  <links id="pf13491403838501" target="pf134484049264015" source="pf13448392083905"/>
+  <links id="pf13491403838502" target="pf13491403838514" source="pf13448392083905"/>
+  <links id="pf13491403838513" target="pf134568484313410" source="pf13491403838514"/>
+  <links id="pf13491403838500" target="pf13491403838514" source="pf13448392083901"/>
+  <links id="pf13491410937997" target="pf13491403838514" source="pf13456848431348"/>
 </pageflow:Pageflow>

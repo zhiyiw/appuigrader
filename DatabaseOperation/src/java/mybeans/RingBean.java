@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name="ringBean")
 @ApplicationScoped
+
 public class RingBean {
 	private List<String> coders;
 	public RingBean(){

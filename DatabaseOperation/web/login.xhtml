@@ -44,7 +44,7 @@
 			<p:outputPanel>
             	<p:outputPanel>
             <h:outputLabel value="UO ID"></h:outputLabel>
-        	<p:inputText id="username" value="#{login.username}" title="Enter Your Username" required="true" requiredMessage="Username is required" styleClass="name"/>
+        	<p:inputText id="username" value="#{login.username}" title="Enter Your Username" required="true" requiredMessage="         Username is required" styleClass="name"/>
         	<p:tooltip for="username" showEvent="focus" hideEvent="blur" />  
         		</p:outputPanel>
         	<h:message for="username"  styleClass="missName"/>
@@ -52,8 +52,8 @@
         	</p:outputPanel>
         	
         	<p:outputPanel>
-        	<h:outputLabel value="Last Name"></h:outputLabel>
-        	<p:password id="password" value="#{login.password}" title="Enter Your Password" required="true" requiredMessage="Password is required" validatorMessage="The length of password should be at least 6 chars!!" styleClass="pass">	
+        	<h:outputLabel value="Password"></h:outputLabel>
+        	<p:password id="password" value="#{login.password}" title="Enter Your Password" required="true" requiredMessage="         Password is required" validatorMessage="The length of password should be at least 6 chars!!" styleClass="pass">	
         	<p:tooltip for="password" showEvent="focus" hideEvent="blur" />  
         	</p:password>
         	<h:message for="password" />

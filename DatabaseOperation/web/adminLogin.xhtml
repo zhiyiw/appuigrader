@@ -33,20 +33,23 @@
         	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectTerm}">
    				<f:selectItems value="#{menuoption.getTermList()}" /> 
    			</h:selectOneMenu>
+    	    <br />
     	    
-    	    
-    	    <br /><br />
+    	   
 			
-            <h:outputLabel value="UO ID"></h:outputLabel>
+            <h:outputLabel value="Admin"></h:outputLabel>
         	<p:inputText id="username" value="#{adminlogin.adminusername}" title="Enter Your Username" required="true" requiredMessage="Username is required" styleClass="name"/>
         	<p:tooltip for="username" showEvent="focus" hideEvent="blur" />
         	<h:message for="username" />
         	<br />
-        	<h:outputLabel value="Last Name"></h:outputLabel>
+     
+        	<h:outputLabel value="Password"></h:outputLabel>
         	<p:password id="password" value="#{adminlogin.adminpassword}" title="Enter Your Password" required="true" requiredMessage="Password is required" styleClass="pass"/>
         	<p:tooltip for="password" showEvent="focus" hideEvent="blur" />
         	<h:message for="password" />
         	<br /><br />
+        	<br />
+        	
         	<p:outputPanel layout="block" styleClass="submit">
         	<h:commandButton value="Login" type="submit" action="#{adminlogin.loginCheck}" image="/images/login_s0.png" onmouseover="this.src ='images/login_s1.png'" onmouseout="this.src='images/login_s0.png'" onmousedown="this.src='images/login_s2.png'"/>
         	</p:outputPanel>
