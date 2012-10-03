@@ -28,17 +28,17 @@
         	
         	<p:outputPanel layout="block" styleClass="loginPanel">
         	<h:form id="loginPage" enctype="multipart/form-data">
-				
-			<h:outputLabel value="Year "></h:outputLabel>
-        	<h:selectOneMenu value="#{menuoption.selectYear}">
+			<!-- 	<p:outputPanel layout="block" style="visibility:hidden;" > -->
+			<h:outputLabel styleClass="hidden" value="Year "></h:outputLabel>
+        	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectYear}">
    				<f:selectItems value="#{menuoption.getYearList()}" />
    			</h:selectOneMenu>
     	    
-    	   	<h:outputLabel value="Term "></h:outputLabel>
-        	<h:selectOneMenu value="#{menuoption.selectTerm}">
+    	   	<h:outputLabel styleClass="hidden" value="Term "></h:outputLabel>
+        	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectTerm}">
    				<f:selectItems value="#{menuoption.getTermList()}" />
    			</h:selectOneMenu>
-    	    
+    	   <!--  </p:outputPanel> -->
     	    <br /><br />
 			
 			<p:outputPanel>
