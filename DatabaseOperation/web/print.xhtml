@@ -28,7 +28,7 @@
 	height:16px;
 	width:16px;
 }	
-
+*/
 .hori {
 	background:url(images/HorizontalArrangement.png)!important;
 	border-radius:0;
@@ -49,7 +49,35 @@
 	height:16px;
 	width:16px;
 }
- */
+
+.listpicker {
+	background:url(images/TableArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}
+
+.tinywebdb {
+	background:url(images/TableArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}
+
+.emailpicker {
+	background:url(images/TableArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}
+
+.videoplayer {
+	background:url(images/TableArrangement.png)!important;
+	border-radius:0;
+	height:16px;
+	width:16px;
+}
+
 </style>
 
 </h:head>
@@ -195,7 +223,7 @@ document.onkeydown = function() {
 				<h:outputText value="#{node1}"/>
 			</p:treeNode>
 			
-			<p:treeNode type="EmailPicker" icon="button">
+			<p:treeNode type="EmailPicker" icon="emailpicker">
 				<h:outputText value="#{node1}"/>
 			</p:treeNode>
 			
@@ -207,7 +235,7 @@ document.onkeydown = function() {
 				<h:outputText value="#{node1}"/>
 			</p:treeNode>
 			
-			<p:treeNode type="VideoPlayer" icon="button">
+			<p:treeNode type="VideoPlayer" icon="videoplayer">
 				<h:outputText value="#{node1}"/>
 			</p:treeNode>
 			
@@ -357,7 +385,7 @@ document.onkeydown = function() {
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
-			<p:treeNode type="CheckBox" icon="button">
+			<p:treeNode type="CheckBox" icon="checkbox">
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
@@ -369,11 +397,11 @@ document.onkeydown = function() {
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
-			<p:treeNode type="ListPicker" icon="button">
+			<p:treeNode type="ListPicker" icon="listpicker">
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
-			<p:treeNode type="Image" icon="button">
+			<p:treeNode type="Image" icon="image">
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
@@ -481,7 +509,7 @@ document.onkeydown = function() {
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
-			<p:treeNode type="TinyWebDB" icon="button">
+			<p:treeNode type="TinyWebDB" icon="tinywebdb">
 				<h:outputText value="#{node2}"/>
 			</p:treeNode>
 			
