@@ -41,7 +41,18 @@ public class FileUploadController {
     public int point = 0;
     public Integer rating = 0;
     public String description = "";
-    private String document_dict;
+    public String thumbnail = "/images/noimage.png";
+    
+    public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+
+	private String document_dict;
     private String ss_dict;
     
 
@@ -285,6 +296,32 @@ public class FileUploadController {
     public void handleImageUpload(FileUploadEvent event) {  
     	imageFile=event.getFile();
     	selectedImageFilename=event.getFile().getFileName();
+    	
+        // Prepare filename prefix and suffix for an unique filename in upload folder.
+        String prefix = "thumbnail";
+        String suffix;
+        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        // Prepare file and outputstream.
+        File file = null;
+        OutputStream output = null;
+        if(imageFile!=null){
+        	try{				
+        		String deploymentDirectoryPath=ctx.getRealPath("/")+"TempThumb";
+        		File target = new File(deploymentDirectoryPath);
+        		if(!target.exists())
+        			target.mkdir();
+        		suffix = FilenameUtils.getExtension(imageFile.getFileName());
+        		file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
+        		output = new FileOutputStream(file);
+        		IOUtils.copy(imageFile.getInputstream(), output);
+        		thumbnail = "/TempThumb/"+file.getName();
+        	}catch (IOException e) {
+              // Cleanup.
+              if (file != null) file.delete();
+      		}finally{
+      			IOUtils.closeQuietly(output);
+      		}
+        }
     }
     
     public void descriptionHandler(ValueChangeEvent event){
@@ -298,6 +335,7 @@ public class FileUploadController {
     	description = targetAss.description;
     	point = targetAss.point;
     	rating = targetAss.rating;
+    	thumbnail = ss_dict;
     }
     
 
@@ -307,7 +345,7 @@ public class FileUploadController {
     	point=0;
     	rating=0;
     	description = "";
-    	
+    	thumbnail = "/images/noimage.png";
     	selectedZipFilename="Choose a file...";
     	selectedImageFilename="Choose a file...";
     }

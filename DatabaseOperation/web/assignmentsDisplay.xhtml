@@ -66,9 +66,11 @@ function canceldown(){
 
 function zipFileIfEmpty(){
 	var value = $('[id="formAdd:out1"]').html();
+	var v = $('[id="formAdd:description"]').val();
 	if(value=="Choose a file..."){
 		alert(value);
-		console.log("need");
+	}else if(v==""){
+		alert("please add description");
 	}else{
 		console.log('triggered');
 		var i=0;
@@ -77,7 +79,6 @@ function zipFileIfEmpty(){
    	 		addnew_page01.hide();
 			addnew_page02.show();
 			i=1;
-			return false;
 		}
 //		addnew_page01.hide(); 
 //		addnew_page02.show();
@@ -125,6 +126,7 @@ function zipFileIfEmpty(){
         
         <f:facet name="footer">  
              <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
+             <p:commandButton id="v3" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
              <p:commandButton id="v1" value="Update Assignment" icon="ui-icon-refresh" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
              <p:commandButton id="v2" value="Delete Assignment" icon="ui-icon-closethick" update=":confirm" oncomplete="confirmDlg.show()"/>
         </f:facet>
@@ -144,6 +146,10 @@ function zipFileIfEmpty(){
     </h:form>
     </p:dialog>
 	
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="400" height="500">
+	<h:graphicImage value="#{assignment.selectedAssignment.screenDirectory}" width="400" height="500"></h:graphicImage>
+
+	</p:dialog>
     
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" draggable="false" resizable="false" styleClass="test">  
   	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel.png);height:312px;width:312px" layout="block"> 
@@ -186,13 +192,11 @@ function zipFileIfEmpty(){
 			
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
-				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
+				<p:inputTextarea id="description" rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
-    			style="background:transparent; border-style:none !important; box-shadow: none !important;"
-    			autofocus="autofocus"
-    			required="true">
+    			style="background:transparent; border-style:none !important; box-shadow: none !important;">
     			<br/>   
-    			<p:ajax event="blur" process="@this"/>
+    			<p:ajax event="blur" update=":dialog_02" process="@this"/>
     			</p:inputTextarea>
 				<h:outputText id="counter" /> 
 				
@@ -203,7 +207,7 @@ function zipFileIfEmpty(){
 			
 
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();return false;"/>
 			</p:outputPanel>
 
 			
@@ -227,12 +231,16 @@ function zipFileIfEmpty(){
             	required="true"
             	showButtons="false"
             	auto="true"
-            	update="out2"
+            	update="out2,thumbnail"
             	widgetVar="fileuplaod_wgt"
             	/>
 		</p:outputPanel>
 			<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out2" value="#{controller.selectedImageFilename}" /> 
+				</p:outputPanel>
+				
+				<p:outputPanel layout="block" style="position:absolute;right:55px;top:100px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
+				<h:graphicImage id="thumbnail" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
 				</p:outputPanel>
 				
 			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
@@ -244,9 +252,7 @@ function zipFileIfEmpty(){
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
             </p:outputPanel>
-				
-			
-            
+
 			
 			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="update_page02.hide()"  action="#{controller.addNew()}" />
@@ -284,13 +290,13 @@ function zipFileIfEmpty(){
 			</p:outputPanel>
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
-				<p:inputTextarea rows="6" cols="41" counter="counter2" maxlength="140"       
+				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
     			style="background:transparent; border-style:none !important; box-shadow: none !important;">
     			<br/>   
-    			<p:ajax event="blur" process="@this"/>
+    			<p:ajax event="blur" update=":dialog_02" process="@this"/>
     			</p:inputTextarea>
-				<h:outputText id="counter2" /> 
+				<h:outputText id="counter" /> 
 				
 			</p:outputPanel>
 		
@@ -318,13 +324,17 @@ function zipFileIfEmpty(){
             	required="true"
             	showButtons="false"
             	auto="true"
-            	update="out4"
+            	update="out4,thumbnail2"
             	widgetVar="fileuplaod_wgt"
             	/>
 		</p:outputPanel>
 		<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out4" value="#{controller.selectedImageFilename}" /> 
 			</p:outputPanel>
+			
+				<p:outputPanel layout="block" style="position:absolute;right:55px;top:100px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
+				<h:graphicImage id="thumbnail2" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
+				</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
 			
