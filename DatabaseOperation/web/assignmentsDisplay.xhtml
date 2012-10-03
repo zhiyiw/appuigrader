@@ -114,7 +114,7 @@ function clearErrorMsg(){
     </p:commandLink>
     </p:outputPanel>
       
-	<p:outputPanel layout="block" styleClass="ring">
+	<p:outputPanel layout="block" styleClass="assignment_table">
 	
 	<h:form id="form">
 	
@@ -162,8 +162,11 @@ function clearErrorMsg(){
     </h:form>
     </p:dialog>
 	
-	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="430" height="500">
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="434" height="508">
 	<h:graphicImage value="#{assignment.selectedAssignment.screenDirectory}" width="400" height="500"></h:graphicImage>
+	
+	
+	
 
 	</p:dialog>
     <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="detail" >  
@@ -191,11 +194,11 @@ function clearErrorMsg(){
 	
 	
 	
-	<p:dialog  resizable="false" widgetVar="addnew_page01" width="450" height="470" modal="true" showHeader="false" draggable="false" >  
+	<p:dialog styleClass="detail" resizable="false" widgetVar="addnew_page01" width="450" height="520" modal="true" showHeader="false" draggable="false" >  
 		
-		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
+		<p:outputPanel style="background-image:url(images/add_assignment.png);height:500px;width:412px" layout="block">
         <h:form id="formAdd" enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:160px;left:45px">
     		<p:fileUpload fileUploadListener="#{controller.handleZipUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -212,10 +215,10 @@ function clearErrorMsg(){
 		<h:outputText id="out1" value="#{controller.selectedZipFilename}" /> 
 			</p:outputPanel>
 			
-			<p:outputPanel id="errorMsg1" layout="block" style="position:absolute;top:170px;left:45px;height:25px;width:100%;" />
-			<p:outputPanel id="errorMsg2" layout="block" style="position:absolute;top:345px;left:45px;height:25px;width:100%;" />
+			<p:outputPanel id="errorMsg1" layout="block" style="position:absolute;top:170px;left:200px;height:25px;width:180px;" />
+			<p:outputPanel id="errorMsg2" layout="block" style="position:absolute;top:170px;left:200px;height:25px;width:190px;" />
 			
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
+			<p:outputPanel layout="block" style="position:absolute;left:45px;top:263px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
 				<p:inputTextarea id="description" rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
@@ -231,12 +234,12 @@ function clearErrorMsg(){
 <!-- 	<h:commandButton  id="next" onclick="addnew_page01.hide(); addnew_page02.show();"/> -->
 			
 
-			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
 			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();return false;"/>
 			</p:outputPanel>
 
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
@@ -244,10 +247,10 @@ function clearErrorMsg(){
 		</p:outputPanel>
 	</p:dialog>
 	
-	<p:dialog  resizable="false" id="dialog_02" widgetVar="addnew_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/add_assignment2.png);height:450px;width:412px" layout="block">
+	<p:dialog styleClass="detail" resizable="false" id="dialog_02" widgetVar="addnew_page02" width="450" height="520" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/add_assignment2.png);height:500px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:160px;left:45px">
     		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -264,26 +267,26 @@ function clearErrorMsg(){
 		<h:outputText id="out2" value="#{controller.selectedImageFilename}" /> 
 				</p:outputPanel>
 				
-				<p:outputPanel layout="block" style="position:absolute;right:55px;top:100px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
+				<p:outputPanel layout="block" style="position:absolute;right:70px;top:120px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
 				<h:graphicImage id="thumbnail" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
 				</p:outputPanel>
 				
-			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
+			<p:outputPanel layout="block" style="position:absolute;left:55px;top:326px; border-style:none !important; box-shadow: none !important;">	
 			
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
         	</p:outputPanel>
         	
-        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
+        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:386px; border-style:none !important; box-shadow: none !important;">	
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
             </p:outputPanel>
 
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="update_page02.hide()"  action="#{controller.addNew()}" />
 			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
@@ -294,10 +297,10 @@ function clearErrorMsg(){
 
 
 <!-- update dialog -->
-<p:dialog  id="updateDlg_01" resizable="false" widgetVar="update_page01" width="450" height="470" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/add_assignment.png);height:450px;width:412px" layout="block">
+<p:dialog styleClass="detail" id="updateDlg_01" resizable="false" widgetVar="update_page01" width="450" height="520" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/update_assignment.png);height:500px;width:412px" layout="block">
         <h:form id="formUpdate" enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px;">
+        <p:outputPanel layout="block" style="position:absolute;top:160px;left:45px;">
     		<p:fileUpload fileUploadListener="#{controller.handleZipUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -313,7 +316,7 @@ function clearErrorMsg(){
 		<p:outputPanel layout="block" styleClass="filename" >
 		<h:outputText id="out3" value="#{controller.selectedZipFilename}" /> 
 			</p:outputPanel>
-			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
+			<p:outputPanel layout="block" style="position:absolute;left:45px;top:263px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
@@ -325,11 +328,11 @@ function clearErrorMsg(){
 				
 			</p:outputPanel>
 		
-			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
 			<h:commandButton type="button" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png" onclick="update_page01.hide(); update_page02.show();"/>
 			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
@@ -337,10 +340,10 @@ function clearErrorMsg(){
 		</p:outputPanel>
 	</p:dialog>
 	
-	<p:dialog  resizable="false" id="updateDlg_02" widgetVar="update_page02" width="450" height="470" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/add_assignment2.png);height:450px;width:412px" layout="block">
+	<p:dialog styleClass="detail" resizable="false" id="updateDlg_02" widgetVar="update_page02" width="450" height="520" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/update_assignment2.png);height:500px;width:412px" layout="block">
         <h:form enctype="multipart/form-data">
-        <p:outputPanel layout="block" style="position:absolute;top:120px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:160px;left:45px">
     		<p:fileUpload fileUploadListener="#{controller.handleImageUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -357,16 +360,16 @@ function clearErrorMsg(){
 		<h:outputText id="out4" value="#{controller.selectedImageFilename}" /> 
 			</p:outputPanel>
 			
-				<p:outputPanel layout="block" style="position:absolute;right:55px;top:100px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
+				<p:outputPanel layout="block" style="position:absolute;right:70px;top:120px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
 				<h:graphicImage id="thumbnail2" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
 				</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
+			<p:outputPanel layout="block" style="position:absolute;left:55px;top:326px; border-style:none !important; box-shadow: none !important;">	
 			
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
         	</p:outputPanel>
         	
-        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
+        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:386px; border-style:none !important; box-shadow: none !important;">	
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
             	</p:outputPanel>
@@ -374,11 +377,11 @@ function clearErrorMsg(){
 			
             
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
 			<h:commandButton type="submit" onmouseover="this.src ='images/update_s1.png'" onmouseout="this.src='images/update_s0.png'" onmousedown="this.src='images/update_s2.png'"  image="/images/update_s0.png"  onclick="update_page02.hide()"  action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
 			</p:outputPanel>
 			
-			<p:outputPanel layout="block" style="position:absolute;top:400px;right:59px">
+			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			

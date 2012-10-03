@@ -122,7 +122,7 @@ function zipFileIfEmpty(){
     	<h:commandButton action="profileLoading.xhtml" value="Profile" />
 	</h:form> -->
 	 
-	<p:outputPanel layout="block" styleClass="ring">
+	<p:outputPanel layout="block" styleClass="assignment_table">
 	<h:form>
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
@@ -175,7 +175,7 @@ function zipFileIfEmpty(){
 	</p:dialog>
 	
 
-	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="430" height="500">
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="432" height="505">
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
 
 	</p:dialog>
