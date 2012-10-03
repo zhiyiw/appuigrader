@@ -136,11 +136,11 @@ function zipFileIfEmpty(){
             #{a.assignmentShortDes}  
         </p:column>
         
-        <p:column headerText="Rating" sortBy="#{a.assignmentRating}">
+        <p:column headerText="Difficult" sortBy="#{a.assignmentRating}">
         	<p:rating value="#{a.assignmentRating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
         
-        <p:column style="text-align: right;" headerText="Point" sortBy="#{a.assignmentPoint}">
+        <p:column style="text-align: right;" headerText="Score" sortBy="#{a.assignmentPoint}">
         	#{a.assignmentPoint} pts
         </p:column>
                 
