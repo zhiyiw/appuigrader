@@ -468,8 +468,6 @@ public class compareUI {
 
 	public ArrayList<Component> addComp(Component comp,
 			ArrayList<Component> list) {
-		// ArrayList<Component> temp = new ArrayList<Component>();
-
 		int i;
 
 		if (comp.list.size() > 0) {
@@ -480,12 +478,25 @@ public class compareUI {
 			}
 
 		}
-
 		return list;
+	}
+	
+	public void replaceComp(Component orig, Component comp){
+		int i;
+		
+		for(i=0; i < orig.list.size(); i++) {
+			if(orig.getPosition() == comp.getPosition()) {
+				orig.setPosition(comp.getPosition());
+				break;
+			}
+			
+			replaceComp(orig.list.get(i), comp);
+		}
 	}
 
 	public String comparePosition(ArrayList<Component> origin,
 			ArrayList<Component> target) {
+		
 		String result = "";
 		StringBuffer temp = new StringBuffer();
 		ArrayList<Component> l1 = new ArrayList<Component>();
@@ -493,42 +504,45 @@ public class compareUI {
 		int i;
 		int size = origin.size();
 
-		System.out.println(size);
-		for (i = 0; i < size; i++) {
-			System.out.println(origin.get(i).getType());
-			System.out.println(origin.get(i).list.size());
-
-		}
+//		System.out.println(size);
+//		for (i = 0; i < size; i++) {
+//			System.out.println(origin.get(i).getType());
+//			System.out.println(origin.get(i).list.size());
+//
+//		}
 
 		Component c1 = new Component();
 		Component c2 = new Component();
 
 		l1 = addComp(origin.get(size - 1), list1);
 		l2 = addComp(target.get(size - 1), list2);
-
-		// for(i=0;i<size;i++){
-		//
-		// System.out.println("COMP: " + l1.get(i).getType());
-		// }
-
-		// for (i = size-1; i > -1; i--) {
-		// l1.add(origin.get(i));
-		// l2.add(target.get(i));
-		// System.out.println("COMP: " + origin.get(i).getType());
-		// }
+		
+		String change = "";
+		StringBuffer buff;
 
 		for (i = 0; i < size - 1; i++) {
 
 			c1 = l1.get(i);
 			c2 = l2.get(i);
-			System.out.println("AAAA: " + c1.getType() + " " + c1.getPosition()
-					+ " BBB: " + c2.getType() + " " + c2.getPosition());
+//			System.out.println("AAAA: " + c1.getType() + " " + c1.getPosition()
+//					+ " BBB: " + c2.getType() + " " + c2.getPosition());
 			if (!c1.getType().equals(c2.getType())) {
-				temp.append("\nThe No." + c1.getPosition()
-						+ " component is mismatched! \n" + "Target's: "
-						+ c1.getType() + ", Yours: " + c2.getType() + "\n");
+				temp.append("\nNo." + c1.getPosition()
+						+ " component is mismatched! \n" + "Target is: "
+						+ c1.getType() + ", Yours is: " + c2.getType() + "\n");
+				
+				//add "!" to components that mismatched
+				buff = new StringBuffer(c1.getType());
+				c1.setType(buff.append("!").toString());
+				
+				buff = new StringBuffer(c2.getType());
+				c2.setType(buff.append("!").toString());
+				
+				replaceComp(origin.get(size - 1), c1);
+				replaceComp(origin.get(size - 1), c2);
+			
 			} else if (c1.getDepth() != c2.getDepth()) {
-				temp.append("\nThe No." + c1.getPosition()
+				temp.append("\nNo." + c1.getPosition()
 						+ " component is mismatched! \n" + "Your "
 						+ c2.getType() + "'s level is DIFFEREN from Target's");
 			}
@@ -541,7 +555,7 @@ public class compareUI {
 			return result;
 		}
 
-		return "Good! All components are in the right position!";
+		return "Good! All components are placed in the right position!";
 	}
 
 	// compare files and return the answer
