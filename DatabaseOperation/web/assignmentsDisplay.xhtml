@@ -188,9 +188,11 @@ function zipFileIfEmpty(){
 				
 				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
-    			style="background:transparent; border-style:none !important; box-shadow: none !important;">
+    			style="background:transparent; border-style:none !important; box-shadow: none !important;"
+    			autofocus="autofocus"
+    			required="true">
     			<br/>   
-    			<p:ajax event="blur" update=":dialog_02" process="@this"/>
+    			<p:ajax event="blur" process="@this"/>
     			</p:inputTextarea>
 				<h:outputText id="counter" /> 
 				
@@ -282,13 +284,13 @@ function zipFileIfEmpty(){
 			</p:outputPanel>
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
-				<p:inputTextarea rows="6" cols="41" counter="counter" maxlength="140"       
+				<p:inputTextarea rows="6" cols="41" counter="counter2" maxlength="140"       
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
     			style="background:transparent; border-style:none !important; box-shadow: none !important;">
     			<br/>   
-    			<p:ajax event="blur" update=":dialog_02" process="@this"/>
+    			<p:ajax event="blur" process="@this"/>
     			</p:inputTextarea>
-				<h:outputText id="counter" /> 
+				<h:outputText id="counter2" /> 
 				
 			</p:outputPanel>
 		
