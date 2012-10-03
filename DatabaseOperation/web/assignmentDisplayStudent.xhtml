@@ -77,6 +77,7 @@ function zipFileIfEmpty(){
 		var error = $('<div>Please upload a file</div>');
 		error.css('color','red');
 		error.appendTo(label);
+		error.fadeOut(1000);
 		//		openDialog('warning','please upload a file');
 	}else{
 		$('[id="formCompare:next"]').trigger('click');
@@ -192,7 +193,7 @@ function zipFileIfEmpty(){
     </p:outputPanel>
     
     <p:outputPanel layout="block">
- 	<p:commandLink onclick="updateUI.show()" oncomplete="dlg.hide()" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
+ 	<p:commandLink onclick="dlg.hide();updateUI.show();return false;" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
  	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:11%"/>
  	</p:commandLink>
  	</p:outputPanel>
@@ -231,7 +232,7 @@ function zipFileIfEmpty(){
 			<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
 			</p:outputPanel  >
 			
-			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:115px;left:40px;height:25px;width:100%" />
+			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:40px;height:25px;width:100%" />
 			
 			<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px">
 			<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />

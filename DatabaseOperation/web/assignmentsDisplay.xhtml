@@ -67,10 +67,20 @@ function canceldown(){
 function zipFileIfEmpty(){
 	var value = $('[id="formAdd:out1"]').html();
 	var v = $('[id="formAdd:description"]').val();
-	if(value=="Choose a file..."){
-		alert("please upload a zip file");
-	}else if(v==""){
-		alert("please add description");
+	var label1 = $('[id="formAdd:errorMsg1"]');
+	label1.empty();
+	var label2 = $('[id="formAdd:errorMsg2"]');
+	label2.empty();
+	if(value=='Choose a file...'){
+		var error = $('<div>Please upload a file</div>');
+		error.css('color','red');
+		error.appendTo(label1);
+		error.fadeOut(1000);
+	}else if(v==''){
+		var error = $('<div>Please add description</div>');
+		error.css('color','red');
+		error.appendTo(label2);
+		error.fadeOut(1000);
 	}else{
 		console.log('triggered');
 		var i=0;
@@ -81,6 +91,13 @@ function zipFileIfEmpty(){
 			i=1;
 		}
 	}
+}
+
+function clearErrorMsg(){
+	var label1 = $('[id="formAdd:errorMsg1"]');
+	label1.empty();
+	var label2 = $('[id="formAdd:errorMsg2"]');
+	label2.empty();
 }
 
 </script>
@@ -188,6 +205,8 @@ function zipFileIfEmpty(){
 		<h:outputText id="out1" value="#{controller.selectedZipFilename}" /> 
 			</p:outputPanel>
 			
+			<p:outputPanel id="errorMsg1" layout="block" style="position:absolute;top:170px;left:40px;height:25px;width:100%;" />
+			<p:outputPanel id="errorMsg2" layout="block" style="position:absolute;top:340px;left:40px;height:25px;width:100%;" />
 			
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:213px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
