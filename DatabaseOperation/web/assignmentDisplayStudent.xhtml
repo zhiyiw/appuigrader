@@ -175,7 +175,7 @@ function zipFileIfEmpty(){
 	</p:dialog>
 	
 
-	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="400" height="500">
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="430" height="500">
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
 
 	</p:dialog>
@@ -233,7 +233,7 @@ function zipFileIfEmpty(){
 			<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
 			</p:outputPanel  >
 			
-			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:40px;height:25px;width:100%" />
+			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:45px;height:25px;width:100%" />
 			
 			<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px">
 			<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />
