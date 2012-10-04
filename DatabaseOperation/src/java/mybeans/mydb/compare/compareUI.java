@@ -517,7 +517,7 @@ public class compareUI {
 		l1 = addComp(origin.get(size - 1), list1);
 		l2 = addComp(target.get(size - 1), list2);
 		
-		String change = "";
+		
 		StringBuffer buff;
 
 		for (i = 0; i < size - 1; i++) {
@@ -545,8 +545,19 @@ public class compareUI {
 				temp.append("\nNo." + c1.getPosition()
 						+ " component is mismatched! \n" + "Your "
 						+ c2.getType() + "'s level is DIFFEREN from Target's");
+				
+				//add "!" to components that mismatched
+				buff = new StringBuffer(c1.getType());
+				c1.setType(buff.append("!").toString());
+				
+				buff = new StringBuffer(c2.getType());
+				c2.setType(buff.append("!").toString());
+				
+				replaceComp(origin.get(size - 1), c1);
+				replaceComp(origin.get(size - 1), c2);
 			}
 		}
+		
 		System.out.println("LENGTH" + temp.length());
 		if (temp.length() != 0) {
 			result = temp.toString();
@@ -573,14 +584,14 @@ public class compareUI {
 		}
 
 		// compare if each component contains same number of sub-components
-		for (i = 0; i < origin.size(); i++) {
-			if (origin.get(i).list.size() != target.get(i).list.size()) {
-				System.out
-						.println("Each component's next-level number mismatched");
-				return "Component's next-level number mismatched\n";
-				// return false;
-			}
-		}
+//		for (i = 0; i < origin.size(); i++) {
+//			if (origin.get(i).list.size() != target.get(i).list.size()) {
+//				System.out
+//						.println("Each component's next-level number mismatched");
+//				return "Component's next-level number mismatched\n";
+//				// return false;
+//			}
+//		}
 
 		// compare if each component is with same type
 //		for (i = 0; i < origin.size(); i++) {

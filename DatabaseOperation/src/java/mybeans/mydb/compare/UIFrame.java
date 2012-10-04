@@ -269,21 +269,7 @@ public class UIFrame {
 
 	public String compareFiles(String oriFile, String tarFile)
 			throws IOException {
-		// compResult = "";
 
-		// File fileTest = new File(filePath + "test.txt");
-
-		// FileInputStream fstream = new FileInputStream(filePath + "//"
-		// +"test.txt");
-		// DataInputStream in = new DataInputStream(fstream);
-		// BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		// String str;
-		//
-		// while((str = br.readLine()) != null){
-		// compResult = compResult + str;
-		// }
-		//
-		// in.close();
 		splitList sl = new splitList();
 
 		ZipFile zf = null;
@@ -327,21 +313,7 @@ public class UIFrame {
 		differStringList = sl.differStringList;
 		differIntOrigList = sl.differIntOrigList;
 		differIntTargList = sl.differIntTargList;
-		// if (db == null && db2 == null) {
-		// compResult = "Pleases add Files !!!\n";
-		// System.out.println(compResult);
-		// return compResult;
-		// }
-		//
-		// if (db == null && db2 != null) {
-		// compResult = "Pleases choose teacher's file !!!\n";
-		// return compResult;
-		// }
-		//
-		// if (db != null && db2 == null) {
-		// compResult = "Pleases add your OWN file !!!\n";
-		// return compResult;
-		// }
+
 
 		StringBuffer sb = new StringBuffer();
 
@@ -373,7 +345,6 @@ public class UIFrame {
 						+ "\n");
 
 			} else {
-				// compResult="NOFILLLLLLLLLLLE";
 				sb.append(structResult);
 				sb.append("Evaluation Details:\n");
 				String typeResult = testUI.compareTypeNum(db, db2);
@@ -388,29 +359,23 @@ public class UIFrame {
 
 		}
 
-		tree1 = new TreeBean("Sample File",
-				db.compArr.get(db.compArr.size() - 1));
-		
-		tree2 = new TreeBean("Your File",
-				db2.compArr.get(db2.compArr.size() - 1));
-		
-		// compResult = "NNNNNNNNNNN";
 
 		FileWriter writer = new FileWriter("output.txt");
-		// for(String str: compResult) {
 		writer.write(compResult);
-		// }
 		writer.close();
 
-		// if(compResult.get(1).equals("Great!! Properties matched!!")){
-		// isEverCorrect = true;
-		// }
 
 		if (!origOnlyList.isEmpty()) {
 			sb.append(sl.Invisible);
 		}
 
 		compResult = sb.toString();
+		
+		tree1 = new TreeBean("Sample File",
+				db.compArr.get(db.compArr.size() - 1));
+		
+		tree2 = new TreeBean("Your File",
+				db2.compArr.get(db2.compArr.size() - 1));
 
 		return compResult;
 	}
