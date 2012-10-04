@@ -122,7 +122,7 @@ function zipFileIfEmpty(){
     	<h:commandButton action="profileLoading.xhtml" value="Profile" />
 	</h:form> -->
 	 
-	<p:outputPanel layout="block" styleClass="ring">
+	<p:outputPanel layout="block" styleClass="assignment_table">
 	<h:form>
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
@@ -175,7 +175,7 @@ function zipFileIfEmpty(){
 	</p:dialog>
 	
 
-	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="430" height="500">
+	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="432" height="505">
 	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
 
 	</p:dialog>
@@ -214,7 +214,7 @@ function zipFileIfEmpty(){
 		<p:dialog style="background-color: transparent;" resizable="false" widgetVar="updateUI" id="updateDialog" width="340" height="300" modal="true" showHeader="false" draggable="false">  
 		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:272px;width:312px" layout="block">
         <h:form enctype="multipart/form-data" id="formCompare">
-        <p:outputPanel layout="block" style="position:absolute;top:135px;left:45px">
+        <p:outputPanel layout="block" style="position:absolute;top:145px;left:45px">
     		<p:fileUpload fileUploadListener="#{compare.handleZipUpload}"
             	mode="advanced"
             	sizeLimit="10000000" 
@@ -233,7 +233,10 @@ function zipFileIfEmpty(){
 			<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
 			</p:outputPanel  >
 			
-			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:45px;height:25px;width:100%" />
+
+
+			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:45px;height:25px;width:150px" />
+
 			
 			<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px">
 			<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />

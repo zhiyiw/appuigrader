@@ -232,14 +232,15 @@ public class StudentTempUpload {
            // for(String s:compResult)
             	sb.append(compResult);
                         
-            String split = "\n\n\n***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****\n\n";
+            String split = "\n\n***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****\n\n";
             Date date = new Date();
             
-            String header = split + date.toString() + "\n\n" + "RESULT RECORD: \n\n";
+            String header = split + date.toString() + "\n" + "RESULT RECORD: \n";
             
             sb.insert(0, header);
             
             String sss = sb.toString();
+            sss = sss.replace("\n", "<br />");
             GradeBean grade = new GradeBean();
             
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
