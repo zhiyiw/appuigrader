@@ -299,8 +299,7 @@ public class UIFrame {
 		dataBuild db = new dataBuild(zipFilestream(zf));
 		blockBuild bb = new blockBuild(blockFilestream(zf));
 
-		tree1 = new TreeBean("Sample File",
-				db.compArr.get(db.compArr.size() - 1));
+	
 
 		// ////////////////////////////////
 
@@ -314,8 +313,7 @@ public class UIFrame {
 		dataBuild db2 = new dataBuild(zipFilestream(zf));
 		blockBuild bb2 = new blockBuild(blockFilestream(zf));
 
-		tree2 = new TreeBean("Your File",
-				db2.compArr.get(db2.compArr.size() - 1));
+
 
 		sl.split(bb.compArr, bb2.compArr);
 
@@ -390,6 +388,12 @@ public class UIFrame {
 
 		}
 
+		tree1 = new TreeBean("Sample File",
+				db.compArr.get(db.compArr.size() - 1));
+		
+		tree2 = new TreeBean("Your File",
+				db2.compArr.get(db2.compArr.size() - 1));
+		
 		// compResult = "NNNNNNNNNNN";
 
 		FileWriter writer = new FileWriter("output.txt");
