@@ -23,13 +23,13 @@
        
        <p:outputPanel layout="block" styleClass="signPanel"> 
 		<h:form id="uploadRubric" enctype="multipart/form-data">
-			<h:outputLabel value="Year "></h:outputLabel>
-        	<h:selectOneMenu value="#{menuoption.selectYear}">
+			<h:outputLabel styleClass="hidden" value="Year "></h:outputLabel>
+        	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectYear}">
    				<f:selectItems value="#{menuoption.getYearList()}" />
    			</h:selectOneMenu>
     	    
-    	   	<h:outputLabel value="Term "></h:outputLabel>
-        	<h:selectOneMenu value="#{menuoption.selectTerm}">
+    	   	<h:outputLabel styleClass="hidden" value="Term "></h:outputLabel>
+        	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectTerm}">
    				<f:selectItems value="#{menuoption.getTermList()}" />
    			</h:selectOneMenu>
     	    
