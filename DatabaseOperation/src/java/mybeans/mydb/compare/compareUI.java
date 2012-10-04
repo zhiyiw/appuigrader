@@ -605,7 +605,7 @@ public class compareUI {
 //				// return false;
 //			}
 //		}
-		return "GREAT!! The number and type of the components are matched!!";
+		return "GREAT!! The number of components are matched!!";
 
 	}
 
