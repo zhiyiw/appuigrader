@@ -15,19 +15,8 @@
 
 
         <p:outputPanel layout="block" styleClass="mainFrame">
-        
-         <p:outputPanel layout="block" styleClass="panel">
-         
-         <p:outputPanel layout="block" styleClass="manual">
-         </p:outputPanel>
          
          
-         <p:outputPanel layout="block" styleClass="video">
-         </p:outputPanel>
-        
-        </p:outputPanel>
-        
-        
            <h:form layout="block" styleClass="back">
                  
     <h:commandButton value="back button" onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s03.png'" onclick="history.back(); return false" image="images/return_button_s01.png" />
@@ -35,15 +24,47 @@
        
        </h:form>
        
+         
+         <p:outputPanel layout="block" styleClass="video_panel">
+        
+        <p:dialog id="basicDialog" header="App UI Grader Comparison Walkthrough" widgetVar="dlg1"  showEffect="fade" hideEffect="fade" modal="true" draggable="false" resizable="false">  
+	
+    
+    <p:media value="http://www.youtube.com/v/MnSMPFLE-iU" width="720" height="480" player="flash"/>  
+</p:dialog>  
+        </p:outputPanel>
+         <p:outputPanel layout="block" styleClass="panel">
+         
+         <p:outputPanel layout="block" styleClass="manual">
+         
+            <h:commandButton style="position:relative; width:312px;height:212px; left:195px; top:133px;" id="manual" value="manual" onclick="dlg1.show();" type="button" image="images/video2.png"/>  
+           
+           
+         </p:outputPanel>
+         
+         
+         <p:outputPanel layout="block" styleClass="video">
+         
+           <h:commandButton style="position:relative; width:312px;height:212px; left:531px; top:-73px;" id="video" value="video" onclick="dlg1.show();" type="button" image="images/video2.png"/>  
+           
+           
+           
+
+         
+         </p:outputPanel>
+        
+        </p:outputPanel>
+        
+        
        
             
-        <p:outputPanel layout="block" style="float:right;position:relative;top:537px;right:39px;">
+        <p:outputPanel layout="block" style="float:right;position:relative;top:113px;right:39px;">
 	    	    <h:form>
 	    	        <a  style="color:#0CBC17; font-size:14px;font-family:Tahoma;text-decoration:none;" href="mailto:appuigrader@gmail.com?Subject=Report%20Bug.">
 Report Bug</a>	 
        <p:spacer width="24" height="10" /> 
 	    	    
-    		<h:commandLink  action="help.xhtml" value="Help"  style="color:#0CBC17; font-family:Tahoma; font-size:14px;text-decoration:none;"/>
+    			<h:commandLink  action="help1.xhtml" value="Help"   style="color:#0CBC17; font-family:Tahoma; font-size:14px;text-decoration:none;"/>
 	 <p:spacer width="24" height="10" /> 
     	
     	<h:commandLink action="about.xhtml" value="About" style="color:#0CBC17; font-size:14px;font-family:Tahoma;text-decoration:none;" />
