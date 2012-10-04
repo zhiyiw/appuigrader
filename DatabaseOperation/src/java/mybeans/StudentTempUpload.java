@@ -176,6 +176,7 @@ public class StudentTempUpload {
 
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = "temp0"+studentID+FilenameUtils.getBaseName(uploadedFile.getFileName());
+        prefix.replaceAll("\\s","");
         String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
         
         // Prepare file and outputstream.

@@ -204,7 +204,9 @@ public class GradeDisplay {
 		}
 		}
 		
-		setAssignmentList(l);	
+		setAssignmentList(l);
+		if(!l.isEmpty())
+			selectedAssignment = l.get(0);
 		con.close();
 	}
 

@@ -151,6 +151,7 @@ public class FileUploadController {
 		if(zipFile!=null){
         // Prepare filename prefix and suffix for an unique filename in upload folder.
         String prefix = FilenameUtils.getBaseName(zipFile.getFileName());
+        prefix = prefix.replaceAll("\\s","");
         String suffix = FilenameUtils.getExtension(zipFile.getFileName());
         
         // Prepare file and outputstream.
@@ -185,11 +186,12 @@ public class FileUploadController {
                 		target.mkdir();
                 	
                     prefix = FilenameUtils.getBaseName(imageFile.getFileName());
+                    prefix = prefix.replaceAll("\\s","");
                     suffix = FilenameUtils.getExtension(imageFile.getFileName());
                 	file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
                     output = new FileOutputStream(file);
                     IOUtils.copy(imageFile.getInputstream(), output);
-                    imageFilename = file.getName();
+                    imageFilename = file.getName().trim();
                     String ss_dict = "Screenshot/"+imageFilename;
             		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating);
             	}
@@ -239,11 +241,12 @@ public class FileUploadController {
             	if(!target.exists())
             		target.mkdir();
                 prefix = FilenameUtils.getBaseName(zipFile.getFileName());
+                prefix = prefix.replaceAll("\\s","");
                 suffix = FilenameUtils.getExtension(zipFile.getFileName());
         		file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
         		output = new FileOutputStream(file);
         		IOUtils.copy(zipFile.getInputstream(), output);
-        		zipFilename = file.getName();
+        		zipFilename = file.getName().trim();
         		document_dict = "Rubrics/"+zipFilename;
         	}   catch (IOException e) {
                 // Cleanup.
@@ -260,12 +263,13 @@ public class FileUploadController {
             	if(!target.exists())
             		target.mkdir();
 			    prefix = FilenameUtils.getBaseName(imageFile.getFileName());
+			    prefix = prefix.replaceAll("\\s","");
 			    suffix = FilenameUtils.getExtension(imageFile.getFileName());
 				file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
 			    output = new FileOutputStream(file);
 			    IOUtils.copy(imageFile.getInputstream(), output);
 			    imageFilename = file.getName();
-			    ss_dict = "Screenshot/"+imageFilename;
+			    ss_dict = "Screenshot/"+imageFilename.trim();
         	  }catch (IOException e) {
                   // Cleanup.
                   if (file != null) file.delete();
