@@ -11,7 +11,14 @@ public class Assignment {
 	public int point;
 	public int rating;
 	public String shortDescription;
+	public String author;
 	
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 	public String getShortDescription() {
 		return shortDescription;
 	}

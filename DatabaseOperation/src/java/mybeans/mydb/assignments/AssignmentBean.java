@@ -52,6 +52,32 @@ public class AssignmentBean {
  
 	}
 	
+	public boolean checkDupicateAssignment(String targetName)throws SQLException{
+		//return true if there's no such name in the DB
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+		
+		PreparedStatement ps 
+		= con.prepareStatement(
+		   "select count(*) from assignments where name=? and name!=''");
+		
+		ps.setString(1, targetName);
+		ResultSet result =  ps.executeQuery();
+		result.next();
+		int r = result.getInt(1);
+		con.close();
+		if(r==0)
+			return true;
+		else
+			return false;
+	}
+	
 	public List<Assignment> getAssignmentList()throws SQLException{
 		 
 		if(ds==null)
@@ -71,7 +97,7 @@ public class AssignmentBean {
 		ResultSet result =  ps.executeQuery();
 		
 		list = new ArrayList<Assignment>();
-		int count=1;
+		
 		while(result.next()){
 			Assignment assign = new Assignment();
 			assign.setDescription(result.getString("description"));
@@ -98,13 +124,13 @@ public class AssignmentBean {
 			assign.setPoint(result.getInt("point"));
 			assign.setRating(result.getInt("rating"));
 			//get assignment name
-			String name;	
-			if(count<10)
-				name = "Assignment 0"+count;
-			else
-				name = "Assignment "+count;
-			assign.setAssignmentName(name);
-			count++;
+//			String name;	
+//			if(count<10)
+//				name = "Assignment 0"+count;
+//			else
+//				name = "Assignment "+count;
+			assign.setAssignmentName(result.getString("name"));
+			assign.setAuthor(result.getString("author"));
 			//store all data into a List
 			list.add(assign);
 		}
@@ -138,12 +164,14 @@ public class AssignmentBean {
 		assign.setScreenDirectory(result.getString("screenshot_dict"));
 		assign.setPoint(result.getInt("point"));
 		assign.setRating(result.getInt("rating"));
+		assign.setAssignmentName(result.getString("name"));
+		assign.setAuthor(result.getString("author"));
 		
 		con.close();
 		return assign;
 	}
 	
-	public void addAssignment(String docu_dict, String description, String ss_dict, int point, int rating) throws SQLException{
+	public void addAssignment(String docu_dict, String description, String ss_dict, int point, int rating, String name, String author) throws SQLException{
 		if(ds==null)
 			throw new SQLException("Can't get data source");
  
@@ -163,7 +191,7 @@ public class AssignmentBean {
 		int current = result.getInt(1)+1;
 		
 
-		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?,?,?)");
 		
 		ps.setInt(1, current);
 		ps.setString(2, docu_dict);
@@ -171,6 +199,8 @@ public class AssignmentBean {
 		ps.setString(4, ss_dict);
 		ps.setInt(5, point);
 		ps.setInt(6,rating);
+		ps.setString(7, author);
+		ps.setString(8, name);
 		
 		int updated = ps.executeUpdate();
 		
@@ -182,7 +212,7 @@ public class AssignmentBean {
 	}
 
 	public void updateAssignment(String docu_dict,
-			int a_id, String description, String ss_dict, int point, int rating) throws SQLException {
+			int a_id, String description, String ss_dict, int point, int rating, String name, String author) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		if(ds==null)
@@ -203,7 +233,8 @@ public class AssignmentBean {
 		ps.setInt(4,point);
 		ps.setInt(5, rating);
 		ps.setInt(6, a_id);
-		
+		ps.setString(7, author);
+		ps.setString(8, name);
 		
 		int updated = ps.executeUpdate();
 		

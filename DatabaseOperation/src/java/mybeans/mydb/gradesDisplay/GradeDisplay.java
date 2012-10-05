@@ -108,14 +108,7 @@ public class GradeDisplay {
 				else
 			    	sam.setScreenshotDirectory("/"+tempScreenshot);
 				
-				String name;	
-				if(count<10)
-					name = "Assignment 0"+count;
-				else
-					name = "Assignment "+count;
-				
-				count++;
-				sam.setAssignmentName(name);
+				sam.setAssignmentName(result.getString("name"));
 				l.add(sam);
 			}
 			
@@ -131,7 +124,6 @@ public class GradeDisplay {
 		ResultSet result =  ps.executeQuery();
 		
 		
-		int count=1;
 		while(result.next()){
 			StudentAssignmentModel sam = new StudentAssignmentModel();
 			sam.setAssignmentID(result.getInt("a_id"));
@@ -191,14 +183,8 @@ public class GradeDisplay {
 			else
 		    	sam.setScreenshotDirectory("/"+tempScreenshot);
 			
-			String name;	
-			if(count<10)
-				name = "Assignment 0"+count;
-			else
-				name = "Assignment "+count;
-			
-			count++;
-			sam.setAssignmentName(name);
+
+			sam.setAssignmentName(result.getString("name"));
 			
 			l.add(sam);
 		}

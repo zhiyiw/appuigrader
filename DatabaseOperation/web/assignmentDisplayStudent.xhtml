@@ -128,7 +128,7 @@ function zipFileIfEmpty(){
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="11"  
-                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single">  
+                 selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentID}" selectionMode="single">  
      	<f:facet name="header">  
             Assignment List  
         </f:facet>  

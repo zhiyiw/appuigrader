@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletContext;
 
@@ -42,8 +43,35 @@ public class FileUploadController {
     public Integer rating = 0;
     public String description = "";
     public String thumbnail = "/images/noimage.png";
+    public String assignmentName = "";
+    public String author = "";
+    public String outMsg = "";
     
-    public String getThumbnail() {
+    public String getOutMsg() {
+		return outMsg;
+	}
+
+	public void setOutMsg(String outMsg) {
+		this.outMsg = outMsg;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getAssignmentName() {
+		return assignmentName;
+	}
+
+	public void setAssignmentName(String assignmentName) {
+		this.assignmentName = assignmentName;
+	}
+
+	public String getThumbnail() {
 		return thumbnail;
 	}
 
@@ -193,10 +221,10 @@ public class FileUploadController {
                     IOUtils.copy(imageFile.getInputstream(), output);
                     imageFilename = file.getName().trim();
                     String ss_dict = "Screenshot/"+imageFilename;
-            		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating);
+            		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating,assignmentName,author);
             	}
             	else
-            		assbean.addAssignment(document_dict,this.description,"/images/noimage.png", point, rating);
+            		assbean.addAssignment(document_dict,this.description,"/images/noimage.png", point, rating, assignmentName, author);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -278,7 +306,7 @@ public class FileUploadController {
           		}
 			}
           	
-          	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating);
+          	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating, assignmentName, author);
           	reset();
           	return true;
     }
@@ -291,6 +319,14 @@ public class FileUploadController {
 
     // actionListener handle ------------------------------------------------------------------------------------
 
+    public void ajaxHandler() throws SQLException{
+    	AssignmentBean assb = new AssignmentBean();
+    	boolean b = assb.checkDupicateAssignment(assignmentName);
+    	if(b)
+    		outMsg = "";
+    	else
+    		outMsg = assignmentName+" is not available, please name another one";
+    }
     
     public void handleZipUpload(FileUploadEvent event) {  
     	zipFile=event.getFile();
@@ -340,6 +376,8 @@ public class FileUploadController {
     	point = targetAss.point;
     	rating = targetAss.rating;
     	thumbnail = ss_dict;
+    	assignmentName = targetAss.assignmentName;
+    	author = targetAss.author;
     }
     
 
@@ -352,6 +390,8 @@ public class FileUploadController {
     	thumbnail = "/images/noimage.png";
     	selectedZipFilename="Choose a file...";
     	selectedImageFilename="Choose a file...";
+    	outMsg="";
+    	assignmentName="";
     }
 
 }

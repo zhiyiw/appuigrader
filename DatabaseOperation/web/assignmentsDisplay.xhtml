@@ -67,21 +67,35 @@ function canceldown(){
 
 function zipFileIfEmpty(){
 	var value = $('[id="formAdd:out1"]').html();
-	var v = $('[id="formAdd:description"]').val();
+	var v = $('[id="formAdd:description"]');
+	var v1 = $('[id="formAdd:name"]');
 	var label1 = $('[id="formAdd:errorMsg1"]');
 	label1.empty();
 	var label2 = $('[id="formAdd:errorMsg2"]');
 	label2.empty();
+	var label3 = $('[id="formAdd:errorMsg3"]');
+	label3.empty();
+	var nameCheck = $('[id="formAdd:outMsg"]');
 	if(value=='Choose a file...'){
 		var error = $('<div>Please upload a file</div>');
 		error.css('color','red');
 		error.appendTo(label1);
 		error.fadeOut(1000);
-	}else if(v==''){
+	}else if(v.val()==''){
+		v.focus();
 		var error = $('<div>Please add description</div>');
 		error.css('color','red');
 		error.appendTo(label2);
 		error.fadeOut(1000);
+	}else if(v1.val()==''){
+		v1.focus();
+		var error = $('<div>Please add name</div>');
+		error.css('color','red');
+		error.appendTo(label3);
+		error.fadeOut(1000);
+	}else if(nameCheck.html() != ''){
+		v1.focus();
+		nameCheck.css('color','red');
 	}else{
 		console.log('triggered');
 		var i=0;
@@ -94,12 +108,6 @@ function zipFileIfEmpty(){
 	}
 }
 
-function clearErrorMsg(){
-	var label1 = $('[id="formAdd:errorMsg1"]');
-	label1.empty();
-	var label2 = $('[id="formAdd:errorMsg2"]');
-	label2.empty();
-}
 
 </script>
 	
@@ -120,7 +128,7 @@ function clearErrorMsg(){
 	<h:form id="form">
 	
 	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="11"  
-                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentName}" selectionMode="single"> 
+                 selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentID}" selectionMode="single"> 
         <f:facet name="header">  
             Assignment List  
         </f:facet> 
@@ -147,7 +155,6 @@ function clearErrorMsg(){
              <p:commandButton id="v1" value="Update Assignment" icon="ui-icon-refresh" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
              <p:commandButton id="v2" value="Delete Assignment" icon="ui-icon-closethick" update=":confirm" oncomplete="confirmDlg.show()"/>
         </f:facet>
-        
         
         
     </p:dataTable>   
@@ -212,8 +219,17 @@ function clearErrorMsg(){
 		<h:outputText id="out1" value="#{controller.selectedZipFilename}" /> 
 			</p:outputPanel>
 			
+			<p:outputPanel layout="block" style="position:absolute;top:210px;left:45px;height:30px;width:80%;">
+				<p:inputText id="name" value="#{controller.assignmentName}">  
+                	<p:ajax event="keyup" update="outMsg" listener="#{controller.ajaxHandler}"/>  
+            	</p:inputText><br/> 
+            	<h:outputText id="outMsg" value="#{controller.outMsg}" style="font-size:10px;"/>
+			</p:outputPanel>
+			 
+			
 			<p:outputPanel id="errorMsg1" layout="block" style="position:absolute;top:170px;left:200px;height:25px;width:180px;" />
 			<p:outputPanel id="errorMsg2" layout="block" style="position:absolute;top:170px;left:200px;height:25px;width:190px;" />
+			<p:outputPanel id="errorMsg3" layout="block" style="position:absolute;top:170px;left:200px;height:25px;width:180px;" />
 			
 			<p:outputPanel layout="block" style="position:absolute;left:45px;top:263px; border-style:none !important; box-shadow: none !important;width:300px;height:200px;">	
 				
