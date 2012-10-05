@@ -324,9 +324,13 @@ public class UIFrame {
 			String structResult = testUI.compare(db.compArr, db2.compArr);
 
 			if (structResult
-					.equals("GREAT!! The number and type of the components are matched!!")) {
+					.equals("GREAT!! The number of components are matched!!")) {
 
 				sb.append(structResult + "\n");
+				
+				String typeResult = testUI.compareTypeNum(db, db2);
+				
+				sb.append(typeResult + "\n");
 
 				String position = testUI.comparePosition(db.compArr,
 						db2.compArr);
