@@ -427,7 +427,7 @@ document.onkeydown = function() {
 	
 		<p:outputPanel layout="block" styleClass="treeP1">
 	<h:form id="showTree1">
-		<p:tree value="#{compare.frame.tree1.root}" var="node1" id="tree1"
+		<p:tree value="#{compare.frame.tree2.root}" var="node1" id="tree1"
 			animate="true">
 			
 			
@@ -798,7 +798,7 @@ document.onkeydown = function() {
 
  <p:outputPanel layout="block" styleClass="treeP2">
 	<h:form id="showTree2">
-		<p:tree value="#{compare.frame.tree2.root}" var="node2" id="tree2"
+		<p:tree value="#{compare.frame.tree1.root}" var="node2" id="tree2"
 			animate="true">
 			
 			<p:treeNode type="empty" icon="empt">

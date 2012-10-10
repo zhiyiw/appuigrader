@@ -84,97 +84,97 @@ public class compareUI {
 		
 		if (oF != tF) {
 			buttonComp = "\nTotal number of FORM is mismatched!!!"
-					+ "(Sample: " + oF + ", Yours: " + tF + ")\n";
+					+ "(Target: " + oF + ", Yours: " + tF + ")\n";
 		}
 		
 		if (oE != tE) {
 			buttonComp = "\nTotal number of EMPTY is mismatched!!!"
-					+ "(Sample: " + oE + ", Yours: " + tE + ")\n";
+					+ "(Target: " + oE + ", Yours: " + tE + ")\n";
 		}
 
 		if (oB != tB) {
 			buttonComp = "\nTotal number of BUTTON is mismatched!!!"
-					+ "(Sample: " + oB + ", Yours: " + tB + ")\n";
+					+ "(Target: " + oB + ", Yours: " + tB + ")\n";
 		}
 
 		if (oL != tL) {
 			labelComp = "\nTotal number of LABEL is mismatched!!!"
-					+ "(Sample: " + oL + ", Yours: " + tL + ")\n";
+					+ "(Target: " + oL + ", Yours: " + tL + ")\n";
 		}
 
 		if (oV != tV) {
 			vertComp = "\nTotal number of VERTICAL Arrangement is mismatched!!!"
-					+ "(Sample: " + oV + ", Yours: " + tV + ")\n";
+					+ "(Target: " + oV + ", Yours: " + tV + ")\n";
 		}
 
 		if (oH != tH) {
 			horiComp = "\nTotal number of HORIZONTAL Arrangement is mismatched!!!"
-					+ "(Sample: " + oH + ", Yours: " + tH + ")\n";
+					+ "(Target: " + oH + ", Yours: " + tH + ")\n";
 		}
 
 		if (oT != tT) {
 			tabComp = "\nTotal number of TABLE Arrangement is mismatched!!!"
-					+ "(Sample: " + oT + ", Yours: " + tT + ")\n";
+					+ "(Target: " + oT + ", Yours: " + tT + ")\n";
 		}
 
 		if (oCB != tCB) {
 			checkboxComp = "\nTotal number of CheckBox is mismatched!!!"
-					+ "(Sample: " + oCB + ", Yours: " + tCB + ")\n";
+					+ "(Target: " + oCB + ", Yours: " + tCB + ")\n";
 		}
 
 		if (oTB != tTB) {
 			textboxComp = "\nTotal number of TextBox is mismatched!!!"
-					+ "(Sample: " + oTB + ", Yours: " + tTB + ")\n";
+					+ "(Target: " + oTB + ", Yours: " + tTB + ")\n";
 		}
 
 		if (oPTT != tPTT) {
 			passtextboxComp = "\nTotal number of PasswordTextBox is mismatched!!!"
-					+ "(Sample: " + oPTT + ", Yours: " + tPTT + ")\n";
+					+ "(Target: " + oPTT + ", Yours: " + tPTT + ")\n";
 		}
 
 		if (oLP != tLP) {
 			listpickerComp = "\nTotal number of ListPicker is mismatched!!!"
-					+ "(Sample: " + oLP + ", Yours: " + tLP + ")\n";
+					+ "(Target: " + oLP + ", Yours: " + tLP + ")\n";
 		}
 
 		if (oI != tI) {
 			imageComp = "\nTotal number of Image is mismatched!!!"
-					+ "(Sample: " + oI + ", Yours: " + tI + ")\n";
+					+ "(Target: " + oI + ", Yours: " + tI + ")\n";
 		}
 
 		if (oIP != tIP) {
 			imagepickerComp = "\nTotal number of ImagePicker is mismatched!!!"
-					+ "(Sample: " + oIP + ", Yours: " + tIP + ")\n";
+					+ "(Target: " + oIP + ", Yours: " + tIP + ")\n";
 		}
 
 		if (oC != tC) {
 			canvasComp = "\nTotal number of Canvas is mismatched!!!"
-					+ "(Sample: " + oC + ", Yours: " + tC + ")\n";
+					+ "(Target: " + oC + ", Yours: " + tC + ")\n";
 		}
 
 		if (oEP != tEP) {
 			emailpickerComp = "\nTotal number of EmailPicker is mismatched!!!"
-					+ "(Sample: " + oEP + ", Yours: " + tEP + ")\n";
+					+ "(Target: " + oEP + ", Yours: " + tEP + ")\n";
 		}
 
 		if (oPNP != tPNP) {
 			phonenumberpickerComp = "\nTotal number of PhoneNumberPicker is mismatched!!!"
-					+ "(Sample: " + oPNP + ", Yours: " + tPNP + ")\n";
+					+ "(Target: " + oPNP + ", Yours: " + tPNP + ")\n";
 		}
 
 		if (oCP != tCP) {
 			contactpickerComp = "\nTotal number of ContactPicker is mismatched!!!"
-					+ "(Sample: " + oCP + ", Yours: " + tCP + ")\n";
+					+ "(Target: " + oCP + ", Yours: " + tCP + ")\n";
 		}
 
 		if (oVP != tVP) {
 			videoplayerComp = "\nTotal number of VideoPlayer is mismatched!!!"
-					+ "(Sample: " + oVP + ", Yours: " + tVP + ")\n";
+					+ "(Target: " + oVP + ", Yours: " + tVP + ")\n";
 		}
 
 		if (oWV != tWV) {
 			webviewerComp = "\nTotal number of WebViewer is mismatched!!!"
-					+ "(Sample: " + oWV + ", Yours: " + tWV + ")\n";
+					+ "(Target: " + oWV + ", Yours: " + tWV + ")\n";
 		}
 
 		return buttonComp + labelComp + vertComp + horiComp + tabComp
@@ -246,7 +246,7 @@ public class compareUI {
 		for (i = 1; i < originArrange.size() + 1; i++) {
 			if (!originArrange.get(i).equals(targetArrange.get(i))) {
 				arrangeErr.append("\nNo. " + i
-						+ " arrangement is different: Sample is '"
+						+ " arrangement is different: Target is '"
 						+ originArrange.get(i) + "', Yours is '"
 						+ targetArrange.get(i) + "'\n");
 			}
@@ -381,7 +381,7 @@ public class compareUI {
 			if (orig.containsKey(needCompare.get(j))) {
 				if (!orig.get(needCompare.get(j)).equals(
 						targ.get(needCompare.get(j)))) {
-					result = result + "Sample Type: " + orig.get("$Type")
+					result = result + "Target Type: " + orig.get("$Type")
 							+ "'s " + needCompare.get(j) + " is "
 							+ orig.get(needCompare.get(j)) + "      Yours: "
 							+ targ.get("$Name") + "'s " + needCompare.get(j)
@@ -595,7 +595,7 @@ public class compareUI {
 
 		// compare if each component is with same type
 //		for (i = 0; i < origin.size(); i++) {
-//			System.out.println("Sample type " + i + "-> "
+//			System.out.println("Target type " + i + "-> "
 //					+ origin.get(i).getType() + "\nTarget type " + i + "-> "
 //					+ target.get(i).getType());
 //			if (!origin.get(i).getType().equals(target.get(i).getType())) {
