@@ -48,7 +48,21 @@ public class StudentAssignmentModel {
 	public String assignmentHistory;
 	public int assignmentPoint;
 	public String assignmentShortDes;
+	public String assignmentAuthor;
+	public int downloadable;
 	
+	public int getDownloadable() {
+		return downloadable;
+	}
+	public void setDownloadable(int downloadable) {
+		this.downloadable = downloadable;
+	}
+	public String getAssignmentAuthor() {
+		return assignmentAuthor;
+	}
+	public void setAssignmentAuthor(String assignmentAuthor) {
+		this.assignmentAuthor = assignmentAuthor;
+	}
 	public String getAssignmentShortDes() {
 		return assignmentShortDes;
 	}

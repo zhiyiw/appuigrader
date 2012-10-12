@@ -31,6 +31,16 @@ public class AssignmentBean {
 	
 	private Assignment selectedAssignment;
 	
+	private boolean value;
+	
+	public boolean isValue() {
+		return value;
+	}
+
+	public void setValue(boolean value) {
+		this.value = value;
+	}
+	
 	public List<Assignment> list;
 	
 	public Assignment getSelectedAssignment() {
@@ -41,6 +51,10 @@ public class AssignmentBean {
 		this.selectedAssignment = selectedAssignment;
 	}
 
+	public void downloadSwitch() throws SQLException{
+		openDownload(selectedAssignment.assignmentID);
+	}
+	
 	//if resource injection is not support, you still can get it manually.
 	public AssignmentBean(){
 		try {
@@ -211,6 +225,30 @@ public class AssignmentBean {
 		
 	}
 
+	public void openDownload(int id) throws SQLException{
+		if(ds==null)
+			throw new SQLException("Can't get data source");
+ 
+		//get database connection
+		con = ds.getConnection();
+ 
+		if(con==null)
+			throw new SQLException("Can't get database connection");
+		
+		PreparedStatement ps 
+		= con.prepareStatement(
+		   "update assignments set downloadable=abs(downloadable-1) where a_id=?;");
+		
+		ps.setInt(1, id);
+		
+		int updated = ps.executeUpdate();
+		
+		if(updated==0)
+			throw new SQLException("Update Error!");
+		
+		con.close();
+	}
+	
 	public void updateAssignment(String docu_dict,
 			int a_id, String description, String ss_dict, int point, int rating, String name, String author) throws SQLException {
 		// TODO Auto-generated method stub

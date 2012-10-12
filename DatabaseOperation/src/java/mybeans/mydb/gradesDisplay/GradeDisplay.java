@@ -99,6 +99,8 @@ public class GradeDisplay {
 				sam.setAssignmentRating(result.getInt("rating"));
 				sam.setAssignmentStatus("Not Yet Compared");
 				sam.setAssignmentPoint(result.getInt("point"));
+				sam.setAssignmentAuthor(result.getString("author"));
+				sam.setDownloadable(result.getInt("downloadable"));
 				
 				String tempScreenshot=result.getString("screenshot_dict");
 				if(tempScreenshot==null)
@@ -138,6 +140,8 @@ public class GradeDisplay {
 			sam.setAssignmentTries(result.getInt("try_count"));
 			sam.setAssignmentDirectory(result.getString("document_dict"));
 			sam.setAssignmentPoint(result.getInt("point"));
+			sam.setAssignmentAuthor(result.getString("author"));
+			sam.setDownloadable(result.getInt("downloadable"));
 			
 			String filePath = result.getString("grade_dict");
 			ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
