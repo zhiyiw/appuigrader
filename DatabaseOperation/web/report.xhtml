@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>App UI Grader: Report</title>
+   
+
+
+</h:head>
+<h:body>
+
+
+<h:form>
+
+<h:outputLabel value="Email: "></h:outputLabel>	
+<p:inputText id="mail" value="#{email.sender}" title="Enter Your Email" required="true" requiredMessage="         Email Address is required" styleClass="send"/>
+<br/>
+
+<h:outputLabel value="Subject: "></h:outputLabel>	
+<p:inputText id="subject" value="#{email.subject}" title="Enter Your Subject" required="true" requiredMessage="         Subject is required" styleClass="subj"/>
+<br/>
+
+<h:outputLabel value="Content: "></h:outputLabel>
+<br/>
+<p:inputTextarea rows="10" cols="50" value="#{email.content}"/> 
+
+<h:commandButton value="Submit" type="submit" action="#{email.send()}" />
+
+</h:form>
+
+
+
+</h:body>
+</html>
