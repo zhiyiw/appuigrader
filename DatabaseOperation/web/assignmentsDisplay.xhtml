@@ -133,23 +133,23 @@ function zipFileIfEmpty(){
             Assignment List  
         </f:facet> 
         
-        <p:column style="text-align: center;" headerText="Assignments" sortBy="#{a.assignmentName}">  
+        <p:column style="text-align: center; width:150px;" headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
         </p:column>
         
-        <p:column headerText="Description">
+        <p:column style="width:200px;" headerText="Description">
             #{a.shortDescription}
         </p:column>
         
-        <p:column style="width:250px !important;" headerText="Rating" sortBy="#{a.rating}">
+        <p:column style="width:110px !important;" headerText="Rating" sortBy="#{a.rating}">
         	<p:rating value="#{a.rating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
         
-        <p:column style="text-align: right; width:85px;" headerText="Point" sortBy="#{a.point}">
+        <p:column style="text-align: right; width:70px;" headerText="Point" sortBy="#{a.point}">
         	#{a.point} pts
         </p:column>
         
-        <p:column headerText="Downloadable">
+        <p:column style="width:40px; text-align:center;" headerText="&#x2913;">
         	<p:selectBooleanCheckbox value="#{assignment.value}">  
             	<p:ajax listener="#{assignment.downloadSwitch}"/>  
         	</p:selectBooleanCheckbox>
