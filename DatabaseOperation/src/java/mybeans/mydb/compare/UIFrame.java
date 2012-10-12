@@ -375,7 +375,7 @@ public class UIFrame {
 
 		compResult = sb.toString();
 		
-		tree1 = new TreeBean("Sample File",
+		tree1 = new TreeBean("Target File",
 				db.compArr.get(db.compArr.size() - 1));
 		
 		tree2 = new TreeBean("Your File",

@@ -68,7 +68,7 @@ function canceldown(){
 function zipFileIfEmpty(){
 	var value = $('[id="formAdd:out1"]').html();
 	var v = $('[id="formAdd:description"]');
-	var v1 = $('[id="formAdd:name"]');
+	var v1 = $('[id="formAdd:title"]');
 	var label1 = $('[id="formAdd:errorMsg1"]');
 	label1.empty();
 	var label2 = $('[id="formAdd:errorMsg2"]');
@@ -226,7 +226,8 @@ function zipFileIfEmpty(){
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:210px;left:45px;height:30px;width:80%;">
-				<p:inputText id="name" value="#{controller.assignmentName}">  
+				<p:inputText id="title" value="#{controller.assignmentName}">  
+				<p:watermark for="title" value="Assignment Title" />  
                 	<p:ajax event="keyup" update="outMsg" listener="#{controller.ajaxHandler}"/>  
             	</p:inputText><br/> 
             	<h:outputText id="outMsg" value="#{controller.outMsg}" style="font-size:10px;"/>
@@ -243,6 +244,7 @@ function zipFileIfEmpty(){
     			counterTemplate="{0} characters remaining." value="#{controller.description}"
     			style="background:transparent; border-style:none !important; box-shadow: none !important;">
     			<br/>   
+    			<p:watermark for="description" value="Assignment Description" />  
     			<p:ajax event="blur" update=":dialog_02" process="@this"/>
     			</p:inputTextarea>
 				<h:outputText id="counter" /> 
