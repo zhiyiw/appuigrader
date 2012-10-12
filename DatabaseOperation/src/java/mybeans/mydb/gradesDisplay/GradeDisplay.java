@@ -80,7 +80,6 @@ public class GradeDisplay {
 			
 			ResultSet result =  ps.executeQuery();
 			
-			int count=1;
 			while(result.next()){
 				StudentAssignmentModel sam = new StudentAssignmentModel();
 				sam.setAssignmentID(result.getInt("a_id"));
@@ -142,6 +141,7 @@ public class GradeDisplay {
 			sam.setAssignmentPoint(result.getInt("point"));
 			sam.setAssignmentAuthor(result.getString("author"));
 			sam.setDownloadable(result.getInt("downloadable"));
+			int canDownload = result.getInt("downloadable");
 			
 			String filePath = result.getString("grade_dict");
 			ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
@@ -172,10 +172,16 @@ public class GradeDisplay {
 			
 			int tempStatus = result.getInt("current_status");
 			
+			
 			if(tempStatus==0)
 				sam.setAssignmentStatus("Not Yet Compared");	
-			else if(tempStatus==1)
-				sam.setAssignmentStatus("Not Yet Matched");
+//			else if(tempStatus==1)
+//				sam.setAssignmentStatus("Not Yet Matched");
+			else if(canDownload==1){
+				//sam.setAssignmentStatus("<p:commandButton value=\"Download\" icon=\"ui-icon-arrowthichk-s\"><p:fileDownload value=\"#{fileDownloadController.getFile(selectedAssignment.assignmentDirectory)}\"/></p:commandButton>");
+				String zipFilePath = ctx.getRealPath(sam.assignmentDirectory);
+				sam.setAssignmentStatus("<a href=\""+sam.assignmentDirectory+"\" target=\"_blank\">Download</a>");
+			}
 			else
 				sam.setAssignmentStatus("Macthed");
 			
@@ -199,6 +205,7 @@ public class GradeDisplay {
 			selectedAssignment = l.get(0);
 		con.close();
 	}
+	
 
 	public List<StudentAssignmentModel> getAssignmentList() {
 		return assignmentList;

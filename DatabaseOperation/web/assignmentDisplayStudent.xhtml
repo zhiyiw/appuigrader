@@ -155,7 +155,10 @@ function zipFileIfEmpty(){
         </p:column>
         
         <p:column style="text-align: center;" headerText="Current Status">  
-            #{a.assignmentStatus}
+            <h:outputText escape="fasle" value="#{a.assignmentStatus}" />
+        </p:column>
+        <p:column headerText="D">  
+            #{a.downloadable}
         </p:column>
         
         <f:facet name="footer">  
