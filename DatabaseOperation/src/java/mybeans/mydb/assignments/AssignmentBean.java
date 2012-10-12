@@ -63,7 +63,6 @@ public class AssignmentBean {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
- 
 	}
 	
 	public boolean checkDupicateAssignment(String targetName)throws SQLException{
@@ -205,7 +204,7 @@ public class AssignmentBean {
 		int current = result.getInt(1)+1;
 		
 
-		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?,?,?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?,?,?,?)");
 		
 		ps.setInt(1, current);
 		ps.setString(2, docu_dict);
@@ -215,6 +214,7 @@ public class AssignmentBean {
 		ps.setInt(6,rating);
 		ps.setString(7, author);
 		ps.setString(8, name);
+		ps.setInt(9, 0);
 		
 		int updated = ps.executeUpdate();
 		
