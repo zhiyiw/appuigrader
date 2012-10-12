@@ -12,7 +12,14 @@ public class Assignment {
 	public int rating;
 	public String shortDescription;
 	public String author;
+	public int downloadable;
 	
+	public int getDownloadable() {
+		return downloadable;
+	}
+	public void setDownloadable(int downloadable) {
+		this.downloadable = downloadable;
+	}
 	public String getAuthor() {
 		return author;
 	}

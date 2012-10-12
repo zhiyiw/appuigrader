@@ -149,6 +149,12 @@ function zipFileIfEmpty(){
         	#{a.point} pts
         </p:column>
         
+        <p:column headerText="Downloadable">
+        	<p:selectBooleanCheckbox value="#{assignment.value}">  
+            	<p:ajax listener="#{assignment.downloadSwitch}"/>  
+        	</p:selectBooleanCheckbox>
+        </p:column>
+        
         <f:facet name="footer">  
              <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
              <p:commandButton id="v3" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
