@@ -151,9 +151,9 @@ function zipFileIfEmpty(){
         
         <p:column style="width:40px; text-align:center;" headerText="&#x2913;">
         	<h:form>
-        	<p:growl id="msgCheckbox" /> 
+        	<p:growl id="msgCheckbox" life="1000"/> 
         	<p:selectBooleanCheckbox value="#{a.value}"> 
-            	<p:ajax update="msgCheckbox" listener="#{assignment.downloadSwitch(a.assignmentID)}"/> 
+            	<p:ajax update="msgCheckbox" listener="#{assignment.downloadSwitch(a.assignmentID, a.value)}"/> 
         	</p:selectBooleanCheckbox>
         	</h:form>
         </p:column>

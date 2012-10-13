@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -43,9 +45,9 @@ public class AssignmentBean {
 		this.selectedAssignment = selectedAssignment;
 	}
 
-	public void downloadSwitch(int id) throws SQLException{
+	public void downloadSwitch(int id, boolean checked) throws SQLException{
 		System.out.println("trigger switch");
-		openDownload(id);
+		openDownload(id,checked);
 	}
 	
 	//if resource injection is not support, you still can get it manually.
@@ -224,7 +226,7 @@ public class AssignmentBean {
 		
 	}
 
-	public void openDownload(int id) throws SQLException{
+	public void openDownload(int id, boolean checked) throws SQLException{
 		if(ds==null)
 			throw new SQLException("Can't get data source");
  
@@ -247,6 +249,10 @@ public class AssignmentBean {
 		
 		if(updated==0)
 			throw new SQLException("Update Error!");
+		
+        String summary = checked ? "Set as downloadable" : "Set as undownloadable";  
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
 		
 		con.close();
 	}
