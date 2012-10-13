@@ -343,6 +343,9 @@ public class UIFrame {
 
 					String propertyResult = testUI.compareProperty(db.compArr,
 							db2.compArr);
+					
+					if(propertyResult == "Great!! Properties matched!!") setEverCorrect(true);
+					
 					sb.append(propertyResult);
 				}
 				else sb.append(testUI.comparePosition(db.compArr, db2.compArr)
