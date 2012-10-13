@@ -300,6 +300,10 @@ function zipFileIfEmpty(){
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
         	</p:outputPanel>
         	
+        	<p:outputPanel layout="block">
+        		<p:inputText id="author" value="#{controller.author}" />
+        	</p:outputPanel>
+        	
         	<p:outputPanel layout="block" style="position:absolute;left:55px;top:386px; border-style:none !important; box-shadow: none !important;">	
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
@@ -387,6 +391,10 @@ function zipFileIfEmpty(){
 				<p:outputPanel layout="block" style="position:absolute;right:70px;top:120px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
 				<h:graphicImage id="thumbnail2" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
 				</p:outputPanel>
+				
+				<p:outputPanel layout="block">
+        			<p:inputText id="author2" value="#{controller.author}" />
+        		</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;left:55px;top:326px; border-style:none !important; box-shadow: none !important;">	
 			
