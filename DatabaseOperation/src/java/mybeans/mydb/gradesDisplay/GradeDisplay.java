@@ -175,8 +175,8 @@ public class GradeDisplay {
 			
 			if(tempStatus==0)
 				sam.setAssignmentStatus("Not Yet Compared");	
-//			else if(tempStatus==1)
-//				sam.setAssignmentStatus("Not Yet Matched");
+			else if(tempStatus==1)
+				sam.setAssignmentStatus("Not Yet Matched");
 			else if(canDownload==1){
 				//sam.setAssignmentStatus("<p:commandButton value=\"Download\" icon=\"ui-icon-arrowthichk-s\"><p:fileDownload value=\"#{fileDownloadController.getFile(selectedAssignment.assignmentDirectory)}\"/></p:commandButton>");
 				String zipFilePath = ctx.getRealPath(sam.assignmentDirectory);

@@ -31,15 +31,7 @@ public class AssignmentBean {
 	
 	private Assignment selectedAssignment;
 	
-	private boolean value;
-	
-	public boolean isValue() {
-		return value;
-	}
 
-	public void setValue(boolean value) {
-		this.value = value;
-	}
 	
 	public List<Assignment> list;
 	
@@ -51,8 +43,9 @@ public class AssignmentBean {
 		this.selectedAssignment = selectedAssignment;
 	}
 
-	public void downloadSwitch() throws SQLException{
-		openDownload(selectedAssignment.assignmentID);
+	public void downloadSwitch(int id) throws SQLException{
+		System.out.println("trigger switch");
+		openDownload(id);
 	}
 	
 	//if resource injection is not support, you still can get it manually.
@@ -133,7 +126,13 @@ public class AssignmentBean {
 			else
 				tempSSD="/"+tempSSD;
 			assign.setScreenDirectory(tempSSD);
-		
+			
+			int downloadable = result.getInt("downloadable");
+			if(downloadable==1)
+				assign.setValue(true);
+			else
+				assign.setValue(false);
+			
 			assign.setPoint(result.getInt("point"));
 			assign.setRating(result.getInt("rating"));
 			//get assignment name
@@ -235,6 +234,7 @@ public class AssignmentBean {
 		if(con==null)
 			throw new SQLException("Can't get database connection");
 		
+		
 		PreparedStatement ps 
 		= con.prepareStatement(
 		   "update assignments set downloadable=abs(downloadable-1) where a_id=?;");
@@ -242,6 +242,8 @@ public class AssignmentBean {
 		ps.setInt(1, id);
 		
 		int updated = ps.executeUpdate();
+		
+		System.out.println("id:" +id);
 		
 		if(updated==0)
 			throw new SQLException("Update Error!");

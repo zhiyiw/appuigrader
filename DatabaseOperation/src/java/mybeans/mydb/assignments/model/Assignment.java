@@ -13,6 +13,15 @@ public class Assignment {
 	public String shortDescription;
 	public String author;
 	public int downloadable;
+	public boolean value;
+	
+	public boolean isValue() {
+		return value;
+	}
+
+	public void setValue(boolean value) {
+		this.value = value;
+	}
 	
 	public int getDownloadable() {
 		return downloadable;

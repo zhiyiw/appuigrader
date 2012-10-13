@@ -150,9 +150,12 @@ function zipFileIfEmpty(){
         </p:column>
         
         <p:column style="width:40px; text-align:center;" headerText="&#x2913;">
-        	<p:selectBooleanCheckbox value="#{assignment.value}">  
-            	<p:ajax listener="#{assignment.downloadSwitch}"/>  
+        	<h:form>
+        	<p:growl id="msgCheckbox" /> 
+        	<p:selectBooleanCheckbox value="#{a.value}"> 
+            	<p:ajax update="msgCheckbox" listener="#{assignment.downloadSwitch(a.assignmentID)}"/> 
         	</p:selectBooleanCheckbox>
+        	</h:form>
         </p:column>
         
         <f:facet name="footer">  
