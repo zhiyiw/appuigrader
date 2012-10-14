@@ -150,9 +150,12 @@ function zipFileIfEmpty(){
         </p:column>
         
         <p:column style="width:40px; text-align:center;" headerText="&#x2913;">
-        	<p:selectBooleanCheckbox value="#{assignment.value}">  
-            	<p:ajax listener="#{assignment.downloadSwitch}"/>  
+        	<h:form>
+        	<p:growl id="msgCheckbox" life="1000"/> 
+        	<p:selectBooleanCheckbox value="#{a.value}"> 
+            	<p:ajax update="msgCheckbox" listener="#{assignment.downloadSwitch(a.assignmentID, a.value)}"/> 
         	</p:selectBooleanCheckbox>
+        	</h:form>
         </p:column>
         
         <f:facet name="footer">  
@@ -264,6 +267,9 @@ function zipFileIfEmpty(){
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page01.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
 			
+		
+			
+			
 		</h:form>
 		</p:outputPanel>
 	</p:dialog>
@@ -292,12 +298,14 @@ function zipFileIfEmpty(){
 				<h:graphicImage id="thumbnail" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
 				</p:outputPanel>
 				
-			<p:outputPanel layout="block" style="position:absolute;left:55px;top:326px; border-style:none !important; box-shadow: none !important;">	
+			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
 			
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
         	</p:outputPanel>
         	
-        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:386px; border-style:none !important; box-shadow: none !important;">	
+        	
+        	
+        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
             </p:outputPanel>
@@ -310,6 +318,12 @@ function zipFileIfEmpty(){
 			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
+			
+				<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+        			<p:inputText id="author" value="#{controller.author}" />
+        			<p:watermark for="author" value="Author E-mail" />  
+        		</p:outputPanel>
+			
 			
 		</h:form>
 		</p:outputPanel>
@@ -384,13 +398,16 @@ function zipFileIfEmpty(){
 				<p:outputPanel layout="block" style="position:absolute;right:70px;top:120px; width:120px;height:150px;border-style:solid;border-size:1px; box-shadow: none !important;">
 				<h:graphicImage id="thumbnail2" value="#{controller.thumbnail}" width="120" height="150"></h:graphicImage>
 				</p:outputPanel>
+				
+				
 			
-			<p:outputPanel layout="block" style="position:absolute;left:55px;top:326px; border-style:none !important; box-shadow: none !important;">	
+			<p:outputPanel layout="block" style="position:absolute;left:55px;top:276px; border-style:none !important; box-shadow: none !important;">	
 			
         	<p:rating value="#{controller.rating}" stars="5" cancel="false"/> 
         	</p:outputPanel>
         	
-        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:386px; border-style:none !important; box-shadow: none !important;">	
+        	<p:outputPanel layout="block" style="position:absolute;left:55px;top:336px; border-style:none !important; box-shadow: none !important;">	
+  					
   						<p:inputText id="point" value="#{controller.point}" />  
         	<p:slider for="point"/>
             	</p:outputPanel>
@@ -405,6 +422,12 @@ function zipFileIfEmpty(){
 			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
 			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page02.hide()" action="#{controller.reset()}"/>
 			</p:outputPanel>
+			
+			
+			<p:outputPanel layout="block" style="position:absolute;top:400px;left:55px">
+        			<p:inputText id="author2" value="#{controller.author}" />
+        			<p:watermark for="author2" value="Author E-mail" />  
+        		</p:outputPanel>
 			
 		</h:form>
 		</p:outputPanel>
