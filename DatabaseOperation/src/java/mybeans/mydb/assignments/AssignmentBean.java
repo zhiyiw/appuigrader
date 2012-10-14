@@ -271,16 +271,18 @@ public class AssignmentBean {
 			throw new SQLException("Can't get database connection");
  
 		
-		PreparedStatement ps = con.prepareStatement("update assignments set document_dict=?, uploaded_date=SYSDATE(), description=?, screenshot_dict=?, point=?, rating=? where a_id=?");
+		PreparedStatement ps = con.prepareStatement("update assignments set document_dict=?, uploaded_date=SYSDATE(), description=?, screenshot_dict=?, point=?, rating=?,author=?, name=? where a_id=?");
 		
 		ps.setString(1, docu_dict);
 		ps.setString(2, description);
 		ps.setString(3, ss_dict);
 		ps.setInt(4,point);
 		ps.setInt(5, rating);
-		ps.setInt(6, a_id);
-		ps.setString(7, author);
-		ps.setString(8, name);
+		
+		ps.setString(6, author);
+		ps.setString(7, name);
+		ps.setInt(8, a_id);
+		
 		
 		int updated = ps.executeUpdate();
 		

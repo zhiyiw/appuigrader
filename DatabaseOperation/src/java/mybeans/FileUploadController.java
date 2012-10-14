@@ -387,6 +387,7 @@ public class FileUploadController {
     	point=0;
     	rating=0;
     	description = "";
+    	author = "";
     	thumbnail = "/images/noimage.png";
     	selectedZipFilename="Choose a file...";
     	selectedImageFilename="Choose a file...";
