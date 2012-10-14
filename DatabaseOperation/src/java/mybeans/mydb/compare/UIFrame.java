@@ -76,7 +76,7 @@ public class UIFrame {
 		this.isEverCorrect = isEverCorrect;
 	}
 
-	private boolean isEverCorrect;
+	private boolean isEverCorrect = false;
 
 	public ArrayList<Entry<String, Integer>> getOrigMapList() {
 		return origMapList;
@@ -336,19 +336,23 @@ public class UIFrame {
 						db2.compArr);
 
 				if (position
-						.equals("Good! All components are in the right position!")) {
+						.equals("Good! All components are placed in the right position!")) {
 
-					sb.append(testUI.comparePosition(db.compArr, db2.compArr)
+					sb.append(position
 							+ "\n");
 
 					String propertyResult = testUI.compareProperty(db.compArr,
 							db2.compArr);
 					
-					if(propertyResult == "Great!! Properties matched!!") setEverCorrect(true);
+					System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC             +++++++    " + propertyResult);
+
+					if(propertyResult.equals("Great!! Properties matched!!")) {
+						setEverCorrect(true);
+					}
 					
 					sb.append(propertyResult);
 				}
-				else sb.append(testUI.comparePosition(db.compArr, db2.compArr)
+				else sb.append(position
 						+ "\n");
 
 			} else {
