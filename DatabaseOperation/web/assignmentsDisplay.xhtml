@@ -106,6 +106,7 @@ function zipFileIfEmpty(){
 			i=1;
 		}
 	}
+	return false;
 }
 
 
@@ -264,7 +265,7 @@ function zipFileIfEmpty(){
 			
 
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();return false;"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
 			</p:outputPanel>
 
 			
