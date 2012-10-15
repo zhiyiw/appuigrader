@@ -157,10 +157,7 @@ function zipFileIfEmpty(){
         <p:column style="text-align: center;" headerText="Current Status">  
             <h:outputText escape="fasle" value="#{a.assignmentStatus}" />
         </p:column>
-        <p:column headerText="D">  
-            #{a.downloadable}
-        </p:column>
-        
+      
         <f:facet name="footer">  
              <p:commandButton id="v" value="Assignment Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
 			 <p:commandButton id="v1" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
@@ -185,25 +182,26 @@ function zipFileIfEmpty(){
 	</p:dialog>
 
     
-    <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" >  
-  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
-  	<p:outputPanel layout="block" style="position:absolute;top:25px;left:110px">
-  	<h:outputText style="font-size:16; font-weight:bold;"  
+    <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="340" height="335" showHeader="false" draggable="false" resizable="false" >  
+  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:324px;width:324px" layout="block"> 
+  	<p:outputPanel layout="block" style="position:absolute;top:28px;left:110px">
+  	<h:outputText style="font-size:16px; font-weight:bold; text-align:center;"  
                             value="#{gradestudentBean.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
     
-    <p:outputPanel layout="block">
+    <p:outputPanel layout="block" style="position:absolute;top:72px;left:43px; font-size:16px;">
+    <a>Author:</a>
     	#{gradestudentBean.selectedAssignment.assignmentAuthor}
     </p:outputPanel>
     
-    <p:outputPanel layout="block" style="text-align:left;font-size:14px;word-wrap:break-word; word-break:break-all; position:absolute;top:100px;left:50px; width:230px; height:120px; ">
+    <p:outputPanel layout="block" style="text-align:left;font-size:14px;word-wrap:break-word; word-break:break-all; position:absolute;top:140px;left:50px; width:230px; height:120px; ">
 <!--	<p:inputTextarea rows="0" cols="25" value="#{assignment.selectedAssignment.description}" />  -->  
   	 #{gradestudentBean.selectedAssignment.assignmentDes}
     </p:outputPanel>
     
     <p:outputPanel layout="block">
  	<p:commandLink onclick="dlg.hide();updateUI.show();return false;" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
- 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:11%"/>
+ 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:12.5%"/>
  	</p:commandLink>
  	</p:outputPanel>
  	

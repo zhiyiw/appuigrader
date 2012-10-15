@@ -183,25 +183,26 @@ function zipFileIfEmpty(){
 	<h:graphicImage value="#{assignment.selectedAssignment.screenDirectory}" width="400" height="500"></h:graphicImage>
 	</p:dialog>
     
-    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" showHeader="false" draggable="false" resizable="false" styleClass="detail" >  
-  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/update_panel_stu.png);height:312px;width:312px" layout="block"> 
+    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="380" height="335" showHeader="false" draggable="false" resizable="false" styleClass="detail" >  
+  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:324px;width:324px" layout="block"> 
   
-  	<p:outputPanel layout="block" style="position:absolute;top:25px;left:115px">
+  	<p:outputPanel layout="block" style="position:absolute;top:28px;width:250px; left:56px;">
   	<h:outputText style="font-size:16; font-weight:bold;"  
                             value="#{assignment.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
     
-            <p:outputPanel layout="block">
+            <p:outputPanel layout="block" style="position:absolute;top:72px;left:43px; font-size:16px;">
+             <a>Author:</a>
         		#{assignment.selectedAssignment.author}
         	</p:outputPanel>
     
-    <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:100px;left:50px; width:230px; height:120px">
+    <p:outputPanel layout="block" style="text-align:left;word-wrap:break-word; word-break:break-all; position:absolute;top:140px;left:50px; width:230px; height:120px">
   	 #{assignment.selectedAssignment.description}
     </p:outputPanel>
     
     <p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
- 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:76%;right:98px"/>
+ 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;left:112px"/>
  	</p:commandLink>
  	</p:outputPanel>
     
