@@ -98,8 +98,11 @@ function zipFileIfEmpty(){
 		nameCheck.css('color','red');
 	}else{
    	 	addnew_page01.hide();
-		addnew_page02.show();
-		return false;
+   	 	setTimeout(function(){
+   	 		addnew_page02.show();
+			return false;
+   	 	},100);
+		
 	}
 }
 
@@ -262,7 +265,7 @@ function zipFileIfEmpty(){
 
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
 
-			<h:commandButton type="button" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png" onclick="zipFileIfEmpty();"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png" onclick="zipFileIfEmpty();return false;"/>
 
 			</p:outputPanel>
 
