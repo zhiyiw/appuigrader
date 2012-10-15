@@ -391,8 +391,9 @@ document.onkeydown = function() {
 
 
 	<h:form layout="block" styleClass="result_return">
-        <h:commandButton value="backToassignments" action="assignmentDisplayStudent.xhtml" onmousedown="lazyload()" image="/images/result_return.png" />
-
+        <h:commandButton id="goback" value="backToassignments" action="assignmentDisplayStudent.xhtml" onmousedown="lazyload()" image="/images/result_return.png" />
+		     	<p:tooltip for="goback" value="Go Back" showEffect="fade" hideEffect="fade" position="left center"/>
+		
         </h:form>
 </p:outputPanel>
 <p:outputPanel layout="block" styleClass="result_head">
@@ -417,7 +418,9 @@ document.onkeydown = function() {
 	<p:outputPanel layout="block" styleClass="result_status_right"></p:outputPanel>
 	<p:outputPanel layout="block" styleClass="result_block">
 	<h:form>
-<h:commandButton image="/images/result_block.png"  action="blockPrint.xhtml"></h:commandButton>
+<h:commandButton id="blockview" image="/images/result_block.png"  action="blockPrint.xhtml"></h:commandButton>
+     	<p:tooltip for="blockview" value="Show Blocks" showEffect="fade" hideEffect="fade" position="left center"/>
+
 </h:form>
 	
 	</p:outputPanel>
