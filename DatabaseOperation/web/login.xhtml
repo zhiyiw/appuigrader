@@ -18,27 +18,24 @@
 
    <h:body>
         <p:outputPanel layout="block" styleClass="mainFrame">
-             
+       
        <h:form layout="block" styleClass="back">
-      
-    <h:commandButton onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />
-    
+    <h:commandButton id="goback" onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />  
+           <p:tooltip for="goback" value="Go Back" showEffect="fade" hideEffect="fade" position="left center"/>
        
        </h:form>
         	
         	
-        	<p:outputPanel layout="block" styleClass="loginPanel">
+        	<p:outputPanel id="panel" layout="block" styleClass="loginPanel">
+                     <p:focus context="panel"/> 
+
         	<h:form id="loginPage" enctype="multipart/form-data">
 			<!-- 	<p:outputPanel layout="block" style="visibility:hidden;" > -->
 			<h:outputLabel styleClass="hidden" value="Year "></h:outputLabel>
-        	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectYear}">
-   				<f:selectItems value="#{menuoption.getYearList()}" />
-   			</h:selectOneMenu>
+
     	    
     	   	<h:outputLabel styleClass="hidden" value="Term "></h:outputLabel>
-        	<h:selectOneMenu styleClass="hidden" value="#{menuoption.selectTerm}">
-   				<f:selectItems value="#{menuoption.getTermList()}" />
-   			</h:selectOneMenu>
+
     	   <!--  </p:outputPanel> -->
     	    <br /><br />
 			
@@ -74,7 +71,8 @@
 
                 
         <h:form layout="block" styleClass="sign">
-           <h:commandButton type="submit" onmouseover="this.src ='images/add_r1_c1_s2.png'" onmouseout="this.src='images/add_r1_c1.png'" onmousedown="this.src='images/add_r1_c1_s3.png'" action="register.xhtml" image="/images/add_r1_c1.png" />
+           <h:commandButton id="signup" type="submit" onmouseover="this.src ='images/add_r1_c1_s2.png'" onmouseout="this.src='images/add_r1_c1.png'" onmousedown="this.src='images/add_r1_c1_s3.png'" action="register.xhtml" image="/images/add_r1_c1.png" />
+         <p:tooltip for="signup" value="Sign Up New User" showEffect="fade" hideEffect="fade" position="left center"/>
      
         </h:form>
         
