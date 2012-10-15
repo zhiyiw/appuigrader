@@ -89,7 +89,7 @@ function zipFileIfEmpty(){
 		error.fadeOut(1000);
 	}else if(v1.val()==''){
 		v1.focus();
-		var error = $('<div>Please add name</div>');
+		var error = $('<div>Please add title</div>');
 		error.css('color','red');
 		error.appendTo(label3);
 		error.fadeOut(1000);
@@ -118,9 +118,11 @@ function zipFileIfEmpty(){
 	<p:outputPanel layout="block" styleClass="mainFrame">
     
     <p:outputPanel layout="block" styleClass="add">
-    <p:commandLink onmouseover="buttonover();" onmouseout="buttonout();" onmousedown="buttondown();" onclick="addnew_page01.show()" styleClass="addNewAssignment" >
+    <p:commandLink id="addassignment" onmouseover="buttonover();" onmouseout="buttonout();" onmousedown="buttondown();" onclick="addnew_page01.show()" styleClass="addNewAssignment" >
         <img name="buttonAdd" src="images/add_r1_c1.png" style="border:none"/>
     </p:commandLink>
+         	<p:tooltip for="addassignment" value="Add New Assignment" showEffect="fade" hideEffect="fade" position="left center"/>
+    
     </p:outputPanel>
       
 	<p:outputPanel layout="block" styleClass="assignment_table">
@@ -264,7 +266,7 @@ function zipFileIfEmpty(){
 			
 
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png" onclick="zipFileIfEmpty();return false;"/>
+			<h:commandButton type="button" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png" onclick="update_page01.hide(); update_page02.show();"/>
 			</p:outputPanel>
 
 			
