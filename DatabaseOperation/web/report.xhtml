@@ -5,31 +5,53 @@
 <h:head>
     <title>App UI Grader: Report</title>
    
-
+<link rel="stylesheet/less" type="text/css" href="css/report.less" ></link>
+    
+<script src="js/less.js" type="text/javascript"></script>
+<link rel="shortcut icon" type="image/x-icon" href="/appuigrader/images/favicon.ico"></link>
 
 </h:head>
 <h:body>
+<p:outputPanel layout="block" styleClass="mainFrame">
 
+     
+           <h:form layout="block" styleClass="back">
+                 
+    <h:commandButton value="back button" onmouseover="this.src ='images/return_button_s02.png'" onmouseout="this.src='images/return_button_s01.png'" onmousedown="this.src='images/return_button_s03.png'" onclick="history.back(); return false" image="images/return_button_s01.png" />
+    
+       
+       </h:form>
 
+<p:outputPanel layout="block" styleClass="Panel">
 <h:form>
 
-<h:outputLabel value="Email: "></h:outputLabel>	
-<p:inputText id="mail" value="#{email.sender}" title="Enter Your Email" required="true" requiredMessage="         Email Address is required" styleClass="send"/>
+
+<p:inputText id="mail" value="#{email.sender}" title="Enter Your Email" required="true" requiredMessage="         Email Address is required" styleClass="inputaera"/>
+	<p:watermark for="mail" value="Your E-Mail Address" />  
+
+<br/>
 <br/>
 
-<h:outputLabel value="Subject: "></h:outputLabel>	
-<p:inputText id="subject" value="#{email.subject}" title="Enter Your Subject" required="true" requiredMessage="         Subject is required" styleClass="subj"/>
+
+<p:inputText id="subject" value="#{email.subject}" title="Enter Your Subject" required="true" requiredMessage="         Subject is required" styleClass="inputaera"/>
+<p:watermark for="subject" value="Report Subject" />  
+<br/>
 <br/>
 
-<h:outputLabel value="Content: "></h:outputLabel>
-<br/>
-<p:inputTextarea rows="10" cols="50" value="#{email.content}"/> 
 
-<h:commandButton value="Submit" type="submit" action="#{email.send()}" />
+
+<p:inputTextarea id="content" rows="10" cols="57" value="#{email.content}" styleClass="inputaera"/> 
+
+<p:watermark for="content" value="Report Content" />  
+<p:outputPanel layout="block" style="position:relative;top:6px;left:150px">
+			<h:commandButton type="button" onmouseover="this.src ='images/submit_s1.png'" onmouseout="this.src='images/submit_s0.png'" onmousedown="this.src='images/submit_s2.png'"  image="/images/submit_s0.png" action="#{email.send()}"/>
+			</p:outputPanel>
+
+
 
 </h:form>
 
-
-
+</p:outputPanel>
+</p:outputPanel>
 </h:body>
 </html>

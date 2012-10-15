@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Properties;
  
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -31,7 +32,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 @ManagedBean(name="email")
-@SessionScoped
+@RequestScoped
 
 public class sendEmail {
 	
