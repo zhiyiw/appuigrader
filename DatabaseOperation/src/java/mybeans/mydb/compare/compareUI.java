@@ -381,11 +381,10 @@ public class compareUI {
 			if (orig.containsKey(needCompare.get(j))) {
 				if (!orig.get(needCompare.get(j)).equals(
 						targ.get(needCompare.get(j)))) {
-					result = result + "Target Type: " + orig.get("$Type")
-							+ "'s " + needCompare.get(j) + " is "
-							+ orig.get(needCompare.get(j)) + "      Yours: "
-							+ targ.get("$Name") + "'s " + needCompare.get(j)
-							+ " is " + targ.get(needCompare.get(j)) + "\n";
+					result = result + orig.get("$Type")
+							+ "'s " + needCompare.get(j) + ": Target File is "
+							+ orig.get(needCompare.get(j)) + ", " + "      Yours is "
+							+ targ.get(needCompare.get(j)) + "\n";
 				}
 
 				System.out.println("EACH-result: " + result);
@@ -404,14 +403,14 @@ public class compareUI {
 		String proErr = "";
 		boolean same = true;
 
-		for (i = 0; i < size; i++) {
-			if (!origin.get(i).map.keySet().equals(target.get(i).map.keySet())) {
-				same = false;
-			}
-
-		}
-
-		if (!same) {
+//		for (i = 0; i < size; i++) {
+//			if (!origin.get(i).map.keySet().equals(target.get(i).map.keySet())) {
+//				same = false;
+//			}
+//
+//		}
+//
+//		if (!same) {
 
 			decompos(origin.get(origin.size() - 1));
 			ArrayList<HashMap> oriMap = new ArrayList<HashMap>();
@@ -460,10 +459,14 @@ public class compareUI {
 			}
 
 			System.out.println("RESULT: " + proErr);
-			return "HOWEVER....\n\n" + proErr;
-		}
-
-		return "Great!! Properties matched!!";
+			
+			if(proErr.isEmpty()) 
+				return "\n Great!! Properties are matched!!";
+			else
+				return "\n HOWEVER....\n\n" + proErr;
+//		}
+//
+//		return "Great!! Properties matched!!";
 	}
 
 	public ArrayList<Component> addComp(Component comp,
