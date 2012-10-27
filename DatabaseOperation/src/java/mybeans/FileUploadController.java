@@ -35,10 +35,13 @@ public class FileUploadController {
 
     private UploadedFile zipFile;
     private UploadedFile imageFile;
+    private UploadedFile pdfFile;
+    private String pdfFilename;
     private String zipFilename;
     private String imageFilename;
-    public String selectedZipFilename = "Choose a file...";
-    public String selectedImageFilename = "Choose a file...";
+    public String selectedPdfFilename = "Choose a pdf file...";
+    public String selectedZipFilename = "Choose a rubric file...";
+    public String selectedImageFilename = "Choose an image file...";
     public int point = 0;
     public Integer rating = 0;
     public String description = "";
@@ -47,7 +50,31 @@ public class FileUploadController {
     public String author = "";
     public String outMsg = "";
     
-    public String getOutMsg() {
+    public UploadedFile getPdfFile() {
+		return pdfFile;
+	}
+
+	public void setPdfFile(UploadedFile pdfFile) {
+		this.pdfFile = pdfFile;
+	}
+
+	public String getPdfFilename() {
+		return pdfFilename;
+	}
+
+	public void setPdfFilename(String pdfFilename) {
+		this.pdfFilename = pdfFilename;
+	}
+
+	public String getSelectedPdfFilename() {
+		return selectedPdfFilename;
+	}
+
+	public void setSelectedPdfFilename(String selectedPdfFilename) {
+		this.selectedPdfFilename = selectedPdfFilename;
+	}
+
+	public String getOutMsg() {
 		return outMsg;
 	}
 
@@ -82,7 +109,7 @@ public class FileUploadController {
 
 	private String document_dict;
     private String ss_dict;
-    
+    private String pdf_dict;
 
 
 
@@ -206,6 +233,23 @@ public class FileUploadController {
             
             AssignmentBean assbean = new AssignmentBean();
             
+            if(pdfFile!=null){
+            	deploymentDirectoryPath=ctx.getRealPath("/")+"Pdf";
+            	target = new File(deploymentDirectoryPath);
+                if(!target.exists())
+                	target.mkdir();
+                
+                prefix = FilenameUtils.getBaseName(pdfFile.getFileName());
+                prefix = prefix.replaceAll("\\s","");
+                suffix = FilenameUtils.getExtension(pdfFile.getFileName());
+                file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
+                output = new FileOutputStream(file);
+                IOUtils.copy(pdfFile.getInputstream(), output);
+                pdfFilename = file.getName().trim();
+                pdf_dict = "Pdf/"+pdfFilename;
+            }else
+            	pdf_dict="";
+            
             try {
             	if(imageFile!=null){
             		deploymentDirectoryPath=ctx.getRealPath("/")+"Screenshot";
@@ -221,10 +265,10 @@ public class FileUploadController {
                     IOUtils.copy(imageFile.getInputstream(), output);
                     imageFilename = file.getName().trim();
                     String ss_dict = "Screenshot/"+imageFilename;
-            		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating,assignmentName,author);
+            		assbean.addAssignment(document_dict,this.description,ss_dict, point, rating,assignmentName,author,pdf_dict);
             	}
             	else
-            		assbean.addAssignment(document_dict,this.description,"/images/noimage.png", point, rating, assignmentName, author);
+            		assbean.addAssignment(document_dict,this.description,"/images/noimage.png", point, rating, assignmentName, author, pdf_dict);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -305,8 +349,30 @@ public class FileUploadController {
           			IOUtils.closeQuietly(output);
           		}
 			}
+          
+          if(pdfFile!=null){
+        	  try {
+				String deploymentDirectoryPath=ctx.getRealPath("/")+"Pdf";
+				File target = new File(deploymentDirectoryPath);
+            	if(!target.exists())
+            		target.mkdir();
+			    prefix = FilenameUtils.getBaseName(pdfFile.getFileName());
+			    prefix = prefix.replaceAll("\\s","");
+			    suffix = FilenameUtils.getExtension(pdfFile.getFileName());
+				file = File.createTempFile(prefix + "_", "." + suffix,new File(deploymentDirectoryPath));
+			    output = new FileOutputStream(file);
+			    IOUtils.copy(pdfFile.getInputstream(), output);
+			    pdfFilename = file.getName();
+			    pdf_dict = "Pdf/"+pdfFilename.trim();
+        	  }catch (IOException e) {
+                  // Cleanup.
+                  if (file != null) file.delete();
+          		}finally{
+          			IOUtils.closeQuietly(output);
+          		}
+			}
           	
-          	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating, assignmentName, author);
+          	assbean.updateAssignment(document_dict, fileID, description, ss_dict, point, rating, assignmentName, author, pdf_dict);
           	reset();
           	return true;
     }
@@ -326,6 +392,13 @@ public class FileUploadController {
     		outMsg = "";
     	else
     		outMsg = assignmentName+" is not available, please name another one";
+    }
+    
+    public void handlePdfUpload(FileUploadEvent event){
+    	System.out.println("enter pdf upload handler");
+    	pdfFile = event.getFile();
+    	selectedPdfFilename = event.getFile().getFileName();
+    	System.out.println(selectedPdfFilename);
     }
     
     public void handleZipUpload(FileUploadEvent event) {  
@@ -378,21 +451,23 @@ public class FileUploadController {
     	thumbnail = ss_dict;
     	assignmentName = targetAss.assignmentName;
     	author = targetAss.author;
+    	pdf_dict = targetAss.pdfDirectory;
     }
     
 
 	public void reset(){
     	zipFile=null;
     	imageFile=null;
+    	pdfFile = null;
     	point=0;
     	rating=0;
     	description = "";
     	author = "";
     	thumbnail = "/images/noimage.png";
-    	selectedZipFilename="Choose a file...";
-    	selectedImageFilename="Choose a file...";
+    	selectedPdfFilename = "Choose a pdf file...";
+    	selectedZipFilename="Choose a rubric file...";
+    	selectedImageFilename="Choose an image file...";
     	outMsg="";
     	assignmentName="";
     }
-
 }

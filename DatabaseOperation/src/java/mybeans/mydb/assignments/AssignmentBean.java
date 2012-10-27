@@ -118,7 +118,8 @@ public class AssignmentBean {
 			
 			
 			assign.setAssignmentID(result.getInt("a_id"));
-			assign.setAssignmentDirectory(result.getString("document_dict"));			
+			assign.setAssignmentDirectory(result.getString("document_dict"));
+			assign.setPdfDirectory(result.getString("pdf_dict"));
 		    //get screenshot directory
 			String tempSSD=result.getString("screenshot_dict");
 			if(tempSSD==null)
@@ -185,7 +186,7 @@ public class AssignmentBean {
 		return assign;
 	}
 	
-	public void addAssignment(String docu_dict, String description, String ss_dict, int point, int rating, String name, String author) throws SQLException{
+	public void addAssignment(String docu_dict, String description, String ss_dict, int point, int rating, String name, String author, String pdf_dict) throws SQLException{
 		if(ds==null)
 			throw new SQLException("Can't get data source");
  
@@ -205,7 +206,7 @@ public class AssignmentBean {
 		int current = result.getInt(1)+1;
 		
 
-		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?,?,?,?)");
+		ps = con.prepareStatement("insert into assignments values (?,?,SYSDATE(),?,?,?,?,?,?,?,?)");
 		
 		ps.setInt(1, current);
 		ps.setString(2, docu_dict);
@@ -216,6 +217,7 @@ public class AssignmentBean {
 		ps.setString(7, author);
 		ps.setString(8, name);
 		ps.setInt(9, 0);
+		ps.setString(10, pdf_dict);
 		
 		int updated = ps.executeUpdate();
 		
@@ -258,7 +260,7 @@ public class AssignmentBean {
 	}
 	
 	public void updateAssignment(String docu_dict,
-			int a_id, String description, String ss_dict, int point, int rating, String name, String author) throws SQLException {
+			int a_id, String description, String ss_dict, int point, int rating, String name, String author, String pdf_dict) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		if(ds==null)
@@ -271,7 +273,7 @@ public class AssignmentBean {
 			throw new SQLException("Can't get database connection");
  
 		
-		PreparedStatement ps = con.prepareStatement("update assignments set document_dict=?, uploaded_date=SYSDATE(), description=?, screenshot_dict=?, point=?, rating=?,author=?, name=? where a_id=?");
+		PreparedStatement ps = con.prepareStatement("update assignments set document_dict=?, uploaded_date=SYSDATE(), description=?, screenshot_dict=?, point=?, rating=?,author=?, name=?, pdf_dict=? where a_id=?");
 		
 		ps.setString(1, docu_dict);
 		ps.setString(2, description);
@@ -281,7 +283,8 @@ public class AssignmentBean {
 		
 		ps.setString(6, author);
 		ps.setString(7, name);
-		ps.setInt(8, a_id);
+		ps.setString(8,pdf_dict);
+		ps.setInt(9, a_id);
 		
 		
 		int updated = ps.executeUpdate();

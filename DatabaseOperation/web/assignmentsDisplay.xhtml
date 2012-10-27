@@ -294,7 +294,6 @@ function zipFileIfEmpty(){
             	showButtons="false"
             	auto="true"
             	update="out2,thumbnail"
-            	widgetVar="fileuplaod_wgt"
             	/>
 		</p:outputPanel>
 			<p:outputPanel layout="block" styleClass="filename" >
@@ -319,7 +318,7 @@ function zipFileIfEmpty(){
 
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="addnew_page02.hide()"  action="#{controller.addNew()}" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="addnew_page02.hide();addnew_page03.show();" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
@@ -330,6 +329,38 @@ function zipFileIfEmpty(){
         			<p:inputText id="author" value="#{controller.author}" />
         			<p:watermark for="author" value="Author E-mail" />  
         		</p:outputPanel>
+			
+			
+		</h:form>
+		</p:outputPanel>
+	</p:dialog>
+	
+		<p:dialog styleClass="detail" resizable="false" widgetVar="addnew_page03" width="450" height="520" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/add_assignment3.png);height:500px;width:412px" layout="block">
+        <h:form enctype="multipart/form-data">
+        <p:outputPanel layout="block" style="position:absolute;top:160px;left:45px">
+    		<p:fileUpload fileUploadListener="#{controller.handlePdfUpload}"
+            	mode="advanced"
+            	sizeLimit="10000000"  
+            	style="border:none"
+            	required="true"
+            	showButtons="false"
+            	auto="true"
+            	update="out13"
+            	/>
+		</p:outputPanel>
+			<p:outputPanel layout="block" styleClass="filename" >
+		<h:outputText id="out13" value="#{controller.selectedPdfFilename}" /> 
+		</p:outputPanel>
+			
+			
+			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
+			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="addnew_page03.hide();"  action="#{controller.addNew()}" />
+			</p:outputPanel>
+			
+			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="addnew_page03.hide()" action="#{controller.reset()}"/>
+			</p:outputPanel>
 			
 			
 		</h:form>
@@ -431,7 +462,7 @@ function zipFileIfEmpty(){
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/update_s1.png'" onmouseout="this.src='images/update_s0.png'" onmousedown="this.src='images/update_s2.png'"  image="/images/update_s0.png"  onclick="update_page02.hide()"  action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/update_s1.png'" onmouseout="this.src='images/update_s0.png'" onmousedown="this.src='images/update_s2.png'"  image="/images/update_s0.png"  onclick="update_page02.hide();update_page03.show();" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
@@ -443,6 +474,39 @@ function zipFileIfEmpty(){
         			<p:inputText id="author2" value="#{controller.author}" />
         			<p:watermark for="author2" value="Author E-mail" />  
         		</p:outputPanel>
+			
+		</h:form>
+		</p:outputPanel>
+	</p:dialog>
+	
+		<p:dialog styleClass="detail" resizable="false" id="updateDlg_03" widgetVar="update_page03" width="450" height="520" modal="true" showHeader="false" draggable="false">  
+		<p:outputPanel style="background-image:url(images/update_assignment3.png);height:500px;width:412px" layout="block">
+        <h:form enctype="multipart/form-data">
+        <p:outputPanel layout="block" style="position:absolute;top:160px;left:45px">
+    		<p:fileUpload fileUploadListener="#{controller.handlePdfUpload}"
+            	mode="advanced"
+            	sizeLimit="10000000" 
+            	allowTypes="/(\.|\/)(pdf)$/" 
+            	style="border:none"
+            	required="true"
+            	showButtons="false"
+            	auto="true"
+            	update="out23"
+            	/>
+		</p:outputPanel>
+		<p:outputPanel layout="block" styleClass="filename" >
+		<h:outputText id="out23" value="#{controller.selectedPdfFilename}" /> 
+			</p:outputPanel>	
+			
+            
+			
+			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
+			<h:commandButton type="submit" onmouseover="this.src ='images/update_s1.png'" onmouseout="this.src='images/update_s0.png'" onmousedown="this.src='images/update_s2.png'"  image="/images/update_s0.png"  onclick="update_page03.hide()"  action="#{controller.updateExist(assignment.selectedAssignment.assignmentID)}" />
+			</p:outputPanel>
+			
+			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
+			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="update_page03.hide()" action="#{controller.reset()}"/>
+			</p:outputPanel>
 			
 		</h:form>
 		</p:outputPanel>

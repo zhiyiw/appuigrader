@@ -14,7 +14,16 @@ public class Assignment {
 	public String author;
 	public int downloadable;
 	public boolean value;
+	public String pdfDirectory;
 	
+	public String getPdfDirectory() {
+		return pdfDirectory;
+	}
+
+	public void setPdfDirectory(String pdfDirectory) {
+		this.pdfDirectory = pdfDirectory;
+	}
+
 	public boolean isValue() {
 		return value;
 	}
