@@ -46,10 +46,10 @@
     <location>/faces/loginErr1.xhtml</location>
   </error-page>
   
-  <error-page>
+<!--   <error-page>
     <error-code>500</error-code>
     <location>/faces/loginErr2.xhtml</location>
-  </error-page>  
+  </error-page>   -->
 
   <error-page>
     <error-code>503</error-code>
