@@ -120,6 +120,13 @@ public class AssignmentBean {
 			assign.setAssignmentID(result.getInt("a_id"));
 			assign.setAssignmentDirectory(result.getString("document_dict"));
 			assign.setPdfDirectory(result.getString("pdf_dict"));
+			
+			String tempDirectory = assign.pdfDirectory;
+			if("".equals(tempDirectory) || tempDirectory==null){
+				assign.setPdfDownloadLink("Not Applicatable");
+			}else{
+				assign.setPdfDownloadLink("<a href=\""+tempDirectory+"\" target=\"_blank\">Download</a>");
+			}
 		    //get screenshot directory
 			String tempSSD=result.getString("screenshot_dict");
 			if(tempSSD==null)
@@ -181,6 +188,7 @@ public class AssignmentBean {
 		assign.setRating(result.getInt("rating"));
 		assign.setAssignmentName(result.getString("name"));
 		assign.setAuthor(result.getString("author"));
+		assign.setPdfDirectory(result.getString("pdf_dict"));
 		
 		con.close();
 		return assign;

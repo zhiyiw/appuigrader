@@ -15,7 +15,16 @@ public class Assignment {
 	public int downloadable;
 	public boolean value;
 	public String pdfDirectory;
+	public String pdfDownloadLink;
 	
+	public String getPdfDownloadLink() {
+		return pdfDownloadLink;
+	}
+
+	public void setPdfDownloadLink(String pdfDownloadLink) {
+		this.pdfDownloadLink = pdfDownloadLink;
+	}
+
 	public String getPdfDirectory() {
 		return pdfDirectory;
 	}

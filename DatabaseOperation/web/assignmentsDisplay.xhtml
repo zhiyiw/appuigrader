@@ -201,6 +201,10 @@ function zipFileIfEmpty(){
     </p:outputPanel>
     
     <p:outputPanel layout="block">
+    	<h:outputText escape="fasle" value="#{assignment.selectedAssignment.pdfDownloadLink}" />
+    </p:outputPanel>
+    
+    <p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
  	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;left:112px"/>
  	</p:commandLink>
@@ -495,8 +499,8 @@ function zipFileIfEmpty(){
             	/>
 		</p:outputPanel>
 		<p:outputPanel layout="block" styleClass="filename" >
-		<h:outputText id="out23" value="#{controller.selectedPdfFilename}" /> 
-			</p:outputPanel>	
+		<h:outputText id="out23" value="#{controller.selectedPdfFilename}" />
+		</p:outputPanel>	
 			
             
 			
