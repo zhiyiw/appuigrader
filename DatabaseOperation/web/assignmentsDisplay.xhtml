@@ -188,13 +188,19 @@ function zipFileIfEmpty(){
     </h:form>
     </p:outputPanel>
 	
-	<p:dialog id="confirm" widgetVar="confirmDlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" draggable="false" resizable="false" styleClass="test">  
+	<p:dialog id="confirm" widgetVar="confirmDlg" showEffect="fade" hideEffect="fade" modal="true" width="368" height="315" showHeader="false" draggable="false" resizable="false" styleClass="detail">  
+	<p:outputPanel style="background-image:url(images/delete_assignment.png);width:340px;height:274px" layout="block">
 		<h:form>
-		<h:outputText value="you sure you want to delete #{assignment.selectedAssignment.assignmentID} ?"></h:outputText>
-			<h:commandButton type="submit" value="yes" onclick="confirmDlg.hide();" action="#{controller.delete(assignment.selectedAssignment.assignmentID)}"/>
-
-			<h:commandButton type="button" value="no" onclick="confirmDlg.hide();"/>
+		<h:outputText style="position:absolute;top:130px;width:200px; left:126px;font-size:18px; font-weight:bold;" value="Warining: Delete #{assignment.selectedAssignment.assignmentID} ?"></h:outputText>
+			
+<h:commandButton style="position:absolute;top:220px;left:40px" type="submit" onmouseover="this.src ='images/delete_s1.png'" onmouseout="this.src='images/delete_s0.png'" onmousedown="this.src='images/delete_s2.png'"  image="/images/delete_s0.png" onclick="confirmDlg.hide();" action="#{controller.delete(assignment.selectedAssignment.assignmentID)}"/>
+			
+			
+			<h:commandButton style="position:absolute;top:220px;left:202px" type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="confirmDlg.hide();" />
+			
+			
     </h:form>
+    </p:outputPanel>
     </p:dialog>
 	
 	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="434" height="508">
