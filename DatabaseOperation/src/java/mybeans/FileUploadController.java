@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletContext;
@@ -17,6 +18,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.RateEvent;
+import org.primefaces.event.SlideEndEvent;
 import org.primefaces.event.data.PageEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -454,6 +457,15 @@ public class FileUploadController {
     	pdf_dict = targetAss.pdfDirectory;
     }
     
+    public void onrate(RateEvent rateEvent){
+    	System.out.println("get rating from client"+ rateEvent.getRating());
+    	rating = ((Integer)rateEvent.getRating()).intValue();
+    }
+    
+    public void onSlideEnd(SlideEndEvent event){
+    	point = event.getValue();
+    }
+   
 
 	public void reset(){
     	zipFile=null;
