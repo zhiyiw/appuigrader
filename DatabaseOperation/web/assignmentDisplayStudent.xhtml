@@ -102,30 +102,29 @@ function zipFileIfEmpty(){
 	}
 </script>
 
-<!-- 	<h1>
-	<h:outputLabel value="#{menuoption.selectYear}">
-	</h:outputLabel>
-	<h:outputLabel value="#{menuoption.selectTerm}">
-	</h:outputLabel>
-	</h1> -->
+
+	
 	<p:outputPanel layout="block" styleClass="mainFrame">
 
 	
 	
-	<p:outputPanel layout="block" styleClass="logout">
+	
+    
+  
+	 <p:outputPanel layout="block" styleClass="stu_view_top">
+	 <p:outputPanel layout="block" styleClass="logout">
 	<h:form> 
     <h:commandButton id="goback" onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />
      	<p:tooltip for="goback" value="Log Out" showEffect="fade" hideEffect="fade" position="left center"/>
     
     </h:form>
     </p:outputPanel>
-    
-   <!--  
-    <h:form>
-    	<h:commandButton action="profileLoading.xhtml" value="Profile" />
-	</h:form> -->
 	 
-	<p:outputPanel layout="block" styleClass="assignment_table">
+	 </p:outputPanel>
+	 
+	 
+	 
+	<p:outputPanel layout="block" styleClass="stu_view_content">
 	<h:form>
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
@@ -167,7 +166,7 @@ function zipFileIfEmpty(){
              <p:commandButton id="v3" value="New Comparison" icon="ui-icon-extlink" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
-   <!--  </p:panel>  -->
+
     </h:form>
     
     </p:outputPanel>
@@ -261,12 +260,18 @@ function zipFileIfEmpty(){
 		</h:form>
 		</p:outputPanel>
 	</p:dialog>
-<div class="toolbar">
+
+
+
+ <p:outputPanel layout="block" styleClass="stu_view_bottom">
+ 
+ <div class="toolbar">
 
 
 <ui:include src="/toolBar.xhtml" /> 
 </div>
-
+ 
+	 </p:outputPanel>
 
 
 </p:outputPanel>
