@@ -114,6 +114,10 @@ function zipFileIfEmpty(){
 
 
 	<p:outputPanel layout="block" styleClass="mainFrame">
+	
+	
+	 <p:outputPanel layout="block" styleClass="admin_view_top">
+	
     
     <p:outputPanel layout="block" styleClass="add">
     <p:commandLink id="addassignment" onmouseover="buttonover();" onmouseout="buttonout();" onmousedown="buttondown();" onclick="addnew_page01.show()" styleClass="addNewAssignment" >
@@ -122,12 +126,26 @@ function zipFileIfEmpty(){
          	<p:tooltip for="addassignment" value="Add New Assignment" showEffect="fade" hideEffect="fade" position="left center"/>
     
     </p:outputPanel>
+    
+    
+    
+    	  <p:outputPanel layout="block" styleClass="profiletoolbar">
+
+
+
+<ui:include src="/profileToolBarAdmin.xhtml" /> 
+
+ </p:outputPanel>
+	 
+	 
+	 </p:outputPanel>
+    
       
-	<p:outputPanel layout="block" styleClass="assignment_table">
+	<p:outputPanel layout="block" styleClass="admin_view_content">
 	
 	<h:form id="form">
 	
-	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="10"  
+	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{assignment.list}" paginator="true" rows="11"  
                  selection="#{assignment.selectedAssignment}" rowKey="#{a.assignmentID}" selectionMode="single"> 
         <f:facet name="header">  
             Assignment List  
@@ -322,7 +340,7 @@ function zipFileIfEmpty(){
 
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'"  image="/images/upload_s0.png"  onclick="addnew_page02.hide();addnew_page03.show();" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png"  onclick="addnew_page02.hide();addnew_page03.show();" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
@@ -466,7 +484,7 @@ function zipFileIfEmpty(){
             
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;left:55px">
-			<h:commandButton type="submit" onmouseover="this.src ='images/update_s1.png'" onmouseout="this.src='images/update_s0.png'" onmousedown="this.src='images/update_s2.png'"  image="/images/update_s0.png"  onclick="update_page02.hide();update_page03.show();" />
+			<h:commandButton type="submit" onmouseover="this.src ='images/next_s1.png'" onmouseout="this.src='images/next_s0.png'" onmousedown="this.src='images/next_s2.png'"  image="/images/next_s0.png"  onclick="update_page02.hide();update_page03.show();" />
 			</p:outputPanel>
 			
 			<p:outputPanel layout="block" style="position:absolute;top:450px;right:59px">
@@ -516,11 +534,16 @@ function zipFileIfEmpty(){
 		</p:outputPanel>
 	</p:dialog>
 	
-	<div class="toolbar">
+	 <p:outputPanel layout="block" styleClass="admin_view_bottom">
+	
+	 <p:outputPanel layout="block" styleClass="toolbar">
 
 
 	<ui:include src="/toolBarAdmin.xhtml" />
-</div>
+</p:outputPanel>
+
+
+</p:outputPanel>
 
 </p:outputPanel>
 

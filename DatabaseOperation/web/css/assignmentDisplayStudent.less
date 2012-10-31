@@ -5,7 +5,7 @@ html{
   			
   			.mainFrame{
   			   
-  			     .at2x('stu_view.png',1024,700);
+  		//	     .at2x('stu_view.png',1024,700);
                 background-position:center;
                 background-size:cover;
                 background-repeat:no-repeat; 
@@ -20,27 +20,42 @@ html{
   			.logout{
   				position:relative;
   				top:45px;
-  				left:30px;
+  				left:28px;
   				width:120px;
   				height:120px;
   			} 
-   
-             
- 	.assignment_table{
+   .stu_view_top{
+    .at2x('stu_view_top.png',1024,185);
+ float:left;
+  			 width:1024px;
+                height:185;
   				position:relative;
-  				top:200px;
+  				
+   
+   }
+             
+ 	.stu_view_content{
+ 	 .at2x('stu_view_content.png',1024,18);
+ 	float:left;
+  			 width:1024px;
+                height:auto;
+  				position:relative;
+  				background-repeat:repeat;
+  			
   				
   			}   
             
             
-            .buttonStyle {
-				border:none;   
-               	width: 20px;
-                height:20px;
-				margin-top:50px; 		
-					
-			}
-			
+            .stu_view_bottom{
+              .at2x('stu_view_bottom.png',1024,104);
+ 
+  			 width:1024px;
+                height:104;
+  				position:relative;
+            float:left;
+            
+            }
+   
 			.addNewAssignment{
 				width: 75px;
                 height:75px;
@@ -49,20 +64,9 @@ html{
                 border:none;
 			}
 			
-			.zoomIcon{
-				width:60px;
-				height:60px;
-				position:absolute;
-				bottom:20%;
-				left:50%;
-				margin-left: -30px;
-			}
+		
 			
-			.rubricDisplay{
-				position:absolute;
-				top:5px;
-				left:100px;
-			}
+		
 			
 			.ui-dialog.ui-widget-content {
      	//	background-color: transparent;
@@ -72,10 +76,10 @@ html{
 			}
 			.assignmentTable{
 			width: 900px;
-                height:300px;
+         //       height:auto;
                 position:relative;
                 left:62px;
-                top: -130px;
+          
                
 }
 
@@ -92,17 +96,17 @@ background-color: transparent;
 
             .assignmentTableRow{
             
-           font-size: 80% ;
+     //      font-size: 80% ;
            
             
             }
             
             .assignmentTable td:nth-child(1) {
-    			width: 20% !important;
+    			width: 150px !important;
 			}
 			
 			.assignmentTable td:nth-child(2) {
-    			width: 30% !important;
+    			width: 300px !important;
 			}
 			
 			
@@ -113,6 +117,20 @@ background-color: transparent;
             .ui-state-error{
             	display:none !important;
             }
+            
+                          .profiletoolbar{
+       
+      
+        position:relative;
+        float:left;
+        width:230px;
+        	
+        height:20px;
+
+        left:760px;
+        top:-110px;
+        
+        }
             
             
                     .toolbar{
@@ -125,7 +143,7 @@ background-color: transparent;
         height:20px;
 
         left:760px;
-        top:-428px;
+        top:-554px;
         
         }
         
