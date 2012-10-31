@@ -120,6 +120,15 @@ function zipFileIfEmpty(){
     </h:form>
     </p:outputPanel>
 	 
+	  <p:outputPanel layout="block" styleClass="profiletoolbar">
+
+
+
+<ui:include src="/profileToolBar.xhtml" /> 
+
+ </p:outputPanel>
+	 
+	 
 	 </p:outputPanel>
 	 
 	 
@@ -264,13 +273,13 @@ function zipFileIfEmpty(){
 
 
  <p:outputPanel layout="block" styleClass="stu_view_bottom">
- 
- <div class="toolbar">
+ <p:outputPanel layout="block" styleClass="toolbar">
+
 
 
 <ui:include src="/toolBar.xhtml" /> 
-</div>
- 
+
+ </p:outputPanel>
 	 </p:outputPanel>
 
 
