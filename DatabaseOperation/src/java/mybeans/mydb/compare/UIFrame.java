@@ -277,8 +277,10 @@ public class UIFrame {
 		while(enu.hasMoreElements()){
 			entry = enu.nextElement();
 			str = entry.getName();
+			String sub;
 			if(str.startsWith("assets")){
-				mediaFiles.add(str);
+				sub = str.substring(7, str.length());
+				mediaFiles.add(sub);
 			}
 		}
 		
