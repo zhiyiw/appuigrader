@@ -266,6 +266,26 @@ public class UIFrame {
 		return str;
 
 	}
+	
+	public ArrayList<String> showMediaFile(ZipFile zf){
+		ArrayList<String> mediaFiles = new ArrayList<String>();
+		
+		ZipEntry entry;
+		Enumeration<? extends ZipEntry> enu = zf.entries();
+		InputStream is = null;
+		String str = null;
+		while(enu.hasMoreElements()){
+			entry = enu.nextElement();
+			str = entry.getName();
+			String sub;
+			if(str.startsWith("assets")){
+				sub = str.substring(7, str.length());
+				mediaFiles.add(sub);
+			}
+		}
+		
+		return mediaFiles;
+	}
 
 	public String compareFiles(String oriFile, String tarFile)
 			throws IOException {
@@ -284,8 +304,13 @@ public class UIFrame {
 
 		dataBuild db = new dataBuild(zipFilestream(zf));
 		blockBuild bb = new blockBuild(blockFilestream(zf));
-
-	
+		
+		ArrayList<String> mediaFiles1;
+		mediaFiles1 = showMediaFile(zf);
+		
+		for(String str : mediaFiles1){
+			System.out.println("$$$$$$$$$$$$$   Media Files 1: "+str);
+		}
 
 		// ////////////////////////////////
 
@@ -299,7 +324,12 @@ public class UIFrame {
 		dataBuild db2 = new dataBuild(zipFilestream(zf));
 		blockBuild bb2 = new blockBuild(blockFilestream(zf));
 
-
+		ArrayList<String> mediaFiles2;
+		mediaFiles2 = showMediaFile(zf);
+		
+		for(String str : mediaFiles2){
+			System.out.println("$$$$$$$$$$$$$   Media Files 2: "+str);
+		}
 
 		sl.split(bb.compArr, bb2.compArr);
 
@@ -321,6 +351,11 @@ public class UIFrame {
 			compareUI testUI = new compareUI();
 			compResult = "";
 
+			if(!mediaFiles1.isEmpty()){
+				String mediaFiles = testUI.compareAssets(mediaFiles1, mediaFiles2);
+				sb.append("Media Files: \n" + mediaFiles);
+			}
+			
 			String structResult = testUI.compare(db.compArr, db2.compArr);
 
 			if (structResult

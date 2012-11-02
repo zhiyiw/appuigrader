@@ -286,13 +286,45 @@ public class compareUI {
 		ArrayList<ArrayList<String>> needAll = new ArrayList<ArrayList<String>>();
 
 		for (j = 0; j < origMap.size(); j++) {
-			System.out.println("get: " + origMap.get(j).get("$Name"));
+			temp = (String) origMap.get(j).get("$Name");
+			
+			System.out.println("get: " + temp);
 			if (!origMap.get(j).containsKey("$Name")) {
 				needAll.add(noName);
 				continue;
 			}
-
-			temp = (String) origMap.get(j).get("$Name");
+			
+//			if(temp.equals("Screen1")) {
+//				
+//				System.out.println("SCREEEEEEEEEEEEEEEEN:  "+temp.equals("Screen1"));
+//				
+//				
+//				System.out.println("SCROLLLLLLLLLLLLL:  "+origMap.get(j).containsKey("Scrollable"));
+//
+//				if(origMap.get(j).containsKey("$Scrollable")) {
+//					needOne.add((String) origMap.get(j).get("$Scrollable"));
+//					
+//					ArrayList<String> scroll = new ArrayList<String>();
+//					for (String ss : needOne) {
+//						scroll.add(ss);
+//					}
+//					
+//					needAll.add(scroll);
+//					needOne.clear();
+//					System.out.println("needALLLLLLLLLLLLL ===== " + needAll.get(0).get(0));
+//					continue;
+//				}
+//			}
+			
+			
+			
+//			if(temp.equals("Screen1")) {
+//				origMap.get(j).put("$Name", "Screen1_Scrollable");
+//				temp = "Screen1_Scrollable";
+//			}
+			
+			
+			
 			for (k = 0; k < temp.length(); k++) {
 				if (temp.charAt(k) == '_') {
 					isAssign = true;
@@ -377,8 +409,12 @@ public class compareUI {
 					+ orig.containsKey(needCompare.get(j)));
 
 			System.out.println("MapInfo: " + orig.get("$Name"));
+			
+			//if(orig.containsKey(""))
 
 			if (orig.containsKey(needCompare.get(j))) {
+				System.out.println("*****" + orig.get(needCompare.get(j)) + "******" + targ.get(needCompare.get(j)));
+				
 				if (!orig.get(needCompare.get(j)).equals(
 						targ.get(needCompare.get(j)))) {
 					result = result + orig.get("$Type")
@@ -415,6 +451,11 @@ public class compareUI {
 			decompos(origin.get(origin.size() - 1));
 			ArrayList<HashMap> oriMap = new ArrayList<HashMap>();
 			for (HashMap cpy : Maps) {
+				if(cpy.containsKey("$Name")) {
+					if(cpy.get("$Name").equals("Screen1")) {
+						cpy.put("$Name", "Screen1_Scrollable");
+					}
+				}
 				oriMap.add((HashMap) cpy.clone());
 			}
 			Maps.clear();
@@ -610,6 +651,38 @@ public class compareUI {
 //		}
 		return "GREAT!! The number of components are matched!!";
 
+	}
+	
+	public String compareAssets(ArrayList<String> list1, ArrayList<String> list2){
+		String results1 = "";
+		String results2 = "";
+		String result = "";
+		
+		StringBuffer buffer1 = new StringBuffer("");
+		StringBuffer buffer2 = new StringBuffer("");
+		StringBuffer buffer = new StringBuffer("");
+		
+		
+		for (String str : list1) {
+			buffer1.append(str + "\n");
+		}
+		results1 = buffer1.toString();
+		
+		
+		if(list2.isEmpty()) {
+			results2 = "No Media Files Added!\n";
+		}
+		else {
+			for(String str : list2){
+				buffer2.append(str + "\n");
+			}
+			results2 = buffer2.toString();
+		}
+
+		buffer.append("Target: " + results1 + "Yours: " + results2 + "\n");
+		
+		result = buffer.toString();
+		return result;
 	}
 
 }
