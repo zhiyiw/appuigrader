@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import org.primefaces.event.data.PageEvent;
@@ -124,8 +125,14 @@ public class AssignmentBean {
 			String tempDirectory = assign.pdfDirectory;
 			if("".equals(tempDirectory) || tempDirectory==null){
 				assign.setPdfDownloadLink("Not Applicatable");
+				assign.setPdfExist(false);
+				assign.setPdfDirectory("");
 			}else{
 				assign.setPdfDownloadLink("<a href=\""+tempDirectory+"\" target=\"_blank\">Download</a>");
+				assign.setPdfExist(true);
+				
+				ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+				assign.setPdfDirectory(ctx.getRealPath("/"+tempDirectory));
 			}
 		    //get screenshot directory
 			String tempSSD=result.getString("screenshot_dict");

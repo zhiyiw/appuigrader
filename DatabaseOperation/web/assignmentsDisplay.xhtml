@@ -2,7 +2,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <h:head>
@@ -179,7 +180,7 @@ function zipFileIfEmpty(){
         <f:facet name="footer">  
              <p:commandButton id="v" value="Description Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
              <p:commandButton id="v3" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
-             <p:commandButton id="v1" value="Update Assignment" icon="ui-icon-refresh" update=":updateDlg_01, :updateDlg_02" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
+             <p:commandButton id="v1" value="Update Assignment" icon="ui-icon-refresh" update=":updateDlg_01, :updateDlg_02, :updateDlg_03" oncomplete="update_page01.show()" action="#{controller.loadTarget(assignment.selectedAssignment.assignmentID)}"/>
              <p:commandButton id="v2" value="Delete Assignment" icon="ui-icon-closethick" update=":confirm" oncomplete="confirmDlg.show()"/>
         </f:facet>
         
@@ -190,7 +191,7 @@ function zipFileIfEmpty(){
 	
 	<p:dialog id="confirm" widgetVar="confirmDlg" showEffect="fade" hideEffect="fade" modal="true" width="330" height="315" draggable="false" resizable="false" styleClass="test">  
 		<h:form>
-		<h:outputText value="you sure you want to delete #{assignment.selectedAssignment.assignmentID} ?"></h:outputText>
+		<h:outputText value="you sure you want to delete #{assignment.selectedAssignment.assignmentName} ?"></h:outputText>
 			<h:commandButton type="submit" value="yes" onclick="confirmDlg.hide();" action="#{controller.delete(assignment.selectedAssignment.assignmentID)}"/>
 
 			<h:commandButton type="button" value="no" onclick="confirmDlg.hide();"/>
@@ -222,6 +223,14 @@ function zipFileIfEmpty(){
     	<h:outputText escape="false" value="#{assignment.selectedAssignment.pdfDownloadLink}" />
     </p:outputPanel>
     
+<!--     <ui:fragment rendered="#{assignment.selectedAssignment.pdfExist}">
+    <p:outputPanel layout="block" style="position:absolute;top:100px;">
+    <h:form>
+     <h:commandLink onclick="dlg.hide();pdfViewer.show();">PDF Preview</h:commandLink>
+     </h:form>
+     </p:outputPanel>
+    </ui:fragment> -->
+    
     <p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
  	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;left:112px"/>
@@ -232,6 +241,15 @@ function zipFileIfEmpty(){
   	</p:outputPanel>
     </p:dialog>
 	
+<!-- 	<p:dialog modal="true" showHeader="false" draggable="false" resizable="false" widgetVar="pdfViewer" id="pdf">
+		
+		<ui:fragment rendered="#{assignment.selectedAssignment.pdfExist}">
+		<p:media value="#{assignment.selectedAssignment.pdfDirectory}" width="100%" height="300px" player="pdf">  
+    		Your browser can't display pdf, <h:outputLink value="#{assignment.selectedAssignment.pdfDirectory}">click</h:outputLink> to download pdf instead.  
+		</p:media>
+		</ui:fragment>
+		
+	</p:dialog> -->
 	
 	
 	<p:dialog styleClass="detail" resizable="false" widgetVar="addnew_page01" width="450" height="520" modal="true" showHeader="false" draggable="false" >  
