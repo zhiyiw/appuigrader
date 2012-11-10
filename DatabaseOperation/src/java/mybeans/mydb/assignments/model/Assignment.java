@@ -16,7 +16,16 @@ public class Assignment {
 	public boolean value;
 	public String pdfDirectory;
 	public String pdfDownloadLink;
+	public boolean pdfExist;
 	
+	public boolean isPdfExist() {
+		return pdfExist;
+	}
+
+	public void setPdfExist(boolean pdfExist) {
+		this.pdfExist = pdfExist;
+	}
+
 	public String getPdfDownloadLink() {
 		return pdfDownloadLink;
 	}

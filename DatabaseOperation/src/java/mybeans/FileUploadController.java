@@ -465,7 +465,6 @@ public class FileUploadController {
     public void onSlideEnd(SlideEndEvent event){
     	point = event.getValue();
     }
-   
 
 	public void reset(){
     	zipFile=null;
