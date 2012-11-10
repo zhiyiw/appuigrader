@@ -22,73 +22,72 @@
 <script type="text/javascript">
 function buttonover()
 {
-	document.buttonAdd.src="images/add_r1_c1_s2.png";
+document.buttonAdd.src="images/add_r1_c1_s2.png";
 }
 
 function buttonout(){
-	document.buttonAdd.src="images/add_r1_c1.png";
+document.buttonAdd.src="images/add_r1_c1.png";
 }
 
 function buttondown(){
-	document.buttonAdd.src="images/add_r1_c1_s3.png";
+document.buttonAdd.src="images/add_r1_c1_s3.png";
 }
 
 function iconover(){
-	document.iconAdd.src="images/zoomin_s02.png";
+document.iconAdd.src="images/zoomin_s02.png";
 }
 
 function iconout(){
-	document.iconAdd.src="images/zoomin_s01.png";
+document.iconAdd.src="images/zoomin_s01.png";
 }
 
 function compareover(){
-	document.buttonUpdate.src="images/compare_s1.png";
+document.buttonUpdate.src="images/compare_s1.png";
 }
 
 function compareout(){
-	document.buttonUpdate.src="images/compare_s0.png";
+document.buttonUpdate.src="images/compare_s0.png";
 }
 
 function comparedown(){
-	document.buttonUpdate.src="images/compare_s2.png";
+document.buttonUpdate.src="images/compare_s2.png";
 }
 
 function cancelover(){
-	document.buttonCancel.src="images/cancel_s1.png";
+document.buttonCancel.src="images/cancel_s1.png";
 }
 
 function cancelout(){
-	document.buttonCancel.src="images/cancel_s0.png";
+document.buttonCancel.src="images/cancel_s0.png";
 }
 
 function canceldown(){
-	document.buttonCancel.src="images/cancel_s2.png";
+document.buttonCancel.src="images/cancel_s2.png";
 }
 
 function checkValue(){
-	if($('#out1').val()=='Choose a file...')
-		alert('you need to upload your *.zip file!');
+if($('#out1').val()=='Choose a file...')
+alert('you need to upload your *.zip file!');
 }
 
 function zipFileIfEmpty(){
-	var value = $('[id="formCompare:out1"]').html();
-	var label = $('[id="formCompare:errorMsg"]');
-	var button = $('[id="formCompare:next"]');
-	label.empty();
-	if(value=="Choose a file..."){
-		var error = $('<div>Please upload a file</div>');
-		error.css('color','red');
-		error.appendTo(label);
-		error.fadeOut(1000);
-		//		openDialog('warning','please upload a file');
-	}else{
-		button.trigger('click');
-	}
+var value = $('[id="formCompare:out1"]').html();
+var label = $('[id="formCompare:errorMsg"]');
+var button = $('[id="formCompare:next"]');
+label.empty();
+if(value=="Choose a file..."){
+var error = $('<div>Please upload a file</div>');
+error.css('color','red');
+error.appendTo(label);
+error.fadeOut(1000);
+//	 openDialog('warning','please upload a file');
+}else{
+button.trigger('click');
+}
 }
 
 </script>
 
-	
 </h:head>
 <h:body>
 
@@ -97,44 +96,38 @@ function zipFileIfEmpty(){
     
 
 <script>
-	function clearInvalidFileMsg(){
-	    fileuplaod_wgt.uploadContent.find("tr.ui-state-error").remove();
-	}
+function clearInvalidFileMsg(){
+    fileuplaod_wgt.uploadContent.find("tr.ui-state-error").remove();
+}
 </script>
 
-<!-- 	<h1>
-	<h:outputLabel value="#{menuoption.selectYear}">
-	</h:outputLabel>
-	<h:outputLabel value="#{menuoption.selectTerm}">
-	</h:outputLabel>
-	</h1> -->
-	<p:outputPanel layout="block" styleClass="mainFrame">
 
-	
-	
-	<p:outputPanel layout="block" styleClass="logout">
-	<h:form> 
+<p:outputPanel layout="block" styleClass="mainFrame">
+
+    
+  
+<p:outputPanel layout="block" styleClass="stu_view_top">
+<p:outputPanel layout="block" styleClass="logout">
+<h:form> 
     <h:commandButton id="goback" onmouseover="this.src ='images/logout_s1.png'" onmouseout="this.src='images/logout_s0.png'" onmousedown="this.src='images/logout_s2.png'" action="#{logout.logout()}" image="images/logout_s0.png" />
-     	<p:tooltip for="goback" value="Log Out" showEffect="fade" hideEffect="fade" position="left center"/>
+     <p:tooltip for="goback" value="Log Out" showEffect="fade" hideEffect="fade" position="left center"/>
     
     </h:form>
     </p:outputPanel>
-    
-   <!--  
-    <h:form>
-    	<h:commandButton action="profileLoading.xhtml" value="Profile" />
-	</h:form> -->
-	 
-	<p:outputPanel layout="block" styleClass="assignment_table">
-	<h:form>
+ 
+</p:outputPanel>
+ 
+ 
+ 
+<p:outputPanel layout="block" styleClass="stu_view_content">
+<h:form>
     
    <!--  <p:panel widgetVar="tableControl" visible="true" closable="true" closeSpeed="0"> -->
-	<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="11"  
+<p:dataTable paginatorPosition="bottom" rowStyleClass="assignmentTableRow" styleClass="assignmentTable" id="table" var="a" value="#{gradestudentBean.assignmentList}" paginator="true" rows="11"  
                  selection="#{gradestudentBean.selectedAssignment}" rowKey="#{a.assignmentID}" selectionMode="single">  
-     	<f:facet name="header">  
+     <f:facet name="header">  
             Assignment List  
         </f:facet>  
-		
         
         <p:column style="text-align: center;" headerText="Assignments" sortBy="#{a.assignmentName}">  
             #{a.assignmentName}  
@@ -145,55 +138,54 @@ function zipFileIfEmpty(){
         </p:column>
         
         <p:column headerText="Difficult" sortBy="#{a.assignmentRating}">
-        	<p:rating value="#{a.assignmentRating}" stars="5" cancel="false" readonly="true"/> 
+        <p:rating value="#{a.assignmentRating}" stars="5" cancel="false" readonly="true"/> 
         </p:column>
         
         <p:column style="text-align: right;" headerText="Score" sortBy="#{a.assignmentPoint}">
-        	#{a.assignmentPoint} pts
+        #{a.assignmentPoint} pts
         </p:column>
                 
-       	<p:column style="text-align: center;" headerText="Attempts">  
+       <p:column style="text-align: center;" headerText="Attempts">  
             #{a.assignmentTries} 
         </p:column>
         
         <p:column style="text-align: center;" headerText="Current Status">  
-            <h:outputText escape="false" value="#{a.assignmentStatus}" />
+            <h:outputText escape="fasle" value="#{a.assignmentStatus}" />
         </p:column>
       
         <f:facet name="footer">  
              <p:commandButton id="v" value="Assignment Detail" icon="ui-icon-search" update=":dialog" oncomplete="dlg.show()"/> 
-			 <p:commandButton id="v1" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
+<p:commandButton id="v1" value="Preview Image" icon="ui-icon-calculator" update=":screenshot" oncomplete="lightbox.show()"/>
              <p:commandButton id="v2" value="Comaprison History" icon="ui-icon-bookmark" update=":dlgSingleLogDisplay" oncomplete="dlgSingleLog.show()" />
              <p:commandButton id="v3" value="New Comparison" icon="ui-icon-extlink" update=":updateDialog" oncomplete="updateUI.show()"/>
         </f:facet>
     </p:dataTable>   
-   <!--  </p:panel>  -->
+
     </h:form>
     
     </p:outputPanel>
     
     
     <p:dialog  resizable="false" header="Comparison History" styleClass="table_showhistory" id="dlgSingleLogDisplay" widgetVar="dlgSingleLog" modal="true" draggable="false" width="500" height="400">  
-	<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
-	</p:dialog>
-	
+<h:outputText value="#{gradestudentBean.selectedAssignment.assignmentHistory}" escape="false"/>
+</p:dialog>
 
-	<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="432" height="505">
-	<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
+<p:dialog header="Preview Image" id="screenshot" widgetVar="lightbox" draggable="false" resizable="false" modal='true' width="432" height="505">
+<h:graphicImage value="#{gradestudentBean.selectedAssignment.screenshotDirectory}" width="400" height="500"></h:graphicImage>
 
-	</p:dialog>
+</p:dialog>
 
     
     <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="340" height="335" showHeader="false" draggable="false" resizable="false" >  
-  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:324px;width:324px" layout="block"> 
-  	<p:outputPanel layout="block" style="position:absolute;top:28px;left:110px">
-  	<h:outputText style="font-size:16px; font-weight:bold; text-align:center;"  
+  <p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:324px;width:324px" layout="block"> 
+  <p:outputPanel layout="block" style="position:absolute;top:28px;left:110px">
+  <h:outputText style="font-size:16px; font-weight:bold; text-align:center;"  
                             value="#{gradestudentBean.selectedAssignment.assignmentName}" /> 
     </p:outputPanel> 
     
     <p:outputPanel layout="block" style="position:absolute;top:72px;left:43px; font-size:16px;">
     <a>Author:</a>
-    	#{gradestudentBean.selectedAssignment.assignmentAuthor}
+    #{gradestudentBean.selectedAssignment.assignmentAuthor}
     </p:outputPanel>
     
     <p:outputPanel layout="block" style="text-align:left;font-size:14px;word-wrap:break-word; word-break:break-all; position:absolute;top:140px;left:50px; width:230px; height:120px; ">
@@ -206,67 +198,64 @@ function zipFileIfEmpty(){
  	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:74%;left:12.5%"/>
  	</p:commandLink>
  	</p:outputPanel>
- 	
+ 
  	<p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
  	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:74%;right:10%"/>
  	</p:commandLink>
  	</p:outputPanel>
-  	</p:outputPanel>
-  	
-  	
+  </p:outputPanel>
+  
+  
     </p:dialog>
-	
-	
-	
-		<p:dialog style="background-color: transparent;" resizable="false" widgetVar="updateUI" id="updateDialog" width="340" height="300" modal="true" showHeader="false" draggable="false">  
-		<p:outputPanel style="background-image:url(images/compare_assignment.png);height:272px;width:312px" layout="block">
+<p:dialog style="background-color: transparent;" resizable="false" widgetVar="updateUI" id="updateDialog" width="340" height="300" modal="true" showHeader="false" draggable="false">  
+<p:outputPanel style="background-image:url(images/compare_assignment.png);height:272px;width:312px" layout="block">
         <h:form enctype="multipart/form-data" id="formCompare">
         <p:outputPanel layout="block" style="position:absolute;top:145px;left:45px">
-    		<p:fileUpload fileUploadListener="#{compare.handleZipUpload}"
-            	mode="advanced"
-            	sizeLimit="10000000" 
-            	allowTypes="/(\.|\/)(zip)$/" 
-            	style="border:none"
-            	required="true"
-            	showButtons="false"
-            	auto="true"
-            	update="out1"
-            	widgetVar="fileuplaod_wgt"
-            	/>
- 			
-			</p:outputPanel  >
-		<p:outputPanel layout="block" styleClass="filename" >
-			
-			<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
-			</p:outputPanel  >
-			
+    <p:fileUpload fileUploadListener="#{compare.handleZipUpload}"
+            mode="advanced"
+            sizeLimit="10000000" 
+            allowTypes="/(\.|\/)(zip)$/" 
+            style="border:none"
+            required="true"
+            showButtons="false"
+            auto="true"
+            update="out1"
+            widgetVar="fileuplaod_wgt"
+            />
+ 
+</p:outputPanel  >
+<p:outputPanel layout="block" styleClass="filename" >
+<h:outputText id="out1" value="#{compare.selectedFilename}" /> 
+</p:outputPanel  >
 
 
-			<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:45px;height:25px;width:150px" />
+<p:outputPanel id="errorMsg" layout="block" style="position:absolute;top:190px;left:45px;height:25px;width:150px" />
 
-			
-			<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px">
-			<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />
-			</p:outputPanel>
-			
-			<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px;z-index:99">
-			<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
-			</p:outputPanel>
-			
-			<p:outputPanel layout="block" style="position:absolute;top:220px;right:39px">
-			<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" action="#{compare.reset()}"/>
-			</p:outputPanel>
-			
-		</h:form>
-		</p:outputPanel>
-	</p:dialog>
-<div class="toolbar">
+<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px">
+<h:commandButton id="next" type="submit" action="#{compare.tempUpload(openid.openIdEmail,gradestudentBean.selectedAssignment.assignmentDirectory, gradestudentBean.selectedAssignment.assignmentID)}" />
+</p:outputPanel>
+<p:outputPanel layout="block" style="position:absolute;top:220px;left:40px;z-index:99">
+<h:commandButton type="button" onmouseover="this.src ='images/upload_s1.png'" onmouseout="this.src='images/upload_s0.png'" onmousedown="this.src='images/upload_s2.png'" image="/images/upload_s0.png" onclick="zipFileIfEmpty();"/>
+</p:outputPanel>
+<p:outputPanel layout="block" style="position:absolute;top:220px;right:39px">
+<h:commandButton type="button" onmouseover="this.src ='images/cancel_s1.png'" onmouseout="this.src='images/cancel_s0.png'" onmousedown="this.src='images/cancel_s2.png'"  image="/images/cancel_s0.png" onclick="updateUI.hide()" action="#{compare.reset()}"/>
+</p:outputPanel>
+</h:form>
+</p:outputPanel>
+</p:dialog>
+
+
+
+ <p:outputPanel layout="block" styleClass="stu_view_bottom">
+ <p:outputPanel layout="block" styleClass="toolbar">
+
 
 
 <ui:include src="/toolBar.xhtml" /> 
-</div>
 
+ </p:outputPanel>
+</p:outputPanel>
 
 
 </p:outputPanel>
