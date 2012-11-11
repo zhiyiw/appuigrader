@@ -50,7 +50,21 @@ public class StudentAssignmentModel {
 	public String assignmentShortDes;
 	public String assignmentAuthor;
 	public int downloadable;
+	public String pdfDirectory;
+	public String pdfDownloadLink;
 	
+	public String getPdfDirectory() {
+		return pdfDirectory;
+	}
+	public void setPdfDirectory(String pdfDirectory) {
+		this.pdfDirectory = pdfDirectory;
+	}
+	public String getPdfDownloadLink() {
+		return pdfDownloadLink;
+	}
+	public void setPdfDownloadLink(String pdfDownloadLink) {
+		this.pdfDownloadLink = pdfDownloadLink;
+	}
 	public int getDownloadable() {
 		return downloadable;
 	}

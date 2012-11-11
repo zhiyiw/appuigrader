@@ -86,8 +86,8 @@ public class GradeDisplay {
 				sam.setAssignmentDes(result.getString("description"));
 				String temp = sam.getAssignmentDes();
 				
-				if(temp.length()>30){
-					sam.setAssignmentShortDes(temp.substring(0, 29)+" ...");
+				if(temp.length()>20){
+					sam.setAssignmentShortDes(temp.substring(0, 19)+" ...");
 				}else
 					sam.setAssignmentShortDes(temp);
 				
@@ -100,6 +100,15 @@ public class GradeDisplay {
 				sam.setAssignmentPoint(result.getInt("point"));
 				sam.setAssignmentAuthor(result.getString("author"));
 				sam.setDownloadable(result.getInt("downloadable"));
+				
+				sam.setPdfDirectory(result.getString("pdf_dict"));
+				
+				String tempDirectory = sam.pdfDirectory;
+				if("".equals(tempDirectory) || tempDirectory==null){
+					sam.setPdfDownloadLink("Not Applicatable");
+				}else{
+					sam.setPdfDownloadLink("<a href=\""+tempDirectory+"\" target=\"_blank\">Download</a>");
+				}
 				
 				String tempScreenshot=result.getString("screenshot_dict");
 				if(tempScreenshot==null)
@@ -131,8 +140,8 @@ public class GradeDisplay {
 			sam.setAssignmentDes(result.getString("description"));
 			String temp = sam.getAssignmentDes();
 			
-			if(temp.length()>30){
-				sam.setAssignmentShortDes(temp.substring(0, 29)+" ...");
+			if(temp.length()>20){
+				sam.setAssignmentShortDes(temp.substring(0, 19)+" ...");
 			}else
 				sam.setAssignmentShortDes(temp);
 			
@@ -141,7 +150,17 @@ public class GradeDisplay {
 			sam.setAssignmentPoint(result.getInt("point"));
 			sam.setAssignmentAuthor(result.getString("author"));
 			sam.setDownloadable(result.getInt("downloadable"));
+			
+			sam.setPdfDirectory(result.getString("pdf_dict"));
+			
+			String tempDirectory = sam.pdfDirectory;
+			if("".equals(tempDirectory) || tempDirectory==null){
+				sam.setPdfDownloadLink("Not Applicatable");
+			}else{
+				sam.setPdfDownloadLink("<a href=\""+tempDirectory+"\" target=\"_blank\">Download</a>");
+			}
 			int canDownload = result.getInt("downloadable");
+			
 			
 			String filePath = result.getString("grade_dict");
 			ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
@@ -206,6 +225,9 @@ public class GradeDisplay {
 		con.close();
 	}
 	
+	public void popImage(String image){
+		
+	}
 
 	public List<StudentAssignmentModel> getAssignmentList() {
 		return assignmentList;
