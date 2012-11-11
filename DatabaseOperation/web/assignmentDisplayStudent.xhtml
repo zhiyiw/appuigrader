@@ -197,8 +197,8 @@ function zipFileIfEmpty(){
 	</p:dialog>
 
     
-    <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="340" height="335" showHeader="false" draggable="false" resizable="false" >  
-  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:324px;width:324px" layout="block"> 
+    <p:dialog styleClass="detail" id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="340" height="405" showHeader="false" draggable="false" resizable="false" >  
+  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:392px;width:324px" layout="block"> 
   	<p:outputPanel layout="block" style="position:absolute;top:28px;left:110px">
   	<h:outputText style="font-size:16px; font-weight:bold; text-align:center;"  
                             value="#{gradestudentBean.selectedAssignment.assignmentName}" /> 
@@ -214,19 +214,19 @@ function zipFileIfEmpty(){
   	 #{gradestudentBean.selectedAssignment.assignmentDes}
     </p:outputPanel>
     
-        <p:outputPanel layout="block" style="position:absolute;top:243px;left:45px; font-size:16px;">
+        <p:outputPanel layout="block" style="position:absolute;top:273px;left:80px; font-size:16px;">
     	PDF: <h:outputText escape="false" value="#{gradestudentBean.selectedAssignment.pdfDownloadLink}" />
     </p:outputPanel>
     
     <p:outputPanel layout="block">
  	<p:commandLink onclick="dlg.hide();updateUI.show();return false;" onmouseover="compareover();" onmouseout="compareout();" onmousedown="comparedown();">
- 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:265px;left:12.5%"/>
+ 	<img name="buttonUpdate" src="images/compare_s0.png" style="border:none;position:absolute;top:333px;left:12.5%"/>
  	</p:commandLink>
  	</p:outputPanel>
  	
  	<p:outputPanel layout="block">
  	<p:commandLink oncomplete="dlg.hide()" onmouseover="cancelover();" onmouseout="cancelout();" onmousedown="canceldown();">
- 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:265px;right:10%"/>
+ 	<img name="buttonCancel" src="images/cancel_s0.png" style="border:none;position:absolute;top:333px;right:10%"/>
  	</p:commandLink>
  	</p:outputPanel>
   	</p:outputPanel>
