@@ -207,8 +207,8 @@ function zipFileIfEmpty(){
 	<h:graphicImage value="#{assignment.selectedAssignment.screenDirectory}" width="400" height="500"></h:graphicImage>
 	</p:dialog>
     
-    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="380" height="335" showHeader="false" draggable="false" resizable="false" styleClass="detail" >  
-  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:324px;width:324px" layout="block"> 
+    <p:dialog id="dialog" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true" width="380" height="405" showHeader="false" draggable="false" resizable="false" styleClass="detail" >  
+  	<p:outputPanel id="display" style="text-align:center;background-image:url(images/detail_panel.png);height:392px;width:324px" layout="block"> 
   
   	<p:outputPanel layout="block" style="position:absolute;top:28px;width:250px; left:56px;">
   	<h:outputText style="font-size:16; font-weight:bold;"  
@@ -224,7 +224,7 @@ function zipFileIfEmpty(){
   	 #{assignment.selectedAssignment.description}
     </p:outputPanel>
     
-    <p:outputPanel layout="block">
+    <p:outputPanel layout="block" style="position:absolute; width:140px; left: 55px;top:276px">
     	<h:outputText escape="false" value="#{assignment.selectedAssignment.pdfDownloadLink}" />
     </p:outputPanel>
     
