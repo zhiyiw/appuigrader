@@ -105,7 +105,7 @@ public class GradeDisplay {
 				
 				String tempDirectory = sam.pdfDirectory;
 				if("".equals(tempDirectory) || tempDirectory==null){
-					sam.setPdfDownloadLink("Not Applicatable");
+					sam.setPdfDownloadLink("Not Applicable");
 				}else{
 					sam.setPdfDownloadLink("<a href=\""+tempDirectory+"\" target=\"_blank\">Download</a>");
 				}
@@ -155,7 +155,7 @@ public class GradeDisplay {
 			
 			String tempDirectory = sam.pdfDirectory;
 			if("".equals(tempDirectory) || tempDirectory==null){
-				sam.setPdfDownloadLink("Not Applicatable");
+				sam.setPdfDownloadLink("Not Applicable");
 			}else{
 				sam.setPdfDownloadLink("<a href=\""+tempDirectory+"\" target=\"_blank\">Download</a>");
 			}

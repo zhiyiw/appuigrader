@@ -124,7 +124,7 @@ public class AssignmentBean {
 			
 			String tempDirectory = assign.pdfDirectory;
 			if("".equals(tempDirectory) || tempDirectory==null){
-				assign.setPdfDownloadLink("Not Applicatable");
+				assign.setPdfDownloadLink("Not Applicable");
 				assign.setPdfExist(false);
 				assign.setPdfDirectory("");
 			}else{

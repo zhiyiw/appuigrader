@@ -270,7 +270,7 @@ public class compareUI {
 	}
 
 	// get properties that need to compare
-	public ArrayList<ArrayList<String>> getNeed(ArrayList<HashMap> origMap) {
+	public ArrayList<ArrayList<String>> getNeed(ArrayList<HashMap<String, String>> oriMap) {
 		// char[] nameVal;
 		char[] nameValue;
 		String temp;
@@ -285,11 +285,11 @@ public class compareUI {
 		ArrayList<String> needOne = new ArrayList<String>();
 		ArrayList<ArrayList<String>> needAll = new ArrayList<ArrayList<String>>();
 
-		for (j = 0; j < origMap.size(); j++) {
-			temp = (String) origMap.get(j).get("$Name");
+		for (j = 0; j < oriMap.size(); j++) {
+			temp = (String) oriMap.get(j).get("$Name");
 			
 			System.out.println("get: " + temp);
-			if (!origMap.get(j).containsKey("$Name")) {
+			if (!oriMap.get(j).containsKey("$Name")) {
 				needAll.add(noName);
 				continue;
 			}
@@ -449,8 +449,8 @@ public class compareUI {
 //		if (!same) {
 
 			decompos(origin.get(origin.size() - 1));
-			ArrayList<HashMap> oriMap = new ArrayList<HashMap>();
-			for (HashMap cpy : Maps) {
+			ArrayList<HashMap<String, String>> oriMap = new ArrayList<HashMap<String, String>>();
+			for (HashMap<String, String> cpy : Maps) {
 				if(cpy.containsKey("$Name")) {
 					if(cpy.get("$Name").equals("Screen1")) {
 						cpy.put("$Name", "Screen1_Scrollable");
@@ -466,8 +466,8 @@ public class compareUI {
 			// Value.clear();
 
 			decompos(target.get(target.size() - 1));
-			ArrayList<HashMap> tarMap = new ArrayList<HashMap>();
-			for (HashMap cpy : Maps) {
+			ArrayList<HashMap<String, String>> tarMap = new ArrayList<HashMap<String, String>>();
+			for (HashMap<String, String> cpy : Maps) {
 				tarMap.add((HashMap) cpy.clone());
 			}
 			Maps.clear();
@@ -577,10 +577,10 @@ public class compareUI {
 				
 				//add "!" to components that mismatched
 				buff = new StringBuffer(c1.getType());
-				c1.setType(buff.append("!").toString());
+				c1.setType(buff.append("!!").toString());
 				
 				buff = new StringBuffer(c2.getType());
-				c2.setType(buff.append("!").toString());
+				c2.setType(buff.append("!!").toString());
 				
 				replaceComp(origin.get(size - 1), c1);
 				replaceComp(origin.get(size - 1), c2);
@@ -592,10 +592,10 @@ public class compareUI {
 				
 				//add "!" to components that mismatched
 				buff = new StringBuffer(c1.getType());
-				c1.setType(buff.append("!").toString());
+				c1.setType(buff.append("!!").toString());
 				
 				buff = new StringBuffer(c2.getType());
-				c2.setType(buff.append("!").toString());
+				c2.setType(buff.append("!!").toString());
 				
 				replaceComp(origin.get(size - 1), c1);
 				replaceComp(origin.get(size - 1), c2);
