@@ -431,6 +431,57 @@ public class compareUI {
 		return result;
 	}
 
+	//Check if Screen is scrollable
+	public String compareScrollable(ArrayList<Component> origin,
+			ArrayList<Component> target){
+		
+		StringBuffer result = new StringBuffer();
+		StringBuffer sb1 = new StringBuffer("Target File: ");
+		StringBuffer sb2 = new StringBuffer("Your File: ");
+		
+		decompos(origin.get(origin.size() - 1));
+		//ArrayList<HashMap<String, String>> oriMap = new ArrayList<HashMap<String, String>>();
+		for (HashMap<String, String> cpy : Maps) {
+			if(cpy.containsKey("$Name")) {
+				if(cpy.get("$Name").equals("Screen1")) {
+					if(cpy.containsKey("Scrollable")){
+						sb1.append("Not scrollable\n");
+					}
+					else {
+						sb1.append("Scrollable\n");
+					}
+					break;
+				}
+			}
+			//oriMap.add((HashMap) cpy.clone());
+		}
+		Maps.clear();
+		
+		
+		decompos(target.get(target.size() - 1));
+		//ArrayList<HashMap<String, String>> tarMap = new ArrayList<HashMap<String, String>>();
+		for (HashMap<String, String> cpy : Maps) {
+			if(cpy.containsKey("$Name")) {
+				if(cpy.get("$Name").equals("Screen1")) {
+					if(cpy.containsKey("Scrollable")){
+						sb2.append("Not scrollable\n" + "----------------------\n");
+					}
+					else {
+						sb2.append("Scrollable\n" + "----------------------\n");
+					}
+					break;
+				}
+			}
+			//tarMap.add((HashMap) cpy.clone());
+		}
+		Maps.clear();
+		
+		result.append(sb1);
+		result.append(sb2);
+		
+		return result.toString();
+	}
+	
 	// compare properties of both files
 	public String compareProperty(ArrayList<Component> origin,
 			ArrayList<Component> target) {
@@ -451,11 +502,11 @@ public class compareUI {
 			decompos(origin.get(origin.size() - 1));
 			ArrayList<HashMap<String, String>> oriMap = new ArrayList<HashMap<String, String>>();
 			for (HashMap<String, String> cpy : Maps) {
-				if(cpy.containsKey("$Name")) {
-					if(cpy.get("$Name").equals("Screen1")) {
-						cpy.put("$Name", "Screen1_Scrollable");
-					}
-				}
+//				if(cpy.containsKey("$Name")) {
+//					if(cpy.get("$Name").equals("Screen1")) {
+//						cpy.put("$Name", "Screen1_Scrollable");
+//					}
+//				}
 				oriMap.add((HashMap) cpy.clone());
 			}
 			Maps.clear();
@@ -679,7 +730,7 @@ public class compareUI {
 			results2 = buffer2.toString();
 		}
 
-		buffer.append("Target: " + results1 + "Yours: " + results2 + "\n");
+		buffer.append("Target: " + results1 + "\n" + "Yours: " + results2 + "\n");
 		
 		result = buffer.toString();
 		return result;

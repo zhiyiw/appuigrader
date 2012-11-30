@@ -356,6 +356,10 @@ public class UIFrame {
 				sb.append("Media Files: \n" + mediaFiles);
 			}
 			
+			String scrollable = testUI.compareScrollable(db.compArr, db2.compArr);
+			
+			sb.append("--------------------------------- \n" + "Screen Scrollable: \n" + scrollable);
+			
 			String structResult = testUI.compare(db.compArr, db2.compArr);
 
 			if (structResult
