@@ -10,10 +10,10 @@ Follow the instructions in wiki page
 
 Make sure the following environment matched before moving into code trouble shooting
 
-Dynamic Web Module 3.0
-Java 1.6
-Javascript 1.0
-JavaServer Faces 2.0
-Tomcat Server 6.0
-mysql Ver 14.14 Distrib 5.5.28
-Primefaces 3.3
+*  Dynamic Web Module 3.0
+*  Java 1.6
+*  Javascript 1.0
+*  JavaServer Faces 2.0
+*  Tomcat Server 6.0
+*  mysql Ver 14.14 Distrib 5.5.28
+*  Primefaces 3.3
