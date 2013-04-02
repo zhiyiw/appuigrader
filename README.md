@@ -17,3 +17,22 @@ Make sure the following environment matched before moving into code trouble shoo
 *  Tomcat Server 6.0
 *  mysql Ver 14.14 Distrib 5.5.28
 *  Primefaces 3.3
+
+Core Algorithms
+===============
+
+There are three files under path: src/java/mybeans/mydb/compare,  handling the whole data structure an comparing algorithm. 
+
+<p><b>Component.java</p>
+Defines the data unit that stores the JSON structure. 
+
+<p><b>dataBuild.java</p>
+Defines the algorithm of parsing the JSON file generated bu App Inventor. It converts the JSON object to the "Component" so that comparing function can apply them for comparison.
+
+<p><b>compareUI.java</p> 
+Handles the comparison. It has seperate functions to deal with different types of comparisons.
+
+<p><b>splitList.java</p>
+Splits the UI components to invisible components and visible components.
+
+
